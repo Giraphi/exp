@@ -10,7 +10,16 @@ import {Vector3} from "three/src/math/Vector3";
 
 const MESH_HEIGHT = 400;
 const LIGHT_POSITION_Y = 150;
-const Text_POSITION_Y = 150;
+
+const COLORS = {
+    mesh: "#ffffff",
+    light: "#ffffee"
+}
+const COLORS_HOVER = {
+    mesh: "red",
+    light: "red",
+}
+
 
 export interface IlluminatedMeshProps {
     position: Vector3;
@@ -21,6 +30,7 @@ export default function Lightbulb(props: IlluminatedMeshProps) {
     const [textCanvasWidth, setTextCanvasWidth] = useState(0);
     const [textCanvasHeight, setTextCanvasHeight] = useState(0);
     const [textRefNode, setTextRefNode] = useState<Mesh>();
+    const [colors, setColors] = useState(COLORS);
 
     const textRef = useCallback(node => {
         if (node === null) {
@@ -98,10 +108,19 @@ export default function Lightbulb(props: IlluminatedMeshProps) {
         );
     }, [textCanvasHeight, textCanvasWidth])
 
+    function onPointerOver() {
+        setColors(COLORS_HOVER);
+    }
+
+    function onPointerOut() {
+        setColors(COLORS);
+    }
+
+
     return (
         <>
             <pointLight
-                color={"0xffffff"}
+                color={colors.light}
                 intensity={0.5}
                 distance={400}
                 decay={2}
@@ -111,9 +130,11 @@ export default function Lightbulb(props: IlluminatedMeshProps) {
                 <mesh
                     position={meshPosition}
                     scale={[20, MESH_HEIGHT, 20]}
+                    onPointerOver={onPointerOver}
+                    onPointerOut={onPointerOut}
                 >
                     <meshStandardMaterial
-                        emissive={new Color("#ffffee")}
+                        emissive={new Color(colors.mesh)}
                         emissiveIntensity={1}
                         color={"#000000"}
                     />
