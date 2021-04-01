@@ -1,14 +1,16 @@
-import React, {useMemo, useState} from "react";
+import React, {useCallback, useMemo, useState} from "react";
 import {
+    Box3,
+    BoxBufferGeometry,
     CanvasTexture,
     Color,
-    DoubleSide,
+    DoubleSide, Mesh,
 } from "three";
 import {Vector3} from "three/src/math/Vector3";
 
 const MESH_HEIGHT = 400;
 const LIGHT_POSITION_Y = 150;
-const Text_POSITION_Y = 200;
+const Text_POSITION_Y = 150;
 
 export interface IlluminatedMeshProps {
     position: Vector3;
@@ -18,7 +20,15 @@ export interface IlluminatedMeshProps {
 export default function Lightbulb(props: IlluminatedMeshProps) {
     const [textCanvasWidth, setTextCanvasWidth] = useState(0);
     const [textCanvasHeight, setTextCanvasHeight] = useState(0);
+    const [textRefNode, setTextRefNode] = useState<Mesh>();
 
+    const textRef = useCallback(node => {
+        if (node === null) {
+            return;
+        }
+
+        setTextRefNode(node);
+    }, []);
 
     const lightPosition = useMemo(() => {
         const lightPosition = new Vector3();
@@ -32,8 +42,15 @@ export default function Lightbulb(props: IlluminatedMeshProps) {
     }, []);
 
     const textPosition = useMemo(() => {
-        return new Vector3(0, 20, 11);
-    }, []);
+        if (!textRefNode) {
+            return;
+        }
+
+        const boundingBox: Box3 = new Box3().setFromObject(textRefNode);
+        const textLength = boundingBox.max.y - boundingBox.min.y;
+
+        return new Vector3(0, - textLength/2 + 40, 11);
+    }, [textRefNode]);
 
     const texture = useMemo(() => {
         const size = 100;
@@ -102,6 +119,7 @@ export default function Lightbulb(props: IlluminatedMeshProps) {
                 </mesh>
 
                 <mesh
+                    ref={textRef}
                     position={textPosition}
                     scale={textScale}
                     rotation={[0,0, -Math.PI/2]}
