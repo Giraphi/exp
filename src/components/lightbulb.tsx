@@ -78,6 +78,11 @@ export default function Lightbulb(props: IlluminatedMeshProps) {
         ctx.fillStyle = 'black';
         ctx.fillText(props.text, borderSize, borderSize);
 
+        // const lineHeight = 30;
+        // const lines = props.text.split('\n');
+        // for (let i = 0; i<lines.length; i++)
+        //     ctx.fillText(lines[i], borderSize, borderSize + (i*lineHeight) );
+
         setTextCanvasWidth(ctx.canvas.width);
         setTextCanvasHeight(ctx.canvas.height);
 
