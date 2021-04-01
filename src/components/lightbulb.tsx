@@ -27,7 +27,6 @@ export default function Lightbulb(props: IlluminatedMeshProps) {
 
         return lightPosition;
     }, [props.position]);
-
     const meshPosition = useMemo(() => {
         return new Vector3(0, -LIGHT_POSITION_Y, 0);
     }, []);
@@ -47,7 +46,7 @@ export default function Lightbulb(props: IlluminatedMeshProps) {
             throw new Error(`Could not create ctx`);
         }
 
-        const font = `${size}px bold sans-serif`;
+        const font = `${size}px monospace`;
         ctx.font = font;
         // measure how long the name will be
         const doubleBorderSize = borderSize * 2;
@@ -59,9 +58,6 @@ export default function Lightbulb(props: IlluminatedMeshProps) {
         // need to set font again after resizing canvas
         ctx.font = font;
         ctx.textBaseline = 'top';
-
-        ctx.fillStyle = 'transparent';
-        ctx.fillRect(0, 0, width, height);
         ctx.fillStyle = 'black';
         ctx.fillText(props.text, borderSize, borderSize);
 
@@ -100,7 +96,7 @@ export default function Lightbulb(props: IlluminatedMeshProps) {
                         color={"#000000"}
                     />
                     <boxBufferGeometry
-                        args={[1, 1, 1]} /*ref={ref => ref && ref.translate(0, 0.5, 0)}*/ />
+                        args={[1, 1, 1]}/>
                     <canvasTexture/>
                     {/*<sphereGeometry args={[10, 16, 8]}/>*/}
                 </mesh>
