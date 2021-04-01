@@ -77,10 +77,9 @@ export default function World(props: WorldProps) {
 
             {cuboids}
 
-            {lightbulbPositions.map((position:Vector3, index: number) =>
-                <Lightbulb position={position} key={index}/>
-            )}
-
+            <Lightbulb position={lightbulbPositions[0]} text={"Contact"}/>
+            <Lightbulb position={lightbulbPositions[1]} text={"Projects"}/>
+            <Lightbulb position={lightbulbPositions[2]} text={"Skills"}/>
 
             <mesh position={[0, 0, 0]} rotation={[-Math.PI / 2, 0, 0]} receiveShadow={true}>
                 <planeBufferGeometry
