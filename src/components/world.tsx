@@ -12,13 +12,6 @@ export default function World(props: WorldProps) {
     const [cuboidMaterialNode, setCuboidMaterialNode] = useState<MeshStandardMaterial>();
     const [cuboidGeometryNode, setCuboidGeometryNode] = useState<BoxBufferGeometry>();
 
-    const {gl} = useThree();
-
-    // useEffect(() => {
-    //     gl.shadowMap.enabled = true;
-    //     gl.shadowMap.type = PCFSoftShadowMap;
-    // }, [gl]);
-
     const cuboidMaterial = useCallback(node => {
         if (node === null) {
             return;
@@ -57,6 +50,13 @@ export default function World(props: WorldProps) {
         )
     }, [cuboidGeometryNode, cuboidMaterialNode, props.numCuboids]);
 
+    const lightbulbPositions = useMemo(() => {
+        return [
+            new Vector3(0, 0, 0),
+            new Vector3(70, 0, 0),
+            new Vector3(-70, 0, 0)
+        ]
+    }, []);
 
     return (
         <>
@@ -77,7 +77,10 @@ export default function World(props: WorldProps) {
 
             {cuboids}
 
-            <Lightbulb position={new Vector3(0, 200, 0)}/>
+            {lightbulbPositions.map((position:Vector3, index: number) =>
+                <Lightbulb position={position} key={index}/>
+            )}
+
 
             <mesh position={[0, 0, 0]} rotation={[-Math.PI / 2, 0, 0]} receiveShadow={true}>
                 <planeBufferGeometry
