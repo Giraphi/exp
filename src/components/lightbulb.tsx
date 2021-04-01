@@ -116,6 +116,10 @@ export default function Lightbulb(props: IlluminatedMeshProps) {
         setColors(COLORS);
     }
 
+    function onClick() {
+        setColors(COLORS_HOVER);
+    }
+
 
     return (
         <>
@@ -131,6 +135,7 @@ export default function Lightbulb(props: IlluminatedMeshProps) {
                     position={meshPosition}
                     scale={[20, MESH_HEIGHT, 20]}
                     onPointerOver={onPointerOver}
+                    onClick={onClick}
                     onPointerOut={onPointerOut}
                 >
                     <meshStandardMaterial
