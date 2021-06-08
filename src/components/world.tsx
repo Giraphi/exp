@@ -77,9 +77,13 @@ export default function World(props: WorldProps) {
 
             {cuboids}
 
-            <Lightbulb position={lightbulbPositions[0]} text={"CONTACT"}/>
-            <Lightbulb position={lightbulbPositions[1]} text={"PROJECTS"}/>
-            <Lightbulb position={lightbulbPositions[2]} text={"SKILLS"}/>
+            {/*<Lightbulb position={lightbulbPositions[0]} text={"CONTACT"}/>*/}
+            {/*<Lightbulb position={lightbulbPositions[1]} text={"PROJECTS"}/>*/}
+            {/*<Lightbulb position={lightbulbPositions[2]} text={"SKILLS"}/>*/}
+
+            <Lightbulb position={lightbulbPositions[0]} text={"FIRST"}/>
+            <Lightbulb position={lightbulbPositions[1]} text={"SECOND"}/>
+            <Lightbulb position={lightbulbPositions[2]} text={"THIRD"}/>
 
             <mesh position={[0, 0, 0]} rotation={[-Math.PI / 2, 0, 0]} receiveShadow={true}>
                 <planeBufferGeometry
