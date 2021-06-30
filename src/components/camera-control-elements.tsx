@@ -1,7 +1,6 @@
 import React, {useContext} from "react";
 import MovementContextActions from "../contexts/movement-context-actions";
 import styled, {css} from "styled-components";
-import arrow from '../images/arrow.svg';
 
 import arrowWhite from '../images/arrow-white.svg';
 import arrowWhitePressed from '../images/arrow-white-pressed.svg';

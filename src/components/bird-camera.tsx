@@ -2,7 +2,6 @@ import React, {useCallback, useRef, useState} from "react";
 import {useFrame, useThree, Vector3} from "react-three-fiber";
 import Controls from "./controls";
 import {Group, PerspectiveCamera} from "three";
-import Lightbulb from "./lightbulb";
 
 export interface CameraProps {
     position: Vector3;
@@ -19,7 +18,6 @@ export default function BirdCamera(props: CameraProps) {
         }
 
         setDefaultCamera(node);
-        // node.rotateX(-0.3);
         setCameraNode(node);
     }, [setDefaultCamera]);
 
@@ -39,20 +37,12 @@ export default function BirdCamera(props: CameraProps) {
                 </group>
 
                 <pointLight
-                    color={"0xfffff5"}
+                    color={"0xffffff"}
                     intensity={0.2}
-                    distance={500}
+                    distance={300}
                     decay={2}
-                    castShadow={true}
-                    position={[-100,0,0]}
-                />
-                <pointLight
-                    color={"0xfffff5"}
-                    intensity={0.2}
-                    distance={500}
-                    decay={2}
-                    castShadow={true}
-                    position={[100,0,0]}
+                    castShadow={false}
+                    position={[0,0,0]}
                 />
             </group>
 

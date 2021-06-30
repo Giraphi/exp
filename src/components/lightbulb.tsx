@@ -1,29 +1,30 @@
 import React, {useCallback, useMemo, useState} from "react";
 import {
-    Box3,
-    BoxBufferGeometry,
-    CanvasTexture,
+    Box3, CanvasTexture,
     Color,
-    DoubleSide, Mesh,
+    DoubleSide, LinearFilter, Mesh,
 } from "three";
 import {Vector3} from "three/src/math/Vector3";
+import {useThree} from "react-three-fiber";
+import LightbulbEdges from "./lightbulb-edges";
 
-const MESH_HEIGHT = 400;
+// const props.height = 400;
 const LIGHT_POSITION_Y = 150;
 
 const COLORS = {
     mesh: "#ffffff",
-    light: "#ffffee"
+    light: "#ffffff"
 }
 const COLORS_HOVER = {
-    mesh: "red",
-    light: "red",
+    mesh: "#FF0500",
+    light: "#FF0000",
 }
-
 
 export interface IlluminatedMeshProps {
     position: Vector3;
     text: string;
+    textOffset: number;
+    height: number;
 }
 
 export default function Lightbulb(props: IlluminatedMeshProps) {
@@ -59,8 +60,8 @@ export default function Lightbulb(props: IlluminatedMeshProps) {
         const boundingBox: Box3 = new Box3().setFromObject(textRefNode);
         const textLength = boundingBox.max.y - boundingBox.min.y;
 
-        return new Vector3(0, - textLength/2 + 40, 11);
-    }, [textRefNode]);
+        return new Vector3(0, - textLength/2 + props.textOffset, 11);
+    }, [props.textOffset, textRefNode]);
 
     const texture = useMemo(() => {
         const size = 100;
@@ -73,7 +74,7 @@ export default function Lightbulb(props: IlluminatedMeshProps) {
             throw new Error(`Could not create ctx`);
         }
 
-        const font = `${size}px monospace`;
+        const font = `${size}px AuvantGothicBold`;
         ctx.font = font;
         // measure how long the name will be
         const doubleBorderSize = borderSize * 2;
@@ -88,19 +89,20 @@ export default function Lightbulb(props: IlluminatedMeshProps) {
         ctx.fillStyle = 'black';
         ctx.fillText(props.text, borderSize, borderSize);
 
-        // const lineHeight = 30;
-        // const lines = props.text.split('\n');
-        // for (let i = 0; i<lines.length; i++)
-        //     ctx.fillText(lines[i], borderSize, borderSize + (i*lineHeight) );
-
         setTextCanvasWidth(ctx.canvas.width);
         setTextCanvasHeight(ctx.canvas.height);
 
-        return new CanvasTexture(ctx.canvas);
+        const texture = new CanvasTexture(ctx.canvas);
+
+        // In combination with gl.setPixelRatio(window.devicePixelRatio) <- see canvas-content.tsx
+        // this makes the text sharper.
+        texture.minFilter = LinearFilter;
+
+        return texture
     }, [props.text]);
 
     const textScale: Vector3 = useMemo(() => {
-        const labelBaseScale = 0.1;
+        const labelBaseScale = 0.15;
         return new Vector3(
             textCanvasWidth  * labelBaseScale,
             textCanvasHeight * labelBaseScale,
@@ -110,16 +112,17 @@ export default function Lightbulb(props: IlluminatedMeshProps) {
 
     function onPointerOver() {
         setColors(COLORS_HOVER);
+        document.body.style.cursor = "pointer";
     }
 
     function onPointerOut() {
         setColors(COLORS);
+        document.body.style.cursor = "";
     }
 
     function onClick() {
         setColors(COLORS_HOVER);
     }
-
 
     return (
         <>
@@ -133,7 +136,7 @@ export default function Lightbulb(props: IlluminatedMeshProps) {
             >
                 <mesh
                     position={meshPosition}
-                    scale={[20, MESH_HEIGHT, 20]}
+                    scale={[20, props.height, 20]}
                     onPointerOver={onPointerOver}
                     onClick={onClick}
                     onPointerOut={onPointerOut}
@@ -143,10 +146,14 @@ export default function Lightbulb(props: IlluminatedMeshProps) {
                         emissiveIntensity={1}
                         color={"#000000"}
                     />
+
                     <boxBufferGeometry
                         args={[1, 1, 1]}/>
-                    <canvasTexture/>
-                    {/*<sphereGeometry args={[10, 16, 8]}/>*/}
+
+
+                    {/*<LightbulbEdges/>*/}
+
+                    {/*<canvasTexture/>*/}
                 </mesh>
 
                 <mesh

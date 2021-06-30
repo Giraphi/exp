@@ -1,4 +1,10 @@
 import {createGlobalStyle} from "styled-components";
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-ignore
+import AuvantGothicBold from "./fonts/OPTIAuvantGothic-Bold.woff";
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-ignore
+import AuvantGothicMedium from "./fonts/OPTIAuvantGothic-Medium.woff";
 
 const GlobalStyle = createGlobalStyle`
     html,
@@ -15,6 +21,20 @@ const GlobalStyle = createGlobalStyle`
     }
     *, *:before, *:after {
       box-sizing: inherit;
+    }
+    
+    @font-face {
+        font-family: "AuvantGothicBold";
+        src: url(${AuvantGothicBold}) format("woff");
+    }
+
+    @font-face {
+        font-family: "AuvantGothicMedium";
+        src: url(${AuvantGothicMedium}) format("woff");
+    }
+    
+    h1 {
+        font-family: "AuvantGothicBold";
     }
 `;
 

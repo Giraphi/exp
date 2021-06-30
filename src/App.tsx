@@ -7,19 +7,25 @@ import CameraControlElements from "./components/camera-control-elements";
 
 
 const StyledRoot = styled.div`
-  //background: #ff6161;
-  //background: #53FAEB;
   background-color: black;
   width: 100%;
   height: 100%;
   position: relative;
 `
 
+// const StyledTest = styled.div`
+//     background-color: white;
+//     font-family: "AuvantGothicBold";
+// `
+
 function App() {
   return (
       <StyledRoot>
+          {/*<StyledTest>*/}
+          {/*    TEST*/}
+          {/*</StyledTest>*/}
+          <h1>Test</h1>
           <GlobalStyle/>
-
           <MovementContextProvider>
             <ThreeCanvas/>
             <CameraControlElements/>
