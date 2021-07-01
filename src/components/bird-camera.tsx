@@ -1,5 +1,5 @@
-import React, {useCallback, useRef, useState} from "react";
-import {useFrame, useThree, Vector3} from "react-three-fiber";
+import React, {useLayoutEffect, useRef} from "react";
+import {useThree, Vector3} from "@react-three/fiber";
 import Controls from "./controls";
 import {Group, PerspectiveCamera} from "three";
 
@@ -9,26 +9,23 @@ export interface CameraProps {
 
 export default function BirdCamera(props: CameraProps) {
     const birdRef= useRef<Group>(null);
-    const { setDefaultCamera } = useThree();
-    const [cameraNode, setCameraNode] = useState<PerspectiveCamera>();
+    const set = useThree(state => state.set);
+    const size = useThree(state => state.size);
+    const cameraRef = useRef<PerspectiveCamera>(null);
 
-    const cameraRef = useCallback((node) => {
-        if (node === null) {
+    useLayoutEffect(() => {
+        if (cameraRef.current) {
+            cameraRef.current.aspect = size.width / size.height
+            cameraRef.current.updateProjectionMatrix()
+        }
+    }, [size]);
+
+    useLayoutEffect(() => {
+        if (!cameraRef.current) {
             return;
         }
-
-        setDefaultCamera(node);
-        setCameraNode(node);
-    }, [setDefaultCamera]);
-
-
-    useFrame(() => {
-        if (!cameraNode) {
-            return;
-        }
-
-        cameraNode.updateMatrixWorld();
-    });
+        set({ camera: cameraRef.current });
+    }, [set, size.height, size.width])
 
     return (
         <>
@@ -38,7 +35,7 @@ export default function BirdCamera(props: CameraProps) {
                 </group>
 
                 <pointLight
-                    color={"0xffffff"}
+                    color={"white"}
                     intensity={1}
                     distance={300}
                     decay={2}

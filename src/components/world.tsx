@@ -68,7 +68,7 @@ export default function World(props: WorldProps) {
     const lightbulbPositions = useMemo(() => {
         return [
             new Vector3(0, 0, 100),
-            new Vector3(115, 0, -110),
+            new Vector3(115, 0, -105),
             new Vector3(-100, 0, 25)
         ]
     }, []);
@@ -91,7 +91,6 @@ export default function World(props: WorldProps) {
                 args={[1, 1, 1]} /*ref={ref => ref && ref.translate(0, 0.5, 0)}*/ />
 
             {cuboids}
-
 
             <Lightbulb
                 position={lightbulbPositions[2]}

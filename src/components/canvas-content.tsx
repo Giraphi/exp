@@ -1,8 +1,8 @@
 import React, {useEffect} from "react";
 import BirdCamera from "./bird-camera";
 import World from "./world";
-import {useThree} from "react-three-fiber";
 import {PCFSoftShadowMap} from "three";
+import {useThree} from "@react-three/fiber";
 
 export default function CanvasContent() {
     const {gl} = useThree();
@@ -16,7 +16,7 @@ export default function CanvasContent() {
 
     return (
         <>
-            <BirdCamera position={[0, 200, 500]}/>
+            <BirdCamera position={[0, 200, 800]}/>
 
             <World
                 numCuboids={200}

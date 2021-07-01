@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
-import {ReactThreeFiber} from 'react-three-fiber'
+import {ReactThreeFiber} from "@react-three/fiber";
 import {MapControls, OrbitControls} from 'three/examples/jsm/controls/OrbitControls'
 import {FirstPersonControls} from "three/examples/jsm/controls/FirstPersonControls";
 import {FlyControls} from "three/examples/jsm/controls/FlyControls";

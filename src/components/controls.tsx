@@ -1,5 +1,5 @@
 import React, {MutableRefObject, useContext, useEffect, useRef} from 'react'
-import {extend, useFrame, useThree} from 'react-three-fiber'
+import {extend, useFrame, useThree} from "@react-three/fiber";
 import {BirdControls} from "../birdControls/birdControls";
 import {Object3D} from "three/src/core/Object3D";
 import {BirdControlsType} from "../birdControls/birdControlsType";
