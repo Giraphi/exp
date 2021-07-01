@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useEffect, useState} from 'react'
 import styled from "styled-components";
 import ThreeCanvas from "./components/three-canvas";
 import GlobalStyle from "./global-style";
@@ -13,25 +13,32 @@ const StyledRoot = styled.div`
   position: relative;
 `
 
-// const StyledTest = styled.div`
-//     background-color: white;
-//     font-family: "AuvantGothicBold";
-// `
+// Workaround to make the font available as a texture in lightbulb.tsx
+const StyledFontWorkaround = styled.div`
+    font-family: "AuvantGothicBold";
+    position: absolute;
+    z-index: -99;
+`
 
 function App() {
-  return (
+    const [isFirstRender, setIsFirstRender] = useState(true);
+
+    useEffect(() => {
+        setIsFirstRender(false);
+    }, [])
+
+    return (
       <StyledRoot>
-          {/*<StyledTest>*/}
-          {/*    TEST*/}
-          {/*</StyledTest>*/}
-          <h1>Test</h1>
+          {isFirstRender &&
+            <StyledFontWorkaround>TEXT</StyledFontWorkaround>
+          }
           <GlobalStyle/>
           <MovementContextProvider>
             <ThreeCanvas/>
             <CameraControlElements/>
           </MovementContextProvider>
       </StyledRoot>
-  )
+    )
 }
 
 export default App;

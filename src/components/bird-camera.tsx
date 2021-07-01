@@ -39,7 +39,7 @@ export default function BirdCamera(props: CameraProps) {
 
                 <pointLight
                     color={"0xffffff"}
-                    intensity={0.2}
+                    intensity={1}
                     distance={300}
                     decay={2}
                     castShadow={false}

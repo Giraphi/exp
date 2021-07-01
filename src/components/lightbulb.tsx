@@ -18,7 +18,6 @@ const COLORS_HOVER = {
 export interface IlluminatedMeshProps {
     position: Vector3;
     text: string;
-    textOffset: number;
     height: number;
 }
 
@@ -29,7 +28,7 @@ export default function Lightbulb(props: IlluminatedMeshProps) {
     const [colors, setColors] = useState(COLORS);
     const lightRef = useRef<PointLight>(null);
     const groupRef = useRef<Group>(null);
-    const lightPositionY = props.height - 50;
+    const lightPositionY = props.height * 0.8;
 
     const textRef = useCallback(node => {
         if (node === null) {
@@ -69,10 +68,10 @@ export default function Lightbulb(props: IlluminatedMeshProps) {
         const boundingBox: Box3 = new Box3().setFromObject(textRefNode);
         const textLength = boundingBox.max.y - boundingBox.min.y;
 
-        console.log(- textLength/2 + props.textOffset)
-
-        return new Vector3(0, props.height, 11);
-    }, [props.height, props.textOffset, textRefNode]);
+        // const normalizationFactor = 0.5;
+        const padding = 5;
+        return new Vector3(0, - textLength/2 + (props.height) - padding, 11);
+    }, [props.height, textRefNode]);
 
     const texture = useMemo(() => {
         const size = 100;
@@ -155,9 +154,9 @@ export default function Lightbulb(props: IlluminatedMeshProps) {
             <pointLight
                 ref={lightRef}
                 color={colors.light}
-                intensity={0.5}
-                distance={400}
-                decay={2}
+                intensity={1.2}
+                distance={350}
+                decay={3}
                 position={lightPosition}
                 castShadow={true}
             >
@@ -166,7 +165,7 @@ export default function Lightbulb(props: IlluminatedMeshProps) {
                     position={[0, -lightPositionY, 0]}
                 >
                     <mesh
-                        scale={[20, props.height, 20]}
+                        scale={[20, 2 * props.height, 20]}
                         onPointerOver={onPointerOver}
                         onClick={onClick}
                         onPointerOut={onPointerOut}
@@ -182,7 +181,7 @@ export default function Lightbulb(props: IlluminatedMeshProps) {
                     </mesh>
 
                     <mesh
-                        position={[0,props.textOffset,11]}
+                        position={textPosition}
                         ref={textRef}
                         scale={textScale}
                         rotation={[0,0, -Math.PI/2]}

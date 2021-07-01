@@ -96,20 +96,17 @@ export default function World(props: WorldProps) {
             <Lightbulb
                 position={lightbulbPositions[2]}
                 text={"THIRD"}
-                height={350}
-                textOffset={148}
+                height={175}
             />
             <Lightbulb
                 position={lightbulbPositions[0]}
                 text={"FIRST"}
-                height={320}
-                textOffset={138}
+                height={160}
             />
             <Lightbulb
                 position={lightbulbPositions[1]}
                 text={"SECOND"}
-                height={370}
-                textOffset={149}
+                height={185}
             />
 
             <mesh position={[0, 0, 0]} rotation={[-Math.PI / 2, 0, 0]} receiveShadow={true}>
