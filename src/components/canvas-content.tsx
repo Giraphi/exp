@@ -16,10 +16,10 @@ export default function CanvasContent() {
 
     return (
         <>
-            <BirdCamera position={[0, 200, 800]}/>
+            <BirdCamera position={[0, 200, 700]}/>
 
             <World
-                numCuboids={200}
+                numCuboids={170}
                 size={1000}
             />
         </>

@@ -6,6 +6,8 @@ import {
 } from "three";
 import {Vector3} from "three/src/math/Vector3";
 
+const LOW_LIGHT_OFFSET = 30;
+
 const COLORS = {
     mesh: "#ffffff",
     light: "#ffffff"
@@ -27,6 +29,7 @@ export default function Lightbulb(props: IlluminatedMeshProps) {
     const [textRefNode, setTextRefNode] = useState<Mesh>();
     const [colors, setColors] = useState(COLORS);
     const lightRef = useRef<PointLight>(null);
+    const lowLightRef = useRef<PointLight>(null);
     const groupRef = useRef<Group>(null);
     const lightPositionY = props.height * 0.8;
 
@@ -38,13 +41,21 @@ export default function Lightbulb(props: IlluminatedMeshProps) {
         setTextRefNode(node);
     }, []);
 
-    const lightPosition = useMemo(() => {
+    // const lightPosition = useMemo(() => {
+    //     const lightPosition = new Vector3();
+    //     lightPosition.copy(props.position);
+    //     lightPosition.add(new Vector3(0, lightPositionY, 0));
+    //
+    //     return lightPosition;
+    // }, [lightPositionY, props.position]);
+
+    const lowLightPosition = useMemo(() => {
         const lightPosition = new Vector3();
         lightPosition.copy(props.position);
-        lightPosition.add(new Vector3(0, lightPositionY, 0));
+        lightPosition.add(new Vector3(0, LOW_LIGHT_OFFSET, 0));
 
         return lightPosition;
-    }, [lightPositionY, props.position]);
+    }, [props.position]);
 
     // const meshPosition = useMemo(() => {
     //     return new Vector3(0, -lightPositionY, 0);
@@ -54,7 +65,7 @@ export default function Lightbulb(props: IlluminatedMeshProps) {
     const textScale: Vector3 = useMemo(() => {
         const labelBaseScale = 0.15;
         return new Vector3(
-            textCanvasWidth  * labelBaseScale,
+            textCanvasWidth * labelBaseScale,
             textCanvasHeight * labelBaseScale,
             0
         );
@@ -70,7 +81,7 @@ export default function Lightbulb(props: IlluminatedMeshProps) {
 
         // const normalizationFactor = 0.5;
         const padding = 5;
-        return new Vector3(0, - textLength/2 + (props.height) - padding, 11);
+        return new Vector3(0, -textLength / 2 + (props.height) - padding, 11);
     }, [props.height, textRefNode]);
 
     const texture = useMemo(() => {
@@ -126,79 +137,65 @@ export default function Lightbulb(props: IlluminatedMeshProps) {
         setColors(COLORS_HOVER);
     }
 
-    // useSpring({
-    //     from: {
-    //         y: 50
-    //     },
-    //     y: -50,
-    //
-    //     onFrame: (state => {
-    //         if (!lightRef || !lightRef.current) {
-    //             return;
-    //         }
-    //         lightRef.current.position.y = state.y;
-    //     })
-    // })
-
-
-    // useFrame((state,delta) => {
-    //     if (!lightRef.current || !groupRef.current) {
-    //         return;
-    //     }
-    //     lightRef.current.position.y += Math.sin(state.clock.getElapsedTime())
-    //     // groupRef.current.position.y -= Math.sin(state.clock.getElapsedTime())
-    // })
-
     return (
         <>
             <pointLight
-                ref={lightRef}
+                ref={lowLightRef}
                 color={colors.light}
-                intensity={1.2}
-                distance={350}
-                decay={3}
-                position={lightPosition}
+                intensity={20}
+                distance={60}
+                decay={4}
+                position={lowLightPosition}
                 castShadow={true}
             >
-                <group
-                    ref={groupRef}
-                    position={[0, -lightPositionY, 0]}
+                <pointLight
+                    ref={lightRef}
+                    color={colors.light}
+                    intensity={1.2}
+                    distance={350}
+                    decay={3}
+                    position={[0, lightPositionY - LOW_LIGHT_OFFSET, 0]}
+                    castShadow={true}
                 >
-                    <mesh
-                        scale={[20, 2 * props.height, 20]}
-                        onPointerOver={onPointerOver}
-                        onClick={onClick}
-                        onPointerOut={onPointerOut}
+                    <group
+                        ref={groupRef}
+                        position={[0, -lightPositionY - 10, 0]}
                     >
-                        <meshStandardMaterial
-                            emissive={new Color(colors.mesh)}
-                            emissiveIntensity={1}
-                            color={"#000000"}
-                        />
+                        <mesh
+                            scale={[20, 2 * props.height, 20]}
+                            onPointerOver={onPointerOver}
+                            onClick={onClick}
+                            onPointerOut={onPointerOut}
+                        >
+                            <meshStandardMaterial
+                                emissive={new Color(colors.mesh)}
+                                emissiveIntensity={1}
+                                color={"#000000"}
+                            />
 
-                        <boxBufferGeometry
-                            args={[1, 1, 1]}/>
-                    </mesh>
+                            <boxBufferGeometry
+                                args={[1, 1, 1]}/>
+                        </mesh>
 
-                    <mesh
-                        position={textPosition}
-                        ref={textRef}
-                        scale={textScale}
-                        rotation={[0,0, -Math.PI/2]}
-                    >
-                        <meshBasicMaterial
-                            map={texture}
-                            side={DoubleSide}
-                            transparent={true}
-                        />
-                        <planeGeometry
-                            args={[1, 1]}
-                        />
-                    </mesh>
-                </group>
+                        <mesh
+                            position={textPosition}
+                            ref={textRef}
+                            scale={textScale}
+                            rotation={[0, 0, -Math.PI / 2]}
+                        >
+                            <meshBasicMaterial
+                                map={texture}
+                                side={DoubleSide}
+                                transparent={true}
+                            />
+                            <planeGeometry
+                                args={[1, 1]}
+                            />
+                        </mesh>
+                    </group>
 
+                </pointLight>
             </pointLight>
-
         </>
     );
 }

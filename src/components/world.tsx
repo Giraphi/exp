@@ -12,7 +12,7 @@ export interface WorldProps {
 export default function World(props: WorldProps) {
     const [cuboidMaterialNode, setCuboidMaterialNode] = useState<MeshStandardMaterial>();
     const [cuboidGeometryNode, setCuboidGeometryNode] = useState<BoxBufferGeometry>();
-    const random = useRandomGenerator(22);
+    const random = useRandomGenerator(55);
 
     const cuboidMaterial = useCallback(node => {
         if (node === null) {
@@ -69,7 +69,7 @@ export default function World(props: WorldProps) {
         return [
             new Vector3(0, 0, 100),
             new Vector3(115, 0, -105),
-            new Vector3(-100, 0, 25)
+            new Vector3(-100, 0, 35)
         ]
     }, []);
 
