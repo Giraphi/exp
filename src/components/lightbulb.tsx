@@ -41,14 +41,6 @@ export default function Lightbulb(props: IlluminatedMeshProps) {
         setTextRefNode(node);
     }, []);
 
-    // const lightPosition = useMemo(() => {
-    //     const lightPosition = new Vector3();
-    //     lightPosition.copy(props.position);
-    //     lightPosition.add(new Vector3(0, lightPositionY, 0));
-    //
-    //     return lightPosition;
-    // }, [lightPositionY, props.position]);
-
     const lowLightPosition = useMemo(() => {
         const lightPosition = new Vector3();
         lightPosition.copy(props.position);
@@ -56,11 +48,6 @@ export default function Lightbulb(props: IlluminatedMeshProps) {
 
         return lightPosition;
     }, [props.position]);
-
-    // const meshPosition = useMemo(() => {
-    //     return new Vector3(0, -lightPositionY, 0);
-    // }, []);
-
 
     const textScale: Vector3 = useMemo(() => {
         const labelBaseScale = 0.15;
