@@ -67,9 +67,9 @@ export default function World(props: WorldProps) {
 
     const lightbulbPositions = useMemo(() => {
         return [
-            new Vector3(0, 0, 0),
-            new Vector3(70, 0, 0),
-            new Vector3(-70, 0, 0)
+            new Vector3(0, 0, 100),
+            new Vector3(115, 0, -110),
+            new Vector3(-100, 0, 25)
         ]
     }, []);
 
@@ -96,20 +96,20 @@ export default function World(props: WorldProps) {
             <Lightbulb
                 position={lightbulbPositions[2]}
                 text={"THIRD"}
-                height={410}
-                textOffset={50}
+                height={350}
+                textOffset={148}
             />
             <Lightbulb
                 position={lightbulbPositions[0]}
                 text={"FIRST"}
-                height={370}
-                textOffset={30}
+                height={320}
+                textOffset={138}
             />
             <Lightbulb
                 position={lightbulbPositions[1]}
                 text={"SECOND"}
-                height={400}
-                textOffset={45}
+                height={370}
+                textOffset={149}
             />
 
             <mesh position={[0, 0, 0]} rotation={[-Math.PI / 2, 0, 0]} receiveShadow={true}>
