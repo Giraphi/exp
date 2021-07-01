@@ -21,6 +21,7 @@ export default function BirdCamera(props: CameraProps) {
         setCameraNode(node);
     }, [setDefaultCamera]);
 
+
     useFrame(() => {
         if (!cameraNode) {
             return;

@@ -1,12 +1,13 @@
-import React, {useCallback, useMemo, useState} from "react";
+import React, {useCallback, useMemo, useRef, useState} from "react";
 import {
     Box3, CanvasTexture,
     Color,
-    DoubleSide, LinearFilter, Mesh,
+    DoubleSide, LinearFilter, Mesh, PointLight,
 } from "three";
 import {Vector3} from "three/src/math/Vector3";
-import {useThree} from "react-three-fiber";
-import LightbulbEdges from "./lightbulb-edges";
+import { useSpring } from 'react-spring'
+import {useFrame} from "react-three-fiber";
+
 
 // const props.height = 400;
 const LIGHT_POSITION_Y = 150;
@@ -32,6 +33,8 @@ export default function Lightbulb(props: IlluminatedMeshProps) {
     const [textCanvasHeight, setTextCanvasHeight] = useState(0);
     const [textRefNode, setTextRefNode] = useState<Mesh>();
     const [colors, setColors] = useState(COLORS);
+    const lightRef = useRef<PointLight>(null);
+    const meshRef = useRef<Mesh>(null);
 
     const textRef = useCallback(node => {
         if (node === null) {
@@ -48,6 +51,7 @@ export default function Lightbulb(props: IlluminatedMeshProps) {
 
         return lightPosition;
     }, [props.position]);
+
     const meshPosition = useMemo(() => {
         return new Vector3(0, -LIGHT_POSITION_Y, 0);
     }, []);
@@ -124,9 +128,33 @@ export default function Lightbulb(props: IlluminatedMeshProps) {
         setColors(COLORS_HOVER);
     }
 
+    // useSpring({
+    //     from: {
+    //         y: 50
+    //     },
+    //     y: -50,
+    //
+    //     onFrame: (state => {
+    //         if (!lightRef || !lightRef.current) {
+    //             return;
+    //         }
+    //         lightRef.current.position.y = state.y;
+    //     })
+    // })
+
+
+    // useFrame((state,delta) => {
+    //     if (!lightRef.current || !meshRef.current) {
+    //         return;
+    //     }
+    //     lightRef.current.position.y = Math.sin(state.clock.getElapsedTime()) * 10
+    //     meshRef.current.position.y = - Math.sin(state.clock.getElapsedTime()) * 10
+    // })
+
     return (
         <>
             <pointLight
+                ref={lightRef}
                 color={colors.light}
                 intensity={0.5}
                 distance={400}
@@ -135,6 +163,7 @@ export default function Lightbulb(props: IlluminatedMeshProps) {
                 castShadow={true}
             >
                 <mesh
+                    ref={meshRef}
                     position={meshPosition}
                     scale={[20, props.height, 20]}
                     onPointerOver={onPointerOver}
@@ -149,11 +178,6 @@ export default function Lightbulb(props: IlluminatedMeshProps) {
 
                     <boxBufferGeometry
                         args={[1, 1, 1]}/>
-
-
-                    {/*<LightbulbEdges/>*/}
-
-                    {/*<canvasTexture/>*/}
                 </mesh>
 
                 <mesh
