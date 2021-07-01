@@ -149,7 +149,8 @@ export default function Lightbulb(props: IlluminatedMeshProps) {
                         position={[0, -lightPositionY - 10, 0]}
                     >
                         <mesh
-                            scale={[20, 2 * props.height, 20]}
+                            scale={[20, props.height, 20]}
+                            position={[0,props.height/2 ,0]}
                             onPointerOver={onPointerOver}
                             onClick={onClick}
                             onPointerOut={onPointerOut}
