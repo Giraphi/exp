@@ -90,7 +90,7 @@ const StyledText = styled.div`
     }
 `
 
-export default function CameraControlElements() {
+export default function CameraControlButtons() {
     const movementContextActions = useContext(MovementContextActions);
     const movementContext = useContext(MovementContext);
 

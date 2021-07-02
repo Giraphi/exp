@@ -1,0 +1,14 @@
+@font-face {
+    font-family: "AuvantGothicBold";
+    src: url("../fonts/OPTIAuvantGothic-Bold.woff") format("woff");
+}
+
+@font-face {
+    font-family: "AuvantGothicMedium";
+    src: url("../fonts/OPTIAuvantGothic-Medium.woff") format("woff");
+}
+
+@font-face {
+    font-family: "SourceCodePro";
+    src: url("../fonts/source-code-pro-regular.woff") format("woff");
+}
