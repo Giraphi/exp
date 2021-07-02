@@ -5,6 +5,9 @@ import AuvantGothicBold from "./fonts/OPTIAuvantGothic-Bold.woff";
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
 import AuvantGothicMedium from "./fonts/OPTIAuvantGothic-Medium.woff";
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-ignore
+import SourceCodePro from "./fonts/source-code-pro-regular.woff";
 
 const GlobalStyle = createGlobalStyle`
     html,
@@ -35,6 +38,11 @@ const GlobalStyle = createGlobalStyle`
     
     h1 {
         font-family: "AuvantGothicBold";
+    }
+
+    @font-face {
+        font-family: "SourceCodePro";
+        src: url(${SourceCodePro}) format("woff");
     }
 `;
 

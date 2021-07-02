@@ -6,81 +6,87 @@ import arrowWhite from '../images/arrow-white.svg';
 import arrowWhitePressed from '../images/arrow-white-pressed.svg';
 import MovementContext from "../contexts/movement-context";
 
-const ButtonSize = css`50px`;
+const ButtonSize = "50px";
 
-const ButtonMixin = (isActive:boolean) => css`
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  cursor: pointer;
+const ButtonMixin = (isActive: boolean) => css`
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    cursor: pointer;
 
-  background-image: url(${arrowWhite});
-
-  ${isActive && css`
-      background-image: url(${arrowWhitePressed});
-  `}
-  
-  @media (min-width: 768px) {
     background-image: url(${arrowWhite});
 
     ${isActive && css`
-      background-image: url(${arrowWhitePressed});
+        background-image: url(${arrowWhitePressed});
     `}
-  }
 `
 
-const StyledButtonUp = styled.div<{isActive: boolean}>`
-  grid-row: 1;
-  grid-column: 2;
-  ${props => ButtonMixin(props.isActive)};
+const StyledButtonUp = styled.div<{ isActive: boolean }>`
+    grid-row: 1;
+    grid-column: 2;
+    ${props => ButtonMixin(props.isActive)};
 `
 
-const StyledButtonLeft = styled.div<{isActive: boolean}>`
-  grid-row: 2;
-  grid-column: 1;
-  transform: rotate(-90deg);
-  ${props => ButtonMixin(props.isActive)};
+const StyledButtonLeft = styled.div<{ isActive: boolean }>`
+    grid-row: 2;
+    grid-column: 1;
+    transform: rotate(-90deg);
+    ${props => ButtonMixin(props.isActive)};
 `
 
-const StyledButtonRight = styled.div<{isActive: boolean}>`
-  grid-row: 2;
-  grid-column: 3;
-  transform: rotate(90deg);
-  ${props => ButtonMixin(props.isActive)};
+const StyledButtonRight = styled.div<{ isActive: boolean }>`
+    grid-row: 2;
+    grid-column: 3;
+    transform: rotate(90deg);
+    ${props => ButtonMixin(props.isActive)};
 `
 
-const StyledButtonDown = styled.div<{isActive: boolean}>`
-  grid-row: 3;
-  grid-column: 2;
-  transform: rotate(180deg);
-  ${props => ButtonMixin(props.isActive)};
+const StyledButtonDown = styled.div<{ isActive: boolean }>`
+    grid-row: 3;
+    grid-column: 2;
+    transform: rotate(180deg);
+    ${props => ButtonMixin(props.isActive)};
 `
 
 const StyledRoot = styled.div`
-  width: 100%;
-  display: flex;
-  align-items: center;
-  position: absolute;
-  
-  bottom: 0;
-  padding-bottom: calc(${ButtonSize} / 2);
-  padding-right: calc(${ButtonSize} / 2);
-  justify-content: flex-end;
-  
-  @media(min-width: 768px) {
+    width: 100%;
+    display: flex;
     justify-content: center;
-    bottom: 10%;   
-    right: unset;
-    padding-right: 0;
-    padding-bottom: 0;
-  }
+    position: absolute;
+    flex-direction: column;
+
+    bottom: 0;
+    padding-bottom: calc(${ButtonSize} / 2);
+    padding-right: calc(${ButtonSize} / 2);
+    align-items: flex-end;
+    
+
+    @media (min-width: 768px) {
+        align-items: center;
+        bottom: 8%;
+        right: unset;
+        padding-right: 0;
+        padding-bottom: 0;
+    }
 `
 
 const StyledGrid = styled.div`
-  display: grid;
-  grid-template-columns: repeat(3, ${ButtonSize});
-  grid-template-rows: repeat(3, ${ButtonSize});
-  user-select: none;
+    display: grid;
+    grid-template-columns: repeat(3, ${ButtonSize});
+    grid-template-rows: repeat(3, ${ButtonSize});
+    user-select: none;
+`
+
+const StyledText = styled.div`
+    margin-top: 20px;
+    color: white;
+    font-family: "SourceCodePro", monospace;
+    display: none;
+    text-align: center;
+    
+    @media(min-width: 768px) {
+        display: block;
+    }
 `
 
 export default function CameraControlElements() {
@@ -122,6 +128,12 @@ export default function CameraControlElements() {
                     onTouchEnd={() => movementContextActions.setIsTurningRight(false)}
                 />
             </StyledGrid>
+
+
+            <StyledText>
+                Click the arrows to navigate <br/>
+                {"Or use W, A, S, D on your keyboard"}
+            </StyledText>
         </StyledRoot>
     );
 }
