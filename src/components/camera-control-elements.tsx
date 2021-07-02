@@ -1,4 +1,4 @@
-import React, {useContext} from "react";
+import React, {useContext, useEffect} from "react";
 import MovementContextActions from "../contexts/movement-context-actions";
 import styled, {css} from "styled-components";
 
@@ -15,16 +15,17 @@ const ButtonMixin = (isActive: boolean) => css`
     cursor: pointer;
 
     background-image: url(${arrowWhite});
-
     ${isActive && css`
         background-image: url(${arrowWhitePressed});
     `}
+
 `
 
 const StyledButtonUp = styled.div<{ isActive: boolean }>`
     grid-row: 1;
     grid-column: 2;
     ${props => ButtonMixin(props.isActive)};
+
 `
 
 const StyledButtonLeft = styled.div<{ isActive: boolean }>`
@@ -59,7 +60,7 @@ const StyledRoot = styled.div`
     padding-bottom: calc(${ButtonSize} / 2);
     padding-right: calc(${ButtonSize} / 2);
     align-items: flex-end;
-    
+
 
     @media (min-width: 768px) {
         align-items: center;
@@ -83,8 +84,8 @@ const StyledText = styled.div`
     font-family: "SourceCodePro", monospace;
     display: none;
     text-align: center;
-    
-    @media(min-width: 768px) {
+
+    @media (min-width: 768px) {
         display: block;
     }
 `
@@ -92,6 +93,68 @@ const StyledText = styled.div`
 export default function CameraControlElements() {
     const movementContextActions = useContext(MovementContextActions);
     const movementContext = useContext(MovementContext);
+
+    useEffect(() => {
+        function onKeyDown(event: KeyboardEvent) {
+            switch (event.code) {
+                case 'ArrowUp':
+                case 'KeyW':
+                    movementContextActions.setIsMovingForward(true);
+                    break;
+
+                case 'ArrowLeft':
+                case 'KeyA':
+                    movementContextActions.setIsTurningLeft(true);
+                    break;
+
+                case 'ArrowDown':
+                case 'KeyS':
+                    movementContextActions.setIsMovingBackward(true);
+                    break;
+
+                case 'ArrowRight':
+                case 'KeyD':
+                    movementContextActions.setIsTurningRight(true);
+                    break;
+                default:
+                    break;
+            }
+        }
+
+        function onKeyUp(event: KeyboardEvent) {
+            switch (event.code) {
+                case 'ArrowUp':
+                case 'KeyW':
+                    movementContextActions.setIsMovingForward(false);
+                    break;
+
+                case 'ArrowLeft':
+                case 'KeyA':
+                    movementContextActions.setIsTurningLeft(false);
+                    break;
+
+                case 'ArrowDown':
+                case 'KeyS':
+                    movementContextActions.setIsMovingBackward(false);
+                    break;
+
+                case 'ArrowRight':
+                case 'KeyD':
+                    movementContextActions.setIsTurningRight(false);
+                    break;
+                default:
+                    break;
+            }
+        }
+
+        window.addEventListener('keydown', onKeyDown);
+        window.addEventListener('keyup', onKeyUp);
+
+        return () => {
+            window.removeEventListener('keydown', onKeyDown);
+            window.addEventListener('keyup', onKeyUp);
+        }
+    }, [movementContextActions])
 
     return (
         <StyledRoot>

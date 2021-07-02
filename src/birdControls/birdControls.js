@@ -53,51 +53,6 @@ const BirdControls = function (object, domElement ) {
         }
     };
 
-    this.onKeyDown = function ( event ) {
-        //event.preventDefault();
-
-        switch ( event.code ) {
-            case 'ArrowUp':
-            case 'KeyW': this.moveForward = true; break;
-
-            case 'ArrowLeft':
-            case 'KeyA':
-                this.panSpeed = -800;
-                break;
-
-            case 'ArrowDown':
-            case 'KeyS': this.moveBackward = true; break;
-
-            case 'ArrowRight':
-            case 'KeyD':
-                this.panSpeed = 800;
-                break;
-            default:
-                break;
-        }
-    };
-
-    this.onKeyUp = function ( event ) {
-        this.panSpeed = 0;
-
-        switch ( event.code ) {
-            case 'ArrowUp':
-            case 'KeyW': this.moveForward = false; break;
-
-            case 'ArrowLeft':
-            case 'KeyA': this.moveLeft = false; break;
-
-            case 'ArrowDown':
-            case 'KeyS': this.moveBackward = false; break;
-
-            case 'ArrowRight':
-            case 'KeyD': this.moveRight = false; break;
-
-            default:
-                break;
-        }
-    };
-
     this.update = function () {
 
         var targetPosition = new Vector3();
@@ -122,23 +77,15 @@ const BirdControls = function (object, domElement ) {
             this.object.lookAt( targetPosition );
         };
     }();
+    //
+    // this.dispose = function () {
+    // };
 
-    this.dispose = function () {
-        window.removeEventListener( 'keydown', _onKeyDown );
-        window.removeEventListener( 'keyup', _onKeyUp );
-    };
-
-    var _onKeyDown = bind( this, this.onKeyDown );
-    var _onKeyUp = bind( this, this.onKeyUp );
-
-    window.addEventListener( 'keydown', _onKeyDown );
-    window.addEventListener( 'keyup', _onKeyUp );
-
-    function bind( scope, fn ) {
-        return function () {
-            fn.apply( scope, arguments );
-        };
-    }
+    // function bind( scope, fn ) {
+    //     return function () {
+    //         fn.apply( scope, arguments );
+    //     };
+    // }
 
     this.handleResize();
 };
