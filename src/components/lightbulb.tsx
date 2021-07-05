@@ -35,7 +35,9 @@ export default function Lightbulb(props: IlluminatedMeshProps) {
     const [isFontLoaded, setIsFontLoaded] = useState(false);
 
     useEffect(() => {
-        (document as any).fonts.ready.then(function () {
+        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+        // @ts-ignore
+        document.fonts.ready.then(function () {
             setIsFontLoaded(true);
         });
     }, []);
