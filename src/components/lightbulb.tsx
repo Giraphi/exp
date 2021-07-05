@@ -1,4 +1,4 @@
-import React, {useCallback, useMemo, useRef, useState} from "react";
+import React, {useCallback, useEffect, useMemo, useRef, useState} from "react";
 import {
     Box3, CanvasTexture,
     Color,
@@ -32,6 +32,13 @@ export default function Lightbulb(props: IlluminatedMeshProps) {
     const lowLightRef = useRef<PointLight>(null);
     const groupRef = useRef<Group>(null);
     const lightPositionY = props.height * 0.8;
+    const [isFontLoaded, setIsFontLoaded] = useState(false);
+
+    useEffect(() => {
+        (document as any).fonts.ready.then(function () {
+            setIsFontLoaded(true);
+        });
+    }, []);
 
     const textRef = useCallback(node => {
         if (node === null) {
@@ -72,8 +79,12 @@ export default function Lightbulb(props: IlluminatedMeshProps) {
     }, [props.height, textRefNode]);
 
     const texture = useMemo(() => {
+        if (!isFontLoaded) {
+            return;
+        }
+
+        console.log("font loaded");
         const size = 100;
-        // const text = "Text";
 
         const borderSize = 2;
         const ctx = document.createElement('canvas').getContext('2d');
@@ -82,7 +93,7 @@ export default function Lightbulb(props: IlluminatedMeshProps) {
             throw new Error(`Could not create ctx`);
         }
 
-        const font = `${size}px AuvantGothicBold`;
+        const font = `${size}px AuvantGothicBold, monospace`;
         ctx.font = font;
         // measure how long the name will be
         const doubleBorderSize = borderSize * 2;
@@ -107,7 +118,7 @@ export default function Lightbulb(props: IlluminatedMeshProps) {
         texture.minFilter = LinearFilter;
 
         return texture
-    }, [props.text]);
+    }, [props.text, isFontLoaded]);
 
 
     function onPointerOver() {
@@ -150,7 +161,7 @@ export default function Lightbulb(props: IlluminatedMeshProps) {
                     >
                         <mesh
                             scale={[20, props.height, 20]}
-                            position={[0,props.height/2 ,0]}
+                            position={[0, props.height / 2, 0]}
                             onPointerOver={onPointerOver}
                             onClick={onClick}
                             onPointerOut={onPointerOut}
@@ -165,21 +176,23 @@ export default function Lightbulb(props: IlluminatedMeshProps) {
                                 args={[1, 1, 1]}/>
                         </mesh>
 
-                        <mesh
-                            position={textPosition}
-                            ref={textRef}
-                            scale={textScale}
-                            rotation={[0, 0, -Math.PI / 2]}
-                        >
-                            <meshBasicMaterial
-                                map={texture}
-                                side={DoubleSide}
-                                transparent={true}
-                            />
-                            <planeGeometry
-                                args={[1, 1]}
-                            />
-                        </mesh>
+                        {texture &&
+                            <mesh
+                                position={textPosition}
+                                ref={textRef}
+                                scale={textScale}
+                                rotation={[0, 0, -Math.PI / 2]}
+                            >
+                                <meshBasicMaterial
+                                    map={texture}
+                                    side={DoubleSide}
+                                    transparent={true}
+                                />
+                                <planeGeometry
+                                    args={[1, 1]}
+                                />
+                            </mesh>
+                        }
                     </group>
 
                 </pointLight>
