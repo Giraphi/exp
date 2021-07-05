@@ -85,7 +85,6 @@ export default function Lightbulb(props: IlluminatedMeshProps) {
             return;
         }
 
-        console.log("font loaded");
         const size = 100;
 
         const borderSize = 2;
