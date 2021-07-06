@@ -22,7 +22,7 @@ export default function Cuboids(props: CuboidsProps) {
 
         setInterval(() => {
             gluedIndexes.current.shift();
-        }, 10)
+        }, 20)
 
     }, [props.lift])
 
@@ -55,14 +55,11 @@ export default function Cuboids(props: CuboidsProps) {
             return;
         }
 
-        const speed = 3;
+        const speed = 1;
         const delta = clock.elapsedTime * speed;
         const currentGluedIndexes = [...gluedIndexes.current];
-        console.log(currentGluedIndexes);
 
         for (let i = 0; i <= props.numCuboids; i++) {
-
-            // console.log(gluedIndexes.current);
             if (currentGluedIndexes.indexOf(i) !== -1) {
                 continue;
             }

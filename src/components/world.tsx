@@ -1,4 +1,4 @@
-import React, {useMemo} from "react";
+import React, {useMemo, useState} from "react";
 import Lightbulb from "./lightbulb";
 import {Vector3} from "three/src/math/Vector3";
 import Cuboids from "./cuboids";
@@ -9,6 +9,8 @@ export interface WorldProps {
 }
 
 export default function World(props: WorldProps) {
+    const [isLightbulbClicked, setIsLightbulbClicked] = useState(false);
+
     const lightbulbPositions = useMemo(() => {
         return [
             new Vector3(0, 0, 100),
@@ -17,6 +19,8 @@ export default function World(props: WorldProps) {
         ]
     }, []);
 
+
+
     return (
         <>
             {/*<fog attach="fog" args={['#53FAEB', 0.002, 1000]} />*/}
@@ -24,19 +28,22 @@ export default function World(props: WorldProps) {
             {/*<directionalLight position={[-1, -1, -1]} color="#ffdw738" castShadow={true} />*/}
             <ambientLight color="white" intensity={0.001}/>
 
-            <Cuboids numCuboids={props.numCuboids} worldSize={props.size} lift={true}/>
+            <Cuboids numCuboids={props.numCuboids} worldSize={props.size} lift={isLightbulbClicked}/>
 
             <Lightbulb
+                onClick={() => setIsLightbulbClicked(true)}
                 position={lightbulbPositions[2]}
                 text={"THIRD"}
                 height={175}
             />
             <Lightbulb
+                onClick={() => setIsLightbulbClicked(true)}
                 position={lightbulbPositions[0]}
                 text={"FIRST"}
                 height={160}
             />
             <Lightbulb
+                onClick={() => setIsLightbulbClicked(true)}
                 position={lightbulbPositions[1]}
                 text={"SECOND"}
                 height={185}

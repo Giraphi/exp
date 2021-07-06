@@ -21,6 +21,7 @@ export interface IlluminatedMeshProps {
     position: Vector3;
     text: string;
     height: number;
+    onClick: () => void;
 }
 
 export default function Lightbulb(props: IlluminatedMeshProps) {
@@ -33,6 +34,7 @@ export default function Lightbulb(props: IlluminatedMeshProps) {
     const groupRef = useRef<Group>(null);
     const lightPositionY = props.height * 0.8;
     const [isFontLoaded, setIsFontLoaded] = useState(false);
+    const [isClicked, setIsClicked] = useState(false);
 
     useEffect(() => {
         // eslint-disable-next-line @typescript-eslint/ban-ts-comment
@@ -128,12 +130,17 @@ export default function Lightbulb(props: IlluminatedMeshProps) {
     }
 
     function onPointerOut() {
-        setColors(COLORS);
         document.body.style.cursor = "";
+        if (isClicked) {
+            return;
+        }
+        setColors(COLORS);
     }
 
     function onClick() {
         setColors(COLORS_HOVER);
+        setIsClicked(isClicked => !isClicked);
+        props.onClick();
     }
 
     return (
