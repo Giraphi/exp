@@ -1,9 +1,9 @@
-import {useMemo, useState} from "react";
+import {ReactNode, useMemo, useState} from "react";
 import MovementContext from "../movement-context";
 import MovementContextActions, {MovementContextActionsType} from "../movement-context-actions";
 
 export interface MovementContextProviderProps {
-    children: React.ReactNode;
+    children: ReactNode;
 }
 
 export default function MovementContextProvider(props:MovementContextProviderProps) {

@@ -1,9 +1,9 @@
 import React, {MutableRefObject, useContext, useEffect, useRef} from 'react'
 import {extend, useFrame, useThree} from "@react-three/fiber";
-import {BirdControls} from "../birdControls/birdControls";
+import {BirdControls} from "../../../birdControls/birdControls";
 import {Object3D} from "three/src/core/Object3D";
-import {BirdControlsType} from "../birdControls/birdControlsType";
-import MovementContext from "../contexts/movement-context";
+import {BirdControlsType} from "../../../birdControls/birdControlsType";
+import MovementContext from "../../../contexts/movement-context";
 
 extend({ BirdControls });
 
@@ -55,7 +55,6 @@ function Controls(props: ControlsProps) {
 
         movementContext.isTurningLeft ? controlsRef.current.setPanSpeed(-500) : controlsRef.current.setPanSpeed(0)
     }, [movementContext.isTurningLeft]);
-
 
     if (!props.object || !props.object.current) {
         return <></>

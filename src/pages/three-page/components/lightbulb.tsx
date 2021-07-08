@@ -1,10 +1,13 @@
-import React, {useCallback, useEffect, useMemo, useRef, useState} from "react";
+import React, {useCallback, useContext, useEffect, useMemo, useRef, useState} from "react";
 import {
     Box3, CanvasTexture,
     Color,
     DoubleSide, Group, LinearFilter, Mesh, PointLight,
 } from "three";
 import {Vector3} from "three/src/math/Vector3";
+import { useHistory } from "react-router-dom";
+import {HistoryContext} from "../../../contexts/history-context";
+
 
 const LOW_LIGHT_OFFSET = 30;
 
@@ -22,6 +25,7 @@ export interface IlluminatedMeshProps {
     text: string;
     height: number;
     onClick: () => void;
+    path: string;
 }
 
 export default function Lightbulb(props: IlluminatedMeshProps) {
@@ -35,6 +39,9 @@ export default function Lightbulb(props: IlluminatedMeshProps) {
     const lightPositionY = props.height * 0.8;
     const [isFontLoaded, setIsFontLoaded] = useState(false);
     const [isClicked, setIsClicked] = useState(false);
+    const history = useContext(HistoryContext).history;
+
+    console.log(history);
 
     useEffect(() => {
         // eslint-disable-next-line @typescript-eslint/ban-ts-comment
@@ -141,6 +148,9 @@ export default function Lightbulb(props: IlluminatedMeshProps) {
         setColors(COLORS_HOVER);
         setIsClicked(isClicked => !isClicked);
         props.onClick();
+        setTimeout(() => {
+            history.push(props.path);
+        }, 2000);
     }
 
     return (

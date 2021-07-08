@@ -1,10 +1,10 @@
 import React, {useContext, useEffect} from "react";
-import MovementContextActions from "../contexts/movement-context-actions";
+import MovementContextActions from "../../../contexts/movement-context-actions";
 import styled, {css} from "styled-components";
 
-import arrowWhite from '../images/arrow-white.svg';
-import arrowWhitePressed from '../images/arrow-white-pressed.svg';
-import MovementContext from "../contexts/movement-context";
+import arrowWhite from '../../../images/arrow-white.svg';
+import arrowWhitePressed from '../../../images/arrow-white-pressed.svg';
+import MovementContext from "../../../contexts/movement-context";
 
 const ButtonSize = "50px";
 

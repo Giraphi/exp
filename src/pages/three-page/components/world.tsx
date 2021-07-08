@@ -36,18 +36,21 @@ export default function World(props: WorldProps) {
                 position={lightbulbPositions[2]}
                 text={"THIRD"}
                 height={175}
+                path={"skills"}
             />
             <Lightbulb
                 onClick={() => setIsLightbulbClicked(true)}
                 position={lightbulbPositions[0]}
                 text={"FIRST"}
                 height={160}
+                path={"skills"}
             />
             <Lightbulb
                 onClick={() => setIsLightbulbClicked(true)}
                 position={lightbulbPositions[1]}
                 text={"SECOND"}
                 height={185}
+                path={"skills"}
             />
 
             <mesh position={[0, 0, 0]} rotation={[-Math.PI / 2, 0, 0]} receiveShadow={true}>
