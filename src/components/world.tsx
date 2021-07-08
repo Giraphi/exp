@@ -27,6 +27,7 @@ export default function World(props: WorldProps) {
             {/*<directionalLight position={[100, 100, 100]} color="ddred" castShadow={true}/>*/}
             {/*<directionalLight position={[-1, -1, -1]} color="#ffdw738" castShadow={true} />*/}
             <ambientLight color="white" intensity={0.001}/>
+            {/*<ambientLight color="white" intensity={0.1}/>*/}
 
             <Cuboids numCuboids={props.numCuboids} worldSize={props.size} lift={isLightbulbClicked}/>
 

@@ -1,4 +1,4 @@
-import React, {useEffect, useLayoutEffect, useRef} from "react";
+import React, {useEffect, useLayoutEffect, useRef, useState} from "react";
 import {BufferGeometry, InstancedMesh, Matrix4, MeshStandardMaterial} from "three";
 import useRandomGenerator from "../hooks/use-random";
 import {useFrame} from "@react-three/fiber";
@@ -10,10 +10,14 @@ export interface CuboidsProps {
     lift: boolean;
 }
 
+const LIFT_SPEED = 200;
+const DELAY_MS = 20;
+
 export default function Cuboids(props: CuboidsProps) {
     const random = useRandomGenerator(4);
     const instancedMeshRef = useRef<InstancedMesh>(null);
     const gluedIndexes = useRef([...Array(props.numCuboids - 1)].map((item, index) => index));
+    const [isListFinished, setIsListFinished] = useState(false);
 
     useEffect(() => {
         if (!props.lift) {
@@ -22,7 +26,7 @@ export default function Cuboids(props: CuboidsProps) {
 
         setInterval(() => {
             gluedIndexes.current.shift();
-        }, 20)
+        }, DELAY_MS)
 
     }, [props.lift])
 
@@ -50,28 +54,39 @@ export default function Cuboids(props: CuboidsProps) {
         }
     }, [props.numCuboids, props.worldSize, random]);
 
-    useFrame(({ clock }) => {
-        if (!props.lift || !instancedMeshRef.current) {
+    useFrame((state, delta)  => {
+        if (!props.lift || !instancedMeshRef.current || isListFinished) {
             return;
         }
 
-        const speed = 1;
-        const delta = clock.elapsedTime * speed;
+        const deltaX = delta * LIFT_SPEED;
         const currentGluedIndexes = [...gluedIndexes.current];
+        let minY = undefined;
 
-        for (let i = 0; i <= props.numCuboids; i++) {
+        for (let i = 0; i < props.numCuboids; i++) {
             if (currentGluedIndexes.indexOf(i) !== -1) {
+                minY = 0;
                 continue;
             }
 
             const matrix = new Matrix4();
             instancedMeshRef.current.getMatrixAt(i, matrix);
             const position = new Vector3().setFromMatrixPosition(matrix);
-            position.add(new Vector3(0,delta,0));
+            position.add(new Vector3(0,deltaX,0));
+
+            if ((typeof minY === "undefined") || position.y < minY) {
+                minY = position.y;
+            }
+
             matrix.setPosition(position);
             instancedMeshRef.current.setMatrixAt(i, matrix);
         }
-        instancedMeshRef.current.instanceMatrix.needsUpdate = true
+
+        if (currentGluedIndexes.length === 0 && !!minY && minY > 2000) {
+            setIsListFinished(true);
+        }
+
+        instancedMeshRef.current.instanceMatrix.needsUpdate = true;
     })
 
     return (

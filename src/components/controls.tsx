@@ -12,9 +12,8 @@ export interface ControlsProps {
 }
 
 function Controls(props: ControlsProps) {
-    const controlsRef = useRef<BirdControlsType>(null)
+    const controlsRef = useRef<BirdControlsType>(null);
     const { gl } = useThree();
-
     const movementContext = useContext(MovementContext);
 
     useFrame((state, delta) => {
