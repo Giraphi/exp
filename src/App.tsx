@@ -10,9 +10,9 @@ import {BrowserRouter, Route, Switch} from "react-router-dom";
 import SkillsPage from "./pages/skills-page/skills-page";
 
 const StyledRoot = styled.div`
-    width: 100%;
-    height: 100%;
-    position: relative;
+    //width: 100%;
+    //height: 100%;
+    //position: relative;
 `
 
 function App() {

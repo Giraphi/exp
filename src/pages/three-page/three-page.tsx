@@ -8,7 +8,7 @@ import {AnimatePresence} from "framer-motion";
 
 const StyledBackground = styled.div`
     background-color: black;
-    height: 100%;
+    height: 100vh;
 `
 
 // Workaround to make the font available as a texture in lightbulb.tsx
