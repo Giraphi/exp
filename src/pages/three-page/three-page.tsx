@@ -1,12 +1,12 @@
 import React, {useEffect, useState} from "react";
-import MovementContextProvider from "../../contexts/providers/movement-context-provider";
-import CameraControlButtons from "./components/camera-control-buttons";
 import styled from "styled-components";
+import {motion} from "framer-motion";
+import MovementContextProvider from "../../contexts/providers/movement-context-provider";
 import ThreeCanvas from "./components/three-canvas";
-import {AnimatePresence} from "framer-motion";
+import CameraControlButtons from "./components/camera-control-buttons";
 
 
-const StyledBackground = styled.div`
+const StyledRoot = styled(motion.div)`
     background-color: black;
     height: 100vh;
 `
@@ -26,9 +26,11 @@ export default function ThreePage() {
     }, []);
 
     return (
-        <AnimatePresence>
-            <StyledBackground>
-
+            <StyledRoot
+                initial={{opacity: 1}}
+                exit={{opacity: 0}}
+                transition={{duration: 1.5}}
+            >
                 <MovementContextProvider>
 
                     {isFirstRender &&
@@ -39,7 +41,6 @@ export default function ThreePage() {
                     <CameraControlButtons/>
                 </MovementContextProvider>
 
-            </StyledBackground>
-        </AnimatePresence>
+            </StyledRoot>
     );
 }

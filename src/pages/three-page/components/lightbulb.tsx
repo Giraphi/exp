@@ -41,8 +41,6 @@ export default function Lightbulb(props: IlluminatedMeshProps) {
     const [isClicked, setIsClicked] = useState(false);
     const history = useContext(HistoryContext).history;
 
-    console.log(history);
-
     useEffect(() => {
         // eslint-disable-next-line @typescript-eslint/ban-ts-comment
         // @ts-ignore
@@ -150,7 +148,7 @@ export default function Lightbulb(props: IlluminatedMeshProps) {
         props.onClick();
         setTimeout(() => {
             history.push(props.path);
-        }, 2000);
+        }, 1000);
     }
 
     return (
