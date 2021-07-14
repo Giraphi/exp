@@ -7,6 +7,7 @@ import arrowWhitePressed from '../../images/arrow-white-pressed.svg';
 import MovementContext from "../../contexts/movement-context";
 
 const ButtonSize = "50px";
+const ButtonSizeSmall = "40px";
 
 const ButtonMixin = (isActive: boolean) => css`
     background-size: cover;
@@ -48,7 +49,7 @@ const StyledButtonDown = styled.div<{ isActive: boolean }>`
     ${props => ButtonMixin(props.isActive)};
 `
 
-const StyledRoot = styled.div`
+const StyledRoot = styled.div<{ isMinimal?: boolean }>`
     width: 100%;
     display: flex;
     justify-content: center;
@@ -60,21 +61,32 @@ const StyledRoot = styled.div`
     padding-right: calc(${ButtonSize} / 2);
     align-items: flex-end;
 
-
-    @media (min-width: 768px) {
-        align-items: center;
-        bottom: 8%;
-        right: unset;
-        padding-right: 0;
-        padding-bottom: 0;
-    }
+    ${props => !props.isMinimal && css`
+        @media (min-width: 768px) {
+            align-items: center;
+            bottom: 8%;
+            right: unset;
+            padding-right: 0;
+            padding-bottom: 0;
+        }
+    `}
 `
 
-const StyledGrid = styled.div`
+const StyledGrid = styled.div<{isMinimal?: boolean}>`
     display: grid;
     grid-template-columns: repeat(3, ${ButtonSize});
     grid-template-rows: repeat(3, ${ButtonSize});
     user-select: none;
+
+    ${props => props.isMinimal && css`
+        grid-template-columns: repeat(3, ${ButtonSizeSmall});
+        grid-template-rows: repeat(3, ${ButtonSizeSmall});
+        
+        @media (min-width: 768px) {
+            grid-template-columns: repeat(3, ${ButtonSize});
+            grid-template-rows: repeat(3, ${ButtonSize});
+        }
+    `}
 `
 
 const StyledText = styled.div`
@@ -89,7 +101,11 @@ const StyledText = styled.div`
     }
 `
 
-export default function CameraControlButtons() {
+export interface CameraControlButtonsProps {
+    minimal?: boolean
+}
+
+export default function CameraControlButtons(props: CameraControlButtonsProps) {
     const movementContextActions = useContext(MovementContextActions);
     const movementContext = useContext(MovementContext);
 
@@ -156,8 +172,12 @@ export default function CameraControlButtons() {
     }, [movementContextActions])
 
     return (
-        <StyledRoot>
-            <StyledGrid>
+        <StyledRoot
+            isMinimal={props.minimal}
+        >
+            <StyledGrid
+                isMinimal={props.minimal}
+            >
                 <StyledButtonUp
                     isActive={movementContext.isMovingForward}
                     onMouseDown={() => movementContextActions.setIsMovingForward(true)}
@@ -192,10 +212,12 @@ export default function CameraControlButtons() {
             </StyledGrid>
 
 
+            {!props.minimal &&
             <StyledText>
                 Click the arrows to navigate <br/>
                 {"Or use W, A, S, D on your keyboard"}
             </StyledText>
+            }
         </StyledRoot>
     );
 }

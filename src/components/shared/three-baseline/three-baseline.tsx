@@ -1,7 +1,6 @@
 import React, {ReactNode, useEffect, useState} from "react";
 import MovementContextProvider from "../../../contexts/providers/movement-context-provider";
 import ThreeBaselineCanvas from "./three-baseline-canvas";
-import CameraControlButtons from "../camera-control-buttons";
 import styled from "styled-components";
 import {motion} from "framer-motion";
 
