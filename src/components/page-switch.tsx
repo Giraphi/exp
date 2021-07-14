@@ -3,6 +3,7 @@ import {AnimatePresence} from "framer-motion";
 import {Route, Switch, useLocation} from "react-router-dom";
 import StartPage from "./start-page/start-page";
 import SkillsPage from "./skills-page/skills-page";
+import AboutPage from "./about-page/about-page";
 
 export default function PageSwitch() {
     const location = useLocation();
@@ -28,6 +29,13 @@ export default function PageSwitch() {
                     path={["/skills"]}
                 >
                     <SkillsPage/>
+                </Route>
+
+                <Route
+                    exact
+                    path={["/about"]}
+                >
+                    <AboutPage/>
                 </Route>
             </Switch>
         </AnimatePresence>
