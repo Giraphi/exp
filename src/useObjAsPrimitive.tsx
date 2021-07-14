@@ -25,6 +25,4 @@ export default function useObjAsPrimitive(url: string, mat: Material) {
         }
         return <></>;
     }, [mat, obj]);
-    // new OBJLoader().load(url, setObj)
-
 }

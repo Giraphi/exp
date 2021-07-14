@@ -24,11 +24,11 @@ export default function AboutPageWorld() {
 
                 <Suspense fallback={null}>
                     <BackHomeModel
+                        repeats={1}
                         modelUrl={"models/pharaoh.obj"}
                         position={[0, -100, 0]}
-                        scale={[10, 10, 10]}
-                        // rotation={[Math.PI / 2,Math.PI,0]}
-                        // rotation={[0,0,0]}
+                        scale={[5, 5, 5]}
+                        rotation={[Math.PI / 2,Math.PI,0]}
                     />
                 </Suspense>
             </group>

@@ -4,13 +4,14 @@ import {
     LinearFilter,
     MeshStandardMaterial,
     RepeatWrapping,
-    TextureLoader
+    TextureLoader, Vector2
 } from "three";
 import {useLoader, Vector3} from "@react-three/fiber";
 import backHomeGothic from '../../images/back-home-gothic.png';
 
 export interface BackHomeModelProps {
     modelUrl: string;
+    repeats: number
     position?: Vector3;
     scale?: Vector3;
     rotation?: [x:number, y:number, z:number];
@@ -23,20 +24,19 @@ export default function BackHomeModel(props: BackHomeModelProps) {
         texture.wrapS = texture.wrapT = RepeatWrapping;
         texture.minFilter = LinearFilter;
         const imageRatio = texture.image.width/texture.image.height
-        const repeats = 20;
-        console.log(repeats);
+        const repeats = props.repeats;
+
+        // texture.rotation = Math.PI;
+        console.log(texture.center);
+        // texture.center.set(1,0);
         texture.repeat.set(repeats/imageRatio, repeats);
+
         return new MeshStandardMaterial({map: texture});
-    }, [texture]);
+    }, [props.repeats, texture]);
 
     const model = useObjAsPrimitive(props.modelUrl, material);
 
     return (
-        // <group
-        //     rotation={props.rotation}
-        //     position={props.position}
-        //     scale={props.scale}
-        // >
             <mesh
                 rotation={props.rotation}
                 position={props.position}
@@ -44,6 +44,5 @@ export default function BackHomeModel(props: BackHomeModelProps) {
             >
                 {model}
             </mesh>
-        // </group>
     );
 }

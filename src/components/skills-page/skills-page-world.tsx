@@ -22,6 +22,7 @@ export default function SkillsPageWorld() {
 
                 <Suspense fallback={null}>
                     <BackHomeModel
+                        repeats={20}
                         modelUrl={"models/skull.obj"}
                         position={[0, -150, 0]}
                         scale={[5, 5, 5]}
