@@ -11,7 +11,7 @@ export interface ControlsProps {
     object: MutableRefObject<Object3D | null>;
 }
 
-function Controls(props: ControlsProps) {
+function ThreeBaselineControls(props: ControlsProps) {
     const controlsRef = useRef<BirdControlsType>(null);
     const { gl } = useThree();
     const movementContext = useContext(MovementContext);
@@ -70,4 +70,4 @@ function Controls(props: ControlsProps) {
     )
 }
 
-export default Controls
+export default ThreeBaselineControls

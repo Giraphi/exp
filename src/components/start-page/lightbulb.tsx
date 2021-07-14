@@ -6,7 +6,7 @@ import {
 } from "three";
 import {Vector3} from "three/src/math/Vector3";
 import { useHistory } from "react-router-dom";
-import {HistoryContext} from "../../../contexts/history-context";
+import {HistoryContext} from "../../contexts/history-context";
 
 
 const LOW_LIGHT_OFFSET = 30;

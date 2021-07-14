@@ -1,0 +1,46 @@
+================
+About
+================
+    - "Lebenslauf"
+    - Contact
+    - Music
+
+
+================
+Work
+================
+    -maxi
+    -future
+    -bosch
+    -work@funct
+
+================
+Skills
+================
+
+Frameworks:
+    React
+    Three.js
+    R3F
+    Angular
+    Framer Api
+    Next.js
+    Immer.js
+    Styled Components
+    Electron
+    Draft.js
+    Material UI
+    Jest
+     
+Basics:
+    Html, Scss/Css, plain-js, command-line/git
+
+Languages:
+    JS, Typescript, Python
+
+
+Beschaffen:
+    - Future ML Bilder
+    - Lebenslauf
+
+

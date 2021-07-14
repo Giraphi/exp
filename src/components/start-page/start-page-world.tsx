@@ -8,7 +8,7 @@ export interface WorldProps {
     size: number;
 }
 
-export default function World(props: WorldProps) {
+export default function StartPageWorld(props: WorldProps) {
     const [isLightbulbClicked, setIsLightbulbClicked] = useState(false);
 
     const lightbulbPositions = useMemo(() => {

@@ -1,7 +1,7 @@
-import React, {useContext} from "react";
+import React, {ReactNode, useContext} from "react";
 import {Canvas} from "@react-three/fiber";
 import MovementContext from "../../../contexts/movement-context";
-import CanvasContent from "./canvas-content";
+import ThreeBaselineCanvasContent from "./three-baseline-canvas-content";
 import styled from "styled-components";
 import {useHistory} from "react-router-dom";
 import {HistoryContext} from "../../../contexts/history-context";
@@ -12,7 +12,11 @@ const StyledCanvas = styled(Canvas)`
     }
 `
 
-export default function ThreeCanvas() {
+export interface ThreeBaselineCanvasProps {
+    children: ReactNode;
+}
+
+export default function ThreeBaselineCanvas(props: ThreeBaselineCanvasProps) {
     const movementContext = useContext(MovementContext);
     const history = useHistory();
 
@@ -22,7 +26,9 @@ export default function ThreeCanvas() {
         <StyledCanvas>
             <MovementContext.Provider value={movementContext}>
                 <HistoryContext.Provider value={{history}}>
-                    <CanvasContent/>
+                    <ThreeBaselineCanvasContent>
+                        {props.children}
+                    </ThreeBaselineCanvasContent>
                 </HistoryContext.Provider>
             </MovementContext.Provider>
         </StyledCanvas>

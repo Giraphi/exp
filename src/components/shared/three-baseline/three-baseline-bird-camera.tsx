@@ -1,13 +1,13 @@
 import React, {useLayoutEffect, useRef} from "react";
 import {useThree, Vector3} from "@react-three/fiber";
-import Controls from "./controls";
+import ThreeBaselineControls from "./three-baseline-controls";
 import {Group, PerspectiveCamera} from "three";
 
 export interface CameraProps {
     position: Vector3;
 }
 
-export default function BirdCamera(props: CameraProps) {
+export default function ThreeBaselineBirdCamera(props: CameraProps) {
     const birdRef= useRef<Group>(null);
     const set = useThree(state => state.set);
     const size = useThree(state => state.size);
@@ -45,7 +45,7 @@ export default function BirdCamera(props: CameraProps) {
             </group>
 
 
-            <Controls object={birdRef}/>
+            <ThreeBaselineControls object={birdRef}/>
         </>
     )
 

@@ -1,14 +1,17 @@
 import React from "react";
 import {AnimatePresence} from "framer-motion";
 import {Route, Switch, useLocation} from "react-router-dom";
-import ThreePage from "./pages/three-page/three-page";
-import SkillsPage from "./pages/skills-page/skills-page";
+import StartPage from "./start-page/start-page";
+import SkillsPage from "./skills-page/skills-page";
 
 export default function PageSwitch() {
     const location = useLocation();
 
     return (
-        <AnimatePresence exitBeforeEnter>
+        <AnimatePresence
+            exitBeforeEnter
+            initial={false}
+        >
             <Switch
                 location={location}
                 key={location.pathname}
@@ -17,7 +20,7 @@ export default function PageSwitch() {
                     exact
                     path={["/", `/home`]}
                 >
-                    <ThreePage/>
+                    <StartPage/>
                 </Route>
 
                 <Route
