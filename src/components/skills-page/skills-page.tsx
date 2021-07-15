@@ -6,32 +6,26 @@ import SkillsPageWorld from "./skills-page-world";
 import PageContentLayout from "../shared/page-content-layout";
 
 const StyledRoot = styled.div`
-    //min-height: 100vh;
-    //overflow:hidden;
+    min-height: 100vh;
     position: relative;
     color: lime;
+    background-color: black;
 `
 
-const StyledContent = styled.div`
-    pointer-events: none;
+const StyledBanner = styled.div`
+    height: 80vh;
 `
 
 export default function SkillsPage() {
-    // const ref = useRef<HTMLDivElement>(null);
-
-    // function onClick(e) {
-    //     ref.current.trigg
-    // }
-
     return (
         <StyledRoot>
-
-            <ThreeBaseline
-                controlButtons={<CameraControlButtons minimal={true}/>}
-            >
-                <SkillsPageWorld/>
-            </ThreeBaseline>
-
+            <StyledBanner>
+                <ThreeBaseline
+                    controlButtons={<CameraControlButtons minimal={true}/>}
+                >
+                    <SkillsPageWorld/>
+                </ThreeBaseline>
+            </StyledBanner>
 
             <PageContentLayout>
                 <h1> TESTTEST</h1>

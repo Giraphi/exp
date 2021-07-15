@@ -49,7 +49,7 @@ export default function SkillsPageWorld() {
             />
 
             <Suspense fallback={null}>
-            <ManModel/>
+                <ManModel/>
             </Suspense>
         </>
     );

@@ -1,4 +1,4 @@
-import React, {MutableRefObject, ReactNode, RefObject, useEffect, useState} from "react";
+import React, {ReactNode, useEffect, useState} from "react";
 import MovementContextProvider from "../../../contexts/providers/movement-context-provider";
 import ThreeBaselineCanvas from "./three-baseline-canvas";
 import styled from "styled-components";
@@ -6,7 +6,8 @@ import {motion} from "framer-motion";
 
 const StyledRoot = styled(motion.div)`
     background-color: black;
-    height: 100vh;
+    height: 100%;
+    position: relative;
 `
 
 // Workaround to make the font available as a texture in lightbulb.tsx
@@ -22,7 +23,6 @@ export interface ThreeBaselineProps {
 }
 
 export default function ThreeBaseline(props: ThreeBaselineProps) {
-
     const [isFirstRender, setIsFirstRender] = useState(true);
 
     useEffect(() => {

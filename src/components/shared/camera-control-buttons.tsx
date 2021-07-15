@@ -62,10 +62,9 @@ const StyledRoot = styled.div<{ isMinimal?: boolean }>`
     align-items: flex-end;
 
     ${props => !props.isMinimal && css`
-        bottom: 200px;
         @media (min-width: 768px) {
             align-items: center;
-            //bottom: 8%;
+            bottom: 8%;
             right: unset;
             padding-right: 0;
             padding-bottom: 0;
