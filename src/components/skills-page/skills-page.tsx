@@ -5,11 +5,12 @@ import CameraControlButtons from "../shared/camera-control-buttons";
 import SkillsPageWorld from "./skills-page-world";
 import PageContentLayout from "../shared/page-content-layout";
 import {motion} from "framer-motion";
+import {colorSkills} from "../../style/constants";
 
 const StyledRoot = styled(motion.div)`
     min-height: 100vh;
     position: relative;
-    color: lime;
+    color: ${colorSkills};
     background-color: black;
     overflow: auto;
 `

@@ -22,6 +22,7 @@ export default function SkillsPageWorld() {
             <TextureHeadline
                 text={"Skills"}
                 position={[0,0,400]}
+                positionSm={[0,0,300]}
             />
             <pointLight
                 color={colorSkills}

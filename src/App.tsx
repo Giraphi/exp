@@ -1,7 +1,6 @@
 import React from 'react'
 import GlobalStyle from "./style/global-style";
 
-import DeviceContextProvider from "./contexts/providers/device-context-provider";
 import "./style/font-faces.css";
 import {BrowserRouter} from "react-router-dom";
 import PageSwitch from "./components/page-switch";
@@ -16,13 +15,9 @@ function App() {
     return (
         <StyledRoot>
             <GlobalStyle/>
-            <DeviceContextProvider>
-
                 <BrowserRouter basename={"exp"}>
                     <PageSwitch/>
                 </BrowserRouter>
-
-            </DeviceContextProvider>
         </StyledRoot>
     )
 }

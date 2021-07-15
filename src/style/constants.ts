@@ -1,1 +1,1 @@
-export const colorSkills = "lime";
+export const colorSkills = "#00FF00";

@@ -28,21 +28,21 @@ export default function StartPageWorld(props: WorldProps) {
             <Lightbulb
                 onClick={() => setIsLightbulbClicked(true)}
                 position={lightbulbPositions[2]}
-                text={"THIRD"}
+                text={"WORK"}
                 height={175}
                 path={"skills"}
             />
             <Lightbulb
                 onClick={() => setIsLightbulbClicked(true)}
                 position={lightbulbPositions[0]}
-                text={"FIRST"}
+                text={"SKILLS"}
                 height={160}
                 path={"skills"}
             />
             <Lightbulb
                 onClick={() => setIsLightbulbClicked(true)}
                 position={lightbulbPositions[1]}
-                text={"SECOND"}
+                text={"ABOUT ME"}
                 height={185}
                 path={"skills"}
             />
