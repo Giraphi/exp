@@ -1,8 +1,8 @@
-import React, {useCallback, useContext, useEffect, useMemo, useRef, useState} from "react";
+import React, {useCallback, useContext, useMemo, useRef, useState} from "react";
 import {
-    Box3, CanvasTexture,
+    Box3,
     Color,
-    DoubleSide, Group, LinearFilter, Mesh, NearestFilter, NearestMipMapLinearFilter, PointLight,
+    DoubleSide, Group, Mesh, PointLight,
 } from "three";
 import {Vector3} from "three/src/math/Vector3";
 import {HistoryContext} from "../../contexts/history-context";

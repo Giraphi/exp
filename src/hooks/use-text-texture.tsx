@@ -1,4 +1,4 @@
-import {useMemo, useState} from "react";
+import {useMemo} from "react";
 import {CanvasTexture, LinearFilter} from "three";
 import useIsFontLoaded from "./use-is-font-loaded";
 import {Vector3} from "three/src/math/Vector3";
