@@ -5,7 +5,8 @@ import styled from "styled-components";
 const StyledContent = styled.div`
     pointer-events: auto;
     margin-left: 25px;
-    margin-right: 25px;    
+    margin-right: 25px;
+    font-family: "InkedBones";
 `
 
 export interface PageContentLayoutProps {

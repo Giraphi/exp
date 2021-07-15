@@ -12,3 +12,8 @@
     font-family: "SourceCodePro";
     src: url("../fonts/source-code-pro-regular.woff") format("woff");
 }
+
+@font-face {
+    font-family: "InkedBones";
+    src: url("../fonts/inked-bones.woff") format("woff");
+}

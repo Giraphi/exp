@@ -1,6 +1,7 @@
 import {useMemo, useState} from "react";
 import {CanvasTexture, LinearFilter} from "three";
 import useIsFontLoaded from "./use-is-font-loaded";
+import {Vector3} from "three/src/math/Vector3";
 
 export interface TextConfig {
     color: string;
@@ -10,12 +11,10 @@ export interface TextConfig {
 
 export default function useTextTexture(text: string, textConfig: TextConfig) {
     const isFontLoaded = useIsFontLoaded();
-    const [textCanvasWidth, setTextCanvasWidth] = useState(0);
-    const [textCanvasHeight, setTextCanvasHeight] = useState(0);
 
-    const texture = useMemo(() => {
+    const {texture, scale} = useMemo(() => {
         if (!isFontLoaded) {
-            return;
+            return {};
         }
 
         const borderSize = 2;
@@ -42,17 +41,22 @@ export default function useTextTexture(text: string, textConfig: TextConfig) {
         ctx.fillStyle = textConfig.color;
         ctx.fillText(text, borderSize, borderSize);
 
-        setTextCanvasWidth(ctx.canvas.width);
-        setTextCanvasHeight(ctx.canvas.height);
-
         const texture = new CanvasTexture(ctx.canvas);
 
         // In combination with gl.setPixelRatio(window.devicePixelRatio) <- see canvas-content.tsx
         // this makes the text sharper.
         texture.minFilter = LinearFilter;
 
-        return texture
-    }, [isFontLoaded, textConfig.font, textConfig.color, text]);
+        const scale = new Vector3(
+            ctx.canvas.width * textConfig.scale,
+            ctx.canvas.height * textConfig.scale,
+            0
+        );
 
-    return {texture, textCanvasWidth, textCanvasHeight};
+        return {texture, scale}
+    }, [isFontLoaded, textConfig.font, textConfig.color, textConfig.scale, text]);
+
+
+
+    return {texture, scale};
 }

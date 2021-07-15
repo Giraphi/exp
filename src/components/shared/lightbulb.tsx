@@ -58,7 +58,7 @@ export default function Lightbulb(props: Lightbulb) {
     const [isClicked, setIsClicked] = useState(false);
     const history = useContext(HistoryContext).history;
 
-    const {texture, textCanvasWidth, textCanvasHeight} = useTextTexture(props.text,
+    const {texture, scale} = useTextTexture(props.text,
         {
             scale: 0.15,
             color: "black",
@@ -90,14 +90,14 @@ export default function Lightbulb(props: Lightbulb) {
         return lightPosition;
     }, [props.position]);
 
-    const textScale: Vector3 = useMemo(() => {
-        const labelBaseScale = 0.15;
-        return new Vector3(
-            textCanvasWidth * labelBaseScale,
-            textCanvasHeight * labelBaseScale,
-            0
-        );
-    }, [textCanvasHeight, textCanvasWidth])
+    // const textScale: Vector3 = useMemo(() => {
+    //     const labelBaseScale = 0.15;
+    //     return new Vector3(
+    //         textCanvasWidth * labelBaseScale,
+    //         textCanvasHeight * labelBaseScale,
+    //         0
+    //     );
+    // }, [textCanvasHeight, textCanvasWidth])
 
     const textPosition = useMemo(() => {
         if (!textRefNode) {
@@ -187,7 +187,7 @@ export default function Lightbulb(props: Lightbulb) {
                         <mesh
                             position={textPosition}
                             ref={textRef}
-                            scale={textScale}
+                            scale={scale}
                             rotation={[0, 0, -Math.PI / 2]}
                         >
                             <meshBasicMaterial
