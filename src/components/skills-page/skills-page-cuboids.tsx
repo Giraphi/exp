@@ -51,7 +51,7 @@ export default function SkillsPageCuboids(props: SkillPageCuboidsProps) {
         }
     }, [props.numCuboids, props.worldSize, random]);
 
-    const acceleratedRotationSpeed = useRef(0);
+    const rotationSpeed = useRef(0);
 
     useFrame((state, delta)  => {
         if (!props.lift || !instancedMeshRef.current || isListFinished) {
@@ -85,8 +85,8 @@ export default function SkillsPageCuboids(props: SkillPageCuboidsProps) {
             setIsListFinished(true);
         }
 
-        instancedMeshRef.current.rotateY(acceleratedRotationSpeed.current);
-        acceleratedRotationSpeed.current += delta/10;
+        instancedMeshRef.current.rotateY(rotationSpeed.current);
+        rotationSpeed.current += delta/10;
         instancedMeshRef.current.instanceMatrix.needsUpdate = true;
     })
 
