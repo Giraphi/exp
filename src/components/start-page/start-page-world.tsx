@@ -1,5 +1,5 @@
 import React, {useMemo, useState} from "react";
-import Lightbulb from "./lightbulb";
+import Lightbulb from "../shared/lightbulb";
 import {Vector3} from "three/src/math/Vector3";
 import Cuboids from "./cuboids";
 

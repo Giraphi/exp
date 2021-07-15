@@ -18,15 +18,16 @@ const COLORS_HOVER = {
     light: "#FF0000",
 }
 
-export interface IlluminatedMeshProps {
+export interface Lightbulb {
     position: Vector3;
     text: string;
     height: number;
     onClick: () => void;
     path: string;
+    horizontal?: boolean;
 }
 
-export default function Lightbulb(props: IlluminatedMeshProps) {
+export default function Lightbulb(props: Lightbulb) {
     const [textCanvasWidth, setTextCanvasWidth] = useState(0);
     const [textCanvasHeight, setTextCanvasHeight] = useState(0);
     const [textRefNode, setTextRefNode] = useState<Mesh>();
@@ -78,9 +79,15 @@ export default function Lightbulb(props: IlluminatedMeshProps) {
         }
 
         const boundingBox: Box3 = new Box3().setFromObject(textRefNode);
-        const textLength = boundingBox.max.y - boundingBox.min.y;
 
-        // const normalizationFactor = 0.5;
+        // At this point we don't know if the text is rotated (yet)
+        // Simply assume that the longer side of our Box is the length.
+        // (Only works of text has a rotation of n*90deg)
+        const textLength = Math.max(
+            boundingBox.max.x - boundingBox.min.x,
+            boundingBox.max.y - boundingBox.min.y
+        );
+
         const padding = 5;
         return new Vector3(0, -textLength / 2 + (props.height) - padding, 11);
     }, [props.height, textRefNode]);
@@ -159,6 +166,7 @@ export default function Lightbulb(props: IlluminatedMeshProps) {
                 decay={4}
                 position={lowLightPosition}
                 castShadow={true}
+                rotation={props.horizontal ? [0,0,Math.PI/2] : undefined}
             >
                 <pointLight
                     ref={lightRef}
@@ -172,6 +180,7 @@ export default function Lightbulb(props: IlluminatedMeshProps) {
                     <group
                         ref={groupRef}
                         position={[0, -lightPositionY - 10, 0]}
+
                     >
                         <mesh
                             scale={[20, props.height, 20]}

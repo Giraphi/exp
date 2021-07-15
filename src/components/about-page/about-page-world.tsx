@@ -1,6 +1,6 @@
 import React, {Suspense} from "react";
 import useWindowWidth from "../../hooks/use-window-width";
-import BackHomeModel from "../shared/back-home-model";
+import TextureModel from "../shared/texture-model";
 
 
 export default function AboutPageWorld() {
@@ -23,7 +23,7 @@ export default function AboutPageWorld() {
                 </pointLight>
 
                 <Suspense fallback={null}>
-                    <BackHomeModel
+                    <TextureModel
                         repeats={1}
                         modelUrl={"models/pharaoh.obj"}
                         position={[0, -100, 0]}

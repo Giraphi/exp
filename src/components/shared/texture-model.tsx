@@ -17,7 +17,7 @@ export interface BackHomeModelProps {
     rotation?: [x:number, y:number, z:number];
 }
 
-export default function BackHomeModel(props: BackHomeModelProps) {
+export default function TextureModel(props: BackHomeModelProps) {
     const texture = useLoader(TextureLoader, backHomeGothic)
 
     const material = useMemo(() => {
