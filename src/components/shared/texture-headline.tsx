@@ -13,7 +13,8 @@ export default function TextureHeadline(props: TextureHeadlineProps) {
         {
             color: "lime",
             font: "InkedBones",
-            scale: 1,
+            size: 1000,
+            scale: 0.1,
         }
     );
 

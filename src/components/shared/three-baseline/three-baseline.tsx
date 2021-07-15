@@ -16,6 +16,12 @@ const StyledFontWorkaround = styled.div`
     z-index: -99;
 `
 
+const StyledInkedBonesWorkaround = styled.div`
+    font-family: "InkedBones", sans-serif;
+    position: absolute;
+    z-index: -99;
+`
+
 export interface ThreeBaselineProps {
     children: ReactNode;
     controlButtons: ReactNode;
@@ -32,7 +38,10 @@ export default function ThreeBaseline(props: ThreeBaselineProps) {
         <StyledRoot>
             <MovementContextProvider>
                 {isFirstRender &&
-                    <StyledFontWorkaround>TEXT</StyledFontWorkaround>
+                    <>
+                        <StyledFontWorkaround>TEXT</StyledFontWorkaround>
+                        <StyledInkedBonesWorkaround>TEXT</StyledInkedBonesWorkaround>
+                    </>
                 }
 
                 <ThreeBaselineCanvas>

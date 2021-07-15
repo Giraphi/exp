@@ -34,14 +34,14 @@ export default function ThreeBaselineBirdCamera(props: CameraProps) {
                     <perspectiveCamera ref={cameraRef}  />
                 </group>
 
-                <pointLight
-                    color={"white"}
-                    intensity={1}
-                    distance={300}
-                    decay={2}
-                    castShadow={false}
-                    position={[0,0,0]}
-                />
+                {/*<pointLight*/}
+                {/*    color={"white"}*/}
+                {/*    intensity={1}*/}
+                {/*    distance={300}*/}
+                {/*    decay={2}*/}
+                {/*    castShadow={false}*/}
+                {/*    position={[0,0,0]}*/}
+                {/*/>*/}
             </group>
 
 

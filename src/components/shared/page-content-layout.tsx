@@ -6,7 +6,7 @@ const StyledContent = styled.div`
     pointer-events: auto;
     margin-left: 25px;
     margin-right: 25px;
-    font-family: "InkedBones";
+    //font-family: "InkedBones";
 `
 
 export interface PageContentLayoutProps {
@@ -17,7 +17,6 @@ export interface PageContentLayoutProps {
 export default function PageContentLayout(props: PageContentLayoutProps) {
 
     return (
-
             <StyledContent>
                 {props.children}
             </StyledContent>

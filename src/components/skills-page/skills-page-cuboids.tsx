@@ -14,7 +14,7 @@ const LIFT_SPEED = 200;
 const DELAY_MS = 20;
 
 export default function SkillsPageCuboids(props: SkillPageCuboidsProps) {
-    const random = useRandomGenerator(1);
+    const random = useRandomGenerator(3);
     const instancedMeshRef = useRef<InstancedMesh>(null);
     const gluedIndexes = useRef([...Array(props.numCuboids - 1)].map((item, index) => index));
     const [isListFinished, setIsListFinished] = useState(false);

@@ -1,4 +1,4 @@
-import React, {useRef} from "react";
+import React from "react";
 import styled from "styled-components";
 import ThreeBaseline from "../shared/three-baseline/three-baseline";
 import CameraControlButtons from "../shared/camera-control-buttons";
@@ -11,11 +11,19 @@ const StyledRoot = styled(motion.div)`
     position: relative;
     color: lime;
     background-color: black;
+    overflow: auto;
 `
 
 const StyledBanner = styled.div`
     height: 80vh;
 `
+
+const StyledText = styled.div`
+    margin-top: 75px;
+    margin-bottom: 75px;
+    text-align: center;
+    font-family: "AuvantGothicBold";
+`;
 
 export default function SkillsPage() {
     return (
@@ -34,37 +42,73 @@ export default function SkillsPage() {
             </StyledBanner>
 
             <PageContentLayout>
-                <h1> TESTTEST</h1>
-                <p>
-                    <a href="http://www.google.com" target="_blank"  rel="noreferrer">link</a> TESTTEST TESTTEST TESTTEST TESTTEST TESTTEST TESTTEST TESTTEST TESTTEST TESTTEST TESTTEST TESTTEST TESTTEST
-                </p>
-                <p>
-                    TESTTEST TESTTEST TESTTEST TESTTEST TESTTEST TESTTEST TESTTEST TESTTEST TESTTEST TESTTEST TESTTEST TESTTEST
-                </p>
-                <p>
-                    TESTTEST TESTTEST TESTTEST TESTTEST TESTTEST TESTTEST TESTTEST TESTTEST TESTTEST TESTTEST TESTTEST TESTTEST
-                </p>
-                <p>
-                    TESTTEST TESTTEST TESTTEST TESTTEST TESTTEST TESTTEST TESTTEST TESTTEST TESTTEST TESTTEST TESTTEST TESTTEST
-                </p>
-                <p>
-                    TESTTEST TESTTEST TESTTEST TESTTEST TESTTEST TESTTEST TESTTEST TESTTEST TESTTEST TESTTEST TESTTEST TESTTEST
-                </p>
-                <p>
-                    TESTTEST TESTTEST TESTTEST TESTTEST TESTTEST TESTTEST TESTTEST TESTTEST TESTTEST TESTTEST TESTTEST TESTTEST
-                </p>
-                <p>
-                    TESTTEST TESTTEST TESTTEST TESTTEST TESTTEST TESTTEST TESTTEST TESTTEST TESTTEST TESTTEST TESTTEST TESTTEST
-                </p>
-                <p>
-                    TESTTEST TESTTEST TESTTEST TESTTEST TESTTEST TESTTEST TESTTEST TESTTEST TESTTEST TESTTEST TESTTEST TESTTEST
-                </p>
-                <p>
-                    TESTTEST TESTTEST TESTTEST TESTTEST TESTTEST TESTTEST TESTTEST TESTTEST TESTTEST TESTTEST TESTTEST TESTTEST
-                </p>
-                <p>
-                    TESTTEST TESTTEST TESTTEST TESTTEST TESTTEST TESTTEST TESTTEST TESTTEST TESTTEST TESTTEST TESTTEST TESTTEST
-                </p>w
+                <StyledText>
+
+                    <h1>Kohntarkosz Kreuhn</h1>
+                    <p>
+                        Hur. Deh antzik Kohntarkosz Kreuhn Kohrmahn Stoht wurdah melekaahm
+                        Stoht wurdah melekaahm Uz, deh orkbahnn Kreuhn Kohrmahn Zëbëhn strain de Geustaah wortsis, da reus Stoah
+                    </p>
+                    <p>
+                        Wuhr di heul zortsung
+                        Uts fur Kalain, himeuhn zëbëhn deh Resutiihn;
+                        Ewehn deuh Lantsin slakehndo
+                    </p>
+                    <p>
+                        Hur. Deh antzik Kohntarkosz Kreuhn Kohrmahn Stoht wurdah melekaahm
+                        Stoht wurdah melekaahm Uz, deh orkbahnn Kreuhn Kohrmahn Zëbëhn strain de Geustaah wortsis, da reus Stoah
+                    </p>
+                    <p>
+                        Elëh wëhsö ëlëh wëhsö ëlëh wëhsö wëh löwï sündi
+                        Elëh wëhsö ëlëh wëhsö ëlëh wëhsö wëh löwï sündi
+                    </p>
+                    <p>
+                        Wuhr di heul zortsung
+                        Uts fur Kalain, himeuhn zëbëhn deh Resutiihn;
+                        Ewehn deuh Lantsin slakehndo
+                    </p>
+                    <p>
+                        Hur. Deh antzik Kohntarkosz Kreuhn Kohrmahn Stoht wurdah melekaahm
+                        Stoht wurdah melekaahm Uz, deh orkbahnn Kreuhn Kohrmahn Zëbëhn strain de Geustaah wortsis, da reus Stoah
+                    </p>
+                    <p>
+                        Wuhr di heul zortsung
+                        Uts fur Kalain, himeuhn zëbëhn deh Resutiihn;
+                        Ewehn deuh Lantsin slakehndo
+                    </p>
+                    <p>
+                        Hur. Deh antzik Kohntarkosz Kreuhn Kohrmahn Stoht wurdah melekaahm
+                        Stoht wurdah melekaahm Uz, deh orkbahnn Kreuhn Kohrmahn Zëbëhn strain de Geustaah wortsis, da reus Stoah
+                    </p>
+                    <p>
+                        Elëh wëhsö ëlëh wëhsö ëlëh wëhsö wëh löwï sündi
+                        Elëh wëhsö ëlëh wëhsö ëlëh wëhsö wëh löwï sündi
+                    </p>
+                    <p>
+                        Wuhr di heul zortsung
+                        Uts fur Kalain, himeuhn zëbëhn deh Resutiihn;
+                        Ewehn deuh Lantsin slakehndo
+                    </p>
+                    <p>
+                        Hur. Deh antzik Kohntarkosz Kreuhn Kohrmahn Stoht wurdah melekaahm
+                        Stoht wurdah melekaahm Uz, deh orkbahnn Kreuhn Kohrmahn Zëbëhn strain de Geustaah wortsis, da reus Stoah
+                    </p>
+                    <p>
+                        Wuhr di heul zortsung
+                        Uts fur Kalain, himeuhn zëbëhn deh Resutiihn;
+                        Ewehn deuh Lantsin slakehndo
+                    </p>
+                    <p>
+                        Hur. Deh antzik Kohntarkosz Kreuhn Kohrmahn Stoht wurdah melekaahm
+                        Stoht wurdah melekaahm Uz, deh orkbahnn Kreuhn Kohrmahn Zëbëhn strain de Geustaah wortsis, da reus Stoah
+                    </p>
+                    <p>
+                        Elëh wëhsö ëlëh wëhsö ëlëh wëhsö wëh löwï sündi
+                        Elëh wëhsö ëlëh wëhsö ëlëh wëhsö wëh löwï sündi
+                    </p>
+
+
+                </StyledText>
             </PageContentLayout>
         </StyledRoot>
     );

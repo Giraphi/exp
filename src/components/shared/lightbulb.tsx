@@ -60,6 +60,7 @@ export default function Lightbulb(props: Lightbulb) {
 
     const {texture, scale} = useTextTexture(props.text,
         {
+            size: 100,
             scale: 0.15,
             color: "black",
             font: "AuvantGothicBold"

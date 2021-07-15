@@ -19,8 +19,10 @@ export default function SkillsPageWorld() {
         <>
             {/*<ambientLight color="white" intensity={0.03}/>*/}
 
-
-            <TextureHeadline text={"Skillz"} position={[0,0,400]}/>
+            <TextureHeadline
+                text={"Skills"}
+                position={[0,0,400]}
+            />
             <pointLight
                 color={colorSkills}
                 intensity={2}
@@ -31,7 +33,7 @@ export default function SkillsPageWorld() {
             />
 
             <SkillsPageCuboids
-                numCuboids={50}
+                numCuboids={150}
                 worldSize={1000}
                 lift={isLightbulbClicked}
             />

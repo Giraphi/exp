@@ -7,6 +7,7 @@ export interface TextConfig {
     color: string;
     scale: number;
     font: string;
+    size: number;
 }
 
 export default function useTextTexture(text: string, textConfig: TextConfig) {
@@ -24,14 +25,13 @@ export default function useTextTexture(text: string, textConfig: TextConfig) {
             throw new Error(`Could not create ctx`);
         }
 
-        const size=100;
 
-        const font = `${size}px ${textConfig.font}, monospace`;
+        const font = `${textConfig.size}px ${textConfig.font}, monospace`;
         ctx.font = font;
         // measure how long the name will be
         const doubleBorderSize = borderSize * 2;
         const width = ctx.measureText(text).width + doubleBorderSize;
-        const height = size + doubleBorderSize;
+        const height = textConfig.size + doubleBorderSize;
         ctx.canvas.width = width;
         ctx.canvas.height = height;
 
@@ -54,9 +54,7 @@ export default function useTextTexture(text: string, textConfig: TextConfig) {
         );
 
         return {texture, scale}
-    }, [isFontLoaded, textConfig.font, textConfig.color, textConfig.scale, text]);
-
-
+    }, [isFontLoaded, textConfig.size, textConfig.font, textConfig.color, textConfig.scale, text]);
 
     return {texture, scale};
 }
