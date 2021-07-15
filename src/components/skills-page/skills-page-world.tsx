@@ -36,7 +36,7 @@ export default function SkillsPageWorld() {
             />
 
             <SkillsPageCuboids
-                numCuboids={200}
+                numCuboids={150}
                 worldSize={1000}
                 lift={isLightbulbClicked}
             />

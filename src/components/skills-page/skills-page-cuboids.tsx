@@ -88,7 +88,15 @@ export default function SkillsPageCuboids(props: SkillPageCuboidsProps) {
         instancedMeshRef.current.rotateY(rotationSpeed.current);
         rotationSpeed.current += delta/10;
         instancedMeshRef.current.instanceMatrix.needsUpdate = true;
-    })
+    });
+
+    useFrame((state, delta) => {
+        if (!instancedMeshRef.current) {
+            return;
+        }
+
+        instancedMeshRef.current.rotateY(0.003);
+    });
 
     return (
         <instancedMesh
