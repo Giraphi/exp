@@ -2,9 +2,8 @@ import React, {ReactNode, useEffect, useState} from "react";
 import MovementContextProvider from "../../../contexts/providers/movement-context-provider";
 import ThreeBaselineCanvas from "./three-baseline-canvas";
 import styled from "styled-components";
-import {motion} from "framer-motion";
 
-const StyledRoot = styled(motion.div)`
+const StyledRoot = styled.div`
     background-color: black;
     height: 100%;
     position: relative;
@@ -30,12 +29,7 @@ export default function ThreeBaseline(props: ThreeBaselineProps) {
     }, []);
 
     return (
-        <StyledRoot
-            initial={{opacity: 0}}
-            animate={{opacity: 1}}
-            exit={{opacity: 0}}
-            transition={{duration: 1.0}}
-        >
+        <StyledRoot>
             <MovementContextProvider>
                 {isFirstRender &&
                     <StyledFontWorkaround>TEXT</StyledFontWorkaround>
