@@ -25,8 +25,10 @@ const StyledBanner = styled.div`
 
 const StyledText = styled.div`
     text-align: center;
-    font-family: "AuvantGothicBold";
-    margin-bottom: 75px;        
+    font-family: "AuvantGothicBold", sans-serif;
+    margin-bottom: 75px;
+    user-select: none;
+    -webkit-touch-callout: none;
     
     @media(min-width: 768px) {
         margin-top: 10px;
@@ -51,7 +53,6 @@ export default function SkillsPage() {
 
             <PageContentLayout>
                 <StyledText>
-
                     <h1>Kohntarkosz Kreuhn</h1>
                     <p>
                         Hur. Deh antzik Kohntarkosz Kreuhn Kohrmahn Stoht wurdah melekaahm

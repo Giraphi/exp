@@ -15,7 +15,7 @@ export default function SkillsPageWorld() {
 
     const lightbulbPosition = useMemo(() => {
         if (device !== "small") {
-            return new Vector3(-windowWidth / 6, 180, 100);
+            return new Vector3(-windowWidth / 6, 180, 0);
         }
         return new Vector3(-windowWidth / 4, 180, 100);
 
@@ -23,7 +23,7 @@ export default function SkillsPageWorld() {
 
     return (
         <>
-            {/*<ambientLight color="white" intensity={0.03}/>*/}
+            <ambientLight color="white" intensity={0.005}/>
 
             <TextureHeadline/>
             <pointLight
@@ -36,7 +36,7 @@ export default function SkillsPageWorld() {
             />
 
             <SkillsPageCuboids
-                numCuboids={150}
+                numCuboids={200}
                 worldSize={1000}
                 lift={isLightbulbClicked}
             />

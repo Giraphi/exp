@@ -94,8 +94,6 @@ export default function SkillsPageCuboids(props: SkillPageCuboidsProps) {
         <instancedMesh
             args={[null as unknown as BufferGeometry, null as unknown as MeshStandardMaterial, props.numCuboids]}
             ref={instancedMeshRef}
-            castShadow={true}
-            receiveShadow={true}
         >
             <meshStandardMaterial
                 attach="material"

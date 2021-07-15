@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useEffect} from "react";
 import ThreeBaseline from "../shared/three-baseline/three-baseline";
 import StartPageWorld from "./start-page-world";
 import CameraControlButtons from "../shared/camera-control-buttons";
@@ -20,9 +20,20 @@ import {motion} from "framer-motion";
 
 const StyledRoot = styled(motion.div)`
     height: 100vh;
+    background-color: black;
+    padding-bottom: 70px;
+    
+    @media (min-width: 768px) {
+        padding-bottom: 0;
+    }
 `
 
 export default function StartPage() {
+    useEffect(() => {
+        document.body.classList.add("is-start-page");
+        return () => document.body.classList.remove("is-start-page");
+    }, [])
+
     return (
         <StyledRoot
             initial={{opacity: 0}}
@@ -30,14 +41,14 @@ export default function StartPage() {
             exit={{opacity: 0}}
             transition={{duration: 1.0}}
         >
-            <ThreeBaseline
-                controlButtons={<CameraControlButtons/>}
-            >
-                <StartPageWorld
-                    numCuboids={170}
-                    size={1000}
-                />
-            </ThreeBaseline>
+                <ThreeBaseline
+                    controlButtons={<CameraControlButtons/>}
+                >
+                    <StartPageWorld
+                        numCuboids={170}
+                        size={1000}
+                    />
+                </ThreeBaseline>
         </StyledRoot>
     )
 

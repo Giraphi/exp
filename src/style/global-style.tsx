@@ -18,6 +18,10 @@ const GlobalStyle = createGlobalStyle`
     h1 {
         margin-top: 0;
     }
+    
+    body.is-start-page {
+        overflow: hidden;
+    }
 `;
 
 export default GlobalStyle
