@@ -17,6 +17,10 @@ const StyledRoot = styled(motion.div)`
 
 const StyledBanner = styled.div`
     height: 75vh;
+
+    @media(min-width: 768px) {
+        height: 80vh;
+    }
 `
 
 const StyledText = styled.div`
@@ -25,7 +29,7 @@ const StyledText = styled.div`
     margin-bottom: 75px;        
     
     @media(min-width: 768px) {
-        margin-top: 75px;
+        margin-top: 10px;
     }
 `;
 

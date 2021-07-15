@@ -61,8 +61,7 @@ const StyledRoot = styled.div<{ isMinimal?: boolean }>`
     padding-right: calc(${ButtonSize} / 2);
     align-items: flex-end;
 
-    ${props => !props.isMinimal && css`
-        
+    ${props => !props.isMinimal && css`        
         @media (min-width: 768px) {
             align-items: center;
             bottom: 8%;
@@ -75,11 +74,6 @@ const StyledRoot = styled.div<{ isMinimal?: boolean }>`
     ${props => props.isMinimal && css`
         align-items: center;
         padding-right: 0;
-        
-        @media (min-width: 768px) {
-            align-items: flex-end;
-
-        }
     `}
 `
 
@@ -92,11 +86,6 @@ const StyledGrid = styled.div<{isMinimal?: boolean}>`
     ${props => props.isMinimal && css`
         grid-template-columns: repeat(3, ${ButtonSizeSmall});
         grid-template-rows: repeat(3, ${ButtonSizeSmall});
-        
-        @media (min-width: 768px) {
-            grid-template-columns: repeat(3, ${ButtonSize});
-            grid-template-rows: repeat(3, ${ButtonSize});
-        }
     `}
 `
 

@@ -6,14 +6,20 @@ import ManModel from "./man-model";
 import SkillsPageCuboids from "./skills-page-cuboids";
 import {colorSkills} from "../../style/constants";
 import TextureHeadline from "../shared/texture-headline";
+import useDevice from "../../hooks/use-device";
 
 export default function SkillsPageWorld() {
     const windowWidth = useWindowWidth();
     const [isLightbulbClicked, setIsLightbulbClicked] = useState(false);
+    const device = useDevice()
 
     const lightbulbPosition = useMemo(() => {
-        return new Vector3(-windowWidth / 5, 220, 0);
-    }, [windowWidth]);
+        if (device !== "small") {
+            return new Vector3(-windowWidth / 6, 180, 100);
+        }
+        return new Vector3(-windowWidth / 4, 180, 100);
+
+    }, [device, windowWidth]);
 
     return (
         <>

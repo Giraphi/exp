@@ -14,17 +14,18 @@ export default function TextureHeadline() {
             font: "InkedBones",
             size: 1000,
             scale: 0.1,
+            heightNormalizer: 1.3
         }
     );
-
-    const small = useTextTexture("Skills",
-        {
-            color: colorSkills,
-            font: "InkedBones",
-            size: 1000,
-            scale: 0.1,
-        }
-    );
+    //
+    // const small = useTextTexture("Skills",
+    //     {
+    //         color: colorSkills,
+    //         font: "InkedBones",
+    //         size: 1000,
+    //         scale: 0.1,
+    //     }
+    // );
 
     // console.log(deviceId);
 
@@ -32,9 +33,9 @@ export default function TextureHeadline() {
         <>
                 {deviceId !== "small" && texture &&
                 <mesh
-                    position={[0,0,400]}
+                    position={[0,0,300]}
                     scale={scale}
-                    rotation={[-0.2, -0.07, -0.01]}
+                    rotation={[-0.2, -0.07, -0.03]}
                 >
                     <meshBasicMaterial
                         map={texture}
@@ -46,14 +47,14 @@ export default function TextureHeadline() {
                 </mesh>
                 }
 
-                {deviceId === "small" && small.texture &&
+                {deviceId === "small" && texture &&
                     <mesh
-                        position={[0,60,300]}
-                        scale={small.scale}
-                        rotation={[-0.2, -0.07, -0.01]}
+                        position={[0,50,300]}
+                        scale={scale}
+                        rotation={[-0.2, -0.07, -0.04]}
                     >
                         <meshBasicMaterial
-                            map={small.texture}
+                            map={texture}
                             side={DoubleSide}
                             transparent={true}
                             color={colorSkills}

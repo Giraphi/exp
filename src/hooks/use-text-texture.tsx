@@ -9,6 +9,7 @@ export interface TextConfig {
     scale: number;
     font: string;
     size: number;
+    heightNormalizer?: number;
 }
 
 export default function useTextTexture(text: string, textConfig: TextConfig) {
@@ -35,8 +36,8 @@ export default function useTextTexture(text: string, textConfig: TextConfig) {
         const width = ctx.measureText(text).width + doubleBorderSize;
         let height = textConfig.size + doubleBorderSize;
 
-        if (device === "small") {
-            height = height * 1.3;
+        if (textConfig.heightNormalizer) {
+            height = height * textConfig.heightNormalizer;
         }
 
         ctx.canvas.width = width;
