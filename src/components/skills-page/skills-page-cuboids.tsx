@@ -46,11 +46,12 @@ export default function SkillsPageCuboids(props: SkillPageCuboidsProps) {
                 continue;
             }
 
-            console.log(y);
             transform.setPosition(x, y, z);
             instancedMeshRef.current.setMatrixAt(i, transform)
         }
     }, [props.numCuboids, props.worldSize, random]);
+
+    const acceleratedRotationSpeed = useRef(0);
 
     useFrame((state, delta)  => {
         if (!props.lift || !instancedMeshRef.current || isListFinished) {
@@ -77,15 +78,15 @@ export default function SkillsPageCuboids(props: SkillPageCuboidsProps) {
             }
 
             matrix.setPosition(position);
-            // matrix.makeRotationY(delta/100);
             instancedMeshRef.current.setMatrixAt(i, matrix);
-            instancedMeshRef.current.rotateY(delta/10);
         }
 
         if (currentGluedIndexes.length === 0 && !!minY && minY > 2000) {
             setIsListFinished(true);
         }
 
+        instancedMeshRef.current.rotateY(acceleratedRotationSpeed.current);
+        acceleratedRotationSpeed.current += delta/10;
         instancedMeshRef.current.instanceMatrix.needsUpdate = true;
     })
 

@@ -26,11 +26,7 @@ export default function TextureModel(props: BackHomeModelProps) {
         const imageRatio = texture.image.width/texture.image.height
         const repeats = props.repeats;
 
-        // texture.rotation = Math.PI;
-        console.log(texture.center);
-        // texture.center.set(1,0);
         texture.repeat.set(repeats/imageRatio, repeats);
-
         return new MeshStandardMaterial({map: texture});
     }, [props.repeats, texture]);
 

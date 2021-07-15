@@ -2,7 +2,7 @@ import React, {useCallback, useContext, useEffect, useMemo, useRef, useState} fr
 import {
     Box3, CanvasTexture,
     Color,
-    DoubleSide, Group, LinearFilter, Mesh, PointLight,
+    DoubleSide, Group, LinearFilter, Mesh, NearestFilter, NearestMipMapLinearFilter, PointLight,
 } from "three";
 import {Vector3} from "three/src/math/Vector3";
 import {HistoryContext} from "../../contexts/history-context";
