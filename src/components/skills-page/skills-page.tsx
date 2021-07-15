@@ -16,14 +16,17 @@ const StyledRoot = styled(motion.div)`
 `
 
 const StyledBanner = styled.div`
-    height: 80vh;
+    height: 75vh;
 `
 
 const StyledText = styled.div`
-    margin-top: 75px;
-    margin-bottom: 75px;
     text-align: center;
     font-family: "AuvantGothicBold";
+    margin-bottom: 75px;        
+    
+    @media(min-width: 768px) {
+        margin-top: 75px;
+    }
 `;
 
 export default function SkillsPage() {

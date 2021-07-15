@@ -14,6 +14,10 @@ const GlobalStyle = createGlobalStyle`
     *, *:before, *:after {
       box-sizing: inherit;
     }
+    
+    h1 {
+        margin-top: 0;
+    }
 `;
 
 export default GlobalStyle

@@ -62,12 +62,23 @@ const StyledRoot = styled.div<{ isMinimal?: boolean }>`
     align-items: flex-end;
 
     ${props => !props.isMinimal && css`
+        
         @media (min-width: 768px) {
             align-items: center;
             bottom: 8%;
             right: unset;
             padding-right: 0;
             padding-bottom: 0;
+        }
+    `}
+
+    ${props => props.isMinimal && css`
+        align-items: center;
+        padding-right: 0;
+        
+        @media (min-width: 768px) {
+            align-items: flex-end;
+
         }
     `}
 `

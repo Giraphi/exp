@@ -5,16 +5,10 @@ import useTextTexture from "../../hooks/use-text-texture";
 import {colorSkills} from "../../style/constants";
 import useDevice from "../../hooks/use-device";
 
-export interface TextureHeadlineProps {
-    text: string;
-    position: [x: number, y: number, z: number];
-    positionSm: [x: number, y: number, z: number];
-}
-
-export default function TextureHeadline(props: TextureHeadlineProps) {
+export default function TextureHeadline() {
     const deviceId = useDevice();
 
-    const {texture, scale} = useTextTexture(props.text,
+    const {texture, scale} = useTextTexture("Skills",
         {
             color: colorSkills,
             font: "InkedBones",
@@ -23,7 +17,7 @@ export default function TextureHeadline(props: TextureHeadlineProps) {
         }
     );
 
-    const small = useTextTexture(props.text,
+    const small = useTextTexture("Skills",
         {
             color: colorSkills,
             font: "InkedBones",
@@ -38,7 +32,7 @@ export default function TextureHeadline(props: TextureHeadlineProps) {
         <>
                 {deviceId !== "small" && texture &&
                 <mesh
-                    position={props.position}
+                    position={[0,0,400]}
                     scale={scale}
                     rotation={[-0.2, -0.07, -0.01]}
                 >
@@ -54,7 +48,7 @@ export default function TextureHeadline(props: TextureHeadlineProps) {
 
                 {deviceId === "small" && small.texture &&
                     <mesh
-                        position={props.positionSm}
+                        position={[0,60,300]}
                         scale={small.scale}
                         rotation={[-0.2, -0.07, -0.01]}
                     >

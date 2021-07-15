@@ -19,11 +19,7 @@ export default function SkillsPageWorld() {
         <>
             {/*<ambientLight color="white" intensity={0.03}/>*/}
 
-            <TextureHeadline
-                text={"Skills"}
-                position={[0,0,400]}
-                positionSm={[0,0,300]}
-            />
+            <TextureHeadline/>
             <pointLight
                 color={colorSkills}
                 intensity={2}

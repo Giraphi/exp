@@ -7,12 +7,11 @@ export default function useDevice() {
     return  useMemo(() => {
         console.log(windowWidth);
 
-        if (windowWidth > 1024) {
+        if (windowWidth > 768) {
             return "large";
         }
 
         return "small";
     }, [windowWidth]);
 
-    // return device;
 }

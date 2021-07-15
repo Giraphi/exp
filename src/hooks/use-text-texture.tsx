@@ -2,6 +2,7 @@ import {useMemo} from "react";
 import {CanvasTexture, LinearFilter} from "three";
 import useIsFontLoaded from "./use-is-font-loaded";
 import {Vector3} from "three/src/math/Vector3";
+import useDevice from "./use-device";
 
 export interface TextConfig {
     color: string;
@@ -12,6 +13,7 @@ export interface TextConfig {
 
 export default function useTextTexture(text: string, textConfig: TextConfig) {
     const isFontLoaded = useIsFontLoaded();
+    const device = useDevice();
 
     const {texture, scale} = useMemo(() => {
         if (!isFontLoaded) {
@@ -31,7 +33,12 @@ export default function useTextTexture(text: string, textConfig: TextConfig) {
         // measure how long the name will be
         const doubleBorderSize = borderSize * 2;
         const width = ctx.measureText(text).width + doubleBorderSize;
-        const height = textConfig.size + doubleBorderSize;
+        let height = textConfig.size + doubleBorderSize;
+
+        if (device === "small") {
+            height = height * 1.3;
+        }
+
         ctx.canvas.width = width;
         ctx.canvas.height = height;
 
