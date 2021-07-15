@@ -5,6 +5,7 @@ import {Vector3} from "three/src/math/Vector3";
 import ManModel from "./man-model";
 import SkillsPageCuboids from "./skills-page-cuboids";
 import {colorSkills} from "../../style/constants";
+import TextureHeadline from "../shared/texture-headline";
 
 export default function SkillsPageWorld() {
     const windowWidth = useWindowWidth();
@@ -17,6 +18,9 @@ export default function SkillsPageWorld() {
     return (
         <>
             {/*<ambientLight color="white" intensity={0.03}/>*/}
+
+
+            <TextureHeadline text={"Skillz"} position={[0,0,0]}/>
             <pointLight
                 color={colorSkills}
                 intensity={2}

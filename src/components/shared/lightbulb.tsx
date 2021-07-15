@@ -6,6 +6,7 @@ import {
 } from "three";
 import {Vector3} from "three/src/math/Vector3";
 import {HistoryContext} from "../../contexts/history-context";
+import useTextTexture from "../../hooks/use-text-texture";
 
 const LOW_LIGHT_OFFSET = 30;
 
@@ -31,7 +32,7 @@ export interface Lightbulb {
     onClick: () => void;
     path: string;
     horizontal?: boolean;
-    lightParams?: {inner?: Partial<LightParams>, outer?: Partial<LightParams>}
+    lightParams?: { inner?: Partial<LightParams>, outer?: Partial<LightParams> }
 }
 
 const DefaultLightParams = {
@@ -48,17 +49,22 @@ const DefaultLightParams = {
 }
 
 export default function Lightbulb(props: Lightbulb) {
-    const [textCanvasWidth, setTextCanvasWidth] = useState(0);
-    const [textCanvasHeight, setTextCanvasHeight] = useState(0);
     const [textRefNode, setTextRefNode] = useState<Mesh>();
     const [colors, setColors] = useState(COLORS);
     const lightRef = useRef<PointLight>(null);
     const lowLightRef = useRef<PointLight>(null);
     const groupRef = useRef<Group>(null);
     const lightPositionY = props.height * 0.8;
-    const [isFontLoaded, setIsFontLoaded] = useState(false);
     const [isClicked, setIsClicked] = useState(false);
     const history = useContext(HistoryContext).history;
+
+    const {texture, textCanvasWidth, textCanvasHeight} = useTextTexture(props.text,
+        {
+            scale: 0.15,
+            color: "black",
+            font: "AuvantGothicBold"
+        }
+    );
 
     const lightParams = useMemo(() => {
         return {
@@ -67,13 +73,6 @@ export default function Lightbulb(props: Lightbulb) {
         }
     }, [props.lightParams?.inner, props.lightParams?.outer]);
 
-    useEffect(() => {
-        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-        // @ts-ignore
-        document.fonts.ready.then(function () {
-            setIsFontLoaded(true);
-        });
-    }, []);
 
     const textRef = useCallback(node => {
         if (node === null) {
@@ -119,48 +118,6 @@ export default function Lightbulb(props: Lightbulb) {
         return new Vector3(0, -textLength / 2 + (props.height) - padding, 11);
     }, [props.height, textRefNode]);
 
-    const texture = useMemo(() => {
-        if (!isFontLoaded) {
-            return;
-        }
-
-        const size = 100;
-
-        const borderSize = 2;
-        const ctx = document.createElement('canvas').getContext('2d');
-
-        if (!ctx) {
-            throw new Error(`Could not create ctx`);
-        }
-
-        const font = `${size}px AuvantGothicBold, monospace`;
-        ctx.font = font;
-        // measure how long the name will be
-        const doubleBorderSize = borderSize * 2;
-        const width = ctx.measureText(props.text).width + doubleBorderSize;
-        const height = size + doubleBorderSize;
-        ctx.canvas.width = width;
-        ctx.canvas.height = height;
-
-        // need to set font again after resizing canvas
-        ctx.font = font;
-        ctx.textBaseline = 'top';
-        ctx.fillStyle = 'black';
-        ctx.fillText(props.text, borderSize, borderSize);
-
-        setTextCanvasWidth(ctx.canvas.width);
-        setTextCanvasHeight(ctx.canvas.height);
-
-        const texture = new CanvasTexture(ctx.canvas);
-
-        // In combination with gl.setPixelRatio(window.devicePixelRatio) <- see canvas-content.tsx
-        // this makes the text sharper.
-        texture.minFilter = LinearFilter;
-
-        return texture
-    }, [props.text, isFontLoaded]);
-
-
     function onPointerOver() {
         setColors(COLORS_HOVER);
         document.body.style.cursor = "pointer";
@@ -193,7 +150,7 @@ export default function Lightbulb(props: Lightbulb) {
                 decay={lightParams.outer.decay}
                 position={lowLightPosition}
                 castShadow={true}
-                rotation={props.horizontal ? [0,0,Math.PI/2] : undefined}
+                rotation={props.horizontal ? [0, 0, Math.PI / 2] : undefined}
             >
                 <pointLight
                     ref={lightRef}
@@ -227,21 +184,21 @@ export default function Lightbulb(props: Lightbulb) {
                         </mesh>
 
                         {texture &&
-                            <mesh
-                                position={textPosition}
-                                ref={textRef}
-                                scale={textScale}
-                                rotation={[0, 0, -Math.PI / 2]}
-                            >
-                                <meshBasicMaterial
-                                    map={texture}
-                                    side={DoubleSide}
-                                    transparent={true}
-                                />
-                                <planeGeometry
-                                    args={[1, 1]}
-                                />
-                            </mesh>
+                        <mesh
+                            position={textPosition}
+                            ref={textRef}
+                            scale={textScale}
+                            rotation={[0, 0, -Math.PI / 2]}
+                        >
+                            <meshBasicMaterial
+                                map={texture}
+                                side={DoubleSide}
+                                transparent={true}
+                            />
+                            <planeGeometry
+                                args={[1, 1]}
+                            />
+                        </mesh>
                         }
                     </group>
 
