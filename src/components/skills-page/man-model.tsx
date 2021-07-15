@@ -11,7 +11,7 @@ export default function ManModel() {
 
     return (
         <mesh
-            position={[0,-150,0]}
+            position={[0,-100,0]}
             scale={15}
         >
             {model}

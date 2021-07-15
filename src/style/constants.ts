@@ -1,0 +1,1 @@
+export const colorSkills = "lime";
