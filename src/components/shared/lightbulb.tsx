@@ -18,6 +18,12 @@ const COLORS_HOVER = {
     light: "#FF0000",
 }
 
+export interface LightParams {
+    intensity: number;
+    distance: number;
+    decay: number;
+}
+
 export interface Lightbulb {
     position: Vector3;
     text: string;
@@ -25,6 +31,20 @@ export interface Lightbulb {
     onClick: () => void;
     path: string;
     horizontal?: boolean;
+    lightParams?: {inner?: Partial<LightParams>, outer?: Partial<LightParams>}
+}
+
+const DefaultLightParams = {
+    outer: {
+        intensity: 20,
+        distance: 60,
+        decay: 4,
+    },
+    inner: {
+        intensity: 1.2,
+        distance: 350,
+        decay: 3,
+    }
 }
 
 export default function Lightbulb(props: Lightbulb) {
@@ -39,6 +59,13 @@ export default function Lightbulb(props: Lightbulb) {
     const [isFontLoaded, setIsFontLoaded] = useState(false);
     const [isClicked, setIsClicked] = useState(false);
     const history = useContext(HistoryContext).history;
+
+    const lightParams = useMemo(() => {
+        return {
+            outer: {...DefaultLightParams.outer, ...props.lightParams?.outer},
+            inner: {...DefaultLightParams.inner, ...props.lightParams?.inner}
+        }
+    }, [props.lightParams?.inner, props.lightParams?.outer]);
 
     useEffect(() => {
         // eslint-disable-next-line @typescript-eslint/ban-ts-comment
@@ -161,9 +188,9 @@ export default function Lightbulb(props: Lightbulb) {
             <pointLight
                 ref={lowLightRef}
                 color={colors.light}
-                intensity={20}
-                distance={60}
-                decay={4}
+                intensity={lightParams.outer.intensity}
+                distance={lightParams.outer.distance}
+                decay={lightParams.outer.decay}
                 position={lowLightPosition}
                 castShadow={true}
                 rotation={props.horizontal ? [0,0,Math.PI/2] : undefined}
@@ -171,9 +198,9 @@ export default function Lightbulb(props: Lightbulb) {
                 <pointLight
                     ref={lightRef}
                     color={colors.light}
-                    intensity={1.2}
-                    distance={350}
-                    decay={3}
+                    intensity={lightParams.inner.intensity}
+                    distance={lightParams.inner.distance}
+                    decay={lightParams.inner.decay}
                     position={[0, lightPositionY - LOW_LIGHT_OFFSET, 0]}
                     castShadow={true}
                 >

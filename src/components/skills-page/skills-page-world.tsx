@@ -1,53 +1,57 @@
-import React, {Suspense, useMemo} from "react";
+import React, {Suspense, useMemo, useState} from "react";
 import useWindowWidth from "../../hooks/use-window-width";
 import Lightbulb from "../shared/lightbulb";
 import {Vector3} from "three/src/math/Vector3";
 import ManModel from "./man-model";
-
+import SkillsPageCuboids from "./skills-page-cuboids";
 
 export default function SkillsPageWorld() {
     const windowWidth = useWindowWidth();
+    const [isLightbulbClicked, setIsLightbulbClicked] = useState(false);
 
     const lightbulbPosition = useMemo(() => {
-       return new Vector3(-windowWidth / 5, 200, 0) ;
+        return new Vector3(-windowWidth / 5, 200, 0);
     }, [windowWidth]);
 
     return (
         <>
-            {/*<ambientLight color="white" intensity={0.05}/>*/}
-            {/*<group*/}w
-            {/*    position={[-windowWidth / 5, 200, 0]}*/}
-            {/*>*/}
-            {/*    <pointLight*/}
-            {/*        color={"#ffffff"}*/}
-            {/*        intensity={3}*/}
-            {/*        distance={1000}*/}
-            {/*        decay={10}*/}
-            {/*        position={[40, 20, 40]}*/}
-            {/*        castShadow={true}*/}
-            {/*    >*/}
-            {/*    </pointLight>*/}
-            {/*    */}
+            {/*<ambientLight color="white" intensity={0.03}/>*/}
+            <pointLight
+                color={"lime"}
+                intensity={2}
+                distance={1000}
+                decay={1}
+                position={[420, 1000, 40]}
+                castShadow={true}
+            />
 
+            <SkillsPageCuboids
+                numCuboids={50}
+                worldSize={1000}
+                lift={isLightbulbClicked}
+
+            />
 
             <Lightbulb
                 position={lightbulbPosition}
                 text={"Back Home"}
                 height={95}
-                onClick={() => undefined}
                 path={"/home"}
                 horizontal={true}
+                onClick={() => setIsLightbulbClicked(true)}
+                lightParams={{
+                    inner: {
+                        decay: 2,
+                        distance: 450,
+                        intensity: 1
+                    }
+                }}
             />
-                <Suspense fallback={null}>
-                    <ManModel/>
 
-                </Suspense>
-            {/*</group>*/}
+            <Suspense fallback={null}>
+                <ManModel/>
+            </Suspense>
         </>
     );
 }
-                        // repeats={20}
-                        // modelUrl={"models/skull.obj"}
-                        // position={[0, -150, 0]}
-                        // scale={[5, 5, 5]}
-                        // rotation={[-1.5,0,0.1]}
+

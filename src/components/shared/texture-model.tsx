@@ -4,7 +4,7 @@ import {
     LinearFilter,
     MeshStandardMaterial,
     RepeatWrapping,
-    TextureLoader, Vector2
+    TextureLoader,
 } from "three";
 import {useLoader, Vector3} from "@react-three/fiber";
 import backHomeGothic from '../../images/back-home-gothic.png';

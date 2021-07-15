@@ -1,7 +1,7 @@
 import React, {useMemo, useState} from "react";
 import Lightbulb from "../shared/lightbulb";
 import {Vector3} from "three/src/math/Vector3";
-import Cuboids from "./cuboids";
+import StartPageCuboids from "./start-page-cuboids";
 
 export interface WorldProps {
     numCuboids: number;
@@ -19,17 +19,11 @@ export default function StartPageWorld(props: WorldProps) {
         ]
     }, []);
 
-
-
     return (
         <>
-            {/*<fog attach="fog" args={['#53FAEB', 0.002, 1000]} />*/}
-            {/*<directionalLight position={[100, 100, 100]} color="ddred" castShadow={true}/>*/}
-            {/*<directionalLight position={[-1, -1, -1]} color="#ffdw738" castShadow={true} />*/}
             <ambientLight color="white" intensity={0.001}/>
-            {/*<ambientLight color="white" intensity={0.1}/>*/}
 
-            <Cuboids numCuboids={props.numCuboids} worldSize={props.size} lift={isLightbulbClicked}/>
+            <StartPageCuboids numCuboids={props.numCuboids} worldSize={props.size} lift={isLightbulbClicked}/>
 
             <Lightbulb
                 onClick={() => setIsLightbulbClicked(true)}

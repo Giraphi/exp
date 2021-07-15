@@ -11,9 +11,8 @@ export default function ManModel() {
 
     return (
         <mesh
-            // rotation={props.rotation}
-            // position={props.position}
-            scale={10}
+            position={[0,-150,0]}
+            scale={15}
         >
             {model}
         </mesh>

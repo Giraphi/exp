@@ -1,10 +1,10 @@
 import React, {useEffect, useLayoutEffect, useRef, useState} from "react";
-import {BufferGeometry, InstancedMesh, Matrix4, MeshStandardMaterial} from "three";
 import useRandomGenerator from "../../hooks/use-random";
+import {BufferGeometry, InstancedMesh, Matrix4, MeshStandardMaterial} from "three";
 import {useFrame} from "@react-three/fiber";
 import {Vector3} from "three/src/math/Vector3";
 
-export interface CuboidsProps {
+export interface SkillPageCuboidsProps {
     numCuboids: number;
     worldSize: number;
     lift: boolean;
@@ -13,8 +13,8 @@ export interface CuboidsProps {
 const LIFT_SPEED = 200;
 const DELAY_MS = 20;
 
-export default function Cuboids(props: CuboidsProps) {
-    const random = useRandomGenerator(4);
+export default function SkillsPageCuboids(props: SkillPageCuboidsProps) {
+    const random = useRandomGenerator(1);
     const instancedMeshRef = useRef<InstancedMesh>(null);
     const gluedIndexes = useRef([...Array(props.numCuboids - 1)].map((item, index) => index));
     const [isListFinished, setIsListFinished] = useState(false);
@@ -38,17 +38,15 @@ export default function Cuboids(props: CuboidsProps) {
         const transform = new Matrix4();
         for (let i = 0; i < props.numCuboids; i++) {
 
-            let height = random() * 160 + 100;
-
             const x = random() * props.worldSize - props.worldSize / 2;
-            const y = 0;
+            const y = random() * 500 - 250;
             const z = random() * props.worldSize - props.worldSize / 2;
 
             if (Math.abs(x) <= 150 && z > -50) {
-                height = height * 0.8;
+                continue;
             }
 
-            transform.makeScale(1, height, 1)
+            console.log(y);
             transform.setPosition(x, y, z);
             instancedMeshRef.current.setMatrixAt(i, transform)
         }
@@ -79,7 +77,9 @@ export default function Cuboids(props: CuboidsProps) {
             }
 
             matrix.setPosition(position);
+            // matrix.makeRotationY(delta/100);
             instancedMeshRef.current.setMatrixAt(i, matrix);
+            instancedMeshRef.current.rotateY(delta/10);
         }
 
         if (currentGluedIndexes.length === 0 && !!minY && minY > 2000) {
@@ -90,19 +90,20 @@ export default function Cuboids(props: CuboidsProps) {
     })
 
     return (
-            <instancedMesh
-                args={[null as unknown as BufferGeometry, null as unknown as MeshStandardMaterial, props.numCuboids]}
-                ref={instancedMeshRef}
-                castShadow={true}
-                receiveShadow={true}
-            >
-                <meshStandardMaterial
-                    attach="material"
-                    color="white"
-                />
-                <boxBufferGeometry
-                    attach="geometry"
-                    args={[20, 1, 20]} /*ref={ref => ref && ref.translate(0, 0.5, 0)}*/ />
-            </instancedMesh>
+        <instancedMesh
+            args={[null as unknown as BufferGeometry, null as unknown as MeshStandardMaterial, props.numCuboids]}
+            ref={instancedMeshRef}
+            castShadow={true}
+            receiveShadow={true}
+        >
+            <meshStandardMaterial
+                attach="material"
+                color="white"
+            />
+            <boxBufferGeometry
+                attach="geometry"
+                args={[20, 20, 20]}
+            />
+        </instancedMesh>
     );
 }
