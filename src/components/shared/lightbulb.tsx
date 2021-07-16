@@ -2,11 +2,17 @@ import React, {useCallback, useContext, useMemo, useRef, useState} from "react";
 import {
     Box3,
     Color,
-    DoubleSide, Group, Mesh, PointLight,
+    Group, Mesh, PointLight,
 } from "three";
 import {Vector3} from "three/src/math/Vector3";
 import {HistoryContext} from "../../contexts/history-context";
 import useTextTexture from "../../hooks/use-text-texture";
+import {Text} from "@react-three/drei";
+
+
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-ignore
+import auvantGothic from "../../fonts/OPTIAuvantGothic-Bold.woff";
 
 const LOW_LIGHT_OFFSET = 30;
 
@@ -166,7 +172,6 @@ export default function Lightbulb(props: Lightbulb) {
                     <group
                         ref={groupRef}
                         position={[0, -lightPositionY - 10, 0]}
-
                     >
                         <mesh
                             scale={[20, props.height, 20]}
@@ -185,23 +190,18 @@ export default function Lightbulb(props: Lightbulb) {
                                 args={[1, 1, 1]}/>
                         </mesh>
 
-                        {texture &&
-                        <mesh
-                            position={textPosition}
-                            ref={textRef}
-                            scale={scale}
+                        <Text
+                            fontSize={15}
+                            lineHeight={1}
+                            font={auvantGothic}
+                            color={"black"}
+                            position={[0,props.height - 5,12]}
                             rotation={[0, 0, -Math.PI / 2]}
+                            anchorX={"left"}
+                            anchorY={"middle"}
                         >
-                            <meshBasicMaterial
-                                map={texture}
-                                side={DoubleSide}
-                                transparent={true}
-                            />
-                            <planeGeometry
-                                args={[1, 1]}
-                            />
-                        </mesh>
-                        }
+                            {props.text}
+                        </Text>
                     </group>
 
                 </pointLight>
