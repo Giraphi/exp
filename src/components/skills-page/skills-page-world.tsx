@@ -27,7 +27,7 @@ export default function SkillsPageWorld() {
     }, []);
 
     return (
-        <>w
+        <>
             <ambientLight color="white" intensity={0.05}/>
 
             <TextureHeadline/>
