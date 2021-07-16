@@ -8,10 +8,6 @@ import {Vector3} from "three/src/math/Vector3";
 import {HistoryContext} from "../../contexts/history-context";
 import useTextTexture from "../../hooks/use-text-texture";
 import {Text} from "@react-three/drei";
-
-
-// eslint-disable-next-line @typescript-eslint/ban-ts-comment
-// @ts-ignore
 import auvantGothic from "../../fonts/OPTIAuvantGothic-Bold.woff";
 
 const LOW_LIGHT_OFFSET = 30;
