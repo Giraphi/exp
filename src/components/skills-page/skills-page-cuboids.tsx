@@ -10,7 +10,7 @@ export interface SkillPageCuboidsProps {
     lift: boolean;
 }
 
-const LIFT_SPEED = 200;
+const LIFT_SPEED = 400;
 const DELAY_MS = 20;
 
 export default function SkillsPageCuboids(props: SkillPageCuboidsProps) {
@@ -86,7 +86,7 @@ export default function SkillsPageCuboids(props: SkillPageCuboidsProps) {
         }
 
         instancedMeshRef.current.rotateY(rotationSpeed.current);
-        rotationSpeed.current += delta/10;
+        rotationSpeed.current -= delta/10;
         instancedMeshRef.current.instanceMatrix.needsUpdate = true;
     });
 

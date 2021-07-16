@@ -7,6 +7,7 @@ import SkillsPageCuboids from "./skills-page-cuboids";
 import {colorSkills} from "../../style/constants";
 import TextureHeadline from "../shared/texture-headline";
 import useDevice from "../../hooks/use-device";
+import {Color} from "three";
 
 export default function SkillsPageWorld() {
     const windowWidth = useWindowWidth();
@@ -21,9 +22,13 @@ export default function SkillsPageWorld() {
 
     }, [device, windowWidth]);
 
+    const sunColor = useMemo(() => {
+        return new Color(colorSkills);
+    }, []);
+
     return (
-        <>
-            <ambientLight color="white" intensity={0.005}/>
+        <>w
+            <ambientLight color="white" intensity={0.05}/>
 
             <TextureHeadline/>
             <pointLight
@@ -33,7 +38,17 @@ export default function SkillsPageWorld() {
                 decay={1}
                 position={[420, 1000, 40]}
                 castShadow={true}
-            />
+            >
+                <mesh>
+                    <meshStandardMaterial
+                        emissive={sunColor}
+                        emissiveIntensity={1}
+                        color={"#000000"}
+                    />
+
+                    <sphereGeometry args={[5, 32, 32]}/>
+                </mesh>
+            </pointLight>
 
             <SkillsPageCuboids
                 numCuboids={150}
