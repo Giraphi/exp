@@ -9,18 +9,18 @@ const StyledRoot = styled.div`
     position: relative;
 `
 
-// Workaround to make the font available as a texture in lightbulb.tsx
-const StyledFontWorkaround = styled.div`
-    font-family: "AuvantGothicBold", sans-serif;
-    position: absolute;
-    z-index: -99;
-`
-
-const StyledInkedBonesWorkaround = styled.div`
-    font-family: "InkedBones", sans-serif;
-    position: absolute;
-    z-index: -99;
-`
+// // Workaround to make the font available as a texture in lightbulb.tsx
+// const StyledFontWorkaround = styled.div`
+//     font-family: "AuvantGothicBold", sans-serif;
+//     position: absolute;
+//     z-index: -99;
+// `
+//
+// const StyledInkedBonesWorkaround = styled.div`
+//     font-family: "InkedBones", sans-serif;
+//     position: absolute;
+//     z-index: -99;
+// `
 
 export interface ThreeBaselineProps {
     children: ReactNode;
@@ -28,21 +28,9 @@ export interface ThreeBaselineProps {
 }
 
 export default function ThreeBaseline(props: ThreeBaselineProps) {
-    const [isFirstRender, setIsFirstRender] = useState(true);
-
-    useEffect(() => {
-        setIsFirstRender(false);
-    }, []);
-
     return (
         <StyledRoot>
             <MovementContextProvider>
-                {isFirstRender &&
-                    <>
-                        <StyledFontWorkaround>TEXT</StyledFontWorkaround>
-                        <StyledInkedBonesWorkaround>TEXT</StyledInkedBonesWorkaround>
-                    </>
-                }
 
                 <ThreeBaselineCanvas>
                     {props.children}

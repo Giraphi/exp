@@ -31,8 +31,8 @@ export default function SkillsPageWorld() {
 
     return (
         <>
-            {/*<ambientLight color="white" intensity={0.005}/>*/}
-            <ambientLight color="white" intensity={0.05}/>
+            <ambientLight color="white" intensity={0.005}/>
+            {/*<ambientLight color="white" intensity={0.05}/>*/}
 
             <SkillsPageHeadline/>
 

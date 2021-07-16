@@ -5,19 +5,6 @@ import CameraControlButtons from "../shared/camera-control-buttons";
 import styled from "styled-components";
 import {motion} from "framer-motion";
 
-
-// const StyledRoot = styled(motion.div)`
-//     background-color: black;
-//     height: 100vh;
-// `
-//
-// // Workaround to make the font available as a texture in lightbulb.tsx
-// const StyledFontWorkaround = styled.div`
-//     font-family: "AuvantGothicBold", sans-serif;
-//     position: absolute;
-//     z-index: -99;
-// `
-
 const StyledRoot = styled(motion.div)`
     height: 100vh;
     background-color: black;
