@@ -7,10 +7,7 @@ import SkillsPageCuboids from "./skills-page-cuboids";
 import {colorSkills} from "../../style/constants";
 import useDevice from "../../hooks/use-device";
 import {Color} from "three";
-import {Text} from "@react-three/drei";
 import SkillsPageHeadline from "./skills-page-headline";
-
-
 
 export default function SkillsPageWorld() {
     const windowWidth = useWindowWidth();
@@ -31,7 +28,7 @@ export default function SkillsPageWorld() {
 
     return (
         <>
-            <ambientLight color="white" intensity={0.005}/>
+            {/*<ambientLight color="white" intensity={0.005}/>*/}
             {/*<ambientLight color="white" intensity={0.05}/>*/}
 
             <SkillsPageHeadline/>
@@ -44,15 +41,15 @@ export default function SkillsPageWorld() {
                 position={[420, 1000, 40]}
                 castShadow={true}
             >
-                <mesh>
-                    <meshStandardMaterial
-                        emissive={sunColor}
-                        emissiveIntensity={1}
-                        color={"#000000"}
-                    />
+                {/*<mesh>*/}
+                {/*    <meshStandardMaterial*/}
+                {/*        emissive={sunColor}*/}
+                {/*        emissiveIntensity={1}*/}
+                {/*        color={"#000000"}*/}
+                {/*    />*/}
 
-                    <sphereGeometry args={[5, 32, 32]}/>
-                </mesh>
+                {/*    <sphereGeometry args={[5, 32, 32]}/>*/}
+                {/*</mesh>*/}
             </pointLight>
 
             <SkillsPageCuboids

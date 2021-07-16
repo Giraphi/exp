@@ -12,7 +12,7 @@ export default function SkillsPageHeadline() {
         <>
             {deviceId !== "small" &&
                 <Text
-                    color={colorSkills}
+                    color={"#009900"}
                     fontSize={90}
                     lineHeight={1}
                     font={inkedBones}
@@ -24,7 +24,7 @@ export default function SkillsPageHeadline() {
             }
             {deviceId === "small" &&
                 <Text
-                    color={colorSkills}
+                    color={"#009900"}
                     fontSize={80}
                     lineHeight={1}
                     font={inkedBones}
