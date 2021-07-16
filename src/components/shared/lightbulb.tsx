@@ -63,7 +63,8 @@ export default function Lightbulb(props: Lightbulb) {
             size: 100,
             scale: 0.15,
             color: "black",
-            font: "AuvantGothicBold"
+            font: "AuvantGothicBold",
+            borderSize: 10,
         }
     );
 

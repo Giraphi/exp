@@ -12,9 +12,9 @@ export default function TextureHeadline() {
         {
             color: colorSkills,
             font: "InkedBones",
-            size: 1000,
-            scale: 0.1,
-            heightNormalizer: 1.3
+            size: 100,
+            scale: 1,
+            borderSize: 100,
         }
     );
 

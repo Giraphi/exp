@@ -8,7 +8,7 @@ export interface TextConfig {
     scale: number;
     font: string;
     size: number;
-    heightNormalizer?: number;
+    borderSize: number;
 }
 
 export default function useTextTexture(text: string, textConfig: TextConfig) {
@@ -19,24 +19,27 @@ export default function useTextTexture(text: string, textConfig: TextConfig) {
             return {};
         }
 
-        const borderSize = 2;
+        // const borderSize = 100;
         const ctx = document.createElement('canvas').getContext('2d');
 
         if (!ctx) {
             throw new Error(`Could not create ctx`);
         }
 
-
         const font = `${textConfig.size}px ${textConfig.font}, monospace`;
         ctx.font = font;
         // measure how long the name will be
-        const doubleBorderSize = borderSize * 2;
+        const doubleBorderSize = textConfig.borderSize * 2;
         const width = ctx.measureText(text).width + doubleBorderSize;
-        let height = textConfig.size + doubleBorderSize;
+        const height = textConfig.size + doubleBorderSize;
 
-        if (textConfig.heightNormalizer) {
-            height = height * textConfig.heightNormalizer;
-        }
+        // if (textConfig.heightNormalizer) {
+        //     height = height * textConfig.heightNormalizer;
+        // }
+        //
+        // if (textConfig.widthNormalizer) {
+        //     width = width * textConfig.widthNormalizer;
+        // }
 
         ctx.canvas.width = width;
         ctx.canvas.height = height;
@@ -45,7 +48,7 @@ export default function useTextTexture(text: string, textConfig: TextConfig) {
         ctx.font = font;
         ctx.textBaseline = 'top';
         ctx.fillStyle = textConfig.color;
-        ctx.fillText(text, borderSize, borderSize);
+        ctx.fillText(text, textConfig.borderSize, textConfig.borderSize);
 
         const texture = new CanvasTexture(ctx.canvas);
 
@@ -60,7 +63,7 @@ export default function useTextTexture(text: string, textConfig: TextConfig) {
         );
 
         return {texture, scale}
-    }, [isFontLoaded, textConfig.size, textConfig.font, textConfig.color, textConfig.scale, text]);
+    }, [isFontLoaded, textConfig.size, textConfig.font, textConfig.borderSize, textConfig.color, textConfig.scale, text]);
 
     return {texture, scale};
 }
