@@ -2,7 +2,6 @@ import {useMemo} from "react";
 import {CanvasTexture, LinearFilter} from "three";
 import useIsFontLoaded from "./use-is-font-loaded";
 import {Vector3} from "three/src/math/Vector3";
-import useDevice from "./use-device";
 
 export interface TextConfig {
     color: string;
