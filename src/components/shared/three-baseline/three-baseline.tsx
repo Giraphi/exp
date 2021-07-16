@@ -1,4 +1,4 @@
-import React, {ReactNode, useEffect, useState} from "react";
+import React, {ReactNode} from "react";
 import MovementContextProvider from "../../../contexts/providers/movement-context-provider";
 import ThreeBaselineCanvas from "./three-baseline-canvas";
 import styled from "styled-components";

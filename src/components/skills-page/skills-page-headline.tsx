@@ -1,9 +1,7 @@
 import React from "react";
 import {Text} from "@react-three/drei";
-import {colorSkills} from "../../style/constants";
 import inkedBones from "../../fonts/inked-bones.woff";
 import useDevice from "../../hooks/use-device";
-
 
 export default function SkillsPageHeadline() {
     const deviceId = useDevice();

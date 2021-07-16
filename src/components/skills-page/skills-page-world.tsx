@@ -6,7 +6,6 @@ import ManModel from "./man-model";
 import SkillsPageCuboids from "./skills-page-cuboids";
 import {colorSkills} from "../../style/constants";
 import useDevice from "../../hooks/use-device";
-import {Color} from "three";
 import SkillsPageHeadline from "./skills-page-headline";
 
 export default function SkillsPageWorld() {
@@ -21,10 +20,6 @@ export default function SkillsPageWorld() {
         return new Vector3(-windowWidth / 4, 180, 100);
 
     }, [device, windowWidth]);
-
-    const sunColor = useMemo(() => {
-        return new Color(colorSkills);
-    }, []);
 
     return (
         <>

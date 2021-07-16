@@ -1,12 +1,10 @@
-import React, {useCallback, useContext, useMemo, useRef, useState} from "react";
+import React, {useContext, useMemo, useRef, useState} from "react";
 import {
-    Box3,
     Color,
-    Group, Mesh, PointLight,
+    Group, PointLight,
 } from "three";
 import {Vector3} from "three/src/math/Vector3";
 import {HistoryContext} from "../../contexts/history-context";
-import useTextTexture from "../../hooks/use-text-texture";
 import {Text} from "@react-three/drei";
 import auvantGothic from "../../fonts/OPTIAuvantGothic-Bold.woff";
 
@@ -51,7 +49,6 @@ const DefaultLightParams = {
 }
 
 export default function Lightbulb(props: Lightbulb) {
-    const [textRefNode, setTextRefNode] = useState<Mesh>();
     const [colors, setColors] = useState(COLORS);
     const lightRef = useRef<PointLight>(null);
     const lowLightRef = useRef<PointLight>(null);
@@ -60,31 +57,12 @@ export default function Lightbulb(props: Lightbulb) {
     const [isClicked, setIsClicked] = useState(false);
     const history = useContext(HistoryContext).history;
 
-    const {texture, scale} = useTextTexture(props.text,
-        {
-            size: 100,
-            scale: 0.15,
-            color: "black",
-            font: "AuvantGothicBold",
-            borderSize: 10,
-        }
-    );
-
     const lightParams = useMemo(() => {
         return {
             outer: {...DefaultLightParams.outer, ...props.lightParams?.outer},
             inner: {...DefaultLightParams.inner, ...props.lightParams?.inner}
         }
     }, [props.lightParams?.inner, props.lightParams?.outer]);
-
-
-    const textRef = useCallback(node => {
-        if (node === null) {
-            return;
-        }
-
-        setTextRefNode(node);
-    }, []);
 
     const lowLightPosition = useMemo(() => {
         const lightPosition = new Vector3();
@@ -93,34 +71,6 @@ export default function Lightbulb(props: Lightbulb) {
 
         return lightPosition;
     }, [props.position]);
-
-    // const textScale: Vector3 = useMemo(() => {
-    //     const labelBaseScale = 0.15;
-    //     return new Vector3(
-    //         textCanvasWidth * labelBaseScale,
-    //         textCanvasHeight * labelBaseScale,
-    //         0
-    //     );
-    // }, [textCanvasHeight, textCanvasWidth])
-
-    const textPosition = useMemo(() => {
-        if (!textRefNode) {
-            return;
-        }
-
-        const boundingBox: Box3 = new Box3().setFromObject(textRefNode);
-
-        // At this point we don't know if the text is rotated (yet)
-        // Simply assume that the longer side of our Box is the length.
-        // (Only works of text has a rotation of n*90deg)
-        const textLength = Math.max(
-            boundingBox.max.x - boundingBox.min.x,
-            boundingBox.max.y - boundingBox.min.y
-        );
-
-        const padding = 5;
-        return new Vector3(0, -textLength / 2 + (props.height) - padding, 11);
-    }, [props.height, textRefNode]);
 
     function onPointerOver() {
         setColors(COLORS_HOVER);
