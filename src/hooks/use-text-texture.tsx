@@ -14,7 +14,6 @@ export interface TextConfig {
 
 export default function useTextTexture(text: string, textConfig: TextConfig) {
     const isFontLoaded = useIsFontLoaded();
-    const device = useDevice();
 
     const {texture, scale} = useMemo(() => {
         if (!isFontLoaded) {

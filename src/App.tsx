@@ -2,7 +2,7 @@ import React from 'react'
 import GlobalStyle from "./style/global-style";
 
 import "./style/font-faces.css";
-import {BrowserRouter} from "react-router-dom";
+import {HashRouter} from "react-router-dom";
 import PageSwitch from "./components/page-switch";
 import styled from "styled-components";
 
@@ -15,9 +15,9 @@ function App() {
     return (
         <StyledRoot>
             <GlobalStyle/>
-                <BrowserRouter basename={"exp"}>
+                <HashRouter>
                     <PageSwitch/>
-                </BrowserRouter>
+                </HashRouter>
         </StyledRoot>
     )
 }

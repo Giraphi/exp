@@ -90,7 +90,7 @@ export default function SkillsPageCuboids(props: SkillPageCuboidsProps) {
         instancedMeshRef.current.instanceMatrix.needsUpdate = true;
     });
 
-    useFrame((state, delta) => {
+    useFrame(() => {
         if (!instancedMeshRef.current) {
             return;
         }

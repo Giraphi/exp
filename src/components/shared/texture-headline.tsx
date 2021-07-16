@@ -17,17 +17,6 @@ export default function TextureHeadline() {
             heightNormalizer: 1.3
         }
     );
-    //
-    // const small = useTextTexture("Skills",
-    //     {
-    //         color: colorSkills,
-    //         font: "InkedBones",
-    //         size: 1000,
-    //         scale: 0.1,
-    //     }
-    // );
-
-    // console.log(deviceId);
 
     return (
         <>
