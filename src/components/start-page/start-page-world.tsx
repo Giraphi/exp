@@ -44,7 +44,7 @@ export default function StartPageWorld(props: WorldProps) {
                 position={lightbulbPositions[1]}
                 text={"ABOUT ME"}
                 height={185}
-                path={"skills"}
+                path={"about"}
             />
 
             <mesh position={[0, 0, 0]} rotation={[-Math.PI / 2, 0, 0]} receiveShadow={true}>

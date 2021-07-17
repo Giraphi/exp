@@ -7,6 +7,7 @@ import SkillsPageCuboids from "./skills-page-cuboids";
 import {colorSkills} from "../../style/constants";
 import useDevice from "../../hooks/use-device";
 import SkillsPageHeadline from "./skills-page-headline";
+import TreeModel from "../about-page/tree-model";
 
 export default function SkillsPageWorld() {
     const windowWidth = useWindowWidth();
@@ -71,6 +72,7 @@ export default function SkillsPageWorld() {
 
             <Suspense fallback={null}>
                 <ManModel/>
+                {/*<TreeModel/>*/}
             </Suspense>
         </>
     );
