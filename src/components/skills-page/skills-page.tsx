@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useRef} from "react";
 import styled from "styled-components";
 import ThreeBaseline from "../shared/three-baseline/three-baseline";
 import CameraControlButtons from "../shared/camera-control-buttons";
@@ -36,6 +36,8 @@ const StyledText = styled.div`
 `;
 
 export default function SkillsPage() {
+    const bannerRef = useRef<HTMLDivElement>(null);
+
     return (
         <StyledRoot
             initial={{opacity: 0}}
@@ -43,11 +45,15 @@ export default function SkillsPage() {
             exit={{opacity: 0}}
             transition={{duration: 1.0}}
         >
-            <StyledBanner>
+            <StyledBanner
+                ref={bannerRef}
+            >
                 <ThreeBaseline
                     controlButtons={<CameraControlButtons minimal={true}/>}
                 >
-                    <SkillsPageWorld/>
+                    <SkillsPageWorld
+                        bannerRef={bannerRef}
+                    />
                 </ThreeBaseline>
             </StyledBanner>
 

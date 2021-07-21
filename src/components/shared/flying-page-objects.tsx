@@ -8,12 +8,13 @@ export interface SkillPageCuboidsProps {
     numObjects: number;
     worldSize: number;
     lift: boolean;
+    children: React.ReactNode;
 }
 
 const LIFT_SPEED = 400;
 const DELAY_MS = 20;
 
-export default function SkillsPageCuboids(props: SkillPageCuboidsProps) {
+export default function FlyingPageObjects(props: SkillPageCuboidsProps) {
     const random = useRandomGenerator(3);
     const instancedMeshRef = useRef<InstancedMesh>(null);
     const gluedIndexes = useRef([...Array(props.numObjects - 1)].map((item, index) => index));
@@ -107,10 +108,11 @@ export default function SkillsPageCuboids(props: SkillPageCuboidsProps) {
                 attach="material"
                 color="white"
             />
-            <sphereGeometry
-                attach="geometry"
-                args={[5, 5, 5]}
-            />
+            {/*<sphereGeometry*/}
+            {/*    attach="geometry"*/}
+            {/*    args={[5, 5, 5]}*/}
+            {/*/>*/}
+            {props.children}
         </instancedMesh>
     );
 }

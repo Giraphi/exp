@@ -3,11 +3,10 @@ import useWindowWidth from "../../hooks/use-window-width";
 import useDevice from "../../hooks/use-device";
 import {Vector3} from "three/src/math/Vector3";
 import {colorAbout} from "../../style/constants";
-import SkillsPageCuboids from "../skills-page/skills-page-cuboids";
+import FlyingPageObjects from "../shared/flying-page-objects";
 import Lightbulb from "../shared/lightbulb";
 import AboutPageHeadline from "./about-page-headline";
 import ManModel from "../skills-page/man-model";
-
 
 export default function AboutPageWorld() {
     const windowWidth = useWindowWidth();
@@ -39,11 +38,15 @@ export default function AboutPageWorld() {
             >
             </pointLight>
 
-            <SkillsPageCuboids
+            <FlyingPageObjects
                 numObjects={150}
                 worldSize={1000}
                 lift={isLightbulbClicked}
-            />
+            >
+                <boxBufferGeometry
+                    args={[20,20,20]}
+                />
+            </FlyingPageObjects>
 
             <Lightbulb
                 position={lightbulbPosition}

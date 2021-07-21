@@ -1,24 +1,29 @@
-import React from "react";
+import React, {RefObject, useContext} from "react";
 import useObjWTexture from "../../hooks/use-obj-w-texture";
 import {useFrame} from "@react-three/fiber";
-import useMousePositionRef from "../../hooks/use-mouse-position-ref";
 import useWindowWidth from "../../hooks/use-window-width";
+import MousePositionContext from "../../contexts/mouse-position-context";
 
+export interface EyeModelProps {
+    bannerRef: RefObject<HTMLDivElement>;
+}
 
-export default function EyeModel() {
+export default function EyeModel(props: EyeModelProps) {
     const eyeObject = useObjWTexture("/exp/models/eyeball/eyeball.obj", "/exp/models/eyeball/eyeball.mtl");
-    const mousePosition = useMousePositionRef();
-
-    const cameraZ = 700;
-    const canvasHeight = 618;
-
-    const eyePositionY = 100;
+    const mousePositionRef = useContext(MousePositionContext)
     const windowWidth = useWindowWidth();
 
+    const cameraZ = 700;
+    const eyePositionY = 100;
+
     useFrame(() => {
+        if (!props.bannerRef.current || !mousePositionRef?.current) {
+            return;
+        }
+
         eyeObject.lookAt(
-            mousePosition.current.x - windowWidth/2,
-            -mousePosition.current.y + canvasHeight/2 + eyePositionY,
+            mousePositionRef.current.x - windowWidth/2,
+            -mousePositionRef.current.y + props.bannerRef.current.clientHeight/2 + eyePositionY,
             cameraZ
         );
     });

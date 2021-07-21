@@ -1,14 +1,18 @@
-import React, {Suspense, useMemo, useState} from "react";
+import React, {RefObject, Suspense, useMemo, useState} from "react";
 import useWindowWidth from "../../hooks/use-window-width";
 import Lightbulb from "../shared/lightbulb";
 import {Vector3} from "three/src/math/Vector3";
-import SkillsPageFlyingObjects from "./skills-page-cuboids";
 import {colorSkills} from "../../style/constants";
 import useDevice from "../../hooks/use-device";
 import SkillsPageHeadline from "./skills-page-headline";
 import EyeModel from "./eye-model";
+import FlyingPageObjects from "../shared/flying-page-objects";
 
-export default function SkillsPageWorld() {
+export interface SkillsPageWorldProps {
+    bannerRef: RefObject<HTMLDivElement>;
+}
+
+export default function SkillsPageWorld(props: SkillsPageWorldProps) {
     const windowWidth = useWindowWidth();
     const [isLightbulbClicked, setIsLightbulbClicked] = useState(false);
     const device = useDevice()
@@ -38,11 +42,16 @@ export default function SkillsPageWorld() {
             >
             </pointLight>
 
-            <SkillsPageFlyingObjects
+            <FlyingPageObjects
                 numObjects={150}
                 worldSize={1000}
                 lift={isLightbulbClicked}
-            />
+            >
+                <sphereGeometry
+                    attach="geometry"
+                    args={[5, 5, 5]}
+                />
+            </FlyingPageObjects>
 
             <Lightbulb
                 position={lightbulbPosition}
@@ -61,9 +70,9 @@ export default function SkillsPageWorld() {
             />
 
             <Suspense fallback={null}>
-                <EyeModel/>
-                {/*<ManModel/>*/}
-                {/*<TreeModel/>*/}
+                <EyeModel
+                    bannerRef={props.bannerRef}
+                />
             </Suspense>
         </>
     );
