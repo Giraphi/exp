@@ -49,7 +49,7 @@ export default function SkillsPageWorld(props: SkillsPageWorldProps) {
             >
                 <sphereGeometry
                     attach="geometry"
-                    args={[5, 5, 5]}
+                    args={[5, 32, 32]}
                 />
             </FlyingPageObjects>
 

@@ -8,12 +8,12 @@ export default function useObjWTexture(objPath: string, texturePath: string) {
 
     useLayoutEffect(() => {
         const mtlLoader = new MTLLoader();
-        mtlLoader.load(texturePath, function(materials) {
+        mtlLoader.load(texturePath, (materials) => {
             materials.preload();
 
             const objLoader = new OBJLoader();
             objLoader.setMaterials(materials);
-            objLoader.load(objPath, function(object) {
+            objLoader.load(objPath, (object) => {
                 setObject(object);
             });
         });
