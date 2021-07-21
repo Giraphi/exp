@@ -53,7 +53,7 @@ export default function SkillsPageWorld() {
                 onClick={() => setIsLightbulbClicked(true)}
                 lightParams={{
                     inner: {
-                        decay: 2,
+                        decay: 1.5,
                         distance: 650,
                         intensity: 1
                     }
