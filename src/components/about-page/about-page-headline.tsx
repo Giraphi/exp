@@ -10,7 +10,7 @@ export default function AboutPageHeadline() {
         <>
             {deviceId !== "small" &&
             <Text
-                color={"#009900"}
+                color={"#009905"}
                 fontSize={90}
                 letterSpacing={0.1}
                 lineHeight={1}
@@ -23,7 +23,7 @@ export default function AboutPageHeadline() {
             }
             {deviceId === "small" &&
             <Text
-                color={"#009900"}
+                color={"#009905"}
                 fontSize={80}
                 lineHeight={1}
                 font={inkedBones}
