@@ -1,7 +1,8 @@
 import React from "react";
 import {Text} from "@react-three/drei";
-import inkedBones from "../../fonts/inked-bones.woff";
 import useDevice from "../../hooks/use-device";
+import blackMetal from "../../fonts/black-metal.ttf";
+import {colorSkills} from "../../style/constants";
 
 export default function SkillsPageHeadline() {
     const deviceId = useDevice();
@@ -10,10 +11,11 @@ export default function SkillsPageHeadline() {
         <>
             {deviceId !== "small" &&
                 <Text
-                    color={"#009900"}
+                    color={colorSkills}
                     fontSize={90}
                     lineHeight={1}
-                    font={inkedBones}
+                    letterSpacing={0.1}
+                    font={blackMetal}
                     position={[0,0,300]}
                     rotation={[-0.2, -0.07, -0.03]}
                 >
@@ -22,10 +24,11 @@ export default function SkillsPageHeadline() {
             }
             {deviceId === "small" &&
                 <Text
-                    color={"#009900"}
+                    color={colorSkills}
                     fontSize={80}
+                    letterSpacing={0.1}
                     lineHeight={1}
-                    font={inkedBones}
+                    font={blackMetal}
                     position={[0,50,300]}
                     rotation={[-0.3, -0.07, -0.03]}
                 >

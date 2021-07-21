@@ -1,9 +1,7 @@
 import React from "react";
 import useDevice from "../../hooks/use-device";
 import {Text} from "@react-three/drei";
-import graffiti from "../../fonts/Graffiti.ttf";
-// import slimWandals from "../../fonts/Graffiti.ttf";
-import {colorAbout} from "../../style/constants";
+import inkedBones from "../../fonts/inked-bones.woff";
 
 export default function AboutPageHeadline() {
     const deviceId = useDevice();
@@ -12,23 +10,23 @@ export default function AboutPageHeadline() {
         <>
             {deviceId !== "small" &&
             <Text
-                color={colorAbout}
+                color={"#009900"}
                 fontSize={90}
-                letterSpacing={-0.1}
+                letterSpacing={0.1}
                 lineHeight={1}
-                font={graffiti}
+                font={inkedBones}
                 position={[0,30,300]}
                 rotation={[-0.2, -0.07, -0.03]}
             >
-                {"ABOUT ME"}
+                About Me
             </Text>
             }
             {deviceId === "small" &&
             <Text
-                color={colorAbout}
+                color={"#009900"}
                 fontSize={80}
                 lineHeight={1}
-                font={graffiti}
+                font={inkedBones}
                 position={[0,50,300]}
                 rotation={[-0.3, -0.07, -0.03]}
             >

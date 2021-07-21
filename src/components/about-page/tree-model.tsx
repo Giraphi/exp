@@ -1,6 +1,6 @@
 import React, {useMemo} from "react";
 import {MeshStandardMaterial} from "three";
-import useObjAsPrimitive from "../../useObjAsPrimitive";
+import useObjAsPrimitive from "../../hooks/use-obj-as-primitive";
 
 export default function TreeModel() {
     const material = useMemo(() => {

@@ -1,5 +1,5 @@
 import React, {useMemo} from "react";
-import useObjAsPrimitive from "../../useObjAsPrimitive";
+import useObjAsPrimitive from "../../hooks/use-obj-as-primitive";
 import {MeshStandardMaterial} from "three";
 
 export default function ManModel() {

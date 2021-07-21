@@ -5,7 +5,7 @@ import {useFrame} from "@react-three/fiber";
 import {Vector3} from "three/src/math/Vector3";
 
 export interface SkillPageCuboidsProps {
-    numCuboids: number;
+    numObjects: number;
     worldSize: number;
     lift: boolean;
 }
@@ -16,7 +16,7 @@ const DELAY_MS = 20;
 export default function SkillsPageCuboids(props: SkillPageCuboidsProps) {
     const random = useRandomGenerator(3);
     const instancedMeshRef = useRef<InstancedMesh>(null);
-    const gluedIndexes = useRef([...Array(props.numCuboids - 1)].map((item, index) => index));
+    const gluedIndexes = useRef([...Array(props.numObjects - 1)].map((item, index) => index));
     const [isListFinished, setIsListFinished] = useState(false);
 
     useEffect(() => {
@@ -36,7 +36,7 @@ export default function SkillsPageCuboids(props: SkillPageCuboidsProps) {
         }
 
         const transform = new Matrix4();
-        for (let i = 0; i < props.numCuboids; i++) {
+        for (let i = 0; i < props.numObjects; i++) {
 
             const x = random() * props.worldSize - props.worldSize / 2;
             const y = random() * 500 - 250;
@@ -49,7 +49,7 @@ export default function SkillsPageCuboids(props: SkillPageCuboidsProps) {
             transform.setPosition(x, y, z);
             instancedMeshRef.current.setMatrixAt(i, transform)
         }
-    }, [props.numCuboids, props.worldSize, random]);
+    }, [props.numObjects, props.worldSize, random]);
 
     const rotationSpeed = useRef(0);
 
@@ -62,7 +62,7 @@ export default function SkillsPageCuboids(props: SkillPageCuboidsProps) {
         const currentGluedIndexes = [...gluedIndexes.current];
         let minY = undefined;
 
-        for (let i = 0; i < props.numCuboids; i++) {
+        for (let i = 0; i < props.numObjects; i++) {
             if (currentGluedIndexes.indexOf(i) !== -1) {
                 minY = 0;
                 continue;
@@ -100,16 +100,16 @@ export default function SkillsPageCuboids(props: SkillPageCuboidsProps) {
 
     return (
         <instancedMesh
-            args={[null as unknown as BufferGeometry, null as unknown as MeshStandardMaterial, props.numCuboids]}
+            args={[null as unknown as BufferGeometry, null as unknown as MeshStandardMaterial, props.numObjects]}
             ref={instancedMeshRef}
         >
             <meshStandardMaterial
                 attach="material"
                 color="white"
             />
-            <boxBufferGeometry
+            <sphereGeometry
                 attach="geometry"
-                args={[20, 20, 20]}
+                args={[5, 5, 5]}
             />
         </instancedMesh>
     );

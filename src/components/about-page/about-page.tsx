@@ -1,9 +1,8 @@
-import React, {Suspense, useMemo, useState} from "react";
+import React from "react";
 import ThreeBaseline from "../shared/three-baseline/three-baseline";
 import CameraControlButtons from "../shared/camera-control-buttons";
 import styled from "styled-components";
-import {colorAbout, colorSkills} from "../../style/constants";
-import SkillsPageWorld from "../skills-page/skills-page-world";
+import {colorAbout} from "../../style/constants";
 import PageContentLayout from "../shared/page-content-layout";
 import {motion} from "framer-motion";
 import AboutPageWorld from "./about-page-world";

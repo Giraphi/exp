@@ -2,12 +2,11 @@ import React, {Suspense, useMemo, useState} from "react";
 import useWindowWidth from "../../hooks/use-window-width";
 import Lightbulb from "../shared/lightbulb";
 import {Vector3} from "three/src/math/Vector3";
-import ManModel from "./man-model";
-import SkillsPageCuboids from "./skills-page-cuboids";
+import SkillsPageFlyingObjects from "./skills-page-cuboids";
 import {colorSkills} from "../../style/constants";
 import useDevice from "../../hooks/use-device";
 import SkillsPageHeadline from "./skills-page-headline";
-import TreeModel from "../about-page/tree-model";
+import EyeModel from "./eye-model";
 
 export default function SkillsPageWorld() {
     const windowWidth = useWindowWidth();
@@ -24,7 +23,7 @@ export default function SkillsPageWorld() {
 
     return (
         <>
-            {/*<ambientLight color="white" intensity={0.005}/>*/}
+            {/*<ambientLight color="white" intensity={0.01}/>*/}
             {/*<ambientLight color="white" intensity={0.05}/>*/}
 
             <SkillsPageHeadline/>
@@ -32,24 +31,15 @@ export default function SkillsPageWorld() {
             <pointLight
                 color={colorSkills}
                 intensity={2}
-                distance={1000}
+                distance={1200}
                 decay={1}
                 position={[420, 1000, 40]}
                 castShadow={true}
             >
-                {/*<mesh>*/}
-                {/*    <meshStandardMaterial*/}
-                {/*        emissive={sunColor}*/}
-                {/*        emissiveIntensity={1}*/}
-                {/*        color={"#000000"}*/}
-                {/*    />*/}
-
-                {/*    <sphereGeometry args={[5, 32, 32]}/>*/}
-                {/*</mesh>*/}
             </pointLight>
 
-            <SkillsPageCuboids
-                numCuboids={150}
+            <SkillsPageFlyingObjects
+                numObjects={150}
                 worldSize={1000}
                 lift={isLightbulbClicked}
             />
@@ -64,14 +54,15 @@ export default function SkillsPageWorld() {
                 lightParams={{
                     inner: {
                         decay: 2,
-                        distance: 450,
+                        distance: 650,
                         intensity: 1
                     }
                 }}
             />
 
             <Suspense fallback={null}>
-                <ManModel/>
+                <EyeModel/>
+                {/*<ManModel/>*/}
                 {/*<TreeModel/>*/}
             </Suspense>
         </>
