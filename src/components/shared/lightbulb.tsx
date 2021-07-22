@@ -1,4 +1,4 @@
-import React, {useContext, useMemo, useRef, useState} from "react";
+import React, {useContext, useEffect, useMemo, useRef, useState} from "react";
 import {
     Color,
     Group, PointLight,
@@ -56,6 +56,10 @@ export default function Lightbulb(props: Lightbulb) {
     const lightPositionY = props.height * 0.8;
     const [isClicked, setIsClicked] = useState(false);
     const history = useContext(HistoryContext).history;
+
+    useEffect(() => {
+        return () => {document.body.style.cursor = ""};
+    }, [])
 
     const lightParams = useMemo(() => {
         return {
