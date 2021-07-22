@@ -7,7 +7,7 @@ import {HistoryContext} from "../../contexts/history-context";
 
 export interface PageMenuProps {
     onClick: () => void;
-    // currentPage: ""
+    negative?: boolean;
 }
 
 interface ItemDescription {
@@ -102,6 +102,7 @@ export default function PageMenu(props: PageMenuProps) {
                     path={itemDescription.path}
                     horizontal={true}
                     onClick={props.onClick}
+                    negative={props.negative}
                     lightParams={{
                         inner: {
                             decay: 1.5,

@@ -11,7 +11,7 @@ export default function SkillsPageHeadline() {
         <>
             {deviceId !== "small" &&
                 <Text
-                    color={colorSkills}
+                    color={"black"}
                     fontSize={90}
                     lineHeight={1}
                     letterSpacing={0.1}
@@ -24,7 +24,7 @@ export default function SkillsPageHeadline() {
             }
             {deviceId === "small" &&
                 <Text
-                    color={colorSkills}
+                    color={"black"}
                     fontSize={80}
                     letterSpacing={0.1}
                     lineHeight={1}

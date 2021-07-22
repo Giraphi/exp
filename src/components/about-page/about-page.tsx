@@ -45,6 +45,7 @@ export default function AboutPage() {
         >
             <StyledBanner>
                 <ThreeBaseline
+                    color={"black"}
                     controlButtons={<CameraControlButtons minimal={true}/>}
                 >
                     <AboutPageWorld/>

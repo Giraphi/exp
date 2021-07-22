@@ -29,6 +29,7 @@ export default function StartPage() {
             transition={{duration: 1.0}}
         >
                 <ThreeBaseline
+                    color={"black"}
                     controlButtons={<CameraControlButtons/>}
                 >
                     <StartPageWorld

@@ -49,6 +49,7 @@ export default function SkillsPage() {
                 ref={bannerRef}
             >
                 <ThreeBaseline
+                    color={"white"}
                     controlButtons={<CameraControlButtons minimal={true}/>}
                 >
                     <SkillsPageWorld

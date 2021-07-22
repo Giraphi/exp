@@ -14,6 +14,12 @@ const COLORS = {
     mesh: "#ffffff",
     light: "#ffffff"
 }
+
+const COLORS_NEGATIVE = {
+    mesh: "#000000",
+    light: "#ffffff"
+}
+
 const COLORS_HOVER = {
     mesh: "#FF0500",
     light: "#FF0000",
@@ -33,6 +39,7 @@ export interface Lightbulb {
     path: string;
     horizontal?: boolean;
     lightParams?: { inner?: Partial<LightParams>, outer?: Partial<LightParams> }
+    negative?: boolean;
 }
 
 const DefaultLightParams = {
@@ -49,7 +56,7 @@ const DefaultLightParams = {
 }
 
 export default function Lightbulb(props: Lightbulb) {
-    const [colors, setColors] = useState(COLORS);
+    const [colors, setColors] = useState(props.negative ? COLORS_NEGATIVE : COLORS);
     const lightRef = useRef<PointLight>(null);
     const lowLightRef = useRef<PointLight>(null);
     const groupRef = useRef<Group>(null);
@@ -86,7 +93,7 @@ export default function Lightbulb(props: Lightbulb) {
         if (isClicked) {
             return;
         }
-        setColors(COLORS);
+        setColors(props.negative ? COLORS_NEGATIVE : COLORS);
     }
 
     function onClick() {
@@ -144,7 +151,7 @@ export default function Lightbulb(props: Lightbulb) {
                             fontSize={15}
                             lineHeight={1}
                             font={auvantGothic}
-                            color={"black"}
+                            color={props.negative ? "white" : "black"}
                             position={[0,props.height - 5,12]}
                             rotation={[0, 0, -Math.PI / 2]}
                             anchorX={"left"}

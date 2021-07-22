@@ -3,8 +3,8 @@ import MovementContextProvider from "../../../contexts/providers/movement-contex
 import ThreeBaselineCanvas from "./three-baseline-canvas";
 import styled from "styled-components";
 
-const StyledRoot = styled.div`
-    background-color: black;
+const StyledRoot = styled.div<{backgroundColor: string}>`
+    background-color: ${props => props.backgroundColor};
     height: 100%;
     position: relative;
 `
@@ -25,11 +25,14 @@ const StyledRoot = styled.div`
 export interface ThreeBaselineProps {
     children: ReactNode;
     controlButtons: ReactNode;
+    color: string;
 }
 
 export default function ThreeBaseline(props: ThreeBaselineProps) {
     return (
-        <StyledRoot>
+        <StyledRoot
+            backgroundColor={props.color}
+        >
             <MovementContextProvider>
 
                 <ThreeBaselineCanvas>
