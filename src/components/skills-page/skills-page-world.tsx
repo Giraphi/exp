@@ -1,35 +1,19 @@
-import React, {RefObject, Suspense, useMemo, useState} from "react";
-import useWindowWidth from "../../hooks/use-window-width";
-import Lightbulb from "../shared/lightbulb";
-import {Vector3} from "three/src/math/Vector3";
+import React, {RefObject, Suspense, useState} from "react";
 import {colorSkills} from "../../style/constants";
-import useDevice from "../../hooks/use-device";
 import SkillsPageHeadline from "./skills-page-headline";
 import EyeModel from "./eye-model";
 import FlyingPageObjects from "../shared/flying-page-objects";
+import PageMenu from "../shared/page-menu";
 
 export interface SkillsPageWorldProps {
     bannerRef: RefObject<HTMLDivElement>;
 }
 
 export default function SkillsPageWorld(props: SkillsPageWorldProps) {
-    const windowWidth = useWindowWidth();
-    const [isLightbulbClicked, setIsLightbulbClicked] = useState(false);
-    const device = useDevice()
-
-    const lightbulbPosition = useMemo(() => {
-        if (device !== "small") {
-            return new Vector3(-windowWidth / 6, 180, 0);
-        }
-        return new Vector3(-windowWidth / 4, 180, 100);
-
-    }, [device, windowWidth]);
+    const [isMenuClicked, setIsMenuClicked] = useState(false);
 
     return (
         <>
-            {/*<ambientLight color="white" intensity={0.01}/>*/}
-            {/*<ambientLight color="white" intensity={0.05}/>*/}
-
             <SkillsPageHeadline/>
 
             <pointLight
@@ -45,7 +29,7 @@ export default function SkillsPageWorld(props: SkillsPageWorldProps) {
             <FlyingPageObjects
                 numObjects={150}
                 worldSize={1000}
-                lift={isLightbulbClicked}
+                lift={isMenuClicked}
             >
                 <sphereGeometry
                     attach="geometry"
@@ -53,22 +37,9 @@ export default function SkillsPageWorld(props: SkillsPageWorldProps) {
                 />
             </FlyingPageObjects>
 
-            <Lightbulb
-                position={lightbulbPosition}
-                text={"Back Home"}
-                height={95}
-                path={"/home"}
-                horizontal={true}
-                onClick={() => setIsLightbulbClicked(true)}
-                lightParams={{
-                    inner: {
-                        decay: 1.5,
-                        distance: 650,
-                        intensity: 1
-                    }
-                }}
+            <PageMenu
+                onClick={() => setIsMenuClicked(true)}
             />
-
             <Suspense fallback={null}>
                 <EyeModel
                     bannerRef={props.bannerRef}
