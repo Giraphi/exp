@@ -45,9 +45,11 @@ export default function PageMenu(props: PageMenuProps) {
     const itemDescriptions: ItemDescription[] = useMemo(() => {
         const position =  device !== "small"
             ? new Vector3(-windowWidth / 6, 180, 0)
-            : new Vector3(-windowWidth / 4, 180, 100);
+            : new Vector3(-windowWidth / 4, 180, 170);
 
-        const delta = new Vector3(0,40,0);
+        const delta = device !== "small"
+            ? new Vector3(0,40,0)
+            : new Vector3(0,50,0)
         const positionCounter = position.clone();
 
         const items: ItemDescription[] = [
