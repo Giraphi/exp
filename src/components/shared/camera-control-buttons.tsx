@@ -4,52 +4,67 @@ import styled, {css} from "styled-components";
 
 import arrowWhite from '../../images/arrow-white.svg';
 import arrowWhitePressed from '../../images/arrow-white-pressed.svg';
+
+import arrow from '../../images/arrow.svg';
+import arrowPressed from '../../images/arrow-pressed.svg';
+
 import MovementContext from "../../contexts/movement-context";
 
 const ButtonSize = "50px";
 const ButtonSizeSmall = "40px";
 
-const ButtonMixin = (isActive: boolean) => css`
+const ButtonMixin = (isActive: boolean, inverse?: boolean) => css`
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
     cursor: pointer;
 
-    background-image: url(${arrowWhite});
-    ${isActive && css`
-        background-image: url(${arrowWhitePressed});
-    `}
+    ${!inverse && css`
+        background-image: url(${arrowWhite});
+        ${isActive && css`
+            background-image: url(${arrowWhitePressed});
+        `}
+    `
+    }
+
+    ${inverse && css`
+        background-image: url(${arrow});
+        ${isActive && css`
+            background-image: url(${arrowPressed});
+        `}
+    `
+    }
 `
 
-const StyledButtonUp = styled.div<{ isActive: boolean }>`
+const StyledButtonUp = styled.div<{ isActive: boolean, inverse?: boolean }>`
     grid-row: 1;
     grid-column: 2;
-    ${props => ButtonMixin(props.isActive)};
+    ${props => ButtonMixin(props.isActive, props.inverse)};
 
 `
 
-const StyledButtonLeft = styled.div<{ isActive: boolean }>`
+const StyledButtonLeft = styled.div<{ isActive: boolean, inverse?: boolean }>`
     grid-row: 2;
     grid-column: 1;
     transform: rotate(-90deg);
-    ${props => ButtonMixin(props.isActive)};
+    ${props => ButtonMixin(props.isActive, props.inverse)};
 `
 
-const StyledButtonRight = styled.div<{ isActive: boolean }>`
+const StyledButtonRight = styled.div<{ isActive: boolean, inverse?: boolean }>`
     grid-row: 2;
     grid-column: 3;
     transform: rotate(90deg);
-    ${props => ButtonMixin(props.isActive)};
+    ${props => ButtonMixin(props.isActive, props.inverse)};
 `
 
-const StyledButtonDown = styled.div<{ isActive: boolean }>`
+const StyledButtonDown = styled.div<{ isActive: boolean, inverse?: boolean }>`
     grid-row: 3;
     grid-column: 2;
     transform: rotate(180deg);
-    ${props => ButtonMixin(props.isActive)};
+    ${props => ButtonMixin(props.isActive, props.inverse)};
 `
 
-const StyledRoot = styled.div<{ isMinimal?: boolean }>`
+const StyledRoot = styled.div<{ isMinimal?: boolean, inverse?: boolean }>`
     width: 100%;
     display: flex;
     justify-content: center;
@@ -61,7 +76,7 @@ const StyledRoot = styled.div<{ isMinimal?: boolean }>`
     padding-right: calc(${ButtonSize} / 2);
     align-items: flex-end;
 
-    ${props => !props.isMinimal && css`        
+    ${props => !props.isMinimal && css`
         @media (min-width: 768px) {
             align-items: center;
             bottom: 8%;
@@ -77,7 +92,7 @@ const StyledRoot = styled.div<{ isMinimal?: boolean }>`
     `}
 `
 
-const StyledGrid = styled.div<{isMinimal?: boolean}>`
+const StyledGrid = styled.div<{ isMinimal?: boolean }>`
     display: grid;
     grid-template-columns: repeat(3, ${ButtonSize});
     grid-template-rows: repeat(3, ${ButtonSize});
@@ -87,7 +102,7 @@ const StyledGrid = styled.div<{isMinimal?: boolean}>`
         grid-template-columns: repeat(3, ${ButtonSizeSmall});
         grid-template-rows: repeat(3, ${ButtonSizeSmall});
     `}
-    
+
     use-select: none;
     -webkit-touch-callout: none;
 `
@@ -105,7 +120,8 @@ const StyledText = styled.div`
 `
 
 export interface CameraControlButtonsProps {
-    minimal?: boolean
+    minimal?: boolean;
+    inverse?: boolean;
 }
 
 export default function CameraControlButtons(props: CameraControlButtonsProps) {
@@ -183,6 +199,7 @@ export default function CameraControlButtons(props: CameraControlButtonsProps) {
             >
                 <StyledButtonUp
                     isActive={movementContext.isMovingForward}
+                    inverse={props.inverse}
                     onMouseDown={() => movementContextActions.setIsMovingForward(true)}
                     onTouchStart={() => movementContextActions.setIsMovingForward(true)}
                     onMouseUp={() => movementContextActions.setIsMovingForward(false)}
@@ -190,6 +207,7 @@ export default function CameraControlButtons(props: CameraControlButtonsProps) {
                 />
 
                 <StyledButtonDown
+                    inverse={props.inverse}
                     isActive={movementContext.isMovingBackward}
                     onMouseDown={() => movementContextActions.setIsMovingBackward(true)}
                     onTouchStart={() => movementContextActions.setIsMovingBackward(true)}
@@ -198,6 +216,7 @@ export default function CameraControlButtons(props: CameraControlButtonsProps) {
                 />
 
                 <StyledButtonLeft
+                    inverse={props.inverse}
                     isActive={movementContext.isTurningLeft}
                     onMouseDown={() => movementContextActions.setIsTurningLeft(true)}
                     onTouchStart={() => movementContextActions.setIsTurningLeft(true)}
@@ -206,6 +225,7 @@ export default function CameraControlButtons(props: CameraControlButtonsProps) {
                 />
 
                 <StyledButtonRight
+                    inverse={props.inverse}
                     isActive={movementContext.isTurningRight}
                     onMouseDown={() => movementContextActions.setIsTurningRight(true)}
                     onTouchStart={() => movementContextActions.setIsTurningRight(true)}

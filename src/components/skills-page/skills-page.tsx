@@ -11,7 +11,7 @@ const StyledRoot = styled(motion.div)`
     min-height: 100vh;
     position: relative;
     color: ${colorSkills};
-    background-color: black;
+    //background-color: black;
     overflow: auto;
 `
 
@@ -50,7 +50,7 @@ export default function SkillsPage() {
             >
                 <ThreeBaseline
                     color={"white"}
-                    controlButtons={<CameraControlButtons minimal={true}/>}
+                    controlButtons={<CameraControlButtons minimal={true} inverse={true}/>}
                 >
                     <SkillsPageWorld
                         bannerRef={bannerRef}
