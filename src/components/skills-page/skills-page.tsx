@@ -95,7 +95,7 @@ export default function SkillsPage() {
                         <StyledItem>Plain JS</StyledItem>
                         <StyledItem>Html/CSS/SCSS</StyledItem>
                         <StyledItem>command-line/git</StyledItem>
-                        <StyledItem>jQuery <span role={"img"} aria-label={"skull"}>&#x2620;</span></StyledItem>
+                        <StyledItem>jQuery <span role={"img"} aria-label={"skull"}>&#128128;</span></StyledItem>
                     </StyledTextBlock>
 
                     <StyledTextBlock>
