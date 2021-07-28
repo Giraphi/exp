@@ -28,8 +28,6 @@ const StyledText = styled.div`
     font-family: "AuvantGothicBold", sans-serif;
     color: black;
     margin-bottom: 75px;
-    user-select: none;
-    -webkit-touch-callout: none;
     
     @media(min-width: 768px) {
         margin-top: 10px;

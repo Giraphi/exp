@@ -102,9 +102,6 @@ const StyledGrid = styled.div<{ isMinimal?: boolean }>`
         grid-template-columns: repeat(3, ${ButtonSizeSmall});
         grid-template-rows: repeat(3, ${ButtonSizeSmall});
     `}
-
-    use-select: none;
-    -webkit-touch-callout: none;
 `
 
 const StyledText = styled.div`
