@@ -18,7 +18,6 @@ export interface PageContentLayoutProps {
 }
 
 export default function PageContentLayout(props: PageContentLayoutProps) {
-
     return (
         <StyledRoot>
             <StyledContent>

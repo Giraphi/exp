@@ -5,7 +5,7 @@ import CameraControlButtons from "../shared/camera-control-buttons";
 import SkillsPageWorld from "./skills-page-world";
 import PageContentLayout from "../shared/page-content-layout";
 import {motion} from "framer-motion";
-import {colorSkills} from "../../style/constants";
+import {breakpointSmall, colorSkills} from "../../style/constants";
 
 const StyledRoot = styled(motion.div)`
     min-height: 100vh;
@@ -18,7 +18,7 @@ const StyledRoot = styled(motion.div)`
 const StyledBanner = styled.div`
     height: 75vh;
 
-    @media(min-width: 768px) {
+    @media(min-width: ${breakpointSmall}) {
         height: 80vh;
     }
 `
@@ -26,6 +26,7 @@ const StyledBanner = styled.div`
 const StyledText = styled.div`
     text-align: center;
     font-family: "AuvantGothicBold", sans-serif;
+    color: black;
     margin-bottom: 75px;
     user-select: none;
     -webkit-touch-callout: none;
@@ -34,6 +35,17 @@ const StyledText = styled.div`
         margin-top: 10px;
     }
 `;
+
+const StyledItem = styled.div`
+    margin-bottom: 5px;
+`
+
+const StyledTextBlock = styled.div`
+    margin-bottom: 50px;
+    @media(min-width: ${breakpointSmall}) {
+        margin-bottom: 10vh;
+    }
+`
 
 export default function SkillsPage() {
     const bannerRef = useRef<HTMLDivElement>(null);
@@ -60,68 +72,47 @@ export default function SkillsPage() {
 
             <PageContentLayout>
                 <StyledText>
-                    <h1>Kohntarkosz Kreuhn</h1>
-                    <p>
-                        Hur. Deh antzik Kohntarkosz Kreuhn Kohrmahn Stoht wurdah melekaahm
-                        Stoht wurdah melekaahm Uz, deh orkbahnn Kreuhn Kohrmahn Zëbëhn strain de Geustaah wortsis, da reus Stoah
-                    </p>
-                    <p>
-                        Wuhr di heul zortsung
-                        Uts fur Kalain, himeuhn zëbëhn deh Resutiihn;
-                        Ewehn deuh Lantsin slakehndo
-                    </p>
-                    <p>
-                        Hur. Deh antzik Kohntarkosz Kreuhn Kohrmahn Stoht wurdah melekaahm
-                        Stoht wurdah melekaahm Uz, deh orkbahnn Kreuhn Kohrmahn Zëbëhn strain de Geustaah wortsis, da reus Stoah
-                    </p>
-                    <p>
-                        Elëh wëhsö ëlëh wëhsö ëlëh wëhsö wëh löwï sündi
-                        Elëh wëhsö ëlëh wëhsö ëlëh wëhsö wëh löwï sündi
-                    </p>
-                    <p>
-                        Wuhr di heul zortsung
-                        Uts fur Kalain, himeuhn zëbëhn deh Resutiihn;
-                        Ewehn deuh Lantsin slakehndo
-                    </p>
-                    <p>
-                        Hur. Deh antzik Kohntarkosz Kreuhn Kohrmahn Stoht wurdah melekaahm
-                        Stoht wurdah melekaahm Uz, deh orkbahnn Kreuhn Kohrmahn Zëbëhn strain de Geustaah wortsis, da reus Stoah
-                    </p>
-                    <p>
-                        Wuhr di heul zortsung
-                        Uts fur Kalain, himeuhn zëbëhn deh Resutiihn;
-                        Ewehn deuh Lantsin slakehndo
-                    </p>
-                    <p>
-                        Hur. Deh antzik Kohntarkosz Kreuhn Kohrmahn Stoht wurdah melekaahm
-                        Stoht wurdah melekaahm Uz, deh orkbahnn Kreuhn Kohrmahn Zëbëhn strain de Geustaah wortsis, da reus Stoah
-                    </p>
-                    <p>
-                        Elëh wëhsö ëlëh wëhsö ëlëh wëhsö wëh löwï sündi
-                        Elëh wëhsö ëlëh wëhsö ëlëh wëhsö wëh löwï sündi
-                    </p>
-                    <p>
-                        Wuhr di heul zortsung
-                        Uts fur Kalain, himeuhn zëbëhn deh Resutiihn;
-                        Ewehn deuh Lantsin slakehndo
-                    </p>
-                    <p>
-                        Hur. Deh antzik Kohntarkosz Kreuhn Kohrmahn Stoht wurdah melekaahm
-                        Stoht wurdah melekaahm Uz, deh orkbahnn Kreuhn Kohrmahn Zëbëhn strain de Geustaah wortsis, da reus Stoah
-                    </p>
-                    <p>
-                        Wuhr di heul zortsung
-                        Uts fur Kalain, himeuhn zëbëhn deh Resutiihn;
-                        Ewehn deuh Lantsin slakehndo
-                    </p>
-                    <p>
-                        Hur. Deh antzik Kohntarkosz Kreuhn Kohrmahn Stoht wurdah melekaahm
-                        Stoht wurdah melekaahm Uz, deh orkbahnn Kreuhn Kohrmahn Zëbëhn strain de Geustaah wortsis, da reus Stoah
-                    </p>
-                    <p>
-                        Elëh wëhsö ëlëh wëhsö ëlëh wëhsö wëh löwï sündi
-                        Elëh wëhsö ëlëh wëhsö ëlëh wëhsö wëh löwï sündi
-                    </p>
+                    <StyledTextBlock>
+                        <h1>Favorite JS Frameworks</h1>
+                        <StyledItem>React</StyledItem>
+                        <StyledItem>Three.js</StyledItem>
+                        <StyledItem>R3F</StyledItem>
+                        <StyledItem>Styled Components</StyledItem>
+                    </StyledTextBlock>
+
+                    <StyledTextBlock>
+                        <h1>Familiar JS Frameworks</h1>
+                        <StyledItem>Angular</StyledItem>
+                        <StyledItem>Framer Api</StyledItem>
+                        <StyledItem>Next.js</StyledItem>
+                        <StyledItem>Immer.js</StyledItem>
+                        <StyledItem>Electron</StyledItem>
+                        <StyledItem>Draft.js</StyledItem>
+                        <StyledItem>Material UI</StyledItem>
+                        <StyledItem>Jest</StyledItem>
+                    </StyledTextBlock>
+
+                    <StyledTextBlock>
+                        <h1>Obviously, the Basics</h1>
+                        <StyledItem>Plain JS</StyledItem>
+                        <StyledItem>Html/CSS/SCSS</StyledItem>
+                        <StyledItem>command-line/git</StyledItem>
+                        <StyledItem>jQuery <span role={"img"} aria-label={"skull"}>&#x2620;</span></StyledItem>
+                    </StyledTextBlock>
+
+                    <StyledTextBlock>
+                        <h1>Favorite Languages</h1>
+                        <StyledItem>JS</StyledItem>
+                        <StyledItem>Typescript</StyledItem>
+                        <StyledItem>Python</StyledItem>
+                    </StyledTextBlock>
+
+                    <StyledTextBlock>
+                        <h1>Other Skills</h1>
+                        <StyledItem>Solid English + German</StyledItem>
+                        <StyledItem>Basics in Machine Learning and Deep Learning</StyledItem>
+                        <StyledItem>Basics in Natural Language Processing and Linguistics</StyledItem>
+                    </StyledTextBlock>
 
 
                 </StyledText>

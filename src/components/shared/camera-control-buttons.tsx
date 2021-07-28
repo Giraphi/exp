@@ -109,6 +109,7 @@ const StyledGrid = styled.div<{ isMinimal?: boolean }>`
 
 const StyledText = styled.div`
     margin-top: 20px;
+    font-size: 16px;
     color: white;
     font-family: "SourceCodePro", monospace;
     display: none;
