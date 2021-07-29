@@ -19,9 +19,9 @@ export default function EyeModel(props: EyeModelProps) {
 
     // const [isFirstRender, setIsFirstRender] = useState(true);
 
-    const cameraZ = 100;
+    const cameraZ = 50;
     const eyePositionY = 100;
-    const YOffset = -180;
+    const YOffset = -200;
 
     useFrame(() => {
         if (!props.bannerRef.current || !mousePositionRef?.current || !ref.current || !ref) {
