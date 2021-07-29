@@ -21,7 +21,7 @@ export default function SkillsPageWorld(props: SkillsPageWorldProps) {
             >
                 <SkillsPageHeadline/>
 
-                <ambientLight color="white" intensity={0.1}/>
+                <ambientLight color="white" intensity={0.05}/>
 
 
                 <pointLight
@@ -36,7 +36,7 @@ export default function SkillsPageWorld(props: SkillsPageWorldProps) {
 
                 <pointLight
                     color={"white"}
-                    intensity={0.1}
+                    intensity={0.9}
                     distance={500}
                     decay={1}
                     position={[0, 0, 0]}
@@ -47,7 +47,6 @@ export default function SkillsPageWorld(props: SkillsPageWorldProps) {
                 <group
                     position={device === "small" ? [0,60,-200] : [0,30, -200]}
                 >
-
                     <FlyingPageObjects
                         numObjects={150}
                         worldSize={1000}
