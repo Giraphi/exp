@@ -70,6 +70,7 @@ const StyledRoot = styled.div<{ isMinimal?: boolean, inverse?: boolean }>`
     justify-content: center;
     position: absolute;
     flex-direction: column;
+    pointer-events: none;
 
     bottom: 0;
     padding-bottom: calc(${ButtonSize} / 2);
@@ -77,6 +78,7 @@ const StyledRoot = styled.div<{ isMinimal?: boolean, inverse?: boolean }>`
     align-items: flex-end;
 
     ${props => !props.isMinimal && css`
+       
         @media (min-width: 768px) {
             align-items: center;
             bottom: 8%;
@@ -87,8 +89,10 @@ const StyledRoot = styled.div<{ isMinimal?: boolean, inverse?: boolean }>`
     `}
 
     ${props => props.isMinimal && css`
-        align-items: center;
-        padding-right: 0;
+        bottom: unset;
+        top: 0;
+        align-items: flex-end;
+        padding-top: calc(${ButtonSize} / 2);
     `}
 `
 
@@ -97,6 +101,7 @@ const StyledGrid = styled.div<{ isMinimal?: boolean }>`
     grid-template-columns: repeat(3, ${ButtonSize});
     grid-template-rows: repeat(3, ${ButtonSize});
     user-select: none;
+    pointer-events: auto;
 
     ${props => props.isMinimal && css`
         grid-template-columns: repeat(3, ${ButtonSizeSmall});
@@ -118,7 +123,7 @@ const StyledText = styled.div`
 `
 
 export interface CameraControlButtonsProps {
-    minimal?: boolean;
+    pageVariant?: boolean;
     inverse?: boolean;
 }
 
@@ -188,20 +193,34 @@ export default function CameraControlButtons(props: CameraControlButtonsProps) {
         }
     }, [movementContextActions])
 
+    function onPress(direction: string) {
+        document.body.style.userSelect = "none";
+        setTimeout(() => {
+            movementContextActions.setIsMovingForward(true);
+        })
+    }
+
+    function onRelease(direction: string) {
+        document.body.style.userSelect = "";
+        setTimeout(() => {
+            movementContextActions.setIsMovingForward(false)
+        })
+    }
+
     return (
         <StyledRoot
-            isMinimal={props.minimal}
+            isMinimal={props.pageVariant}
         >
             <StyledGrid
-                isMinimal={props.minimal}
+                isMinimal={props.pageVariant}
             >
                 <StyledButtonUp
                     isActive={movementContext.isMovingForward}
                     inverse={props.inverse}
-                    onMouseDown={() => movementContextActions.setIsMovingForward(true)}
-                    onTouchStart={() => movementContextActions.setIsMovingForward(true)}
-                    onMouseUp={() => movementContextActions.setIsMovingForward(false)}
-                    onTouchEnd={() => movementContextActions.setIsMovingForward(false)}
+                    onMouseDown={() => onPress("forward")}
+                    onTouchStart={() => onPress("forward")}
+                    onMouseUp={() => onRelease("forward")}
+                    onTouchEnd={() => onRelease("forward")}
                 />
 
                 <StyledButtonDown
@@ -233,7 +252,7 @@ export default function CameraControlButtons(props: CameraControlButtonsProps) {
             </StyledGrid>
 
 
-            {!props.minimal &&
+            {!props.pageVariant &&
             <StyledText>
                 Click the arrows to navigate <br/>
                 {"Or use W, A, S, D on your keyboard"}

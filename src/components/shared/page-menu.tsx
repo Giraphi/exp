@@ -20,27 +20,6 @@ export default function PageMenu(props: PageMenuProps) {
     const device = useDevice();
     const windowWidth = useWindowWidth();
     const location = useContext(HistoryContext).history.location;
-    //
-    // console.log(history);
-
-    // const lightbulbPositions = useMemo(() => {
-    //     if (device !== "small") {
-    //         return [
-    //             new Vector3(-windowWidth / 6, 180, 0),
-    //             new Vector3(-windowWidth / 6, 140, 0),
-    //             new Vector3(-windowWidth / 6, 100, 0),
-    //             new Vector3(-windowWidth / 6, 60, 0),
-    //         ]
-    //     }
-    //
-    //     return [
-    //         new Vector3(-windowWidth / 4, 180, 100),
-    //         new Vector3(-windowWidth / 4, 140, 100),
-    //         new Vector3(-windowWidth / 4, 100, 100),
-    //         new Vector3(-windowWidth / 4, 60, 100),
-    //     ]
-    //
-    // }, [device, windowWidth]);
 
     const itemDescriptions: ItemDescription[] = useMemo(() => {
         const position =  device !== "small"

@@ -89,6 +89,7 @@ export default function Lightbulb(props: Lightbulb) {
     }
 
     function onPointerOut() {
+        console.log("pointer out");
         document.body.style.cursor = "";
         if (isClicked) {
             return;

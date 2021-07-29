@@ -8,6 +8,7 @@ import styled from "styled-components";
 
 const StyledRoot = styled.div`
     //background-color: black;
+    //user-select: none;
 `
 
 function App() {

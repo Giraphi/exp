@@ -16,7 +16,7 @@ export default function SkillsPageHeadline() {
                     lineHeight={1}
                     letterSpacing={0.1}
                     font={blackMetal}
-                    position={[0,0,300]}
+                    position={[0,-40,300]}
                     rotation={[-0.2, -0.07, -0.03]}
                 >
                     Skills
@@ -29,7 +29,7 @@ export default function SkillsPageHeadline() {
                     letterSpacing={0.1}
                     lineHeight={1}
                     font={blackMetal}
-                    position={[0,50,300]}
+                    position={[0,0,300]}
                     rotation={[-0.3, -0.07, -0.03]}
                 >
                     Skills
