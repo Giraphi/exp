@@ -13,8 +13,9 @@ export default function EyeModel(props: EyeModelProps) {
     const mousePositionRef = useContext(MousePositionContext)
     const windowWidth = useWindowWidth();
 
-    const cameraZ = 700;
+    const cameraZ = 300;
     const eyePositionY = 100;
+    const YOffset = -180;
 
     useFrame(() => {
         if (!props.bannerRef.current || !mousePositionRef?.current) {
@@ -23,7 +24,7 @@ export default function EyeModel(props: EyeModelProps) {
 
         eyeObject.lookAt(
             mousePositionRef.current.x - windowWidth/2,
-            -mousePositionRef.current.y + props.bannerRef.current.clientHeight/2 + eyePositionY,
+            -mousePositionRef.current.y + props.bannerRef.current.clientHeight/2 + eyePositionY + YOffset,
             cameraZ
         );
     });
