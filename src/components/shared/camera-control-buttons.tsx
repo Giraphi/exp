@@ -193,17 +193,43 @@ export default function CameraControlButtons(props: CameraControlButtonsProps) {
         }
     }, [movementContextActions])
 
-    function onPress(direction: string) {
+    function onPress(direction: "forward" | "backward" | "left" | "right") {
         document.body.style.userSelect = "none";
         setTimeout(() => {
-            movementContextActions.setIsMovingForward(true);
+            switch (direction) {
+                case "forward":
+                    movementContextActions.setIsMovingForward(true);
+                    break;
+                case "backward":
+                    movementContextActions.setIsMovingBackward(true);
+                    break;
+                case "left":
+                    movementContextActions.setIsTurningLeft(true);
+                    break;
+                case "right":
+                    movementContextActions.setIsTurningRight(true);
+                    break;
+            }
         })
     }
 
-    function onRelease(direction: string) {
+    function onRelease(direction: "forward" | "backward" | "left" | "right") {
         document.body.style.userSelect = "";
         setTimeout(() => {
-            movementContextActions.setIsMovingForward(false)
+            switch (direction) {
+                case "forward":
+                    movementContextActions.setIsMovingForward(false);
+                    break;
+                case "backward":
+                    movementContextActions.setIsMovingBackward(false);
+                    break;
+                case "left":
+                    movementContextActions.setIsTurningLeft(false);
+                    break;
+                case "right":
+                    movementContextActions.setIsTurningRight(false);
+                    break;
+            }
         })
     }
 
@@ -226,28 +252,28 @@ export default function CameraControlButtons(props: CameraControlButtonsProps) {
                 <StyledButtonDown
                     inverse={props.inverse}
                     isActive={movementContext.isMovingBackward}
-                    onMouseDown={() => movementContextActions.setIsMovingBackward(true)}
-                    onTouchStart={() => movementContextActions.setIsMovingBackward(true)}
-                    onMouseUp={() => movementContextActions.setIsMovingBackward(false)}
-                    onTouchEnd={() => movementContextActions.setIsMovingBackward(false)}
+                    onMouseDown={() => onPress("backward")}
+                    onTouchStart={() => onPress("backward")}
+                    onMouseUp={() => onRelease("backward")}
+                    onTouchEnd={() => onRelease("backward")}
                 />
 
                 <StyledButtonLeft
                     inverse={props.inverse}
                     isActive={movementContext.isTurningLeft}
-                    onMouseDown={() => movementContextActions.setIsTurningLeft(true)}
-                    onTouchStart={() => movementContextActions.setIsTurningLeft(true)}
-                    onMouseUp={() => movementContextActions.setIsTurningLeft(false)}
-                    onTouchEnd={() => movementContextActions.setIsTurningLeft(false)}
+                    onMouseDown={() => onPress("left")}
+                    onTouchStart={() => onPress("left")}
+                    onMouseUp={() => onRelease("left")}
+                    onTouchEnd={() => onRelease("left")}
                 />
 
                 <StyledButtonRight
                     inverse={props.inverse}
                     isActive={movementContext.isTurningRight}
-                    onMouseDown={() => movementContextActions.setIsTurningRight(true)}
-                    onTouchStart={() => movementContextActions.setIsTurningRight(true)}
-                    onMouseUp={() => movementContextActions.setIsTurningRight(false)}
-                    onTouchEnd={() => movementContextActions.setIsTurningRight(false)}
+                    onMouseDown={() => onPress("right")}
+                    onTouchStart={() => onPress("right")}
+                    onMouseUp={() => onRelease("right")}
+                    onTouchEnd={() => onRelease("right")}
                 />
             </StyledGrid>
 

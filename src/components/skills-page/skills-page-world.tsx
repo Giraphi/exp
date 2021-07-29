@@ -36,10 +36,10 @@ export default function SkillsPageWorld(props: SkillsPageWorldProps) {
 
                 <pointLight
                     color={"white"}
-                    intensity={1}
-                    distance={1200}
+                    intensity={0.1}
+                    distance={500}
                     decay={1}
-                    position={[0, 0, 200]}
+                    position={[0, 0, 0]}
                     castShadow={true}
                 >
                 </pointLight>
