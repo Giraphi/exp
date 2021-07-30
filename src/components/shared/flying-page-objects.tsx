@@ -1,6 +1,6 @@
 import React, {useEffect, useLayoutEffect, useRef, useState} from "react";
 import useRandomGenerator from "../../hooks/use-random";
-import {BufferGeometry, Color, InstancedMesh, Matrix4, MeshStandardMaterial} from "three";
+import {BufferGeometry, InstancedMesh, Matrix4, MeshStandardMaterial} from "three";
 import {useFrame} from "@react-three/fiber";
 import {Vector3} from "three/src/math/Vector3";
 

@@ -54,7 +54,7 @@ const StyledContent = styled.div`
     top: -40vh;
 
     @media (min-width: ${breakpointSmall}) {
-        top: -50vh;
+        top: -45vh;
     }
 `
 
@@ -84,6 +84,13 @@ export default function SkillsPage() {
             <StyledContent>
                 <PageContentLayout>
                     <StyledText>
+                        <StyledTextBlock>
+                            As a frontend developer I’ve been working with many different technologies and frameworks,
+                            mostly based somewhere in the Javascript world.<br/>
+                            First and foremost I’m drawn to technologies that support creative processes and open possibilities
+                            to unusual or unseen results.
+                        </StyledTextBlock>
+
                         <StyledTextBlock>
                             <h1>Favorite Frameworks</h1>
                             <StyledItem>React</StyledItem>
@@ -121,14 +128,13 @@ export default function SkillsPage() {
 
                         <StyledTextBlock>
                             <h1>Other Skills</h1>
-                            <StyledItem>Solid English + German</StyledItem>
+                            <StyledItem>Solid understanding of contemporary UI and UX concepts</StyledItem>
                             <StyledItem>Basics in the fields of Artificial Intelligence, Machine Learning & Deep
                                 Learning</StyledItem>
-                            <StyledItem>Natural Language Processing & Linguistics</StyledItem>
-                            <StyledItem>Maths & Logic</StyledItem>
+                            {/*<StyledItem>Natural Language Processing & Linguistics</StyledItem>*/}
+                            {/*<StyledItem>Maths & Logic</StyledItem>*/}
+                            <StyledItem>Solid English + German</StyledItem>
                         </StyledTextBlock>
-
-
                     </StyledText>
                 </PageContentLayout>
             </StyledContent>
