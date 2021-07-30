@@ -29,16 +29,16 @@ const GlobalStyle = createGlobalStyle`
         h1 {
             font-size: 30px;
             margin-bottom: 10px;
-        }        
+        }
     }
     
-    @media (min-width: ${breakpointSmall}) {                
+    @media (min-width: ${breakpointSmall}) {
         body {
             font-size: 4vh;
             
             h1 {
                 font-size: 8vh;
-                margin-bottom: 2.6vh;
+                margin-bottom: 2vh;
             }
         }
     }

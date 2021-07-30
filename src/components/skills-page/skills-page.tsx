@@ -45,7 +45,7 @@ const StyledItem = styled.div`
 const StyledTextBlock = styled.div`
     margin-bottom: 50px;
     @media (min-width: ${breakpointSmall}) {
-        margin-bottom: 10vh;
+        margin-bottom: 7vh;
     }
 `
 

@@ -21,7 +21,7 @@ export default function EyeModel(props: EyeModelProps) {
 
     const cameraZ = 50;
     const eyePositionY = 100;
-    const YOffset = -200;
+    const YOffset = -220;
 
     useFrame(() => {
         if (!props.bannerRef.current || !mousePositionRef?.current || !ref.current || !ref) {
