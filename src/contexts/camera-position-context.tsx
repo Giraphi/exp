@@ -1,9 +1,10 @@
 import React from "react";
+import {Vector3} from "three/src/math/Vector3";
 
 export interface CameraPositionContextType {
-    initialPosition: [number, number, number];
+    initialPosition: Vector3;
 }
 
 export const CameraPositionContext = React.createContext<CameraPositionContextType>({
-    initialPosition: [0,0,0]
+    initialPosition: new Vector3(0,0,0),
 });

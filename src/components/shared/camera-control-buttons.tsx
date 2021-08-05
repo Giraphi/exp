@@ -40,7 +40,6 @@ const StyledButtonUp = styled.div<{ isActive: boolean, inverse?: boolean }>`
     grid-row: 1;
     grid-column: 2;
     ${props => ButtonMixin(props.isActive, props.inverse)};
-
 `
 
 const StyledButtonLeft = styled.div<{ isActive: boolean, inverse?: boolean }>`
@@ -78,7 +77,6 @@ const StyledRoot = styled.div<{ isMinimal?: boolean, inverse?: boolean }>`
     align-items: flex-end;
 
     ${props => !props.isMinimal && css`
-       
         @media (min-width: 768px) {
             align-items: center;
             bottom: 8%;
@@ -98,10 +96,15 @@ const StyledRoot = styled.div<{ isMinimal?: boolean, inverse?: boolean }>`
 
 const StyledGrid = styled.div<{ isMinimal?: boolean }>`
     display: grid;
-    grid-template-columns: repeat(3, ${ButtonSize});
-    grid-template-rows: repeat(3, ${ButtonSize});
+    grid-template-columns: repeat(3, ${ButtonSizeSmall});
+    grid-template-rows: repeat(3, ${ButtonSizeSmall});
     user-select: none;
     pointer-events: auto;
+
+    @media (min-width: 768px) {
+        grid-template-columns: repeat(3, ${ButtonSize});
+        grid-template-rows: repeat(3, ${ButtonSize});
+    }
 
     ${props => props.isMinimal && css`
         grid-template-columns: repeat(3, ${ButtonSizeSmall});

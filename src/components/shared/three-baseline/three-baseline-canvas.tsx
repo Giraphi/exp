@@ -7,6 +7,7 @@ import {useHistory} from "react-router-dom";
 import {HistoryContext} from "../../../contexts/history-context";
 import MousePositionContext from "../../../contexts/mouse-position-context";
 import {CameraPositionContext, CameraPositionContextType} from "../../../contexts/camera-position-context";
+import {Vector3} from "three/src/math/Vector3";
 
 const StyledCanvas = styled(Canvas)`
     canvas:focus {
@@ -25,7 +26,7 @@ export default function ThreeBaselineCanvas(props: ThreeBaselineCanvasProps) {
 
     const cameraPositionValue: CameraPositionContextType = useMemo(() => {
         return {
-            initialPosition: [0, 200, 700]
+            initialPosition: new Vector3(0, 200, 700)
         }
     }, []);
 

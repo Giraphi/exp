@@ -6,7 +6,8 @@ export interface MousePositionContextProviderProps {
 }
 
 export default function MousePositionContextProvider(props: MousePositionContextProviderProps) {
-    const mousePositionRef = useRef<{x: number, y: number}>({x: window.innerWidth/2, y: window.innerHeight/2});
+    // const mousePositionRef = useRef<{x: number, y: number}>({x: window.innerWidth/2, y: window.innerHeight/2});
+    const mousePositionRef = useRef<{x: number, y: number} | undefined>(undefined);
 
     useEffect(() => {
         function onMouseMove(e: MouseEvent) {

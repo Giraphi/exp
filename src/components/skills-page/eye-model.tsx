@@ -1,4 +1,4 @@
-import React, {RefObject, useContext, useEffect, useRef} from "react";
+import React, {RefObject, useContext, useEffect, useMemo, useRef} from "react";
 import useWindowWidth from "../../hooks/use-window-width";
 import MousePositionContext from "../../contexts/mouse-position-context";
 import {useGLTF} from "@react-three/drei";
@@ -12,6 +12,12 @@ export interface EyeModelProps {
     bannerRef: RefObject<HTMLDivElement>;
 }
 
+interface HelperCoordinates {
+    fixedZ: number;
+    eyePositionY: number;
+    YOffset: number;
+}
+
 export default function EyeModel(props: EyeModelProps) {
     const mousePositionRef = useContext(MousePositionContext)
     const windowWidth = useWindowWidth();
@@ -20,21 +26,47 @@ export default function EyeModel(props: EyeModelProps) {
     const device = useDevice();
     const initialCameraPosition = useContext(CameraPositionContext).initialPosition;
 
-    const fixedZ = -300;
-    const eyePositionY = 100;
-    const YOffset = -260;
+    // const initialEyeTarget = useMemo(() => {
+    //     if (device=== "small") {
+    //         return initialCameraPosition
+    //     }
+    //
+    //     if (!mousePositionRef) {
+    //         return initialCameraPosition;
+    //     }
+    //
+    //     return mousePositionRef.current
+    // }, [device, initialCameraPosition, mousePositionRef])
+
+    const helperCoordinates: HelperCoordinates = useMemo(() => {
+        if (device === "small") {
+            return {
+                fixedZ: -300,
+                eyePositionY: 100,
+                YOffset: -160,
+            }
+        }
+        return {
+            fixedZ: -300,
+            eyePositionY: 100,
+            YOffset: -260,
+        }
+    }, [device]);
 
     useFrame(() => {
-        if (!props.bannerRef.current || !mousePositionRef?.current || !ref.current || !ref) {
+        if (!props.bannerRef.current || !ref.current || !ref || !mousePositionRef) {
             return;
         }
 
-        console.log(mousePositionRef.current);
+        if (!mousePositionRef.current) {
+            ref.current.lookAt(initialCameraPosition);
+            return;
+        }
 
         ref.current.lookAt(
             mousePositionRef.current.x - windowWidth/2,
-            -mousePositionRef.current.y + props.bannerRef.current.clientHeight/2 + eyePositionY + YOffset,
-            fixedZ,
+            -mousePositionRef.current.y + props.bannerRef.current.clientHeight/2 + helperCoordinates.eyePositionY + helperCoordinates.YOffset,
+            helperCoordinates.fixedZ,
         );
     });
 
@@ -43,19 +75,14 @@ export default function EyeModel(props: EyeModelProps) {
             return;
         }
 
-        ref.current.lookAt(
-            initialCameraPosition[0],
-            initialCameraPosition[1],
-            initialCameraPosition[2]
-        );
-
+        ref.current.lookAt(initialEyeTarget);
     }, [device, initialCameraPosition])
 
     return (
         <primitive
             ref={ref}
             object={gltf.scene}
-            position={[0, eyePositionY, -200]}
+            position={[0, helperCoordinates.eyePositionY, -200]}
         />
     );
 }
