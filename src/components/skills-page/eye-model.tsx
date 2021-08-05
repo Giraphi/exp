@@ -43,9 +43,6 @@ export default function EyeModel(props: EyeModelProps) {
     }, [device]);
 
     useFrame(() => {
-        if (device === "small") {
-            return;
-        }
         if (!props.bannerRef.current || !ref.current || !ref || !mousePositionRef) {
             return;
         }
