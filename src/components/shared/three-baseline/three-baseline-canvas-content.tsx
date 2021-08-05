@@ -19,7 +19,7 @@ export default function ThreeBaselineCanvasContent(props: ThreeBaselineCanvasCon
 
     return (
         <>
-            <ThreeBaselineBirdCamera position={[0, 200, 700]}/>
+            <ThreeBaselineBirdCamera/>
             {props.children}
         </>
     );

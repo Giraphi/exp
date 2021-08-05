@@ -1,17 +1,15 @@
-import React, {useLayoutEffect, useRef} from "react";
-import {useThree, Vector3} from "@react-three/fiber";
+import React, {useContext, useLayoutEffect, useRef} from "react";
+import {useThree} from "@react-three/fiber";
 import ThreeBaselineControls from "./three-baseline-controls";
 import {Group, PerspectiveCamera} from "three";
+import {CameraPositionContext} from "../../../contexts/camera-position-context";
 
-export interface CameraProps {
-    position: Vector3;
-}
-
-export default function ThreeBaselineBirdCamera(props: CameraProps) {
+export default function ThreeBaselineBirdCamera() {
     const birdRef= useRef<Group>(null);
     const set = useThree(state => state.set);
     const size = useThree(state => state.size);
     const cameraRef = useRef<PerspectiveCamera>(null);
+    const initialCameraPosition = useContext(CameraPositionContext).initialPosition;
 
     useLayoutEffect(() => {
         if (cameraRef.current) {
@@ -29,9 +27,9 @@ export default function ThreeBaselineBirdCamera(props: CameraProps) {
 
     return (
         <>
-            <group ref={birdRef} position={props.position}>
+            <group ref={birdRef} position={initialCameraPosition}>
                 <group rotation={[-0.3,0, 0]}>
-                    <perspectiveCamera ref={cameraRef}  />
+                    <perspectiveCamera ref={cameraRef}/>
                 </group>
             </group>
 
