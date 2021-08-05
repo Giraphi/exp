@@ -8,7 +8,7 @@ import {motion} from "framer-motion";
 const StyledRoot = styled(motion.div)`
     height: 100vh;
     background-color: black;
-    //padding-bottom: 70px;
+    padding-bottom: 70px;
     
     @media (min-width: 768px) {
         padding-bottom: 0;

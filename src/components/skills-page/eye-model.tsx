@@ -19,24 +19,13 @@ interface HelperCoordinates {
 }
 
 export default function EyeModel(props: EyeModelProps) {
-    const mousePositionRef = useContext(MousePositionContext)
+    const mousePositionRef = useContext(MousePositionContext).mousePositionRef;
+    const invalidatePosition = useContext(MousePositionContext).invalidatePosition;
     const windowWidth = useWindowWidth();
     const gltf = useGLTF('/exp/models/eye/scene.gltf') as GLTF;
     const ref = useRef<Group>(null);
     const device = useDevice();
     const initialCameraPosition = useContext(CameraPositionContext).initialPosition;
-
-    // const initialEyeTarget = useMemo(() => {
-    //     if (device=== "small") {
-    //         return initialCameraPosition
-    //     }
-    //
-    //     if (!mousePositionRef) {
-    //         return initialCameraPosition;
-    //     }
-    //
-    //     return mousePositionRef.current
-    // }, [device, initialCameraPosition, mousePositionRef])
 
     const helperCoordinates: HelperCoordinates = useMemo(() => {
         if (device === "small") {
@@ -54,6 +43,9 @@ export default function EyeModel(props: EyeModelProps) {
     }, [device]);
 
     useFrame(() => {
+        if (device === "small") {
+            return;
+        }
         if (!props.bannerRef.current || !ref.current || !ref || !mousePositionRef) {
             return;
         }
@@ -71,12 +63,12 @@ export default function EyeModel(props: EyeModelProps) {
     });
 
     useEffect(() => {
-        if (device !== "small" || !ref.current) {
+        if (device !== "small") {
             return;
         }
 
-        ref.current.lookAt(initialEyeTarget);
-    }, [device, initialCameraPosition])
+        invalidatePosition();
+    }, [device, invalidatePosition])
 
     return (
         <primitive
