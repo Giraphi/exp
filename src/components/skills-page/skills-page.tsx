@@ -6,6 +6,7 @@ import SkillsPageWorld from "./skills-page-world";
 import PageContentLayout from "../shared/page-content-layout";
 import {motion} from "framer-motion";
 import {breakpointSmall, colorSkills} from "../../style/constants";
+import GlitchText from "./glitch-text/glitch-text";
 
 const StyledRoot = styled(motion.div)`
     min-height: 100vh;
@@ -85,10 +86,10 @@ export default function SkillsPage() {
                 <PageContentLayout>
                     <StyledText>
                         <StyledTextBlock>
-                            As a frontend developer I’ve been working with many different technologies and frameworks,
-                            mostly based somewhere in the Javascript world.<br/>
-                            First and foremost I’m drawn to technologies that support creative processes and open possibilities
-                            to unusual or unseen results.
+                            <GlitchText text={`As a frontend developer I’ve been working with many different technologies and frameworks, mostly based somewhere in the Javascript world.`}/>
+                            <br/>
+                            <GlitchText text={`First and foremost I’m drawn to technologies that support creative processes and open possibilities to unusual or unseen results.`}/>
+
                         </StyledTextBlock>
 
                         <StyledTextBlock>
