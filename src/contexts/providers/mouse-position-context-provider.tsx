@@ -11,7 +11,6 @@ export default function MousePositionContextProvider(props: MousePositionContext
     useEffect(() => {
         function onMouseMove(e: MouseEvent) {
             mousePositionRef.current = {x: e.pageX, y: e.pageY};
-            console.log(e.pageY);
         }
 
         window.addEventListener("mousemove", onMouseMove);

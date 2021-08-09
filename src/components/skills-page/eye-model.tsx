@@ -1,5 +1,4 @@
-import React, {RefObject, useContext, useEffect, useMemo, useRef} from "react";
-import useWindowWidth from "../../hooks/use-window-width";
+import React, {useContext, useEffect, useMemo, useRef} from "react";
 import MousePositionContext from "../../contexts/mouse-position-context";
 import {useGLTF} from "@react-three/drei";
 import {GLTF} from "three/examples/jsm/loaders/GLTFLoader";
@@ -25,18 +24,6 @@ export default function EyeModel() {
 
 
     const helperCoordinates: HelperCoordinates = useMemo(() => {
-        // // if (!bannerRef.current) {
-        // //     return;
-        // // }
-        // // console.log(size);
-        //
-        // if (device === "small") {
-        //     return {
-        //         fixedZ: -300,
-        //         eyePositionY: 100,
-        //         YOffset: -0.23 * canvasSize.height,
-        //     }
-        // }
         return {
             fixedZ: -300,
             eyePositionY: 100,

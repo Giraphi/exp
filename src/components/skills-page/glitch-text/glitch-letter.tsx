@@ -17,22 +17,23 @@ export default function GlitchLetter(props: GlitchLetterProps) {
     const timeout = useRef<NodeJS.Timeout>();
 
     useEffect(() => {
-        // return;
         const interval = setInterval(() => {
-            if (1 - Math.random() < 0.002) {
+            if (1 - Math.random() < 0.003) {
                 setIsRotated(true);
                 if (timeout.current) {
+                    setIsRotated(false);
                     clearTimeout(timeout.current);
                 }
                 timeout.current = setTimeout(() => {
                     setIsRotated(false)
-                }, 2000);
+                }, 1600);
             }
         }, 100);
 
         return () => {
             clearInterval(interval);
             if (timeout.current) {
+                setIsRotated(false);
                 clearTimeout(timeout.current);
             }
         }
