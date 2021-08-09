@@ -6,11 +6,7 @@ import FlyingPageObjects from "../shared/flying-page-objects";
 import PageMenu from "../shared/page-menu";
 import useDevice from "../../hooks/use-device";
 
-export interface SkillsPageWorldProps {
-    bannerRef: RefObject<HTMLDivElement>;
-}
-
-export default function SkillsPageWorld(props: SkillsPageWorldProps) {
+export default function SkillsPageWorld() {
     const [isMenuClicked, setIsMenuClicked] = useState(false);
     const device = useDevice();
 
@@ -61,9 +57,7 @@ export default function SkillsPageWorld(props: SkillsPageWorldProps) {
 
 
                 <Suspense fallback={null}>
-                    <EyeModel
-                        bannerRef={props.bannerRef}
-                    />
+                    <EyeModel/>
                 </Suspense>
             </group>
 

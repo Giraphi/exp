@@ -76,9 +76,7 @@ export default function SkillsPage() {
                     color={"white"}
                     controlButtons={<CameraControlButtons pageVariant={true} inverse={true}/>}
                 >
-                    <SkillsPageWorld
-                        bannerRef={bannerRef}
-                    />
+                    <SkillsPageWorld/>
                 </ThreeBaseline>
             </StyledBanner>
 
