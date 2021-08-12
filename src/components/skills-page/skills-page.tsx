@@ -60,7 +60,6 @@ const StyledContent = styled.div`
 `
 
 export default function SkillsPage() {
-    const bannerRef = useRef<HTMLDivElement>(null);
 
     return (
         <StyledRoot
@@ -69,9 +68,7 @@ export default function SkillsPage() {
             exit={{opacity: 0}}
             transition={{duration: 1.0}}
         >
-            <StyledBanner
-                ref={bannerRef}
-            >
+            <StyledBanner>
                 <ThreeBaseline
                     color={"white"}
                     controlButtons={<CameraControlButtons pageVariant={true} inverse={true}/>}
