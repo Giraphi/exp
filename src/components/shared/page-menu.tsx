@@ -1,4 +1,4 @@
-import React, {useContext, useMemo} from "react";
+import React, {useContext, useMemo, useState} from "react";
 import Lightbulb from "./lightbulb";
 import {Vector3} from "three/src/math/Vector3";
 import useDevice from "../../hooks/use-device";
@@ -20,6 +20,7 @@ export default function PageMenu(props: PageMenuProps) {
     const device = useDevice();
     const windowWidth = useWindowWidth();
     const location = useContext(HistoryContext).history.location;
+    const initialPathname = useState(location.pathname)[0];
 
     const itemDescriptions: ItemDescription[] = useMemo(() => {
         const position =  device !== "small"
@@ -39,7 +40,7 @@ export default function PageMenu(props: PageMenuProps) {
             }
         ];
 
-        if (location.pathname !== "/skills") {
+        if (initialPathname !== "/skills") {
             positionCounter.sub(delta);
             items.push({
                 text: "Skills",
@@ -48,7 +49,7 @@ export default function PageMenu(props: PageMenuProps) {
             });
         }
 
-        if (location.pathname !== "/work") {
+        if (initialPathname !== "/work") {
             positionCounter.sub(delta);
             items.push({
                 text: "Work",
@@ -57,7 +58,7 @@ export default function PageMenu(props: PageMenuProps) {
             });
         }
 
-        if (location.pathname !== "/about") {
+        if (initialPathname !== "/about") {
             positionCounter.sub(delta);
             items.push({
                 text: "About Me",
@@ -68,7 +69,7 @@ export default function PageMenu(props: PageMenuProps) {
 
         return items
 
-    }, [device, location.pathname, windowWidth]);
+    }, [device, initialPathname, windowWidth]);
 
     return (
         <>
