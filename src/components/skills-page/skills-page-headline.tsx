@@ -1,10 +1,7 @@
 import React from "react";
 import {Text} from "@react-three/drei";
 import useDevice from "../../hooks/use-device";
-// import blackMetal from "../../fonts/black-metal.ttf";
-// import auvantGothic from "../../fonts/OPT";
 import inkedBones from "../../fonts/inked-bones.woff";
-
 
 export default function SkillsPageHeadline() {
     const deviceId = useDevice();

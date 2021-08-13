@@ -22,7 +22,6 @@ export default function EyeModel() {
     const initialCameraPosition = useContext(CameraPositionContext).initialPosition;
     const canvasSize = useThree().size;
 
-
     const helperCoordinates: HelperCoordinates = useMemo(() => {
         return {
             fixedZ: -300,
