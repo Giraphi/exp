@@ -70,7 +70,7 @@ export default function SkillsPage() {
             exit={{opacity: 0}}
             transition={{duration: 1.0}}
         >
-            <PageLoader isLoadFinished={isLoadFinished}>
+            <PageLoader isLoadFinished={false}>
                 <StyledBanner>
                     <ThreeBaseline
                         color={"white"}

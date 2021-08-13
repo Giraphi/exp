@@ -26,12 +26,19 @@ const StyledSpinner = styled.span`
     letter-spacing: 0;
 `
 
+const StyledLetter = styled.span`
+    position: relative;
+    left: -2px;
+`
+
 export default function PageLoaderLoader() {
     return (
         <StyledRoot>
             LOADIN
             <StyledSpinner>
-                G
+                <StyledLetter>
+                    G
+                </StyledLetter>
             </StyledSpinner>
         </StyledRoot>
     );
