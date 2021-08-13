@@ -1,5 +1,6 @@
 import React from "react";
 import styled, {css} from "styled-components";
+import PageLoaderLoader from "./page-loader-loader";
 
 const StyledOverlay = styled.div`
     width: 100%;
@@ -8,7 +9,9 @@ const StyledOverlay = styled.div`
     position: absolute;
     top: 0;
     z-index: 99;
-    
+    display: flex;
+    align-items: center;
+    justify-content: center;
 `
 const StyledRoot = styled.div<{isLoading: boolean}>`
     ${props => props.isLoading && css`    
@@ -30,7 +33,7 @@ export default function PageLoader(props: PageLoaderProps) {
         >
             {!props.isLoadFinished &&
                 <StyledOverlay>
-                    LOADING
+                    <PageLoaderLoader/>
                 </StyledOverlay>
             }
 

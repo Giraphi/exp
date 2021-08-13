@@ -7,7 +7,7 @@ import PageContentLayout from "../shared/page-content-layout";
 import {motion} from "framer-motion";
 import {breakpointSmall, colorSkills} from "../../style/constants";
 import GlitchText from "./glitch-text/glitch-text";
-import PageLoader from "../page-loader";
+import PageLoader from "../page-loader/page-loader";
 
 const StyledRoot = styled(motion.div)`
     min-height: 100vh;
@@ -62,7 +62,6 @@ const StyledContent = styled.div`
 
 export default function SkillsPage() {
     const [isLoadFinished, setIsLoadFinished] = useState(false);
-
 
     return (
         <StyledRoot
