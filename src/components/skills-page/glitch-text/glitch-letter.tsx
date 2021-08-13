@@ -1,15 +1,36 @@
 import React, {useEffect, useRef, useState} from "react";
 import styled, {css} from "styled-components";
+import {breakpointSmall} from "../../../style/constants";
 
-const StyledRoot = styled.span<{ isRotated: boolean }>`
+const StyledNormal = styled.span<{ isRotated: boolean }>`
     display: inline-block;
+
     ${props => props.isRotated && css`
-        transform: rotate(180deg) translate(-0.3vh, -0.5vh);
+        transform: rotate(180deg) translate(-2px, -2.5px);
+        
+        @media (min-width: ${breakpointSmall}) {
+            transform: rotate(180deg) translate(-0.3vh, -0.5vh);
+        }
+    `}
+`;
+
+const StyledH1 = styled.span<{ isRotated: boolean }>`
+    display: inline-block;
+
+    ${props => props.isRotated && css`
+        transform: rotate(180deg);
+        transform-origin: 55% 58%;
+        //
+        //
+        @media (min-width: ${breakpointSmall}) {
+            transform-origin: 59% 56%;
+        }
     `}
 `;
 
 export interface GlitchLetterProps {
     letter: string;
+    style: "h1" | undefined;
 }
 
 export default function GlitchLetter(props: GlitchLetterProps) {
@@ -18,15 +39,14 @@ export default function GlitchLetter(props: GlitchLetterProps) {
 
     useEffect(() => {
         const interval = setInterval(() => {
-            if (1 - Math.random() < 0.003) {
+            if (1 - Math.random() < 0.002) {
                 setIsRotated(true);
                 if (timeout.current) {
-                    setIsRotated(false);
                     clearTimeout(timeout.current);
                 }
                 timeout.current = setTimeout(() => {
                     setIsRotated(false)
-                }, 1600);
+                }, 1300);
             }
         }, 100);
 
@@ -40,8 +60,17 @@ export default function GlitchLetter(props: GlitchLetterProps) {
     }, []);
 
     return (
-        <StyledRoot isRotated={isRotated}>
-            {props.letter}
-        </StyledRoot>
+        <>
+            {!props.style &&
+                <StyledNormal isRotated={isRotated}>
+                    {props.letter}
+                </StyledNormal>
+            }
+            {props.style === "h1" &&
+                <StyledH1 isRotated={isRotated}>
+                    {props.letter}
+                </StyledH1>
+            }
+        </>
     );
 }

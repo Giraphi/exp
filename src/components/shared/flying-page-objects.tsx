@@ -108,10 +108,10 @@ export default function FlyingPageObjects(props: SkillPageCuboidsProps) {
                 attach="material"
                 color="white"
             />
-            {/*<sphereGeometry*/}
-            {/*    attach="geometry"*/}
-            {/*    args={[5, 5, 5]}*/}
-            {/*/>*/}
+            <sphereGeometry
+                attach="geometry"
+                args={[5, 5, 5]}
+            />
             {props.children}
         </instancedMesh>
     );

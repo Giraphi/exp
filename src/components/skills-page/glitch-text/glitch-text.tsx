@@ -9,6 +9,7 @@ const StyledWord = styled.div`
 
 export interface GlitchTextProps {
     text: string;
+    style?: "h1";
 }
 
 export default function GlitchText(props: GlitchTextProps) {
@@ -20,7 +21,11 @@ export default function GlitchText(props: GlitchTextProps) {
                 <React.Fragment key={wordIndex}>
                     <StyledWord>
                         {word.split("").map((letter, letterIndex) => (
-                            <GlitchLetter key={letterIndex} letter={letter}/>
+                            <GlitchLetter
+                                key={letterIndex}
+                                letter={letter}
+                                style={props.style}
+                            />
                         ))}
                     </StyledWord>
                     {" "}

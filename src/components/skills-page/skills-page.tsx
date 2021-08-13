@@ -1,4 +1,4 @@
-import React, {useRef, useState} from "react";
+import React, {useState} from "react";
 import styled from "styled-components";
 import ThreeBaseline from "../shared/three-baseline/three-baseline";
 import CameraControlButtons from "../shared/camera-control-buttons";
@@ -12,18 +12,17 @@ import PageLoader from "../page-loader/page-loader";
 const StyledRoot = styled(motion.div)`
     min-height: 100vh;
     position: relative;
-    color: ${colorSkills};
-    //background-color: black;
+    //color: ${colorSkills};
     overflow: auto;
-    //user-select: none;
+
+    user-select: none;
+    @media (min-width: ${breakpointSmall}) {
+        user-select: auto;
+    }
 `
 
 const StyledBanner = styled.div`
     height: 120vh;
-
-        // @media (min-width: ${breakpointSmall}) {
-    //     height: 80vh;
-    // }
 `
 
 const StyledText = styled.div`
@@ -48,7 +47,7 @@ const StyledTextBlock = styled.div`
     margin-bottom: 50px;
     @media (min-width: ${breakpointSmall}) {
         margin-bottom: 7vh;
-    }
+    }  
 `
 
 const StyledContent = styled.div`
@@ -65,7 +64,6 @@ export default function SkillsPage() {
 
     return (
         <StyledRoot
-            // initial={{opacity: 0}}
             animate={{opacity: 1}}
             exit={{opacity: 0}}
             transition={{duration: 1.0}}
@@ -86,15 +84,20 @@ export default function SkillsPage() {
                         <StyledText>
                             <StyledTextBlock>
                                 <GlitchText
-                                    text={`As a frontend developer I’ve been working with many different technologies and frameworks, mostly based somewhere in the Javascript world.`}/>
+                                    text={`During my work as a frontend developer I’ve been using many different technologies and frameworks, mostly based somewhere in the Javascript world.`}/>
                                 <br/>
                                 <GlitchText
-                                    text={`First and foremost I’m drawn to technologies that support creative processes and open possibilities to unusual or unseen results.`}/>
+                                    text={`Most of all I’m drawn to technologies that support creative processes and open possibilities to unusual or unseen results.`}/>
 
                             </StyledTextBlock>
 
                             <StyledTextBlock>
-                                <h1>Favorite Frameworks</h1>
+                                <h1>
+                                    <GlitchText
+                                        style={"h1"}
+                                        text={"Favorite Frameworks"}
+                                    />
+                                </h1>
                                 <StyledItem>React</StyledItem>
                                 <StyledItem>Three.js</StyledItem>
                                 <StyledItem>R3F</StyledItem>
@@ -102,7 +105,12 @@ export default function SkillsPage() {
                             </StyledTextBlock>
 
                             <StyledTextBlock>
-                                <h1>Familiar Frameworks</h1>
+                                <h1>
+                                    <GlitchText
+                                        style={"h1"}
+                                        text={"Familiar Frameworks"}
+                                    />
+                                </h1>
                                 <StyledItem>Angular</StyledItem>
                                 <StyledItem>Framer Api</StyledItem>
                                 <StyledItem>Next.js</StyledItem>
@@ -114,22 +122,37 @@ export default function SkillsPage() {
                             </StyledTextBlock>
 
                             <StyledTextBlock>
-                                <h1>Obviously, the Basics</h1>
+                                <h1>
+                                    <GlitchText
+                                        style={"h1"}
+                                        text={"Obviously, the basics"}
+                                    />
+                                </h1>
                                 <StyledItem>Plain JS</StyledItem>
                                 <StyledItem>Html/CSS/SCSS</StyledItem>
                                 <StyledItem>command-line/git</StyledItem>
-                                <StyledItem>jQuery <span role={"img"} aria-label={"skull"}>&#128128;</span></StyledItem>
+                                {/*<StyledItem>jQuery <span role={"img"} aria-label={"skull"}>&#128128;</span></StyledItem>*/}
                             </StyledTextBlock>
 
                             <StyledTextBlock>
-                                <h1>Favorite Languages</h1>
+                                <h1>
+                                    <GlitchText
+                                        style={"h1"}
+                                        text={"Favorite Languages"}
+                                    />
+                                </h1>
                                 <StyledItem>JS</StyledItem>
                                 <StyledItem>Typescript</StyledItem>
                                 <StyledItem>Python</StyledItem>
                             </StyledTextBlock>
 
                             <StyledTextBlock>
-                                <h1>Other Skills</h1>
+                                <h1>
+                                    <GlitchText
+                                        style={"h1"}
+                                        text={"Other Skills"}
+                                    />
+                                </h1>
                                 <StyledItem>Solid understanding of contemporary UI and UX concepts</StyledItem>
                                 <StyledItem>Basics in the fields of Artificial Intelligence, Machine Learning & Deep
                                     Learning</StyledItem>

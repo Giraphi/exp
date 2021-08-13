@@ -26,7 +26,7 @@ export default function AboutPageWorld() {
             </pointLight>
 
             <FlyingPageObjects
-                numObjects={100}
+                numObjects={50}
                 worldSize={1000}
                 lift={isMenuClicked}
             >

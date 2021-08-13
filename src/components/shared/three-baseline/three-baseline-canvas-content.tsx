@@ -25,7 +25,6 @@ export default function ThreeBaselineCanvasContent(props: ThreeBaselineCanvasCon
             return;
         }
 
-        console.log(frameCountRef.current);
         frameCountRef.current += 1;
         if ((frameCountRef.current) > 20) {
             setIsReady(true);

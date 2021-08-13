@@ -1,5 +1,0 @@
-- reset pointer cursor after navigation
-
-Eye
-- get initial mouse coordinates
-- get all required parameters

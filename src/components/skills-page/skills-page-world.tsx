@@ -1,17 +1,14 @@
-import React, {Suspense, useEffect, useState} from "react";
+import React, {Suspense, useState} from "react";
 import {colorSkills} from "../../style/constants";
 import SkillsPageHeadline from "./skills-page-headline";
 import EyeModel from "./eye-model";
 import FlyingPageObjects from "../shared/flying-page-objects";
 import PageMenu from "../shared/page-menu";
 import useDevice from "../../hooks/use-device";
-import {useProgress} from "@react-three/drei";
 
 export default function SkillsPageWorld() {
     const [isMenuClicked, setIsMenuClicked] = useState(false);
     const device = useDevice();
-
-
 
     return (
         <>

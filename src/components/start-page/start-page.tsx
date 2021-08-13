@@ -22,6 +22,8 @@ const StyledHeadlineContainer = styled.div`
     top: 0;
     color: white;
     z-index: 1;
+    padding-left: 2vh;
+    padding-top: 2vh;
 `
 
 const StyledHeadline = styled.div`
