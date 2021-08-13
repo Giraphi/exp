@@ -1,14 +1,17 @@
-import React, {ReactNode, useEffect} from "react";
+import React, {ReactNode, useEffect, useRef, useState} from "react";
 import ThreeBaselineBirdCamera from "./three-baseline-bird-camera";
 import {PCFSoftShadowMap} from "three";
-import {useThree} from "@react-three/fiber";
+import {useFrame, useThree} from "@react-three/fiber";
 
 export interface ThreeBaselineCanvasContentProps {
     children: ReactNode;
+    onLoadFinished?: () => void;
 }
 
 export default function ThreeBaselineCanvasContent(props: ThreeBaselineCanvasContentProps) {
     const {gl} = useThree();
+    const [isReady, setIsReady] = useState<boolean>(false);
+    const frameCountRef = useRef(0);
 
     useEffect(() => {
         gl.shadowMap.enabled = true;
@@ -16,6 +19,19 @@ export default function ThreeBaselineCanvasContent(props: ThreeBaselineCanvasCon
 
         gl.setPixelRatio(window.devicePixelRatio)
     }, [gl]);
+
+    useFrame(() => {
+        if (isReady || !props.onLoadFinished) {
+            return;
+        }
+
+        console.log(frameCountRef.current);
+        frameCountRef.current += 1;
+        if ((frameCountRef.current) > 20) {
+            setIsReady(true);
+            props.onLoadFinished();
+        }
+    });
 
     return (
         <>

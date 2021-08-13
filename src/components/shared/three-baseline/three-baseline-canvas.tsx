@@ -17,6 +17,7 @@ const StyledCanvas = styled(Canvas)`
 
 export interface ThreeBaselineCanvasProps {
     children: ReactNode;
+    onLoadFinished?: () => void;
 }
 
 export default function ThreeBaselineCanvas(props: ThreeBaselineCanvasProps) {
@@ -37,7 +38,9 @@ export default function ThreeBaselineCanvas(props: ThreeBaselineCanvasProps) {
                 <MovementContext.Provider value={movementContext}>
                     <HistoryContext.Provider value={{history}}>
                         <CameraPositionContext.Provider value={cameraPositionValue}>
-                            <ThreeBaselineCanvasContent>
+                            <ThreeBaselineCanvasContent
+                                onLoadFinished={props.onLoadFinished}
+                            >
                                 {props.children}
                             </ThreeBaselineCanvasContent>
                         </CameraPositionContext.Provider>

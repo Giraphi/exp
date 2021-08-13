@@ -26,6 +26,7 @@ export interface ThreeBaselineProps {
     children: ReactNode;
     controlButtons: ReactNode;
     color: string;
+    onLoadFinished?: () => void;
 }
 
 export default function ThreeBaseline(props: ThreeBaselineProps) {
@@ -35,7 +36,9 @@ export default function ThreeBaseline(props: ThreeBaselineProps) {
         >
             <MovementContextProvider>
 
-                <ThreeBaselineCanvas>
+                <ThreeBaselineCanvas
+                    onLoadFinished={props.onLoadFinished}
+                >
                     {props.children}
                 </ThreeBaselineCanvas>
 

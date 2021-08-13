@@ -1,4 +1,4 @@
-import React, {useRef} from "react";
+import React, {useRef, useState} from "react";
 import styled from "styled-components";
 import ThreeBaseline from "../shared/three-baseline/three-baseline";
 import CameraControlButtons from "../shared/camera-control-buttons";
@@ -7,6 +7,7 @@ import PageContentLayout from "../shared/page-content-layout";
 import {motion} from "framer-motion";
 import {breakpointSmall, colorSkills} from "../../style/constants";
 import GlitchText from "./glitch-text/glitch-text";
+import PageLoader from "../page-loader";
 
 const StyledRoot = styled(motion.div)`
     min-height: 100vh;
@@ -20,7 +21,7 @@ const StyledRoot = styled(motion.div)`
 const StyledBanner = styled.div`
     height: 120vh;
 
-    // @media (min-width: ${breakpointSmall}) {
+        // @media (min-width: ${breakpointSmall}) {
     //     height: 80vh;
     // }
 `
@@ -60,6 +61,8 @@ const StyledContent = styled.div`
 `
 
 export default function SkillsPage() {
+    const [isLoadFinished, setIsLoadFinished] = useState(false);
+
 
     return (
         <StyledRoot
@@ -68,72 +71,77 @@ export default function SkillsPage() {
             exit={{opacity: 0}}
             transition={{duration: 1.0}}
         >
-            <StyledBanner>
-                <ThreeBaseline
-                    color={"white"}
-                    controlButtons={<CameraControlButtons pageVariant={true} inverse={true}/>}
-                >
-                    <SkillsPageWorld/>
-                </ThreeBaseline>
-            </StyledBanner>
+            <PageLoader isLoadFinished={isLoadFinished}>
+                <StyledBanner>
+                    <ThreeBaseline
+                        color={"white"}
+                        controlButtons={<CameraControlButtons pageVariant={true} inverse={true}/>}
+                        onLoadFinished={() => setIsLoadFinished(true)}
+                    >
+                        <SkillsPageWorld/>
+                    </ThreeBaseline>
+                </StyledBanner>
 
-            <StyledContent>
-                <PageContentLayout>
-                    <StyledText>
-                        <StyledTextBlock>
-                            <GlitchText text={`As a frontend developer I’ve been working with many different technologies and frameworks, mostly based somewhere in the Javascript world.`}/>
-                            <br/>
-                            <GlitchText text={`First and foremost I’m drawn to technologies that support creative processes and open possibilities to unusual or unseen results.`}/>
+                <StyledContent>
+                    <PageContentLayout>
+                        <StyledText>
+                            <StyledTextBlock>
+                                <GlitchText
+                                    text={`As a frontend developer I’ve been working with many different technologies and frameworks, mostly based somewhere in the Javascript world.`}/>
+                                <br/>
+                                <GlitchText
+                                    text={`First and foremost I’m drawn to technologies that support creative processes and open possibilities to unusual or unseen results.`}/>
 
-                        </StyledTextBlock>
+                            </StyledTextBlock>
 
-                        <StyledTextBlock>
-                            <h1>Favorite Frameworks</h1>
-                            <StyledItem>React</StyledItem>
-                            <StyledItem>Three.js</StyledItem>
-                            <StyledItem>R3F</StyledItem>
-                            <StyledItem>Styled Components</StyledItem>
-                        </StyledTextBlock>
+                            <StyledTextBlock>
+                                <h1>Favorite Frameworks</h1>
+                                <StyledItem>React</StyledItem>
+                                <StyledItem>Three.js</StyledItem>
+                                <StyledItem>R3F</StyledItem>
+                                <StyledItem>Styled Components</StyledItem>
+                            </StyledTextBlock>
 
-                        <StyledTextBlock>
-                            <h1>Familiar Frameworks</h1>
-                            <StyledItem>Angular</StyledItem>
-                            <StyledItem>Framer Api</StyledItem>
-                            <StyledItem>Next.js</StyledItem>
-                            <StyledItem>Immer.js</StyledItem>
-                            <StyledItem>Electron</StyledItem>
-                            <StyledItem>Draft.js</StyledItem>
-                            <StyledItem>Material UI</StyledItem>
-                            <StyledItem>Jest</StyledItem>
-                        </StyledTextBlock>
+                            <StyledTextBlock>
+                                <h1>Familiar Frameworks</h1>
+                                <StyledItem>Angular</StyledItem>
+                                <StyledItem>Framer Api</StyledItem>
+                                <StyledItem>Next.js</StyledItem>
+                                <StyledItem>Immer.js</StyledItem>
+                                <StyledItem>Electron</StyledItem>
+                                <StyledItem>Draft.js</StyledItem>
+                                <StyledItem>Material UI</StyledItem>
+                                <StyledItem>Jest</StyledItem>
+                            </StyledTextBlock>
 
-                        <StyledTextBlock>
-                            <h1>Obviously, the Basics</h1>
-                            <StyledItem>Plain JS</StyledItem>
-                            <StyledItem>Html/CSS/SCSS</StyledItem>
-                            <StyledItem>command-line/git</StyledItem>
-                            <StyledItem>jQuery <span role={"img"} aria-label={"skull"}>&#128128;</span></StyledItem>
-                        </StyledTextBlock>
+                            <StyledTextBlock>
+                                <h1>Obviously, the Basics</h1>
+                                <StyledItem>Plain JS</StyledItem>
+                                <StyledItem>Html/CSS/SCSS</StyledItem>
+                                <StyledItem>command-line/git</StyledItem>
+                                <StyledItem>jQuery <span role={"img"} aria-label={"skull"}>&#128128;</span></StyledItem>
+                            </StyledTextBlock>
 
-                        <StyledTextBlock>
-                            <h1>Favorite Languages</h1>
-                            <StyledItem>JS</StyledItem>
-                            <StyledItem>Typescript</StyledItem>
-                            <StyledItem>Python</StyledItem>
-                        </StyledTextBlock>
+                            <StyledTextBlock>
+                                <h1>Favorite Languages</h1>
+                                <StyledItem>JS</StyledItem>
+                                <StyledItem>Typescript</StyledItem>
+                                <StyledItem>Python</StyledItem>
+                            </StyledTextBlock>
 
-                        <StyledTextBlock>
-                            <h1>Other Skills</h1>
-                            <StyledItem>Solid understanding of contemporary UI and UX concepts</StyledItem>
-                            <StyledItem>Basics in the fields of Artificial Intelligence, Machine Learning & Deep
-                                Learning</StyledItem>
-                            {/*<StyledItem>Natural Language Processing & Linguistics</StyledItem>*/}
-                            {/*<StyledItem>Maths & Logic</StyledItem>*/}
-                            <StyledItem>Solid English + German</StyledItem>
-                        </StyledTextBlock>
-                    </StyledText>
-                </PageContentLayout>
-            </StyledContent>
+                            <StyledTextBlock>
+                                <h1>Other Skills</h1>
+                                <StyledItem>Solid understanding of contemporary UI and UX concepts</StyledItem>
+                                <StyledItem>Basics in the fields of Artificial Intelligence, Machine Learning & Deep
+                                    Learning</StyledItem>
+                                {/*<StyledItem>Natural Language Processing & Linguistics</StyledItem>*/}
+                                {/*<StyledItem>Maths & Logic</StyledItem>*/}
+                                <StyledItem>Solid English + German</StyledItem>
+                            </StyledTextBlock>
+                        </StyledText>
+                    </PageContentLayout>
+                </StyledContent>
+            </PageLoader>
         </StyledRoot>
     );
 }
