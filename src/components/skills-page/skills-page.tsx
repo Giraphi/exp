@@ -184,24 +184,28 @@ export default function SkillsPage() {
 
                     <StyledEye top={"30%"} left={"90%"}>
                         <CursorFollowModel
+                            z={-400}
                             gltf={eyeGlTf}
                         />
                     </StyledEye>
 
                     <StyledEye top={"45%"} left={"29%"}>
                         <CursorFollowModel
+                            z={-250}
                             gltf={eyeGlTf}
                         />
                     </StyledEye>
 
                     <StyledEye top={"60%"} left={"70%"}>
                         <CursorFollowModel
+                            z={-500}
                             gltf={eyeGlTf}
                         />
                     </StyledEye>
 
                     <StyledEye top={"75%"} left={"8%"}>
                         <CursorFollowModel
+                            z={-270}
                             gltf={eyeGlTf}
                         />
                     </StyledEye>

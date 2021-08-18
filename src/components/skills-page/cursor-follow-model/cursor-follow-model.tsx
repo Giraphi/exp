@@ -18,6 +18,7 @@ const StyledCanvas = styled(Canvas)`
 
 export interface CursorFollowModelProps {
     gltf: EyeGLTFResult;
+    z?: number;
 }
 
 export default function CursorFollowModel(props: CursorFollowModelProps) {
@@ -49,6 +50,7 @@ export default function CursorFollowModel(props: CursorFollowModelProps) {
         <StyledRoot ref={ref}>
             <StyledCanvas>
                 <CursorFollowModelContent
+                    z={props.z}
                     gltf={props.gltf}
                     centerCoordinates={centerCoordinates}
                     mousePositionRef={mousePositionRef}

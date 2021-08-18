@@ -7,6 +7,7 @@ import useWindowWidth from "../../../hooks/use-window-width";
 
 export interface CursorFollowModelContentProps {
     gltf: EyeGLTFResult;
+    z?: number;
     centerCoordinates?: {x:number, y: number};
     mousePositionRef?: RefObject<{x: number, y: number} | undefined>,
 }
@@ -69,7 +70,7 @@ export default function CursorFollowModelContent(props: CursorFollowModelContent
 
             <group
                 ref={ref}
-                position={[0,0,-300]}
+                position={[0,0,props.z ? props.z : -300]}
             >
                 <EyeModel eyeGltfResult={props.gltf}/>
             </group>
