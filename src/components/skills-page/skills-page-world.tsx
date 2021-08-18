@@ -1,12 +1,17 @@
 import React, {Suspense, useState} from "react";
 import {colorSkills} from "../../style/constants";
 import SkillsPageHeadline from "./skills-page-headline";
-import EyeModel from "./eye-model";
+import MovingEye from "./moving-eye";
 import FlyingPageObjects from "../shared/flying-page-objects";
 import PageMenu from "../shared/page-menu";
 import useDevice from "../../hooks/use-device";
+import {EyeGLTFResult} from "../models/eye-model";
 
-export default function SkillsPageWorld() {
+export interface SkillsPageWorldProps {
+    eyeGltf: EyeGLTFResult;
+}
+
+export default function SkillsPageWorld(props: SkillsPageWorldProps) {
     const [isMenuClicked, setIsMenuClicked] = useState(false);
     const device = useDevice();
 
@@ -55,9 +60,10 @@ export default function SkillsPageWorld() {
                     </FlyingPageObjects>
                 </group>
 
-
                 <Suspense fallback={null}>
-                    <EyeModel/>
+                    <MovingEye
+                        eyeGltf={props.eyeGltf}
+                    />
                 </Suspense>
             </group>
 

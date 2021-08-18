@@ -5,14 +5,16 @@ import CameraControlButtons from "../shared/camera-control-buttons";
 import SkillsPageWorld from "./skills-page-world";
 import PageContentLayout from "../shared/page-content-layout";
 import {motion} from "framer-motion";
-import {breakpointSmall, colorSkills} from "../../style/constants";
+import {breakpointSmall} from "../../style/constants";
 import GlitchText from "./glitch-text/glitch-text";
 import PageLoader from "../page-loader/page-loader";
+import {useGLTF} from "@react-three/drei";
+import {EyeGLTFResult} from "../models/eye-model";
+import CursorFollowModel from "./cursor-follow-model/cursor-follow-model";
 
 const StyledRoot = styled(motion.div)`
     min-height: 100vh;
     position: relative;
-    //color: ${colorSkills};
     overflow: auto;
 
     user-select: none;
@@ -47,7 +49,7 @@ const StyledTextBlock = styled.div`
     margin-bottom: 50px;
     @media (min-width: ${breakpointSmall}) {
         margin-bottom: 7vh;
-    }  
+    }
 `
 
 const StyledContent = styled.div`
@@ -59,8 +61,16 @@ const StyledContent = styled.div`
     }
 `
 
+const StyledEye = styled.div<{top: string, left: string}>`
+    position: absolute;
+    top: ${props => props.top};
+    left: ${props => props.left};
+    z-index: -1;
+`
+
 export default function SkillsPage() {
     const [isLoadFinished, setIsLoadFinished] = useState(false);
+    const eyeGlTf = useGLTF('/exp/models/eye/scene.gltf') as EyeGLTFResult;
 
     return (
         <StyledRoot
@@ -75,7 +85,9 @@ export default function SkillsPage() {
                         controlButtons={<CameraControlButtons pageVariant={true} inverse={true}/>}
                         onLoadFinished={() => setIsLoadFinished(true)}
                     >
-                        <SkillsPageWorld/>
+                        <SkillsPageWorld
+                            eyeGltf={eyeGlTf}
+                        />
                     </ThreeBaseline>
                 </StyledBanner>
 
@@ -84,7 +96,7 @@ export default function SkillsPage() {
                         <StyledText>
                             <StyledTextBlock>
                                 <GlitchText
-                                    text={`During my work as a frontend developer I’ve been using many different technologies and frameworks, mostly based somewhere in the Javascript world.`}/>
+                                    text={`During my work as a frontend developer I’ve been using different technologies and frameworks, mostly based somewhere in the Javascript world.`}/>
                                 <br/>
                                 <GlitchText
                                     text={`Most of all I’m drawn to technologies that support creative processes and open possibilities to unusual or unseen results.`}/>
@@ -162,8 +174,48 @@ export default function SkillsPage() {
                             </StyledTextBlock>
                         </StyledText>
                     </PageContentLayout>
+
+
+                    <StyledEye top={"20%"} left={"5%"}>
+                        <CursorFollowModel
+                            gltf={eyeGlTf}
+                        />
+                    </StyledEye>
+
+                    <StyledEye top={"30%"} left={"90%"}>
+                        <CursorFollowModel
+                            gltf={eyeGlTf}
+                        />
+                    </StyledEye>
+
+                    <StyledEye top={"45%"} left={"29%"}>
+                        <CursorFollowModel
+                            gltf={eyeGlTf}
+                        />
+                    </StyledEye>
+
+                    <StyledEye top={"60%"} left={"70%"}>
+                        <CursorFollowModel
+                            gltf={eyeGlTf}
+                        />
+                    </StyledEye>
+
+                    <StyledEye top={"75%"} left={"8%"}>
+                        <CursorFollowModel
+                            gltf={eyeGlTf}
+                        />
+                    </StyledEye>
+
+                    <StyledEye top={"90%"} left={"85%"}>
+                        <CursorFollowModel
+                            gltf={eyeGlTf}
+                        />
+                    </StyledEye>
+
                 </StyledContent>
             </PageLoader>
         </StyledRoot>
     );
 }
+
+useGLTF.preload("/exp/models/eye/scene.gltf");

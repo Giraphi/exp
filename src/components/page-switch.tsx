@@ -1,4 +1,4 @@
-import React from "react";
+import React, {Suspense} from "react";
 import {AnimatePresence} from "framer-motion";
 import {Route, Switch, useLocation} from "react-router-dom";
 import StartPage from "./start-page/start-page";
@@ -30,7 +30,9 @@ export default function PageSwitch() {
                         exact
                         path={["/skills"]}
                     >
-                        <SkillsPage/>
+                        <Suspense fallback={null}>
+                            <SkillsPage/>
+                        </Suspense>
                     </Route>
 
                     <Route
