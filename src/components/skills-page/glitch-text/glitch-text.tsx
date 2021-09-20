@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
-import GlitchLetter from "./glitch-letter";
+import GlitchTextLetter, {GlitchTextLetterVariant} from "./glitch-text-letter";
+
 
 const StyledWord = styled.div`
     display: inline-flex;
@@ -9,7 +10,7 @@ const StyledWord = styled.div`
 
 export interface GlitchTextProps {
     text: string;
-    style?: "h1";
+    variant: GlitchTextLetterVariant;
 }
 
 export default function GlitchText(props: GlitchTextProps) {
@@ -21,10 +22,10 @@ export default function GlitchText(props: GlitchTextProps) {
                 <React.Fragment key={wordIndex}>
                     <StyledWord>
                         {word.split("").map((letter, letterIndex) => (
-                            <GlitchLetter
+                            <GlitchTextLetter
                                 key={letterIndex}
                                 letter={letter}
-                                style={props.style}
+                                variant={props.variant}
                             />
                         ))}
                     </StyledWord>

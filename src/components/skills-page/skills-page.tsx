@@ -1,16 +1,15 @@
-import React, {useEffect, useState} from "react";
+import React, {useState} from "react";
 import styled from "styled-components";
 import ThreeBaseline from "../shared/three-baseline/three-baseline";
 import CameraControlButtons from "../shared/camera-control-buttons";
 import SkillsPageWorld from "./skills-page-world";
 import PageContentLayout from "../shared/page-content-layout";
-import {motion, useMotionTemplate, useSpring, useTransform, useViewportScroll} from "framer-motion";
+import {motion, useMotionTemplate, useTransform, useViewportScroll} from "framer-motion";
 import {breakpointSmall} from "../../style/constants";
 import GlitchText from "./glitch-text/glitch-text";
 import PageLoader from "../page-loader/page-loader";
 import {useGLTF} from "@react-three/drei";
 import {EyeGLTFResult} from "../models/eye-model";
-import CursorFollowModel from "./cursor-follow-model/cursor-follow-model";
 import SmallEye from "./small-eye";
 
 const StyledRoot = styled(motion.div)`
@@ -54,12 +53,12 @@ const StyledItem = styled.div`
     }
 `
 
-const StyledTextBlock = styled.div`
-    margin-bottom: 50px;
-    @media (min-width: ${breakpointSmall}) {
-        margin-bottom: 7vh;
-    }
-`
+// const p = styled.div`
+//     margin-bottom: 50px;
+//     @media (min-width: ${breakpointSmall}) {
+//         margin-bottom: 7vh;
+//     }
+// `
 
 const StyledContent = styled.div`
     position: relative;
@@ -105,19 +104,21 @@ export default function SkillsPage() {
                 <StyledContent>
                     <PageContentLayout>
                         <StyledText>
-                            <StyledTextBlock>
+                            <p>
                                 <GlitchText
+                                    variant={"flip"}
                                     text={`During my work as a frontend developer I’ve been using different technologies and frameworks, mostly based somewhere in the Javascript world.`}/>
                                 <br/>
                                 <GlitchText
+                                    variant={"flip"}
                                     text={`Most of all I’m drawn to technologies that support creative processes and open possibilities to unusual or unseen results.`}/>
 
-                            </StyledTextBlock>
+                            </p>
 
-                            <StyledTextBlock>
+                            <p>
                                 <h1>
                                     <GlitchText
-                                        style={"h1"}
+                                        variant={"flip"}
                                         text={"Favorite Frameworks"}
                                     />
                                 </h1>
@@ -125,12 +126,12 @@ export default function SkillsPage() {
                                 <StyledItem>Three.js</StyledItem>
                                 <StyledItem>R3F</StyledItem>
                                 <StyledItem>Styled Components</StyledItem>
-                            </StyledTextBlock>
+                            </p>
 
-                            <StyledTextBlock>
+                            <p>
                                 <h1>
                                     <GlitchText
-                                        style={"h1"}
+                                        variant={"flip"}
                                         text={"Familiar Frameworks"}
                                     />
                                 </h1>
@@ -142,12 +143,12 @@ export default function SkillsPage() {
                                 <StyledItem>Draft.js</StyledItem>
                                 <StyledItem>Material UI</StyledItem>
                                 <StyledItem>Jest</StyledItem>
-                            </StyledTextBlock>
+                            </p>
 
-                            <StyledTextBlock>
+                            <p>
                                 <h1>
                                     <GlitchText
-                                        style={"h1"}
+                                        variant={"flip"}
                                         text={"Obviously, the basics"}
                                     />
                                 </h1>
@@ -155,24 +156,24 @@ export default function SkillsPage() {
                                 <StyledItem>Html/CSS/SCSS</StyledItem>
                                 <StyledItem>command-line/git</StyledItem>
                                 {/*<StyledItem>jQuery <span role={"img"} aria-label={"skull"}>&#128128;</span></StyledItem>*/}
-                            </StyledTextBlock>
+                            </p>
 
-                            <StyledTextBlock>
+                            <p>
                                 <h1>
                                     <GlitchText
-                                        style={"h1"}
+                                        variant={"flip"}
                                         text={"Favorite Languages"}
                                     />
                                 </h1>
                                 <StyledItem>JS</StyledItem>
                                 <StyledItem>Typescript</StyledItem>
                                 <StyledItem>Python</StyledItem>
-                            </StyledTextBlock>
+                            </p>
 
-                            <StyledTextBlock>
+                            <p>
                                 <h1>
                                     <GlitchText
-                                        style={"h1"}
+                                        variant={"flip"}
                                         text={"Other Skills"}
                                     />
                                 </h1>
@@ -182,7 +183,7 @@ export default function SkillsPage() {
                                 {/*<StyledItem>Natural Language Processing & Linguistics</StyledItem>*/}
                                 {/*<StyledItem>Maths & Logic</StyledItem>*/}
                                 <StyledItem>Solid English + German</StyledItem>
-                            </StyledTextBlock>
+                            </p>
                         </StyledText>
                     </PageContentLayout>
 

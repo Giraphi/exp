@@ -13,7 +13,7 @@ const GlobalStyle = createGlobalStyle`
     html {
         box-sizing: border-box;
         font-family: "AuvantGothicBold", sans-serif;
-    }   
+    }
 
     *, *:before, *:after {
         box-sizing: inherit;
@@ -33,6 +33,16 @@ const GlobalStyle = createGlobalStyle`
         h1 {
             font-size: 30px;
             margin-bottom: 10px;
+        }
+    }
+
+    p {
+        margin-bottom: 50px;
+    }
+
+    @media (min-width: ${breakpointSmall}) {
+        p {
+            margin-bottom: 7vh;
         }
     }
 
