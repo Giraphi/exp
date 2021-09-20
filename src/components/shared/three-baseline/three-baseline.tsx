@@ -4,7 +4,7 @@ import ThreeBaselineCanvas from "./three-baseline-canvas";
 import styled from "styled-components";
 
 const StyledRoot = styled.div<{backgroundColor: string}>`
-    background-color: ${props => props.backgroundColor};
+    //background-color: ${props => props.backgroundColor};
     height: 100%;
     position: relative;
 `

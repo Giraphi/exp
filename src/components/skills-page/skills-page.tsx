@@ -4,7 +4,7 @@ import ThreeBaseline from "../shared/three-baseline/three-baseline";
 import CameraControlButtons from "../shared/camera-control-buttons";
 import SkillsPageWorld from "./skills-page-world";
 import PageContentLayout from "../shared/page-content-layout";
-import {motion} from "framer-motion";
+import {motion, useMotionTemplate, useSpring, useTransform, useViewportScroll} from "framer-motion";
 import {breakpointSmall} from "../../style/constants";
 import GlitchText from "./glitch-text/glitch-text";
 import PageLoader from "../page-loader/page-loader";
@@ -25,6 +25,12 @@ const StyledRoot = styled(motion.div)`
 
 const StyledBanner = styled.div`
     height: 120vh;
+
+    margin-bottom: -40vh;
+
+    @media (min-width: ${breakpointSmall}) {
+        margin-bottom: -45vh;
+    }
 `
 
 const StyledText = styled.div`
@@ -32,6 +38,8 @@ const StyledText = styled.div`
     font-family: "AuvantGothicBold", sans-serif;
     color: black;
     margin-bottom: 75px;
+    position: relative;
+    z-index: 10;
 
     @media (min-width: 768px) {
         margin-top: 10px;
@@ -54,29 +62,31 @@ const StyledTextBlock = styled.div`
 
 const StyledContent = styled.div`
     position: relative;
-    top: -40vh;
-
-    @media (min-width: ${breakpointSmall}) {
-        top: -45vh;
-    }
 `
 
 const StyledEye = styled.div<{top: string, left: string}>`
     position: absolute;
     top: ${props => props.top};
     left: ${props => props.left};
-    z-index: -1;
 `
 
 export default function SkillsPage() {
     const [isLoadFinished, setIsLoadFinished] = useState(false);
     const eyeGlTf = useGLTF('/exp/models/eye/scene.gltf') as EyeGLTFResult;
+    const { scrollYProgress } = useViewportScroll();
+    const rColorChannel = useTransform(scrollYProgress, [0, 2/8, 3/8, 4/8, 5/8, 6/8, 7/8, 1], [255,255,  0,  0,  0,  0,255,255]);
+    const gColorChannel = useTransform(scrollYProgress, [0, 2/8, 3/8, 4/8, 5/8, 6/8, 7/8, 1], [255,255,255,255,255,255,  0,  0]);
+    const bColorChannel = useTransform(scrollYProgress, [0, 2/8, 3/8, 4/8, 5/8, 6/8, 7/8, 1], [255,255,255,255,  0,  0,255,255]);
+    const backgroundColor = useMotionTemplate`rgba(${rColorChannel},${gColorChannel},${bColorChannel})`
 
     return (
         <StyledRoot
             animate={{opacity: 1}}
             exit={{opacity: 0}}
             transition={{duration: 1.0}}
+            style={{
+                backgroundColor
+            }}
         >
             <PageLoader isLoadFinished={isLoadFinished}>
                 <StyledBanner>

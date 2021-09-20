@@ -18,13 +18,8 @@ const StyledH1 = styled.span<{ isRotated: boolean }>`
     display: inline-block;
 
     ${props => props.isRotated && css`
-        transform: rotate(180deg);
-        transform-origin: 55% 58%;
-        //
-        //
-        @media (min-width: ${breakpointSmall}) {
-            transform-origin: 59% 56%;
-        }
+        transform: scaleY(-1);
+        transform-origin: 50% 56%;
     `}
 `;
 
