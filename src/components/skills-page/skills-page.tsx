@@ -53,13 +53,6 @@ const StyledItem = styled.div`
     }
 `
 
-// const p = styled.div`
-//     margin-bottom: 50px;
-//     @media (min-width: ${breakpointSmall}) {
-//         margin-bottom: 7vh;
-//     }
-// `
-
 const StyledContent = styled.div`
     position: relative;
 `
