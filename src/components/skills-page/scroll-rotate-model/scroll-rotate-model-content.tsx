@@ -16,13 +16,12 @@ export default function ScrollRotateModelContent(props: ScrollRotateModelContent
     const size = useThree(state => state.size);
     const [rotation, setRotation] = useState(0);
 
-
     const random = useMemo(() => {
         function getRandom(min: number, max: number) {
-            return Math.floor(Math.random() * (max - min) + min);
+            return Math.round(Math.random() * (max - min) + min);
         }
         return getRandom(5,10);
-    }, [])
+    }, []);
 
     useLayoutEffect(() => {
         if (cameraRef.current) {

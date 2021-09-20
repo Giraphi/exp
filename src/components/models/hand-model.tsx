@@ -1,8 +1,6 @@
-import React, {useRef} from "react";
+import React from "react";
 import {GLTF} from "three/examples/jsm/loaders/GLTFLoader";
 import * as THREE from "three";
-import {useGLTF} from "@react-three/drei";
-import {EyeGLTFResult} from "./eye-model";
 
 export type HandGLTFResult = GLTF & {
     nodes: {

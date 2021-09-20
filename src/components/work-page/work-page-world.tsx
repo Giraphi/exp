@@ -1,5 +1,5 @@
 import React, {Suspense, useState} from "react";
-import {colorAbout, colorWork} from "../../style/constants";
+import {colorWork} from "../../style/constants";
 import FlyingPageObjects from "../shared/flying-page-objects";
 import PageMenu from "../shared/page-menu";
 import WorkPageHeadline from "./work-page-headline";
