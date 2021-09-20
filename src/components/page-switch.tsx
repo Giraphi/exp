@@ -5,6 +5,7 @@ import StartPage from "./start-page/start-page";
 import SkillsPage from "./skills-page/skills-page";
 import AboutPage from "./about-page/about-page";
 import MousePositionContextProvider from "../contexts/providers/mouse-position-context-provider";
+import WorkPage from "./work-page/work-page";
 
 export default function PageSwitch() {
     const location = useLocation();
@@ -40,6 +41,15 @@ export default function PageSwitch() {
                         path={["/about"]}
                     >
                         <AboutPage/>
+                    </Route>
+
+                    <Route
+                        exact
+                        path={["/work"]}
+                    >
+                        <Suspense fallback={null}>
+                            <WorkPage/>
+                        </Suspense>
                     </Route>
                 </Switch>
             </AnimatePresence>

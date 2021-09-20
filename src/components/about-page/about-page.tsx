@@ -23,10 +23,10 @@ const StyledBanner = styled.div`
         height: 80vh;
     }
 
-    margin-bottom: -10vh;
+    margin-bottom: -20vh;
 
     @media (min-width: ${breakpointSmall}) {
-        margin-bottom: -20vh;
+        margin-bottom: -7vh;
     }
 `
 
@@ -162,8 +162,10 @@ export default function AboutPage() {
                         </StyledItem>
 
                         <StyledItem>
-                            <GlitchText text={"Live music projects, e.g. synthesizer at my band project Bosch."}
+                            <GlitchText text={"Live music projects, e.g. synthesizer at my band project"}
                                         variant={"color"}/>
+                            <StyledLink target={"_blank"} rel="noopener noreferrer"
+                                        href={"http://www.bosch-experimente.com"}>Bosch</StyledLink>
                         </StyledItem>
                     </p>
 

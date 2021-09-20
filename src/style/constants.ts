@@ -7,5 +7,6 @@ const blue = "#00f9ff";
 
 export const colorAbout = green;
 export const colorSkills = blue;
+export const colorWork = "red";
 
 export const breakpointSmall = "768px";

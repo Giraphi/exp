@@ -6,3 +6,9 @@ auf jeder page:
 - doch ne art top menu?
 
 die anderen subpages prinzipiell auch in dem style halten wie die skills page?
+
+-------------------------------
+
+Work page:
+
+zu jeder work ein image-puzzle mit 2-3 bildern dazu. Daneben beschreibung
