@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import styled from "styled-components";
 import ThreeBaseline from "../shared/three-baseline/three-baseline";
 import CameraControlButtons from "../shared/camera-control-buttons";
@@ -11,6 +11,7 @@ import PageLoader from "../page-loader/page-loader";
 import {useGLTF} from "@react-three/drei";
 import {EyeGLTFResult} from "../models/eye-model";
 import CursorFollowModel from "./cursor-follow-model/cursor-follow-model";
+import SmallEye from "./small-eye";
 
 const StyledRoot = styled(motion.div)`
     min-height: 100vh;
@@ -187,42 +188,44 @@ export default function SkillsPage() {
 
 
                     <StyledEye top={"20%"} left={"5%"}>
-                        <CursorFollowModel
+                        <SmallEye
+                            z={-300}
                             gltf={eyeGlTf}
                         />
                     </StyledEye>
 
                     <StyledEye top={"30%"} left={"90%"}>
-                        <CursorFollowModel
+                        <SmallEye
                             z={-400}
                             gltf={eyeGlTf}
                         />
                     </StyledEye>
 
                     <StyledEye top={"45%"} left={"29%"}>
-                        <CursorFollowModel
+                        <SmallEye
                             z={-250}
                             gltf={eyeGlTf}
                         />
                     </StyledEye>
 
                     <StyledEye top={"60%"} left={"70%"}>
-                        <CursorFollowModel
+                        <SmallEye
                             z={-500}
                             gltf={eyeGlTf}
                         />
                     </StyledEye>
 
                     <StyledEye top={"75%"} left={"8%"}>
-                        <CursorFollowModel
+                        <SmallEye
                             z={-270}
                             gltf={eyeGlTf}
                         />
                     </StyledEye>
 
                     <StyledEye top={"90%"} left={"85%"}>
-                        <CursorFollowModel
+                        <SmallEye
                             gltf={eyeGlTf}
+                            z={-300}
                         />
                     </StyledEye>
 

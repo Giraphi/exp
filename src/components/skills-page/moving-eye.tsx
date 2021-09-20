@@ -33,6 +33,10 @@ export default function MovingEye(props: MovingEyeProps) {
     }, [canvasSize.height]);
 
     useFrame(() => {
+        if (device === "small") {
+            return;
+        }
+
         if (!ref.current || !ref || !mousePositionRef) {
             return;
         }
