@@ -2,7 +2,7 @@ import React from "react";
 import ThreeBaseline from "../shared/three-baseline/three-baseline";
 import CameraControlButtons from "../shared/camera-control-buttons";
 import styled from "styled-components";
-import {colorAbout} from "../../style/constants";
+import {breakpointSmall, colorAbout} from "../../style/constants";
 import PageContentLayout from "../shared/page-content-layout";
 import {motion} from "framer-motion";
 import AboutPageWorld from "./about-page-world";
@@ -38,9 +38,9 @@ const StyledTable = styled.table`
         vertical-align: top;
         padding: 0;
     }
-    
-    td {
-        padding-bottom: 10px;
+
+    td {    
+        padding-bottom: 10px;    
     }
 
     td:first-child {
@@ -49,18 +49,27 @@ const StyledTable = styled.table`
         text-align: end;
     }
 
-    @media (min-width: 768px) {
+    @media (min-width: ${breakpointSmall}) {
         td:first-child {
             padding-right: 35px;
         }
+        td {
+            padding-bottom: 1vh;
+        }
     }
+`
 
+const StyledItem = styled.div`
+    margin-bottom: 10px;
+    @media (min-width: ${breakpointSmall}) {
+        margin-bottom: 1vh;
+    }
 `
 
 const StyledLink = styled.a`
     color: ${colorAbout};
     text-decoration: underline;
-    
+
     &:hover {
         text-decoration: line-through;
     }
@@ -120,7 +129,7 @@ export default function AboutPage() {
                                 <td>
                                     <GlitchText text={"Working student at the web agency"} variant={"color"}/>
                                     <StyledLink target={"_blank"} rel="noopener noreferrer"
-                                       href={"http://www.funct.com"}>funct</StyledLink>
+                                                href={"http://www.funct.com"}>funct</StyledLink>
                                 </td>
                             </tr>
                             <tr>
@@ -128,7 +137,7 @@ export default function AboutPage() {
                                 <td>
                                     <GlitchText text={"Full time web developer at"} variant={"color"}/>
                                     <StyledLink target={"_blank"} rel="noopener noreferrer"
-                                       href={"http://www.funct.com"}>funct</StyledLink>
+                                                href={"http://www.funct.com"}>funct</StyledLink>
                                     <GlitchText text={" in Munich."} variant={"color"}/>
                                 </td>
                             </tr>
@@ -138,16 +147,29 @@ export default function AboutPage() {
 
                     <h1><GlitchText text={"Interests"} variant={"color"}/></h1>
                     <p>
-                        <GlitchText text={"Art / Digital Art / Design"} variant={"color"}/><br/>
-                        <GlitchText text={"Electronic music / Modular synthesizers"} variant={"color"}/><br/>
-                        <GlitchText text={"Live music projects, e.g. synthesizer at my band project Bosch."}
-                                    variant={"color"}/>
+                        <StyledItem>
+                            <GlitchText text={"Art / Digital Art / Design"} variant={"color"}/>
+                        </StyledItem>
+
+                        <StyledItem>
+                            <GlitchText text={"Electronic music / Modular synthesizers"} variant={"color"}/>
+                        </StyledItem>
+
+                        <StyledItem>
+                            <GlitchText text={"Live music projects, e.g. synthesizer at my band project Bosch."}
+                                        variant={"color"}/>
+                        </StyledItem>
                     </p>
 
                     <h1><GlitchText text={"Contact"} variant={"color"}/></h1>
                     <p>
-                        github<br/>
-                        e-mail
+                        <StyledItem>
+                            github
+                        </StyledItem>
+
+                        <StyledItem>
+                            e-mail
+                        </StyledItem>
                     </p>
                 </StyledText>
             </PageContentLayout>
