@@ -22,6 +22,12 @@ const StyledBanner = styled.div`
     @media (min-width: 768px) {
         height: 80vh;
     }
+
+    margin-bottom: -10vh;
+
+    @media (min-width: ${breakpointSmall}) {
+        margin-bottom: -20vh;
+    }
 `
 
 const StyledText = styled.div`
