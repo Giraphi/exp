@@ -9,7 +9,6 @@ const StyledRoot = styled.div`
     position: relative;
     flex-basis: 66%;
     flex-grow: 1;
-    height: 500px;
 `;
 
 const StyledOverlay = styled.div`
@@ -53,12 +52,20 @@ const StyledClickLeft = styled.div`
 `
 
 const StyledClickRight = styled.div`
-    ${ClickableAreaMixin}
+    ${ClickableAreaMixin};
     justify-content: flex-end;
     ::before {
         transform: rotate(90deg);
         margin-right: 5px;
     }
+`
+
+const StyledImage = styled.div<{src: string}>`
+    background-image: url(${props => props.src});
+    background-size: cover;
+    background-position: center;
+    width: 100%;
+    height: 100%;
 `
 
 export interface WorkPageImageSliderProps {
@@ -100,7 +107,8 @@ export default function WorkPageImageSlider(props: WorkPageImageSliderProps) {
                         isActive={activeSlide === index}
                         index={index}
                     >
-                        <img src={image} alt={""} width={"100%"}/>
+                        {/*<img src={image} alt={""} width={"100%"}/>*/}
+                        <StyledImage src={image}/>
                     </PuzzleAnimation>
                 )}
             </Puzzle>
