@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import Puzzle from "../puzzle/puzzle";
 import PuzzleAnimation from "../puzzle/puzzle-animation";
 import styled, {css} from "styled-components";
@@ -65,15 +65,29 @@ export interface WorkPageImageSliderProps {
 
 export default function WorkPageImageSlider(props: WorkPageImageSliderProps) {
     const [activeSlide, setActiveSlide] = useState(0);
+    const [isClicked, setIsClicked] = useState(false);
 
     function onLeftClick() {
         setActiveSlide(activeSlide => Math.abs((activeSlide - 1) % (props.images.length)));
+        setIsClicked(true);
     }
 
     function onRightClick() {
         setActiveSlide(activeSlide => (activeSlide + 1) % props.images.length);
+        setIsClicked(true);
     }
 
+    useEffect(() => {
+        if (isClicked) {
+            return;
+        }
+
+        const interval = setInterval(() => {
+            setActiveSlide(activeSlide => (activeSlide + 1) % props.images.length);
+        }, 5000);
+
+        return () => clearInterval(interval)
+    }, [isClicked, props.images.length])
 
     return (
         <StyledRoot>
