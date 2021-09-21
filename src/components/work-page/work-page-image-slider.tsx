@@ -1,10 +1,12 @@
 import React, {useEffect, useState} from "react";
-import Puzzle from "./puzzle/puzzle";
-import PuzzleAnimation from "./puzzle/puzzle-animation";
+
 import styled, {css} from "styled-components";
 import {ArrowPinkUp, ArrowPinkUpFilled} from "../../images/svg-strings";
 import {breakpointSmall} from "../../style/constants";
-import ClipPathAnimation from "./puzzle/clip-path-animation";
+import ClipPathAnimation from "./clip-path-animation/clip-path-animation";
+import ClipPathAnimationItem from "./clip-path-animation/clip-path-animation-item";
+import {ClipPathAnimationContext} from "./clip-path-animation/clip-path-animation-context";
+
 
 const StyledRoot = styled.div`
     position: relative;
@@ -17,7 +19,7 @@ const StyledRoot = styled.div`
 
 const StyledOverlay = styled.div`
     position: absolute;
-    top:0;
+    top: 0;
     width: 100%;
     height: 100%;
     display: flex;
@@ -44,7 +46,7 @@ const ClickableAreaMixin = css`
         height: 50px;
         display: flex;
     }
-    
+
     :hover {
         ${StyledArrow} {
             background-image: url("${ArrowPinkUpFilled}");
@@ -63,6 +65,7 @@ const StyledClickLeft = styled.div`
 const StyledClickRight = styled.div`
     ${ClickableAreaMixin};
     justify-content: flex-end;
+
     ${StyledArrow} {
         transform: rotate(90deg);
         margin-right: 5px;
@@ -83,6 +86,7 @@ export interface WorkPageImageSliderProps {
 export default function WorkPageImageSlider(props: WorkPageImageSliderProps) {
     const [activeSlide, setActiveSlide] = useState(0);
     const [isClicked, setIsClicked] = useState(false);
+    const [numClicksOdd, setNumClicksOdd] = useState(false);
 
     function modulo(n: number, m: number) {
         // will deal correctly with negative numbers, unlike the "%" operator
@@ -92,11 +96,13 @@ export default function WorkPageImageSlider(props: WorkPageImageSliderProps) {
     function onLeftClick() {
         setActiveSlide(activeSlide => modulo((activeSlide - 1), props.images.length));
         setIsClicked(true);
+        setNumClicksOdd(x => !x);
     }
 
     function onRightClick() {
         setActiveSlide(activeSlide => modulo((activeSlide + 1), props.images.length));
         setIsClicked(true);
+        setNumClicksOdd(x => !x);
     }
 
     useEffect(() => {
@@ -116,23 +122,20 @@ export default function WorkPageImageSlider(props: WorkPageImageSliderProps) {
 
     return (
         <StyledRoot>
-            <Puzzle>
-                {props.images.map((image, index) =>
-                    // <PuzzleAnimation
-                    //     key={index}
-                    //     isActive={activeSlide === index}
-                    //     index={index}
-                    // >
-                    //     <StyledImage style={{ backgroundImage: `url(${image})` }}/>
-                    // </PuzzleAnimation>
-                    <ClipPathAnimation
-                        key={index}
-                        isActive={activeSlide === index}
-                    >
-                        <StyledImage style={{ backgroundImage: `url(${image})` }}/>
-                    </ClipPathAnimation>
-                )}
-            </Puzzle>
+            <ClipPathAnimationContext.Provider
+                value={{numClicksOdd: numClicksOdd, onClick: () => setNumClicksOdd(x => !x)}}
+            >
+                <ClipPathAnimation>
+                    {props.images.map((image, index) =>
+                        <ClipPathAnimationItem
+                            key={index}
+                            isActive={activeSlide === index}
+                        >
+                            <StyledImage style={{backgroundImage: `url(${image})`}}/>
+                        </ClipPathAnimationItem>
+                    )}
+                </ClipPathAnimation>
+            </ClipPathAnimationContext.Provider>
 
             <StyledOverlay>
                 <StyledClickLeft onClick={onLeftClick}>

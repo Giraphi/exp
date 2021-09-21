@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
-import {PuzzleAnimationProps} from "./puzzle-animation";
+import {ClipPathAnimationItemProps} from "./clip-path-animation-item";
+
 
 const StyledRoot = styled.div`
     position: relative;
@@ -8,11 +9,11 @@ const StyledRoot = styled.div`
     padding-bottom: 56%;
 `
 
-export interface PuzzleAnimationContainerProps {
-    children: React.ReactElement<PuzzleAnimationProps>[];
+export interface ClipPathAnimationProps {
+    children: React.ReactElement<ClipPathAnimationItemProps>[];
 }
 
-export default function Puzzle(props: PuzzleAnimationContainerProps) {
+export default function ClipPathAnimation(props: ClipPathAnimationProps) {
     return (
         <StyledRoot>
             {props.children}
