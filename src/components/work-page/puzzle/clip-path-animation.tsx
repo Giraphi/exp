@@ -9,18 +9,18 @@ export const animationDurationMs = 800;
 
 const hideKeyframes = (unit: number) => keyframes`
     0% {
-        clip-path: polygon(0% 0%,
-        33% 0%,
-        66% 0%,
+        clip-path: polygon(${4 * unit}px 0%,
+        ${7 * unit}px 0%,
+        ${10 * unit}px 0%,
         100% 0%,
-        100% 33%,
-        100% 66%,
+        100% 75%,
         100% 100%,
-        66% 100%,
-        33% 100%,
+        ${7 * unit}px 100%,
+        ${4 * unit}px 100%,
         0% 100%,
-        0% 66%,
-        0% 33%);
+        0% 75%,
+        0% 0%,
+        ${unit}px 0%);
     }
     ${percentagePause} {
         clip-path: polygon(${9 * unit}px ${unit}px,
@@ -112,20 +112,18 @@ const showKeyframes = (unit: number) => keyframes`
         ${5 * unit}px ${3 * unit}px);
     }
     100% {
-        clip-path: polygon(
-        0% 0%,
-        33% 0%,
-        66% 0%,
+        clip-path: polygon(${4 * unit}px 0%,
+        ${7 * unit}px 0%,
+        ${10 * unit}px 0%,
         100% 0%,
-        100% 33%,
-        100% 66%,
+        100% 75%,
         100% 100%,
-        66% 100%,
-        33% 100%,
+        ${7 * unit}px 100%,
+        ${4 * unit}px 100%,
         0% 100%,
-        0% 66%,
-        0% 33%)
-    ;
+        0% 75%,
+        0% 0%,
+        ${unit}px 0%);
     }
 `
 
