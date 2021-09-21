@@ -14,11 +14,12 @@ import BoschDaheim from "./slider-images/daheim-portrait.jpg";
 import BoschStage from "./slider-images/dorfen-both-compressed.jpg";
 import Maxi from "./slider-images/maxi.png"
 import Maxi2 from "./slider-images/maxi2.png"
-
 import FutureFaceCut from "./slider-images/future-face-cut.png"
 import FutureHands from "./slider-images/future-hands.png"
 import FutureHands2 from "./slider-images/future-hands-2.png"
 import DCGAN from "./slider-images/DCGAN.png"
+import Funct1 from "./slider-images/funct1.png"
+import Funct2 from "./slider-images/funct2.png"
 
 import WorkPageImageSlider from "./work-page-image-slider";
 
@@ -89,6 +90,7 @@ export default function WorkPage() {
             ],
             bosch: [BoschStage, BoschDaheim],
             maxi: [Maxi, Maxi2],
+            funct: [Funct1, Funct2],
         }
     }, []);
 
@@ -116,6 +118,17 @@ export default function WorkPage() {
                 <PageContentLayout>
                     <StyledSliderRow>
                         <WorkPageImageSlider
+                            images={images.funct}
+                        />
+
+                        <StyledRowText>
+                            <div>Full-time Frontend Developer for</div>
+                            <a target={"_blank"} rel="noopener noreferrer" href={"https://funct.com/"}>funct</a>.<br/><br/>
+                        </StyledRowText>
+                    </StyledSliderRow>
+
+                    <StyledSliderRow>
+                        <WorkPageImageSlider
                             images={images.future}
                         />
 
@@ -123,18 +136,6 @@ export default function WorkPage() {
                             <div>Collaboration on the movie project</div>
                             <a target={"_blank"} rel="noopener noreferrer" href={"http://www.thefutureisnotunwritten.com/"}>The future is not unwritten</a>.<br/><br/>
                             Development of a Deep Learning System to generate uncanny image + video material.
-                        </StyledRowText>
-                    </StyledSliderRow>
-
-
-                    <StyledSliderRow>
-                        <WorkPageImageSlider
-                            images={images.bosch}
-                        />
-
-                        <StyledRowText>
-                            <a target={"_blank"} rel="noopener noreferrer" href={"http://bosch-experimente.com"}>Bosch Band Website</a><br/><br/>
-                            <div>Simple Website for my own band project Bosch.</div>
                         </StyledRowText>
                     </StyledSliderRow>
 
@@ -147,7 +148,17 @@ export default function WorkPage() {
                         <WorkPageImageSlider
                             images={images.maxi}
                         />
+                    </StyledSliderRow>
 
+                    <StyledSliderRow>
+                        <WorkPageImageSlider
+                            images={images.bosch}
+                        />
+
+                        <StyledRowText>
+                            <a target={"_blank"} rel="noopener noreferrer" href={"http://bosch-experimente.com"}>Bosch Band Website</a><br/><br/>
+                            <div>Simple Website for my own band project Bosch.</div>
+                        </StyledRowText>
                     </StyledSliderRow>
                 </PageContentLayout>
             </PageLoader>
