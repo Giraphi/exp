@@ -1,15 +1,15 @@
 {
   "files": {
     "main.css": "/exp/static/css/main.9a66b9e1.chunk.css",
-    "main.js": "/exp/static/js/main.a4aa00fd.chunk.js",
-    "main.js.map": "/exp/static/js/main.a4aa00fd.chunk.js.map",
+    "main.js": "/exp/static/js/main.b5678d7c.chunk.js",
+    "main.js.map": "/exp/static/js/main.b5678d7c.chunk.js.map",
     "runtime-main.js": "/exp/static/js/runtime-main.48916370.js",
     "runtime-main.js.map": "/exp/static/js/runtime-main.48916370.js.map",
-    "static/js/2.5fd78a09.chunk.js": "/exp/static/js/2.5fd78a09.chunk.js",
-    "static/js/2.5fd78a09.chunk.js.map": "/exp/static/js/2.5fd78a09.chunk.js.map",
+    "static/js/2.3e26bd99.chunk.js": "/exp/static/js/2.3e26bd99.chunk.js",
+    "static/js/2.3e26bd99.chunk.js.map": "/exp/static/js/2.3e26bd99.chunk.js.map",
     "index.html": "/exp/index.html",
     "static/css/main.9a66b9e1.chunk.css.map": "/exp/static/css/main.9a66b9e1.chunk.css.map",
-    "static/js/2.5fd78a09.chunk.js.LICENSE.txt": "/exp/static/js/2.5fd78a09.chunk.js.LICENSE.txt",
+    "static/js/2.3e26bd99.chunk.js.LICENSE.txt": "/exp/static/js/2.3e26bd99.chunk.js.LICENSE.txt",
     "static/media/Bosch1.01fd8511.png": "/exp/static/media/Bosch1.01fd8511.png",
     "static/media/font-faces.css": "/exp/static/media/source-code-pro-regular.c2451e83.woff",
     "static/media/dorfen-both-compressed.33e29298.jpg": "/exp/static/media/dorfen-both-compressed.33e29298.jpg",
@@ -23,8 +23,8 @@
   },
   "entrypoints": [
     "static/js/runtime-main.48916370.js",
-    "static/js/2.5fd78a09.chunk.js",
+    "static/js/2.3e26bd99.chunk.js",
     "static/css/main.9a66b9e1.chunk.css",
-    "static/js/main.a4aa00fd.chunk.js"
+    "static/js/main.b5678d7c.chunk.js"
   ]
 }
