@@ -179,14 +179,6 @@ export interface PuzzleBackgroundProps extends StyledAnimationProps {
 
 export default function PuzzleAnimationBackground(props: PuzzleBackgroundProps) {
     const {children, dimensions, ...styledAnimationProps} = props;
-
-    // props.dimensions changes frequently if a user resizes their window. Don't pass props.dimensions
-    // to styled-components as a prop or we are rapidly generating new css classes and style definitions
-    // during a resize.
-    // Handling the style changes as inline style directly on the rect elements seems like the most efficient solution
-
-    console.log(dimensions);
-
     return (
         <StyledAnimation {...styledAnimationProps}>
             {children}

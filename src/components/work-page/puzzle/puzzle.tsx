@@ -13,7 +13,6 @@ export interface PuzzleAnimationContainerProps {
 }
 
 export default function Puzzle(props: PuzzleAnimationContainerProps) {
-
     return (
         <StyledRoot>
             {props.children}
