@@ -26,61 +26,49 @@ const PuzzleAnimation = (props: PuzzleAnimationProps) =>{
     const [isOnTop, setIsOnTop] = useState(props.isActive);
     const dimensionsRef = useRef<HTMLDivElement>(null);
 
-    const random = useCallback(() => {
-        function getRandom(min: number, max: number) {
-            return Math.round(Math.random() * (max - min) + min);
-        }
-        return getRandom(0.9,1.1);
-    }, [])
-
-    // For some configurations, that "white triangle" graphic glitch is happening in chrome during the animation
-    // (but only on high res screens?).
-    // The glitch doesn't seem to appear in the current configuration, but be careful when changing it.
-    // Previously we had "rect3Height" set to 1 instead of 1.1 in the first block which made the glitch appear
-    // The reason for the glitch or how to safely avoid it is currently unknown.
     const animationConfig = useMemo(() => {
         if (props.index % 2 === 0) {
             return {
-                rect1Scale: 0.3 * random(),
-                rect1Width: 1.2 * random(),
+                rect1Scale: 0.3,
+                rect1Width: 1.2,
                 rect1Height: 1,
-                rect1OriginX: 0.15 * random(),
+                rect1OriginX: 0.15 ,
                 rect1OriginY: 0,
 
-                rect2Scale: 0.15 * random(),
-                rect2Width: 0.8 * random(),
+                rect2Scale: 0.15,
+                rect2Width: 0.8,
                 rect2Height: 2,
-                rect2OriginX: 0.58 * random(),
-                rect2OriginY: 0.3 * random(),
+                rect2OriginX: 0.58,
+                rect2OriginY: 0.3,
 
-                rect3Scale: 0.15 * random(),
-                rect3Width: 2.2 * random(),
+                rect3Scale: 0.15,
+                rect3Width: 2.2,
                 rect3Height: 1.1,
-                rect3OriginX: 0.7 * random(),
-                rect3OriginY: 0.77 * random(),
+                rect3OriginX: 0.7,
+                rect3OriginY: 0.77,
             }
         }
 
         return {
-            rect1Scale: 0.2 * random(),
-            rect1Width: 1.7 * random(),
+            rect1Scale: 0.2,
+            rect1Width: 1.7,
             rect1Height: 1,
-            rect1OriginX: 0.4 * random(),
+            rect1OriginX: 0.4,
             rect1OriginY: 0,
 
-            rect2Scale: 0.25 * random(),
-            rect2Width: 1.3 * random(),
-            rect2Height: 1.4 * random(),
-            rect2OriginX: 0.4 * random(),
-            rect2OriginY: 0.5 * random(),
+            rect2Scale: 0.25,
+            rect2Width: 1.3,
+            rect2Height: 1.4,
+            rect2OriginX: 0.4,
+            rect2OriginY: 0.5,
 
-            rect3Scale: 0.10 * random(),
-            rect3Width: 1.5 * random(),
-            rect3Height: 1.6 * random(),
-            rect3OriginX: 0.73 * random(),
-            rect3OriginY: 0.4 * random(),
+            rect3Scale: 0.10,
+            rect3Width: 1.5,
+            rect3Height: 1.6,
+            rect3OriginX: 0.73,
+            rect3OriginY: 0.4,
         }
-    }, [props.index, random]);
+    }, [props.index]);
 
     const [isFirstRender, setIsFirstRender] = useState(true);
     useEffect(() => {

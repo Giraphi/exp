@@ -4,6 +4,7 @@ import PuzzleAnimation from "./puzzle/puzzle-animation";
 import styled, {css} from "styled-components";
 import {ArrowPinkUp, ArrowPinkUpFilled} from "../../images/svg-strings";
 import {breakpointSmall} from "../../style/constants";
+import ClipPathAnimation from "./puzzle/clip-path-animation";
 
 const StyledRoot = styled.div`
     position: relative;
@@ -117,13 +118,19 @@ export default function WorkPageImageSlider(props: WorkPageImageSliderProps) {
         <StyledRoot>
             <Puzzle>
                 {props.images.map((image, index) =>
-                    <PuzzleAnimation
+                    // <PuzzleAnimation
+                    //     key={index}
+                    //     isActive={activeSlide === index}
+                    //     index={index}
+                    // >
+                    //     <StyledImage style={{ backgroundImage: `url(${image})` }}/>
+                    // </PuzzleAnimation>
+                    <ClipPathAnimation
                         key={index}
                         isActive={activeSlide === index}
-                        index={index}
                     >
                         <StyledImage style={{ backgroundImage: `url(${image})` }}/>
-                    </PuzzleAnimation>
+                    </ClipPathAnimation>
                 )}
             </Puzzle>
 
