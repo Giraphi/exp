@@ -7,6 +7,9 @@ import arrowFilled from "../../images/arrow-pink-filled.svg"
 
 const StyledRoot = styled.div`
     position: relative;
+    flex-basis: 66%;
+    flex-grow: 1;
+    height: 500px;
 `;
 
 const StyledOverlay = styled.div`
@@ -32,7 +35,6 @@ const ClickableAreaMixin = css`
         width: 50px;
         height: 50px;
         display: flex;
-
     }
     
     :hover {

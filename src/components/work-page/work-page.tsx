@@ -65,12 +65,11 @@ const StyledSliderRow = styled.div`
 `
 
 const StyledFutureText = styled.div`
-    flex-basis: 66%;
+    flex-basis: 33%;
 `;
 
 const StyledBoschText = styled.div`
-    flex-basis: 66%;
-    margin-left: 5%;
+    flex-basis: 33%;
 `
 
 const StyledMaxiText = styled.div`
