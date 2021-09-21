@@ -10,14 +10,13 @@ import {useGLTF} from "@react-three/drei";
 import {HandGLTFResult} from "../models/hand-model";
 import PageLoader from "../page-loader/page-loader";
 
-import BoschDaheim from "./slider-images/daheim-portrait.jpg";
+import Bosch1 from "./slider-images/Bosch1.png";
 import BoschStage from "./slider-images/dorfen-both-compressed.jpg";
-import Maxi from "./slider-images/maxi.png"
+import Maxi1 from "./slider-images/maxi1.png"
 import Maxi2 from "./slider-images/maxi2.png"
 import FutureFaceCut from "./slider-images/future-face-cut.png"
 import FutureHands from "./slider-images/future-hands.png"
 import FutureHands2 from "./slider-images/future-hands-2.png"
-import DCGAN from "./slider-images/DCGAN.png"
 import Funct1 from "./slider-images/funct1.png"
 import Funct2 from "./slider-images/funct2.png"
 
@@ -39,10 +38,10 @@ const StyledBanner = styled.div`
         height: 80vh;
     }
 
-    margin-bottom: -20vh;
+    margin-bottom: 20vh;
 
     @media (min-width: ${breakpointSmall}) {
-        margin-bottom: -7vh;
+        margin-bottom: 7vh;
     }
 `
 
@@ -52,7 +51,7 @@ const StyledSliderRow = styled.div`
     align-items: center;
     color: white;
     font-family: "SourceCodePro", monospace;
-    font-size: 20px;
+    font-size: 18px;
     margin-bottom: 50px;
     flex-wrap: wrap;
 
@@ -86,10 +85,9 @@ export default function WorkPage() {
                 FutureFaceCut,
                 FutureHands,
                 FutureHands2,
-                DCGAN
             ],
-            bosch: [BoschStage, BoschDaheim],
-            maxi: [Maxi, Maxi2],
+            bosch: [BoschStage, Bosch1],
+            maxi: [Maxi1, Maxi2],
             funct: [Funct1, Funct2],
         }
     }, []);
@@ -122,8 +120,7 @@ export default function WorkPage() {
                         />
 
                         <StyledRowText>
-                            <div>Full-time Frontend Developer for</div>
-                            <a target={"_blank"} rel="noopener noreferrer" href={"https://funct.com/"}>funct</a>.<br/><br/>
+                            <div>Full-time Frontend Developer at</div> Munich based web agency <a target={"_blank"} rel="noopener noreferrer" href={"https://funct.com/"}>funct</a>.<br/><br/>
                         </StyledRowText>
                     </StyledSliderRow>
 
@@ -140,6 +137,17 @@ export default function WorkPage() {
                     </StyledSliderRow>
 
                     <StyledSliderRow>
+                        <WorkPageImageSlider
+                            images={images.bosch}
+                        />
+
+                        <StyledRowText>
+                            <a target={"_blank"} rel="noopener noreferrer" href={"http://bosch-experimente.com"}>Bosch Band Website</a><br/><br/>
+                            <div>Website for the band project Bosch.</div>
+                        </StyledRowText>
+                    </StyledSliderRow>
+
+                    <StyledSliderRow>
                         <StyledRowText>
                             <a target={"_blank"} rel="noopener noreferrer" href={"https://maxipongratz.com/"}>Maxipongratz Solo</a><br/><br/>
                             <div>Website + Headless CMS implementation for Musician Maxi Pongratz</div>
@@ -148,17 +156,6 @@ export default function WorkPage() {
                         <WorkPageImageSlider
                             images={images.maxi}
                         />
-                    </StyledSliderRow>
-
-                    <StyledSliderRow>
-                        <WorkPageImageSlider
-                            images={images.bosch}
-                        />
-
-                        <StyledRowText>
-                            <a target={"_blank"} rel="noopener noreferrer" href={"http://bosch-experimente.com"}>Bosch Band Website</a><br/><br/>
-                            <div>Simple Website for my own band project Bosch.</div>
-                        </StyledRowText>
                     </StyledSliderRow>
                 </PageContentLayout>
             </PageLoader>

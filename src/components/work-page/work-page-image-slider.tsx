@@ -83,13 +83,18 @@ export default function WorkPageImageSlider(props: WorkPageImageSliderProps) {
     const [activeSlide, setActiveSlide] = useState(0);
     const [isClicked, setIsClicked] = useState(false);
 
+    function modulo(n: number, m: number) {
+        // will deal correctly with negative numbers, unlike the "%" operator
+        return ((n % m) + m) % m;
+    }
+
     function onLeftClick() {
-        setActiveSlide(activeSlide => Math.abs((activeSlide - 1) % (props.images.length)));
+        setActiveSlide(activeSlide => modulo((activeSlide - 1), props.images.length));
         setIsClicked(true);
     }
 
     function onRightClick() {
-        setActiveSlide(activeSlide => (activeSlide + 1) % props.images.length);
+        setActiveSlide(activeSlide => modulo((activeSlide + 1), props.images.length));
         setIsClicked(true);
     }
 
