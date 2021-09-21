@@ -30,7 +30,7 @@ export default function StartPageWorld(props: WorldProps) {
                 position={lightbulbPositions[2]}
                 text={"WORK"}
                 height={175}
-                path={"skills"}
+                path={"work"}
             />
             <Lightbulb
                 onClick={() => setIsLightbulbClicked(true)}

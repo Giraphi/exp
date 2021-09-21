@@ -15,7 +15,12 @@ import BoschStage from "./slider-images/dorfen-both-compressed.jpg";
 import Maxi from "./slider-images/maxi.png"
 import Maxi2 from "./slider-images/maxi2.png"
 
-import WorkPageImageSlider from "./work-page-bosch-slider/work-page-image-slider";
+import FutureFace from "./slider-images/future-face.png"
+import FutureHands from "./slider-images/future-hands.png"
+import FutureHands2 from "./slider-images/future-hands-2.png"
+import DCGAN from "./slider-images/DCGAN.png"
+
+import WorkPageImageSlider from "./work-page-image-slider";
 
 
 
@@ -59,6 +64,9 @@ const StyledSliderRow = styled.div`
     }
 `
 
+const StyledFutureText = styled.div`
+    flex-basis: 66%;
+`;
 
 const StyledBoschText = styled.div`
     flex-basis: 66%;
@@ -66,7 +74,6 @@ const StyledBoschText = styled.div`
 `
 
 const StyledMaxiText = styled.div`
-    //flex-basis: 33%;
     flex-basis: 66%;
 `;
 
@@ -96,6 +103,18 @@ export default function WorkPage() {
                 </StyledBanner>
 
                 <PageContentLayout>
+                    <StyledSliderRow>
+                        <WorkPageImageSlider
+                            images={[FutureFace, FutureHands, FutureHands2, DCGAN]}
+                        />
+
+                        <StyledFutureText>
+                            <a target={"_blank"} rel="noopener noreferrer" href={"http://bosch-experimente.com"}>Future</a>
+                            <div>Simple Website for my own band project Bosch.</div>
+                        </StyledFutureText>
+                    </StyledSliderRow>
+
+
                     <StyledSliderRow>
                         <WorkPageImageSlider
                             images={[BoschStage, BoschDaheim]}

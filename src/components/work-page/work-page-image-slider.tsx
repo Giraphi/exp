@@ -1,9 +1,9 @@
 import React, {useEffect, useState} from "react";
-import Puzzle from "../puzzle/puzzle";
-import PuzzleAnimation from "../puzzle/puzzle-animation";
+import Puzzle from "./puzzle/puzzle";
+import PuzzleAnimation from "./puzzle/puzzle-animation";
 import styled, {css} from "styled-components";
-import arrow from "../../../images/arrow-pink.svg"
-import arrowFilled from "../../../images/arrow-pink-filled.svg"
+import arrow from "../../images/arrow-pink.svg"
+import arrowFilled from "../../images/arrow-pink-filled.svg"
 
 const StyledRoot = styled.div`
     position: relative;
