@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/exp/static/css/main.9a66b9e1.chunk.css",
-    "main.js": "/exp/static/js/main.2903e98a.chunk.js",
-    "main.js.map": "/exp/static/js/main.2903e98a.chunk.js.map",
+    "main.js": "/exp/static/js/main.bb2396b6.chunk.js",
+    "main.js.map": "/exp/static/js/main.bb2396b6.chunk.js.map",
     "runtime-main.js": "/exp/static/js/runtime-main.48916370.js",
     "runtime-main.js.map": "/exp/static/js/runtime-main.48916370.js.map",
     "static/js/2.ff1e9bdb.chunk.js": "/exp/static/js/2.ff1e9bdb.chunk.js",
@@ -10,16 +10,21 @@
     "index.html": "/exp/index.html",
     "static/css/main.9a66b9e1.chunk.css.map": "/exp/static/css/main.9a66b9e1.chunk.css.map",
     "static/js/2.ff1e9bdb.chunk.js.LICENSE.txt": "/exp/static/js/2.ff1e9bdb.chunk.js.LICENSE.txt",
+    "static/media/Bosch1.01fd8511.png": "/exp/static/media/Bosch1.01fd8511.png",
     "static/media/font-faces.css": "/exp/static/media/source-code-pro-regular.c2451e83.woff",
-    "static/media/arrow-pressed.38c751a4.svg": "/exp/static/media/arrow-pressed.38c751a4.svg",
-    "static/media/arrow-white-pressed.acc87111.svg": "/exp/static/media/arrow-white-pressed.acc87111.svg",
-    "static/media/arrow-white.fb6e3d97.svg": "/exp/static/media/arrow-white.fb6e3d97.svg",
-    "static/media/arrow.f678c572.svg": "/exp/static/media/arrow.f678c572.svg"
+    "static/media/dorfen-both-compressed.33e29298.jpg": "/exp/static/media/dorfen-both-compressed.33e29298.jpg",
+    "static/media/funct1.35e9ba45.png": "/exp/static/media/funct1.35e9ba45.png",
+    "static/media/funct2.947ca647.png": "/exp/static/media/funct2.947ca647.png",
+    "static/media/future-face-cut.958f6809.png": "/exp/static/media/future-face-cut.958f6809.png",
+    "static/media/future-hands-2.9e3be2ab.png": "/exp/static/media/future-hands-2.9e3be2ab.png",
+    "static/media/future-hands.901c0574.png": "/exp/static/media/future-hands.901c0574.png",
+    "static/media/maxi1.15fdc746.png": "/exp/static/media/maxi1.15fdc746.png",
+    "static/media/maxi2.07d5bb14.png": "/exp/static/media/maxi2.07d5bb14.png"
   },
   "entrypoints": [
     "static/js/runtime-main.48916370.js",
     "static/js/2.ff1e9bdb.chunk.js",
     "static/css/main.9a66b9e1.chunk.css",
-    "static/js/main.2903e98a.chunk.js"
+    "static/js/main.bb2396b6.chunk.js"
   ]
 }
