@@ -5,8 +5,7 @@ import {PuzzleAnimationProps} from "./puzzle-animation";
 const StyledRoot = styled.div`
     position: relative;
     width: 100%;
-    //height: 100%;
-    padding-bottom: 66%;
+    padding-bottom: 56%;
 `
 
 export interface PuzzleAnimationContainerProps {

@@ -2,13 +2,8 @@ import React, {useContext, useEffect} from "react";
 import MovementContextActions from "../../contexts/movement-context-actions";
 import styled, {css} from "styled-components";
 
-import arrowWhite from '../../images/arrow-white.svg';
-import arrowWhitePressed from '../../images/arrow-white-pressed.svg';
-
-import arrow from '../../images/arrow.svg';
-import arrowPressed from '../../images/arrow-pressed.svg';
-
 import MovementContext from "../../contexts/movement-context";
+import {ArrowBlackUp, ArrowBlackUpFilled, ArrowWhiteUp, ArrowWhiteUpFilled} from "../../images/svg-strings";
 
 const ButtonSize = "50px";
 const ButtonSizeSmall = "40px";
@@ -20,17 +15,17 @@ const ButtonMixin = (isActive: boolean, inverse?: boolean) => css`
     cursor: pointer;
 
     ${!inverse && css`
-        background-image: url(${arrowWhite});
+        background-image: url("${ArrowWhiteUp}");
         ${isActive && css`
-            background-image: url(${arrowWhitePressed});
+            background-image: url("${ArrowWhiteUpFilled}");
         `}
     `
     }
 
     ${inverse && css`
-        background-image: url(${arrow});
+        background-image: url("${ArrowBlackUp}");
         ${isActive && css`
-            background-image: url(${arrowPressed});
+            background-image: url("${ArrowBlackUpFilled}");
         `}
     `
     }

@@ -2,13 +2,16 @@ import React, {useEffect, useState} from "react";
 import Puzzle from "./puzzle/puzzle";
 import PuzzleAnimation from "./puzzle/puzzle-animation";
 import styled, {css} from "styled-components";
-import arrow from "../../images/arrow-pink.svg"
-import arrowFilled from "../../images/arrow-pink-filled.svg"
+import {ArrowPinkUp, ArrowPinkUpFilled} from "../../images/svg-strings";
+import {breakpointSmall} from "../../style/constants";
 
 const StyledRoot = styled.div`
     position: relative;
-    flex-basis: 66%;
-    flex-grow: 1;
+    flex-basis: 100%;
+
+    @media (min-width: ${breakpointSmall}) {
+        flex-basis: 66%;
+    }
 `;
 
 const StyledOverlay = styled.div`
@@ -21,14 +24,19 @@ const StyledOverlay = styled.div`
     z-index: 30;
 `
 
+const StyledArrow = styled.div`
+    width: 100%;
+    height: 100%;
+    background-image: url("${ArrowPinkUp}");
+`;
+
 const ClickableAreaMixin = css`
     flex-basis: 50%;
     display: flex;
     align-items: center;
 
-    ::before {
+    ${StyledArrow} {
         content: "";
-        background-image: url(${arrow});
         background-repeat: no-repeat;
         background-size: contain;
         width: 50px;
@@ -37,15 +45,15 @@ const ClickableAreaMixin = css`
     }
     
     :hover {
-        ::before {
-            background-image: url(${arrowFilled})
+        ${StyledArrow} {
+            background-image: url("${ArrowPinkUpFilled}");
         }
     }
 `
 
 const StyledClickLeft = styled.div`
     ${ClickableAreaMixin}
-    ::before {
+    ${StyledArrow} {
         transform: rotate(-90deg);
         margin-left: 5px;
     }
@@ -54,14 +62,13 @@ const StyledClickLeft = styled.div`
 const StyledClickRight = styled.div`
     ${ClickableAreaMixin};
     justify-content: flex-end;
-    ::before {
+    ${StyledArrow} {
         transform: rotate(90deg);
         margin-right: 5px;
     }
 `
 
-const StyledImage = styled.div<{src: string}>`
-    background-image: url(${props => props.src});
+const StyledImage = styled.div`
     background-size: cover;
     background-position: center;
     width: 100%;
@@ -98,6 +105,9 @@ export default function WorkPageImageSlider(props: WorkPageImageSliderProps) {
         return () => clearInterval(interval)
     }, [isClicked, props.images.length])
 
+    // Setting backgroundImage as inline style serves as a workaround for a "flickering background image" bug
+    // https://github.com/styled-components/styled-components/issues/3315
+
     return (
         <StyledRoot>
             <Puzzle>
@@ -107,15 +117,18 @@ export default function WorkPageImageSlider(props: WorkPageImageSliderProps) {
                         isActive={activeSlide === index}
                         index={index}
                     >
-                        {/*<img src={image} alt={""} width={"100%"}/>*/}
-                        <StyledImage src={image}/>
+                        <StyledImage style={{ backgroundImage: `url(${image})` }}/>
                     </PuzzleAnimation>
                 )}
             </Puzzle>
 
             <StyledOverlay>
-                <StyledClickLeft onClick={onLeftClick}/>
-                <StyledClickRight onClick={onRightClick}/>
+                <StyledClickLeft onClick={onLeftClick}>
+                    <StyledArrow/>
+                </StyledClickLeft>
+                <StyledClickRight onClick={onRightClick}>
+                    <StyledArrow/>
+                </StyledClickRight>
             </StyledOverlay>
         </StyledRoot>
     );

@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useMemo, useState} from "react";
 import ThreeBaseline from "../shared/three-baseline/three-baseline";
 import CameraControlButtons from "../shared/camera-control-buttons";
 import styled from "styled-components";
@@ -15,13 +15,12 @@ import BoschStage from "./slider-images/dorfen-both-compressed.jpg";
 import Maxi from "./slider-images/maxi.png"
 import Maxi2 from "./slider-images/maxi2.png"
 
-import FutureFace from "./slider-images/future-face.png"
+import FutureFaceCut from "./slider-images/future-face-cut.png"
 import FutureHands from "./slider-images/future-hands.png"
 import FutureHands2 from "./slider-images/future-hands-2.png"
 import DCGAN from "./slider-images/DCGAN.png"
 
 import WorkPageImageSlider from "./work-page-image-slider";
-
 
 
 const StyledRoot = styled(motion.div)`
@@ -52,8 +51,9 @@ const StyledSliderRow = styled.div`
     align-items: center;
     color: white;
     font-family: "SourceCodePro", monospace;
-    font-size: 25px;
+    font-size: 20px;
     margin-bottom: 50px;
+    flex-wrap: wrap;
 
     a {
         text-decoration: underline;
@@ -64,21 +64,33 @@ const StyledSliderRow = styled.div`
     }
 `
 
-const StyledFutureText = styled.div`
-    flex-basis: 33%;
-`;
+const StyledRowText = styled.div`
+    flex-basis: 100%;
+    padding: 25px 0;
 
-const StyledBoschText = styled.div`
-    flex-basis: 33%;
-`
-
-const StyledMaxiText = styled.div`
-    flex-basis: 66%;
+    @media (min-width: ${breakpointSmall}) {
+        flex-basis: 33%;
+        padding: 30px;
+    }
+    
 `;
 
 export default function WorkPage() {
     const [isLoadFinished, setIsLoadFinished] = useState(false);
     const handGlTf = useGLTF('/exp/models/hand/scene.gltf') as HandGLTFResult;
+
+    const images = useMemo(() => {
+        return {
+            future: [
+                FutureFaceCut,
+                FutureHands,
+                FutureHands2,
+                DCGAN
+            ],
+            bosch: [BoschStage, BoschDaheim],
+            maxi: [Maxi, Maxi2],
+        }
+    }, []);
 
     return (
         <StyledRoot
@@ -104,35 +116,36 @@ export default function WorkPage() {
                 <PageContentLayout>
                     <StyledSliderRow>
                         <WorkPageImageSlider
-                            images={[FutureFace, FutureHands, FutureHands2, DCGAN]}
+                            images={images.future}
                         />
 
-                        <StyledFutureText>
-                            <a target={"_blank"} rel="noopener noreferrer" href={"http://bosch-experimente.com"}>Future</a>
-                            <div>Simple Website for my own band project Bosch.</div>
-                        </StyledFutureText>
+                        <StyledRowText>
+                            <div>Collaboration on the movie project</div>
+                            <a target={"_blank"} rel="noopener noreferrer" href={"http://www.thefutureisnotunwritten.com/"}>The future is not unwritten</a>.<br/><br/>
+                            Development of a Deep Learning System to generate uncanny image + video material.
+                        </StyledRowText>
                     </StyledSliderRow>
 
 
                     <StyledSliderRow>
                         <WorkPageImageSlider
-                            images={[BoschStage, BoschDaheim]}
+                            images={images.bosch}
                         />
 
-                        <StyledBoschText>
-                            <a target={"_blank"} rel="noopener noreferrer" href={"http://bosch-experimente.com"}>Bosch Band Website</a>
+                        <StyledRowText>
+                            <a target={"_blank"} rel="noopener noreferrer" href={"http://bosch-experimente.com"}>Bosch Band Website</a><br/><br/>
                             <div>Simple Website for my own band project Bosch.</div>
-                        </StyledBoschText>
+                        </StyledRowText>
                     </StyledSliderRow>
 
                     <StyledSliderRow>
-                        <StyledMaxiText>
-                            <a target={"_blank"} rel="noopener noreferrer" href={"https://maxipongratz.com/"}>Maxipongratz Solo</a>
+                        <StyledRowText>
+                            <a target={"_blank"} rel="noopener noreferrer" href={"https://maxipongratz.com/"}>Maxipongratz Solo</a><br/><br/>
                             <div>Website + Headless CMS implementation for Musician Maxi Pongratz</div>
-                        </StyledMaxiText>
+                        </StyledRowText>
 
                         <WorkPageImageSlider
-                            images={[Maxi, Maxi2]}
+                            images={images.maxi}
                         />
 
                     </StyledSliderRow>
