@@ -38,12 +38,23 @@ const StyledBanner = styled.div`
         height: 80vh;
     }
 
-    margin-bottom: 20vh;
-
     @media (min-width: ${breakpointSmall}) {
         margin-bottom: 7vh;
     }
 `
+
+const StyledRowText = styled.div`
+    flex-basis: 100%;
+    padding: 25px 0;
+    order: 2;
+
+    @media (min-width: ${breakpointSmall}) {
+        flex-basis: 33%;
+        padding: 30px;
+        order: unset;
+    }    
+`;
+
 
 const StyledSliderRow = styled.div`
     display: flex;
@@ -62,18 +73,12 @@ const StyledSliderRow = styled.div`
             text-decoration: line-through;
         }
     }
-`
-
-const StyledRowText = styled.div`
-    flex-basis: 100%;
-    padding: 25px 0;
 
     @media (min-width: ${breakpointSmall}) {
-        flex-basis: 33%;
-        padding: 30px;
+        margin-bottom: 15vh;
     }
-    
-`;
+`
+
 
 export default function WorkPage() {
     const [isLoadFinished, setIsLoadFinished] = useState(false);
@@ -120,7 +125,7 @@ export default function WorkPage() {
                         />
 
                         <StyledRowText>
-                            <div>Full-time Frontend Developer at</div> Munich based web agency <a target={"_blank"} rel="noopener noreferrer" href={"https://funct.com/"}>funct</a>.<br/><br/>
+                            <div>Full-time Frontend Developer at Munich based web agency <a target={"_blank"} rel="noopener noreferrer" href={"https://funct.com/"}>funct</a>.</div><br/><br/>
                         </StyledRowText>
                     </StyledSliderRow>
 
