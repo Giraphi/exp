@@ -1,11 +1,11 @@
 import React, {Suspense} from "react";
 import {AnimatePresence} from "framer-motion";
 import {Route, Switch, useLocation} from "react-router-dom";
-import StartPage from "./start-page/start-page";
-import SkillsPage from "./skills-page/skills-page";
-import AboutPage from "./about-page/about-page";
+import StartPage from "./pages/start-page/start-page";
+import SkillsPage from "./pages/skills-page/skills-page";
+import AboutPage from "./pages/about-page/about-page";
 import MousePositionContextProvider from "../contexts/providers/mouse-position-context-provider";
-import WorkPage from "./work-page/work-page";
+import WorkPage from "./pages/work-page/work-page";
 
 export default function PageSwitch() {
     const location = useLocation();

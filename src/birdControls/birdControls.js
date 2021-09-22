@@ -77,15 +77,6 @@ const BirdControls = function (object, domElement ) {
             this.object.lookAt( targetPosition );
         };
     }();
-    //
-    // this.dispose = function () {
-    // };
-
-    // function bind( scope, fn ) {
-    //     return function () {
-    //         fn.apply( scope, arguments );
-    //     };
-    // }
 
     this.handleResize();
 };

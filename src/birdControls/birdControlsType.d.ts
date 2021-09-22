@@ -1,4 +1,3 @@
-import { Camera } from '../../../src/Three';
 import {Object3D} from "three/src/core/Object3D";
 
 export class BirdControlsType {

@@ -1,0 +1,9 @@
+auf jeder page:
+- deutliche links zu den anderen beiden?
+- top menu
+
+camera:
+- links/rechts schneller drehen
+- reset-camera button
+
+- layout aufräumen, so konsistent wie möglich
