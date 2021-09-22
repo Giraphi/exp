@@ -21,6 +21,7 @@ import Funct1 from "./slider-images/funct1.png"
 import Funct2 from "./slider-images/funct2.png"
 
 import WorkPageImageSlider from "./work-page-image-slider";
+import useDevice from "../../hooks/use-device";
 
 
 const StyledRoot = styled(motion.div)`
@@ -89,6 +90,13 @@ export default function WorkPage() {
     const bColorChannel = useTransform(scrollYProgress, [0, 0.3, 0.6, 0.8, 1], [0,30,40,35,0]);
     const backgroundColor = useMotionTemplate`rgba(${rColorChannel},${gColorChannel},${bColorChannel})`
 
+    const rColorChannelMobile = useTransform(scrollYProgress, [0, 0.1, 0.6, 0.90, 1], [0,30,50,35,0]);
+    const gColorChannelMobile = useTransform(scrollYProgress, [0, 0.1, 0.6, 0.90, 1], [0,30,50,35,0]);
+    const bColorChannelMobile = useTransform(scrollYProgress, [0, 0.1, 0.6, 0.90, 1], [0,30,50,35,0]);
+    const backgroundColorMobile = useMotionTemplate`rgba(${rColorChannelMobile},${gColorChannelMobile},${bColorChannelMobile})`
+
+    const device = useDevice();
+
     const images = useMemo(() => {
         return {
             future: [
@@ -109,7 +117,7 @@ export default function WorkPage() {
             exit={{opacity: 0}}
             transition={{duration: 1.0}}
             style={{
-                backgroundColor
+                backgroundColor: device === "small" ? backgroundColorMobile : backgroundColor
             }}
         >
             <PageLoader isLoadFinished={isLoadFinished}>
