@@ -65,17 +65,17 @@ export const hideKeyframes = (unit: number) => keyframes`
 
 export const hideKeyframesOdd = (unit: number) => keyframes`
     0% {
-        clip-path: polygon(0% 0%,
+        clip-path: polygon(${8 * unit}px 0%,
+        ${11 * unit}px 0%,
         100% 0%,
-        100% 0%,
-        100% 0%,
+        100% ${4 * unit}px,
         100% 100%,
-        100% 100%,
-        100% 100%,
+        ${13 * unit}px 100%,
+        ${11 * unit}px 100%,
+        ${8 * unit}px 100%,
+        ${6 * unit}px 100%,
         0% 100%,
-        0% 100%,
-        0% 100%,
-        0% 0%,
+        0% ${6 * unit}px,
         0% 0%);
     }
     ${percentagePause} {
@@ -167,17 +167,17 @@ export const showKeyframes = (unit: number) => keyframes`
         ${9 * unit}px ${5 * unit}px)
     }
     100% {
-        clip-path: polygon(0% 0%,
+        clip-path: polygon(${8 * unit}px 0%,
+        ${11 * unit}px 0%,
         100% 0%,
-        100% 0%,
-        100% 0%,
+        100% ${4 * unit}px,
         100% 100%,
-        100% 100%,
-        100% 100%,
+        ${13 * unit}px 100%,
+        ${11 * unit}px 100%,
+        ${8 * unit}px 100%,
+        ${6 * unit}px 100%,
         0% 100%,
-        0% 100%,
-        0% 100%,
-        0% 0%,
+        0% ${6 * unit}px,
         0% 0%);
     }
 `

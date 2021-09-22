@@ -129,39 +129,39 @@ export default function WorkPage() {
                         </StyledRowText>
                     </StyledSliderRow>
 
-                    {/*<StyledSliderRow>*/}
-                    {/*    <WorkPageImageSlider*/}
-                    {/*        images={images.future}*/}
-                    {/*    />*/}
+                    <StyledSliderRow>
+                        <WorkPageImageSlider
+                            images={images.future}
+                        />
 
-                    {/*    <StyledRowText>*/}
-                    {/*        <div>Collaboration on the movie project</div>*/}
-                    {/*        <a target={"_blank"} rel="noopener noreferrer" href={"http://www.thefutureisnotunwritten.com/"}>The future is not unwritten</a>.<br/><br/>*/}
-                    {/*        Development of a Deep Learning System to generate uncanny image + video material.*/}
-                    {/*    </StyledRowText>*/}
-                    {/*</StyledSliderRow>*/}
+                        <StyledRowText>
+                            <div>Collaboration on the movie project</div>
+                            <a target={"_blank"} rel="noopener noreferrer" href={"http://www.thefutureisnotunwritten.com/"}>The future is not unwritten</a>.<br/><br/>
+                            Development of a Deep Learning System to generate uncanny image + video material.
+                        </StyledRowText>
+                    </StyledSliderRow>
 
-                    {/*<StyledSliderRow>*/}
-                    {/*    <WorkPageImageSlider*/}
-                    {/*        images={images.bosch}*/}
-                    {/*    />*/}
+                    <StyledSliderRow>
+                        <WorkPageImageSlider
+                            images={images.bosch}
+                        />
 
-                    {/*    <StyledRowText>*/}
-                    {/*        <a target={"_blank"} rel="noopener noreferrer" href={"http://bosch-experimente.com"}>Bosch Band Website</a><br/><br/>*/}
-                    {/*        <div>Website for the band project Bosch.</div>*/}
-                    {/*    </StyledRowText>*/}
-                    {/*</StyledSliderRow>*/}
+                        <StyledRowText>
+                            <a target={"_blank"} rel="noopener noreferrer" href={"http://bosch-experimente.com"}>Bosch Band Website</a><br/><br/>
+                            <div>Website for the band project Bosch.</div>
+                        </StyledRowText>
+                    </StyledSliderRow>
 
-                    {/*<StyledSliderRow>*/}
-                    {/*    <StyledRowText>*/}
-                    {/*        <a target={"_blank"} rel="noopener noreferrer" href={"https://maxipongratz.com/"}>Maxipongratz Solo</a><br/><br/>*/}
-                    {/*        <div>Website + Headless CMS implementation for Musician Maxi Pongratz</div>*/}
-                    {/*    </StyledRowText>*/}
+                    <StyledSliderRow>
+                        <StyledRowText>
+                            <a target={"_blank"} rel="noopener noreferrer" href={"https://maxipongratz.com/"}>Maxipongratz Solo</a><br/><br/>
+                            <div>Website + Headless CMS implementation for Musician Maxi Pongratz</div>
+                        </StyledRowText>
 
-                    {/*    <WorkPageImageSlider*/}
-                    {/*        images={images.maxi}*/}
-                    {/*    />*/}
-                    {/*</StyledSliderRow>*/}
+                        <WorkPageImageSlider
+                            images={images.maxi}
+                        />
+                    </StyledSliderRow>
                 </PageContentLayout>
             </PageLoader>
         </StyledRoot>
