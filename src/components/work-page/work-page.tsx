@@ -4,7 +4,7 @@ import CameraControlButtons from "../shared/camera-control-buttons";
 import styled from "styled-components";
 import {breakpointSmall, colorWork} from "../../style/constants";
 import PageContentLayout from "../shared/page-content-layout";
-import {motion} from "framer-motion";
+import {motion, useMotionTemplate, useTransform, useViewportScroll} from "framer-motion";
 import WorkPageWorld from "./work-page-world";
 import {useGLTF} from "@react-three/drei";
 import {HandGLTFResult} from "../models/hand-model";
@@ -83,6 +83,11 @@ const StyledSliderRow = styled.div`
 export default function WorkPage() {
     const [isLoadFinished, setIsLoadFinished] = useState(false);
     const handGlTf = useGLTF('/exp/models/hand/scene.gltf') as HandGLTFResult;
+    const { scrollYProgress } = useViewportScroll();
+    const rColorChannel = useTransform(scrollYProgress, [0, 0.5, 1], [0,40,0]);
+    const gColorChannel = useTransform(scrollYProgress, [0, 0.5, 1], [0,40,0]);
+    const bColorChannel = useTransform(scrollYProgress, [0, 0.5, 1], [0,40,0]);
+    const backgroundColor = useMotionTemplate`rgba(${rColorChannel},${gColorChannel},${bColorChannel})`
 
     const images = useMemo(() => {
         return {
@@ -103,6 +108,9 @@ export default function WorkPage() {
             animate={{opacity: 1}}
             exit={{opacity: 0}}
             transition={{duration: 1.0}}
+            style={{
+                backgroundColor
+            }}
         >
             <PageLoader isLoadFinished={isLoadFinished}>
 

@@ -45,8 +45,8 @@ const StyledTable = styled.table`
         padding: 0;
     }
 
-    td {    
-        padding-bottom: 10px;    
+    td {
+        padding-bottom: 10px;
     }
 
     td:first-child {
@@ -59,6 +59,7 @@ const StyledTable = styled.table`
         td:first-child {
             padding-right: 35px;
         }
+
         td {
             padding-bottom: 1vh;
         }
@@ -78,6 +79,14 @@ const StyledLink = styled.a`
 
     &:hover {
         text-decoration: line-through;
+    }
+`
+
+const StyledSpace = styled.div`
+    margin-bottom: 50px;
+
+    @media (min-width: ${breakpointSmall}) {
+        margin-bottom: 7vh;
     }
 `
 
@@ -101,8 +110,9 @@ export default function AboutPage() {
             <PageContentLayout>
                 <StyledText>
                     <h1><GlitchText text={"Education"} variant={"color"}/></h1>
-                    <p>
+                    <StyledSpace>
                         <StyledTable>
+                            <tbody>
                             <tr>
                                 <td><GlitchText text={"2011 - 2014"} variant={"color"}/></td>
                                 <td><GlitchText text={"Bachelor Computer Science at TU Dresden"} variant={"color"}/>
@@ -114,13 +124,15 @@ export default function AboutPage() {
                                     text={"Master Computational Linguistics with Computer Science Minor at LMU Munich"}
                                     variant={"color"}/></td>
                             </tr>
+                            </tbody>
                         </StyledTable>
-                    </p>
+                    </StyledSpace>
 
 
                     <h1>Employments</h1>
-                    <p>
+                    <StyledSpace>
                         <StyledTable>
+                            <tbody>
                             <tr>
                                 <td><GlitchText text={"2012 - 2018"} variant={"color"}/></td>
                                 <td><GlitchText text={"Different Jobs as academic tutor at TU Dresden and LMU Munich."}
@@ -147,12 +159,13 @@ export default function AboutPage() {
                                     <GlitchText text={" in Munich."} variant={"color"}/>
                                 </td>
                             </tr>
+                            </tbody>
                         </StyledTable>
-                    </p>
+                    </StyledSpace>
 
 
                     <h1><GlitchText text={"Interests"} variant={"color"}/></h1>
-                    <p>
+                    <StyledSpace>
                         <StyledItem>
                             <GlitchText text={"Art / Digital Art / Design"} variant={"color"}/>
                         </StyledItem>
@@ -167,10 +180,10 @@ export default function AboutPage() {
                             <StyledLink target={"_blank"} rel="noopener noreferrer"
                                         href={"http://www.bosch-experimente.com"}>Bosch</StyledLink>
                         </StyledItem>
-                    </p>
+                    </StyledSpace>
 
                     <h1><GlitchText text={"Contact"} variant={"color"}/></h1>
-                    <p>
+                    <StyledSpace>
                         <StyledItem>
                             github
                         </StyledItem>
@@ -178,7 +191,11 @@ export default function AboutPage() {
                         <StyledItem>
                             e-mail
                         </StyledItem>
-                    </p>
+
+                        <StyledItem>
+                            LinkedIn
+                        </StyledItem>
+                    </StyledSpace>
                 </StyledText>
             </PageContentLayout>
         </StyledRoot>

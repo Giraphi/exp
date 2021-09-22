@@ -1,15 +1,30 @@
 import React, {useContext, useEffect, useRef, useState} from "react";
 import styled, {css} from "styled-components";
-import {hideKeyframes, hideKeyframesOdd, showKeyframes, showKeyframesOdd} from "./clip-path-animation-keyframes";
+import {
+    hideKeyframes,
+    hideKeyframesOdd,
+    imageKeyframesHide, imageKeyframesShow,
+    showKeyframes,
+    showKeyframesOdd
+} from "./clip-path-animation-keyframes";
 import {ClipPathAnimationContext} from "./clip-path-animation-context";
 
 const easeFunction = css`cubic-bezier(.53, 0, .3, 1)`;
 
 export const animationDurationMs = 800;
 
+const StyledChildren = styled.div`
+    width: 100%;
+    height: 100%;
+    animation-fill-mode: forwards;
+    animation-timing-function: ${easeFunction};
+    animation-duration: ${animationDurationMs}ms;
+`
+
 const StyledRoot = styled.div<{ isActive: boolean, isOnTop: boolean, oddAnimation: boolean, width?: number }>`
     position: absolute;
     top: 0;
+    overflow: hidden;
 
     width: 100%;
     height: 100%;
@@ -22,6 +37,9 @@ const StyledRoot = styled.div<{ isActive: boolean, isOnTop: boolean, oddAnimatio
     `}
 
     ${props => !props.isActive && props.width && css`
+        ${StyledChildren} {
+            animation-name: ${imageKeyframesHide}
+        }        
         ${props.oddAnimation && css`
             animation-name: ${hideKeyframesOdd(props.width / 16)};
         `}
@@ -31,6 +49,9 @@ const StyledRoot = styled.div<{ isActive: boolean, isOnTop: boolean, oddAnimatio
     `}
 
     ${props => props.isActive && props.width && css`
+        ${StyledChildren} {
+            animation-name: ${imageKeyframesShow}
+        }
         ${props.oddAnimation && css`
             animation-name: ${showKeyframesOdd(props.width / 16)};
         `}
@@ -76,7 +97,9 @@ export default function ClipPathAnimationItem(props: ClipPathAnimationItemProps)
             isOnTop={isOnTop}
             oddAnimation={useOddAnimation}
         >
-            {props.children}
+            <StyledChildren>
+                {props.children}
+            </StyledChildren>
             <StyledDimensionsDummy ref={dimensionsRef}/>
         </StyledRoot>
     );

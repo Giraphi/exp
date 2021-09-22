@@ -72,7 +72,7 @@ const StyledClickRight = styled.div`
     }
 `
 
-const StyledImage = styled.div`
+export const StyledImage = styled.div`
     background-size: cover;
     background-position: center;
     width: 100%;
