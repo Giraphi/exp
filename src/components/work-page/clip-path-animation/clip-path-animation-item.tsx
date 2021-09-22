@@ -40,6 +40,14 @@ const StyledRoot = styled.div<{ isActive: boolean, isOnTop: boolean, oddAnimatio
     `}
 `
 
+const StyledDimensionsDummy = styled.div`
+    position: absolute;
+    z-index: -1;
+    width: 100%;
+    height: 100%;
+    top: 0;
+`
+
 export interface ClipPathAnimationItemProps {
     isActive: boolean;
     children: React.ReactNode;
@@ -49,7 +57,6 @@ export default function ClipPathAnimationItem(props: ClipPathAnimationItemProps)
     const dimensionsRef = useRef<HTMLDivElement>(null);
     const [isOnTop, setIsOnTop] = useState(props.isActive);
     const useOddAnimation = useContext(ClipPathAnimationContext).numClicksOdd;
-    // const useOddAnimation = true;
 
     useEffect(() => {
         setTimeout(() => {
@@ -65,7 +72,7 @@ export default function ClipPathAnimationItem(props: ClipPathAnimationItemProps)
             oddAnimation={useOddAnimation}
         >
             {props.children}
-            <div ref={dimensionsRef} style={{position: "absolute", zIndex: -1, width: "100%", height: "100%"}}/>
+            <StyledDimensionsDummy ref={dimensionsRef}/>
         </StyledRoot>
     );
 }
