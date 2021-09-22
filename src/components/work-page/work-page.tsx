@@ -84,9 +84,9 @@ export default function WorkPage() {
     const [isLoadFinished, setIsLoadFinished] = useState(false);
     const handGlTf = useGLTF('/exp/models/hand/scene.gltf') as HandGLTFResult;
     const { scrollYProgress } = useViewportScroll();
-    const rColorChannel = useTransform(scrollYProgress, [0, 0.5, 1], [0,40,0]);
-    const gColorChannel = useTransform(scrollYProgress, [0, 0.5, 1], [0,40,0]);
-    const bColorChannel = useTransform(scrollYProgress, [0, 0.5, 1], [0,40,0]);
+    const rColorChannel = useTransform(scrollYProgress, [0, 0.3, 0.6, 0.8, 1], [0,30,40,35,0]);
+    const gColorChannel = useTransform(scrollYProgress, [0, 0.3, 0.6, 0.8, 1], [0,30,40,35,0]);
+    const bColorChannel = useTransform(scrollYProgress, [0, 0.3, 0.6, 0.8, 1], [0,30,40,35,0]);
     const backgroundColor = useMotionTemplate`rgba(${rColorChannel},${gColorChannel},${bColorChannel})`
 
     const images = useMemo(() => {
