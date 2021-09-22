@@ -2,7 +2,7 @@ import React, {Suspense, useState} from "react";
 import {colorAbout} from "../../../style/constants";
 import FlyingPageObjects from "../../flying-page-objects";
 import AboutPageHeadline from "./about-page-headline";
-import ManModel from "../skills-page/man-model";
+import ManModel from "../../models/man-model";
 import PageMenu from "../../page-menu";
 
 export default function AboutPageWorld() {

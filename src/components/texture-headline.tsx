@@ -20,27 +20,10 @@ export default function TextureHeadline() {
 
     return (
         <>
-                {deviceId !== "small" && texture &&
-                <mesh
-                    position={[0,0,300]}
-                    scale={scale}
-                    rotation={[-0.2, -0.07, -0.03]}
-                >
-                    <meshBasicMaterial
-                        map={texture}
-                        side={DoubleSide}
-                        transparent={true}
-                        color={colorSkills}
-                    />
-                    <planeGeometry/>
-                </mesh>
-                }
-
-                {deviceId === "small" && texture &&
                     <mesh
-                        position={[0,50,300]}
+                        position={[0,0,300]}
                         scale={scale}
-                        rotation={[-0.2, -0.07, -0.04]}
+                        rotation={[-0.2, -0.07, -0.03]}
                     >
                         <meshBasicMaterial
                             map={texture}
@@ -50,7 +33,24 @@ export default function TextureHeadline() {
                         />
                         <planeGeometry/>
                     </mesh>
-                }
+                {/*{deviceId !== "small" && texture &&*/}
+                {/*}*/}
+
+                {/*{deviceId === "small" && texture &&*/}
+                {/*    <mesh*/}
+                {/*        position={[0,50,300]}*/}
+                {/*        scale={scale}*/}
+                {/*        rotation={[-0.2, -0.07, -0.04]}*/}
+                {/*    >*/}
+                {/*        <meshBasicMaterial*/}
+                {/*            map={texture}*/}
+                {/*            side={DoubleSide}*/}
+                {/*            transparent={true}*/}
+                {/*            color={colorSkills}*/}
+                {/*        />*/}
+                {/*        <planeGeometry/>*/}
+                {/*    </mesh>*/}
+                {/*}*/}
 
         </>
     );

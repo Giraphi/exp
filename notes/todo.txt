@@ -5,5 +5,10 @@ auf jeder page:
 camera:
 - links/rechts schneller drehen
 - reset-camera button
+- passt nicht auf Phil-Handy: Zu nah
 
+Layout:
 - layout aufräumen, so konsistent wie möglich
+- Kein links/rechts scrollen auf Phil-Handy
+
+- auf schwachen devices (?): performance verbessern? z.B. Schatten weg?

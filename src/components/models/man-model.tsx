@@ -1,7 +1,7 @@
 import React, {useMemo} from "react";
-import useObjAsPrimitive from "../../../hooks/use-obj-as-primitive";
+import useObjAsPrimitive from "../../hooks/use-obj-as-primitive";
 import {MeshStandardMaterial} from "three";
-import useDevice from "../../../hooks/use-device";
+import useDevice from "../../hooks/use-device";
 
 export default function ManModel() {
     const device = useDevice();
