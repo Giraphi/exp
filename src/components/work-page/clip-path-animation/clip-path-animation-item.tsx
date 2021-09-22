@@ -57,6 +57,11 @@ export default function ClipPathAnimationItem(props: ClipPathAnimationItemProps)
     const dimensionsRef = useRef<HTMLDivElement>(null);
     const [isOnTop, setIsOnTop] = useState(props.isActive);
     const useOddAnimation = useContext(ClipPathAnimationContext).numClicksOdd;
+    const [isFirstRender, setIsFirstRender] = useState(true);
+
+    useEffect(() => {
+        setIsFirstRender(false);
+    }, [])
 
     useEffect(() => {
         setTimeout(() => {
@@ -67,7 +72,7 @@ export default function ClipPathAnimationItem(props: ClipPathAnimationItemProps)
     return (
         <StyledRoot
             isActive={props.isActive}
-            width={dimensionsRef.current ? Math.round(dimensionsRef.current.clientWidth) : undefined}
+            width={(!isFirstRender && dimensionsRef.current) ? Math.round(dimensionsRef.current.clientWidth) : undefined}
             isOnTop={isOnTop}
             oddAnimation={useOddAnimation}
         >
