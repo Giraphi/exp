@@ -32,6 +32,10 @@ export default function WorkPageWorld(props: WorkPageWorldProps) {
                 worldSize={1000}
                 lift={isMenuClicked}
             >
+                <meshStandardMaterial
+                    attach="material"
+                    color="white"
+                />
                 <sphereGeometry
                     attach="geometry"
                     args={[5, 32, 32]}

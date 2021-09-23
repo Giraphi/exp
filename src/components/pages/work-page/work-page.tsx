@@ -148,7 +148,6 @@ export default function WorkPage() {
                                                                                                 rel="noopener noreferrer"
                                                                                                 href={"https://funct.com/"}>funct</a>.
                                 </div>
-                                <br/><br/>
                             </StyledRowText>
                         </StyledSliderRow>
 
@@ -161,7 +160,7 @@ export default function WorkPage() {
                                 <div>Collaboration on the movie project</div>
                                 <a target={"_blank"} rel="noopener noreferrer"
                                    href={"http://www.thefutureisnotunwritten.com/"}>The future is not
-                                    unwritten</a>.<br/><br/>
+                                    unwritten</a>.<br/>
                                 Development of a Deep Learning System to generate uncanny image + video material.
                             </StyledRowText>
                         </StyledSliderRow>
@@ -173,7 +172,7 @@ export default function WorkPage() {
 
                             <StyledRowText>
                                 <a target={"_blank"} rel="noopener noreferrer" href={"http://bosch-experimente.com"}>Bosch
-                                    Band Website</a><br/><br/>
+                                    Band Website</a><br/>
                                 <div>Website for the band project Bosch.</div>
                             </StyledRowText>
                         </StyledSliderRow>
@@ -181,7 +180,7 @@ export default function WorkPage() {
                         <StyledSliderRow>
                             <StyledRowText>
                                 <a target={"_blank"} rel="noopener noreferrer" href={"https://maxipongratz.com/"}>Maxipongratz
-                                    Solo</a><br/><br/>
+                                    Solo</a><br/>
                                 <div>Website + Headless CMS implementation for Musician Maxi Pongratz</div>
                             </StyledRowText>
 
