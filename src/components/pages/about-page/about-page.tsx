@@ -127,7 +127,6 @@ export default function AboutPage() {
                                 </StyledTable>
                             </LayoutTextSection>
 
-
                             <h1>Employments</h1>
                             <LayoutTextSection>
                                 <StyledTable>
