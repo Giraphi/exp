@@ -104,14 +104,6 @@ export default function FlyingPageObjects(props: SkillPageCuboidsProps) {
             args={[null as unknown as BufferGeometry, null as unknown as MeshStandardMaterial, props.numObjects]}
             ref={instancedMeshRef}
         >
-            <meshStandardMaterial
-                attach="material"
-                color="white"
-            />
-            <sphereGeometry
-                attach="geometry"
-                args={[5, 5, 5]}
-            />
             {props.children}
         </instancedMesh>
     );

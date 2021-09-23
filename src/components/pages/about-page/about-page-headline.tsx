@@ -30,7 +30,7 @@ export default function AboutPageHeadline() {
                     position={[0,50,300]}
                     rotation={[-0.3, -0.07, -0.03]}
                 >
-                    résumé
+                    Résumé
                 </Text>
             }
         </>

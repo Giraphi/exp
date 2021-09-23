@@ -12,7 +12,6 @@ import {useGLTF} from "@react-three/drei";
 import {EyeGLTFResult} from "../../models/eye-model";
 import SmallEye from "./small-eye";
 import {LayoutTextItem, LayoutTextSection} from "../../layout/utilities";
-import TopBar from "../../top-bar";
 
 const StyledRoot = styled(motion.div)`
     min-height: 100vh;
@@ -77,7 +76,7 @@ export default function SkillsPage() {
             }}
         >
             <PageLoader isLoadFinished={isLoadFinished}>
-                <TopBar/>
+                {/*<TopBar/>*/}
                 <StyledBanner>
                     <ThreeSetup
                         color={"white"}

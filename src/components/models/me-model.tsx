@@ -11,9 +11,9 @@ export type MeGLTFResult = GLTF & {
 
 export interface MeModelProps {
     meGltfResult: MeGLTFResult;
-    scale: [number,number,number];
-    rotation: [number,number,number];
-    position: [number,number,number];
+    scale?: [number,number,number];
+    rotation?: [number,number,number];
+    position?: [number,number,number];
 }
 
 export default function MeModel(props: MeModelProps) {

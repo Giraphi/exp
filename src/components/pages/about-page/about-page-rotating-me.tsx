@@ -23,12 +23,14 @@ export default function AboutPageRotatingMe(props: AboutPageRotatingMeProps) {
     });
 
     return (
-        <group ref={modelRef}>
+        <group
+            ref={modelRef}
+            position={[0,-80,-200]}
+        >
             <MeModel
                 meGltfResult={props.meGltf}
-                scale={[1300,1300,1300]}
+                scale={[1500,1500,1500]}
                 rotation={[-0.22, -6.25, 0.09]}
-                position={[0,-25,0]}
             />
         </group>
     );

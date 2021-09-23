@@ -31,10 +31,14 @@ export default function AboutPageWorld(props: AboutPageWorldProps) {
             </pointLight>
 
             <FlyingPageObjects
-                numObjects={50}
+                numObjects={30}
                 worldSize={1000}
                 lift={isMenuClicked}
             >
+                <meshStandardMaterial
+                    attach="material"
+                    color="gray"
+                />
                 <boxBufferGeometry
                     args={[20,20,20]}
                 />
