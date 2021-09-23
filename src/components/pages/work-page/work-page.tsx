@@ -22,6 +22,7 @@ import Funct2 from "./slider-images/funct2.png"
 
 import WorkPageImageSlider from "./work-page-image-slider";
 import useDevice from "../../../hooks/use-device";
+import DisableUserSelectMobile from "../../disable-user-select-mobile";
 
 
 const StyledRoot = styled(motion.div)`
@@ -53,7 +54,7 @@ const StyledRowText = styled.div`
         flex-basis: 33%;
         padding: 30px;
         order: unset;
-    }    
+    }
 `;
 
 
@@ -70,6 +71,7 @@ const StyledSliderRow = styled.div`
     a {
         text-decoration: underline;
         color: white;
+
         :hover {
             text-decoration: line-through;
         }
@@ -84,15 +86,16 @@ const StyledSliderRow = styled.div`
 export default function WorkPage() {
     const [isLoadFinished, setIsLoadFinished] = useState(false);
     const handGlTf = useGLTF('/exp/models/hand/scene.gltf') as HandGLTFResult;
-    const { scrollYProgress } = useViewportScroll();
-    const rColorChannel = useTransform(scrollYProgress, [0, 0.3, 0.6, 0.8, 1], [0,30,40,35,0]);
-    const gColorChannel = useTransform(scrollYProgress, [0, 0.3, 0.6, 0.8, 1], [0,30,40,35,0]);
-    const bColorChannel = useTransform(scrollYProgress, [0, 0.3, 0.6, 0.8, 1], [0,30,40,35,0]);
+
+    const {scrollYProgress} = useViewportScroll();
+    const rColorChannel = useTransform(scrollYProgress, [0, 0.3, 0.6, 0.8, 1], [0, 30, 40, 35, 0]);
+    const gColorChannel = useTransform(scrollYProgress, [0, 0.3, 0.6, 0.8, 1], [0, 30, 40, 35, 0]);
+    const bColorChannel = useTransform(scrollYProgress, [0, 0.3, 0.6, 0.8, 1], [0, 30, 40, 35, 0]);
     const backgroundColor = useMotionTemplate`rgba(${rColorChannel},${gColorChannel},${bColorChannel})`
 
-    const rColorChannelMobile = useTransform(scrollYProgress, [0, 0.1, 0.6, 0.90, 1], [0,30,50,35,0]);
-    const gColorChannelMobile = useTransform(scrollYProgress, [0, 0.1, 0.6, 0.90, 1], [0,30,50,35,0]);
-    const bColorChannelMobile = useTransform(scrollYProgress, [0, 0.1, 0.6, 0.90, 1], [0,30,50,35,0]);
+    const rColorChannelMobile = useTransform(scrollYProgress, [0, 0.1, 0.6, 0.90, 1], [0, 30, 50, 35, 0]);
+    const gColorChannelMobile = useTransform(scrollYProgress, [0, 0.1, 0.6, 0.90, 1], [0, 30, 50, 35, 0]);
+    const bColorChannelMobile = useTransform(scrollYProgress, [0, 0.1, 0.6, 0.90, 1], [0, 30, 50, 35, 0]);
     const backgroundColorMobile = useMotionTemplate`rgba(${rColorChannelMobile},${gColorChannelMobile},${bColorChannelMobile})`
 
     const device = useDevice();
@@ -121,64 +124,73 @@ export default function WorkPage() {
             }}
         >
             <PageLoader isLoadFinished={isLoadFinished}>
+                <DisableUserSelectMobile>
+                    <StyledBanner>
+                        <ThreeSetup
+                            color={"black"}
+                            controlButtons={<CameraControlButtons pageVariant={true}/>}
+                            onLoadFinished={() => setIsLoadFinished(true)}
+                        >
+                            <WorkPageWorld
+                                handGltf={handGlTf}
+                            />
+                        </ThreeSetup>
+                    </StyledBanner>
 
-                <StyledBanner>
-                    <ThreeSetup
-                        color={"black"}
-                        controlButtons={<CameraControlButtons pageVariant={true}/>}
-                        onLoadFinished={() => setIsLoadFinished(true)}
-                    >
-                        <WorkPageWorld
-                            handGltf={handGlTf}
-                        />
-                    </ThreeSetup>
-                </StyledBanner>
+                    <PageContentLayout>
+                        <StyledSliderRow>
+                            <WorkPageImageSlider
+                                images={images.funct}
+                            />
 
-                <PageContentLayout>
-                    <StyledSliderRow>
-                        <WorkPageImageSlider
-                            images={images.funct}
-                        />
+                            <StyledRowText>
+                                <div>Full-time Frontend Developer at Munich based web agency <a target={"_blank"}
+                                                                                                rel="noopener noreferrer"
+                                                                                                href={"https://funct.com/"}>funct</a>.
+                                </div>
+                                <br/><br/>
+                            </StyledRowText>
+                        </StyledSliderRow>
 
-                        <StyledRowText>
-                            <div>Full-time Frontend Developer at Munich based web agency <a target={"_blank"} rel="noopener noreferrer" href={"https://funct.com/"}>funct</a>.</div><br/><br/>
-                        </StyledRowText>
-                    </StyledSliderRow>
+                        <StyledSliderRow>
+                            <WorkPageImageSlider
+                                images={images.future}
+                            />
 
-                    <StyledSliderRow>
-                        <WorkPageImageSlider
-                            images={images.future}
-                        />
+                            <StyledRowText>
+                                <div>Collaboration on the movie project</div>
+                                <a target={"_blank"} rel="noopener noreferrer"
+                                   href={"http://www.thefutureisnotunwritten.com/"}>The future is not
+                                    unwritten</a>.<br/><br/>
+                                Development of a Deep Learning System to generate uncanny image + video material.
+                            </StyledRowText>
+                        </StyledSliderRow>
 
-                        <StyledRowText>
-                            <div>Collaboration on the movie project</div>
-                            <a target={"_blank"} rel="noopener noreferrer" href={"http://www.thefutureisnotunwritten.com/"}>The future is not unwritten</a>.<br/><br/>
-                            Development of a Deep Learning System to generate uncanny image + video material.
-                        </StyledRowText>
-                    </StyledSliderRow>
+                        <StyledSliderRow>
+                            <WorkPageImageSlider
+                                images={images.bosch}
+                            />
 
-                    <StyledSliderRow>
-                        <WorkPageImageSlider
-                            images={images.bosch}
-                        />
+                            <StyledRowText>
+                                <a target={"_blank"} rel="noopener noreferrer" href={"http://bosch-experimente.com"}>Bosch
+                                    Band Website</a><br/><br/>
+                                <div>Website for the band project Bosch.</div>
+                            </StyledRowText>
+                        </StyledSliderRow>
 
-                        <StyledRowText>
-                            <a target={"_blank"} rel="noopener noreferrer" href={"http://bosch-experimente.com"}>Bosch Band Website</a><br/><br/>
-                            <div>Website for the band project Bosch.</div>
-                        </StyledRowText>
-                    </StyledSliderRow>
+                        <StyledSliderRow>
+                            <StyledRowText>
+                                <a target={"_blank"} rel="noopener noreferrer" href={"https://maxipongratz.com/"}>Maxipongratz
+                                    Solo</a><br/><br/>
+                                <div>Website + Headless CMS implementation for Musician Maxi Pongratz</div>
+                            </StyledRowText>
 
-                    <StyledSliderRow>
-                        <StyledRowText>
-                            <a target={"_blank"} rel="noopener noreferrer" href={"https://maxipongratz.com/"}>Maxipongratz Solo</a><br/><br/>
-                            <div>Website + Headless CMS implementation for Musician Maxi Pongratz</div>
-                        </StyledRowText>
-
-                        <WorkPageImageSlider
-                            images={images.maxi}
-                        />
-                    </StyledSliderRow>
-                </PageContentLayout>
+                            <WorkPageImageSlider
+                                images={images.maxi}
+                            />
+                        </StyledSliderRow>
+                    </PageContentLayout>
+                </DisableUserSelectMobile>
             </PageLoader>
         </StyledRoot>
     );

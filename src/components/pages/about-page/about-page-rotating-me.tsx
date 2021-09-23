@@ -26,6 +26,7 @@ export default function AboutPageRotatingMe(props: AboutPageRotatingMeProps) {
         <group
             ref={modelRef}
             position={[0,-80,-200]}
+            rotation={[0,1.4,0]}
         >
             <MeModel
                 meGltfResult={props.meGltf}

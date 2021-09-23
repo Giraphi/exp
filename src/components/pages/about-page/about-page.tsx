@@ -11,6 +11,7 @@ import {LayoutTextItem, LayoutTextSection} from "../../layout/utilities";
 import {useGLTF} from "@react-three/drei";
 import {MeGLTFResult} from "../../models/me-model";
 import PageLoader from "../../page-loader/page-loader";
+import DisableUserSelectMobile from "../../disable-user-select-mobile";
 
 const StyledRoot = styled(motion.div)`
     min-height: 100vh;
@@ -91,109 +92,114 @@ export default function AboutPage() {
             transition={{duration: 1.0}}
         >
             <PageLoader isLoadFinished={isLoadFinished}>
-            <StyledBanner>
-                <ThreeSetup
-                    color={"black"}
-                    controlButtons={<CameraControlButtons pageVariant={true}/>}
-                    onLoadFinished={() => setIsLoadFinished(true)}
-                >
-                    <AboutPageWorld
-                        meGltf={meGlTf}
-                    />
-                </ThreeSetup>
-            </StyledBanner>
+                <DisableUserSelectMobile>
+                    <StyledBanner>
+                        <ThreeSetup
+                            color={"black"}
+                            controlButtons={<CameraControlButtons pageVariant={true}/>}
+                            onLoadFinished={() => setIsLoadFinished(true)}
+                        >
+                            <AboutPageWorld
+                                meGltf={meGlTf}
+                            />
+                        </ThreeSetup>
+                    </StyledBanner>
 
-            <PageContentLayout>
-                <StyledText>
-                    <h1><GlitchText text={"Education"} variant={"color"}/></h1>
-                    <LayoutTextSection>
-                        <StyledTable>
-                            <tbody>
-                            <tr>
-                                <td><GlitchText text={"2011 - 2014"} variant={"color"}/></td>
-                                <td><GlitchText text={"Bachelor Computer Science at TU Dresden"} variant={"color"}/>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td><GlitchText text={"2015 - 2018"} variant={"color"}/></td>
-                                <td><GlitchText
-                                    text={"Master Computational Linguistics with Computer Science Minor at LMU Munich"}
-                                    variant={"color"}/></td>
-                            </tr>
-                            </tbody>
-                        </StyledTable>
-                    </LayoutTextSection>
+                    <PageContentLayout>
+                        <StyledText>
+                            <h1><GlitchText text={"Education"} variant={"color"}/></h1>
+                            <LayoutTextSection>
+                                <StyledTable>
+                                    <tbody>
+                                    <tr>
+                                        <td><GlitchText text={"2011 - 2014"} variant={"color"}/></td>
+                                        <td><GlitchText text={"Bachelor Computer Science at TU Dresden"}
+                                                        variant={"color"}/>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td><GlitchText text={"2015 - 2018"} variant={"color"}/></td>
+                                        <td><GlitchText
+                                            text={"Master Computational Linguistics with Computer Science Minor at LMU Munich"}
+                                            variant={"color"}/></td>
+                                    </tr>
+                                    </tbody>
+                                </StyledTable>
+                            </LayoutTextSection>
 
 
-                    <h1>Employments</h1>
-                    <LayoutTextSection>
-                        <StyledTable>
-                            <tbody>
-                            <tr>
-                                <td><GlitchText text={"2012 - 2018"} variant={"color"}/></td>
-                                <td><GlitchText text={"Different Jobs as academic tutor at TU Dresden and LMU Munich."}
-                                                variant={"color"}/></td>
-                            </tr>
-                            <tr>
-                                <td><GlitchText text={"2016 - 2017"} variant={"color"}/></td>
-                                <td><GlitchText text={"Working student at Siemens in Munich."} variant={"color"}/></td>
-                            </tr>
-                            <tr>
-                                <td><GlitchText text={"2017"} variant={"color"}/></td>
-                                <td>
-                                    <GlitchText text={"Working student at the web agency"} variant={"color"}/>
+                            <h1>Employments</h1>
+                            <LayoutTextSection>
+                                <StyledTable>
+                                    <tbody>
+                                    <tr>
+                                        <td><GlitchText text={"2012 - 2018"} variant={"color"}/></td>
+                                        <td><GlitchText
+                                            text={"Different Jobs as academic tutor at TU Dresden and LMU Munich."}
+                                            variant={"color"}/></td>
+                                    </tr>
+                                    <tr>
+                                        <td><GlitchText text={"2016 - 2017"} variant={"color"}/></td>
+                                        <td><GlitchText text={"Working student at Siemens in Munich."}
+                                                        variant={"color"}/></td>
+                                    </tr>
+                                    <tr>
+                                        <td><GlitchText text={"2017"} variant={"color"}/></td>
+                                        <td>
+                                            <GlitchText text={"Working student at the web agency"} variant={"color"}/>
+                                            <StyledLink target={"_blank"} rel="noopener noreferrer"
+                                                        href={"http://www.funct.com"}>funct</StyledLink>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td><GlitchText text={"Since 2018"} variant={"color"}/></td>
+                                        <td>
+                                            <GlitchText text={"Full time web developer at"} variant={"color"}/>
+                                            <StyledLink target={"_blank"} rel="noopener noreferrer"
+                                                        href={"http://www.funct.com"}>funct</StyledLink>
+                                            <GlitchText text={" in Munich."} variant={"color"}/>
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                                </StyledTable>
+                            </LayoutTextSection>
+
+
+                            <h1><GlitchText text={"Interests"} variant={"color"}/></h1>
+                            <LayoutTextSection>
+                                <LayoutTextItem>
+                                    <GlitchText text={"Art / Digital Art / Design"} variant={"color"}/>
+                                </LayoutTextItem>
+
+                                <LayoutTextItem>
+                                    <GlitchText text={"Electronic music / Modular synthesizers"} variant={"color"}/>
+                                </LayoutTextItem>
+
+                                <LayoutTextItem>
+                                    <GlitchText text={"Live music projects, e.g. synthesizer at my band project"}
+                                                variant={"color"}/>
                                     <StyledLink target={"_blank"} rel="noopener noreferrer"
-                                                href={"http://www.funct.com"}>funct</StyledLink>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td><GlitchText text={"Since 2018"} variant={"color"}/></td>
-                                <td>
-                                    <GlitchText text={"Full time web developer at"} variant={"color"}/>
-                                    <StyledLink target={"_blank"} rel="noopener noreferrer"
-                                                href={"http://www.funct.com"}>funct</StyledLink>
-                                    <GlitchText text={" in Munich."} variant={"color"}/>
-                                </td>
-                            </tr>
-                            </tbody>
-                        </StyledTable>
-                    </LayoutTextSection>
+                                                href={"http://www.bosch-experimente.com"}>Bosch</StyledLink>
+                                </LayoutTextItem>
+                            </LayoutTextSection>
 
+                            <h1><GlitchText text={"Contact"} variant={"color"}/></h1>
+                            <LayoutTextSection>
+                                <LayoutTextItem>
+                                    github
+                                </LayoutTextItem>
 
-                    <h1><GlitchText text={"Interests"} variant={"color"}/></h1>
-                    <LayoutTextSection>
-                        <LayoutTextItem>
-                            <GlitchText text={"Art / Digital Art / Design"} variant={"color"}/>
-                        </LayoutTextItem>
+                                <LayoutTextItem>
+                                    e-mail
+                                </LayoutTextItem>
 
-                        <LayoutTextItem>
-                            <GlitchText text={"Electronic music / Modular synthesizers"} variant={"color"}/>
-                        </LayoutTextItem>
-
-                        <LayoutTextItem>
-                            <GlitchText text={"Live music projects, e.g. synthesizer at my band project"}
-                                        variant={"color"}/>
-                            <StyledLink target={"_blank"} rel="noopener noreferrer"
-                                        href={"http://www.bosch-experimente.com"}>Bosch</StyledLink>
-                        </LayoutTextItem>
-                    </LayoutTextSection>
-
-                    <h1><GlitchText text={"Contact"} variant={"color"}/></h1>
-                    <LayoutTextSection>
-                        <LayoutTextItem>
-                            github
-                        </LayoutTextItem>
-
-                        <LayoutTextItem>
-                            e-mail
-                        </LayoutTextItem>
-
-                        <LayoutTextItem>
-                            LinkedIn
-                        </LayoutTextItem>
-                    </LayoutTextSection>
-                </StyledText>
-            </PageContentLayout>
+                                <LayoutTextItem>
+                                    LinkedIn
+                                </LayoutTextItem>
+                            </LayoutTextSection>
+                        </StyledText>
+                    </PageContentLayout>
+                </DisableUserSelectMobile>
             </PageLoader>
         </StyledRoot>
     );
