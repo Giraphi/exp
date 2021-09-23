@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState} from "react";
 import ThreeSetup from "../../three-setup/three-setup";
 import CameraControlButtons from "../../camera-control-buttons";
 import styled from "styled-components";
@@ -8,6 +8,9 @@ import {motion} from "framer-motion";
 import AboutPageWorld from "./about-page-world";
 import GlitchText from "../skills-page/glitch-text/glitch-text";
 import {LayoutTextItem, LayoutTextSection} from "../../layout/utilities";
+import {useGLTF} from "@react-three/drei";
+import {MeGLTFResult} from "../../models/me-model";
+import PageLoader from "../../page-loader/page-loader";
 
 const StyledRoot = styled(motion.div)`
     min-height: 100vh;
@@ -77,6 +80,9 @@ const StyledLink = styled.a`
 `
 
 export default function AboutPage() {
+    const meGlTf = useGLTF('/exp/models/me.glb') as MeGLTFResult;
+    const [isLoadFinished, setIsLoadFinished] = useState(false);
+
     return (
         <StyledRoot
             initial={{opacity: 0}}
@@ -84,12 +90,16 @@ export default function AboutPage() {
             exit={{opacity: 0}}
             transition={{duration: 1.0}}
         >
+            <PageLoader isLoadFinished={isLoadFinished}>
             <StyledBanner>
                 <ThreeSetup
                     color={"black"}
                     controlButtons={<CameraControlButtons pageVariant={true}/>}
+                    onLoadFinished={() => setIsLoadFinished(true)}
                 >
-                    <AboutPageWorld/>
+                    <AboutPageWorld
+                        meGltf={meGlTf}
+                    />
                 </ThreeSetup>
             </StyledBanner>
 
@@ -184,6 +194,7 @@ export default function AboutPage() {
                     </LayoutTextSection>
                 </StyledText>
             </PageContentLayout>
+            </PageLoader>
         </StyledRoot>
     );
 }

@@ -27,8 +27,6 @@ export default function PageMenu(props: PageMenuProps) {
             ? new Vector3(-windowWidth / 6, 180, 0)
             : new Vector3(-windowWidth / 6, 180, 100);
 
-        // const position = new Vector3(-windowWidth / 6, 180, 0);
-
         const delta = device !== "small"
             ? new Vector3(0,40,0)
             : new Vector3(0,50,0)

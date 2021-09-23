@@ -2,16 +2,21 @@ import React, {Suspense, useState} from "react";
 import {colorAbout} from "../../../style/constants";
 import FlyingPageObjects from "../../flying-page-objects";
 import AboutPageHeadline from "./about-page-headline";
-import ManModel from "../../models/man-model";
 import PageMenu from "../../page-menu";
+import {MeGLTFResult} from "../../models/me-model";
+import AboutPageRotatingMe from "./about-page-rotating-me";
 
-export default function AboutPageWorld() {
+export interface AboutPageWorldProps {
+    meGltf: MeGLTFResult;
+}
+
+export default function AboutPageWorld(props: AboutPageWorldProps) {
     const [isMenuClicked, setIsMenuClicked] = useState(false);
 
     return (
         <>
-            {/*<ambientLight color="white" intensity={0.01}/>*/}
-            {/*<ambientLight color="white" intensity={0.05}/>*/}
+            <ambientLight color="white" intensity={0.01}/>
+            <ambientLight color="white" intensity={0.05}/>
 
             <AboutPageHeadline/>
 
@@ -40,7 +45,7 @@ export default function AboutPageWorld() {
             />
 
             <Suspense fallback={null}>
-                <ManModel/>
+                <AboutPageRotatingMe meGltf={props.meGltf}/>
             </Suspense>
         </>
     );

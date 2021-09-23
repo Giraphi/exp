@@ -1,14 +1,17 @@
 auf jeder page:
 - deutliche links zu den anderen beiden?
-- top menu
+
+top menu:
+mit 2-3 divs die hamburger balken bauen wie auf arte.tv
 
 camera:
-- links/rechts schneller drehen
 - reset-camera button
-- passt nicht auf Phil-Handy: Zu nah
+
+- auf schwachen devices (?): performance verbessern? z.B. Schatten weg?
 
 Layout:
 - layout aufräumen, so konsistent wie möglich
 - Kein links/rechts scrollen auf Phil-Handy
 
-- auf schwachen devices (?): performance verbessern? z.B. Schatten weg?
+About Page:
+- 3D scan von eigenem gesicht!

@@ -40,7 +40,9 @@ export default function PageSwitch() {
                         exact
                         path={["/about"]}
                     >
-                        <AboutPage/>
+                        <Suspense fallback={null}>
+                            <AboutPage/>
+                        </Suspense>
                     </Route>
 
                     <Route
