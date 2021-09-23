@@ -11,7 +11,7 @@ export default function AboutPageRotatingMe(props: AboutPageRotatingMeProps) {
     const modelRef = useRef<Group>(null);
 
     const rotationAngle = useRef(0);
-    const rotationSpeed = -0.5;
+    const rotationSpeed = -0.3;
 
     useFrame((state, delta)  => {
         if (!modelRef || !modelRef.current) {
