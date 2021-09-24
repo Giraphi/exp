@@ -13,13 +13,11 @@ const ButtonSizePx = 60;
 const BarHeightPx = 0.08 * ButtonSizePx;
 const BarSpacePx = 0.07 * ButtonSizePx;
 
-
 const flickerAnimationMixin = css`
     animation-timing-function: step-end;
     animation-duration: ${flickerAnimationDurationMs}ms;
     animation-iteration-count: infinite;
 `
-
 
 const StyledTop = styled.div<{ isHidden: boolean }>`
     position: fixed;
@@ -92,7 +90,7 @@ const StyledMenu = styled.div<{ isMenuOpen: boolean }>`
 
 const StyledLink = styled(Link)<{$isActive: boolean}>`
     font-size: 30px;
-    margin-bottom: 10px;
+    margin-bottom: 20px;
     ${flickerAnimationMixin};
     animation-name: ${whiteToBlackColorKeyframes};
     text-decoration: none;
@@ -132,7 +130,6 @@ export interface TopBarProps {
 export default function TopBar(props: TopBarProps) {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const pathname = useHistory().location.pathname;
-    console.log(pathname);
 
     return (
         <>
