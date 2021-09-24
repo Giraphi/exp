@@ -12,15 +12,15 @@ export const blackToWhiteBackgroundKeyframes = keyframes`
     }
 `
 
-export const whiteToBlackBackgroundKeyframes = keyframes`
+export const whiteToBlackColorKeyframes = keyframes`
     0% {
-        background-color: white;
+        color: white;
     }
     50% {
-        background-color: black;
+        color: black;
     }
     100% {
-        background-color: white;
+        color: white;
     }
 `
 

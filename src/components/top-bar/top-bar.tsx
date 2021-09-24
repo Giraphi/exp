@@ -1,14 +1,14 @@
-import React, {useState} from "react";
+import React, {useContext, useState} from "react";
 import styled, {css} from "styled-components";
 import {
     blackToWhiteBackgroundKeyframes,
     hideMenuKeyframes,
-    showMenuKeyframes,
-    whiteToBlackBackgroundKeyframes
+    showMenuKeyframes, whiteToBlackColorKeyframes,
 } from "./top-bar-keyframes";
-import {zIndexes} from "../../style/constants";
+import {breakpointSmall, zIndexes} from "../../style/constants";
+import {Link, useHistory} from "react-router-dom";
 
-const flickerAnimationDurationMs = 2000;
+const flickerAnimationDurationMs = 1000;
 const ButtonSizePx = 60;
 const BarHeightPx = 0.08 * ButtonSizePx;
 const BarSpacePx = 0.07 * ButtonSizePx;
@@ -30,23 +30,20 @@ const StyledTop = styled.div<{ isHidden: boolean }>`
     transition: opacity 0.2s linear;
     display: flex;
     cursor: pointer;
-
-    ${props => props.isHidden && css`
-        opacity: 0;
-        z-index: ${zIndexes.topBarTopHidden};
-    `}
+    mix-blend-mode: difference;
+    //
+    // ${props => props.isHidden && css`
+    //     opacity: 0;
+    //     z-index: ${zIndexes.topBarTopHidden};
+    // `}
 `;
 
 const StyledBar = styled.div`
     height: ${BarHeightPx}px;
     margin-left: 20%;
     margin-right: 20%;
-    background-color: white;
+    background-color: black;
     transition: transform 0.4s ease-in;
-
-    ${flickerAnimationMixin};
-    ${flickerAnimationMixin};
-    animation-name: ${whiteToBlackBackgroundKeyframes};
 `;
 
 const StyledButton = styled.div<{ isMenuOpen: boolean }>`
@@ -55,11 +52,7 @@ const StyledButton = styled.div<{ isMenuOpen: boolean }>`
     display: flex;
     flex-direction: column;
     justify-content: center;
-    background-color: black;
-
-    ${flickerAnimationMixin};
-    animation-name: ${blackToWhiteBackgroundKeyframes};
-
+    background-color: white;
 
     ${StyledBar}:first-child {
         margin-bottom: ${BarSpacePx}px;
@@ -102,11 +95,39 @@ const StyledMenu = styled.div<{ isMenuOpen: boolean }>`
     `}    
 `
 
+const StyledLink = styled(Link)<{$isActive: boolean}>`
+    font-size: 30px;
+    margin-bottom: 10px;
+    ${flickerAnimationMixin};
+    animation-name: ${whiteToBlackColorKeyframes};
+    text-decoration: none;
+    
+    @media(min-width: ${breakpointSmall}) {
+        font-size: 8vh;
+        margin-bottom: 2vh;
+    }
+    
+    &:hover {
+        color: red !important;
+    }
+    
+    ${props => props.$isActive && css`
+        color: red !important;
+        cursor: default;
+        pointer-events: none;
+    `}
+`;
+
 const StyledInnerMenu = styled.div`
     width: 100%;
     height: 100%;
     ${flickerAnimationMixin};
     animation-name: ${blackToWhiteBackgroundKeyframes};
+    
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 `
 
 export interface TopBarProps {
@@ -115,6 +136,8 @@ export interface TopBarProps {
 
 export default function TopBar(props: TopBarProps) {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
+    const pathname = useHistory().location.pathname;
+    console.log(pathname);
 
     return (
         <>
@@ -129,7 +152,20 @@ export default function TopBar(props: TopBarProps) {
 
             </StyledTop>
             <StyledMenu isMenuOpen={isMenuOpen}>
-                <StyledInnerMenu/>
+                <StyledInnerMenu>
+                    <StyledLink to={"/"} $isActive={pathname === "/"}>
+                        Back Home
+                    </StyledLink>
+                    <StyledLink to={"skills"} $isActive={pathname === "/skills"}>
+                        Skills
+                    </StyledLink>
+                    <StyledLink to={"work"} $isActive={pathname === "/work"}>
+                        Work
+                    </StyledLink>
+                    <StyledLink to={"about"} $isActive={pathname === "/about"}>
+                        About Me
+                    </StyledLink>
+                </StyledInnerMenu>
             </StyledMenu>
         </>
     );
