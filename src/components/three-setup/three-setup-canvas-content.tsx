@@ -20,13 +20,14 @@ export default function ThreeSetupCanvasContent(props: ThreeSetupCanvasContentPr
         gl.setPixelRatio(window.devicePixelRatio)
     }, [gl]);
 
-    useFrame(() => {
+    useFrame((state, delta) => {
         if (isReady || !props.onLoadFinished) {
             return;
         }
 
-        frameCountRef.current += 1;
-        if ((frameCountRef.current) > 20) {
+        const fps = delta ? 1/delta : 0;
+
+        if (fps > 20) {
             setIsReady(true);
             props.onLoadFinished();
         }

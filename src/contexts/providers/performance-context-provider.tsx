@@ -10,7 +10,6 @@ export default function PerformanceContextProvider(props: PerformanceContextProv
     const [performance, setPerformance] = useState<number>(Performances.high);
     const [numSet, setNumSet] = useState(0);
 
-    console.log(performance);
 
     function setPerformanceByFps(fps: number) {
         switch (performance) {
@@ -44,7 +43,7 @@ export default function PerformanceContextProvider(props: PerformanceContextProv
     const frameCounter = useRef(0);
     const fpsCounter = useRef(0);
     useFrame((state, delta) => {
-        const fps = 1 / delta;
+        const fps = delta ? 1 / delta : 0;
         frameCounter.current++;
         fpsCounter.current += fps;
 
