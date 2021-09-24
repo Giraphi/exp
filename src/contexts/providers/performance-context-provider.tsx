@@ -8,62 +8,41 @@ export interface PerformanceContextProviderProps {
 
 export default function PerformanceContextProvider(props: PerformanceContextProviderProps) {
     const [performance, setPerformance] = useState<number>(Performances.high);
-    const [numSet, setNumSet] = useState(0);
-
+    // const [numSet, setNumSet] = useState(0);
+    const [isSet, setIsSet] = useState(false);
 
     function setPerformanceByFps(fps: number) {
-        switch (performance) {
-            case Performances.high:
-                if (fps > 50) {
-                    break;
-                }
-                setPerformance(Performances.medium);
-                break;
-            case Performances.medium:
-                if (fps > 58) {
-                    setPerformance(Performances.high);
-                    break;
-                }
-                if (fps > 30) {
-                    break;
-                }
-                setPerformance(Performances.low);
-                break;
-            case Performances.low:
-                if (fps > 58) {
-                    setPerformance(Performances.medium);
-                    break;
-                }
-                break;
-            default:
-                throw new Error(`Unsupported Performance ${performance}`)
+        if (fps < 25) {
+            setPerformance(Performances.low)
+            return;
         }
+        if (fps < 50) {
+            setPerformance(Performances.medium)
+            return;
+        }
+
+        setPerformance(Performances.high)
     }
 
     const frameCounter = useRef(0);
     const fpsCounter = useRef(0);
     useFrame((state, delta) => {
+        if (isSet) {
+            return;
+        }
+
         const fps = delta ? 1 / delta : 0;
+        console.log(fps);
         frameCounter.current++;
         fpsCounter.current += fps;
 
-        console.log(fps);
-
-        if (numSet < 5) {
-            setNumSet(x => x + 1);
-            setPerformanceByFps(fps);
-            return;
-        }
-
-        if (frameCounter.current < 10) {
-            return;
-        }
-
         const averageFps = fpsCounter.current / frameCounter.current;
-        frameCounter.current = 0;
-        fpsCounter.current = 0;
 
-        setPerformanceByFps(averageFps);
+        if (frameCounter.current > 10) {
+            console.log(averageFps);
+            setPerformanceByFps(averageFps);
+            setIsSet(true);
+        }
     });
 
     return (
