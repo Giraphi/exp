@@ -22,7 +22,7 @@ import Funct2 from "./slider-images/funct2.png"
 
 import WorkPageImageSlider from "./work-page-image-slider";
 import useDevice from "../../../hooks/use-device";
-import DisableUserSelectMobile from "../../disable-user-select-mobile";
+import Page from "../../page";
 
 
 const StyledRoot = styled(motion.div)`
@@ -124,7 +124,7 @@ export default function WorkPage() {
             }}
         >
             <PageLoader isLoadFinished={isLoadFinished}>
-                <DisableUserSelectMobile>
+                <Page>
                     <StyledBanner>
                         <ThreeSetup
                             color={"black"}
@@ -189,7 +189,7 @@ export default function WorkPage() {
                             />
                         </StyledSliderRow>
                     </PageContentLayout>
-                </DisableUserSelectMobile>
+                </Page>
             </PageLoader>
         </StyledRoot>
     );

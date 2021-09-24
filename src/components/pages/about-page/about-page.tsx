@@ -11,7 +11,7 @@ import {LayoutTextItem, LayoutTextSection} from "../../layout/utilities";
 import {useGLTF} from "@react-three/drei";
 import {MeGLTFResult} from "../../models/me-model";
 import PageLoader from "../../page-loader/page-loader";
-import DisableUserSelectMobile from "../../disable-user-select-mobile";
+import Page from "../../page";
 
 const StyledRoot = styled(motion.div)`
     min-height: 100vh;
@@ -92,7 +92,7 @@ export default function AboutPage() {
             transition={{duration: 1.0}}
         >
             <PageLoader isLoadFinished={isLoadFinished}>
-                <DisableUserSelectMobile>
+                <Page>
                     <StyledBanner>
                         <ThreeSetup
                             color={"black"}
@@ -198,7 +198,7 @@ export default function AboutPage() {
                             </LayoutTextSection>
                         </StyledText>
                     </PageContentLayout>
-                </DisableUserSelectMobile>
+                </Page>
             </PageLoader>
         </StyledRoot>
     );

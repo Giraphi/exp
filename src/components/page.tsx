@@ -1,6 +1,7 @@
 import React, {useLayoutEffect, useRef, useState} from "react";
 import styled, {css} from "styled-components";
 import useDevice from "../hooks/use-device";
+import TopBar from "./top-bar";
 
 const StyledRoot = styled.div<{isMobileTop: boolean}>`
     ${props => props.isMobileTop && css`
@@ -8,20 +9,16 @@ const StyledRoot = styled.div<{isMobileTop: boolean}>`
     `}
 `
 
-export interface DisableUserSelectMobileProps {
+export interface PageProps {
     children: React.ReactNode;
 }
 
-export default function DisableUserSelectMobile(props: DisableUserSelectMobileProps) {
+export default function Page(props: PageProps) {
     const device = useDevice();
     const timeout = useRef<NodeJS.Timeout>();
-    const [isMobileTop, setIsMobileTop] = useState(true);
+    const [isTop, setIsTop] = useState(true);
 
     useLayoutEffect(() => {
-        if (device !== "small") {
-            setIsMobileTop(false);
-            return;
-        }
         onScroll();
 
         function onScroll() {
@@ -30,7 +27,7 @@ export default function DisableUserSelectMobile(props: DisableUserSelectMobilePr
             }
 
             timeout.current = setTimeout(() => {
-                window.scrollY < 50 ? setIsMobileTop(true) : setIsMobileTop(false);
+                window.scrollY < 80 ? setIsTop(true) : setIsTop(false);
             }, 20);
         }
 
@@ -39,7 +36,8 @@ export default function DisableUserSelectMobile(props: DisableUserSelectMobilePr
     }, [device]);
 
     return (
-        <StyledRoot isMobileTop={isMobileTop}>
+        <StyledRoot isMobileTop={isTop && device === "small"}>
+            <TopBar isHidden={isTop}/>
             {props.children}
         </StyledRoot>
     );

@@ -12,7 +12,7 @@ import {useGLTF} from "@react-three/drei";
 import {EyeGLTFResult} from "../../models/eye-model";
 import SmallEye from "./small-eye";
 import {LayoutTextItem, LayoutTextSection} from "../../layout/utilities";
-import DisableUserSelectMobile from "../../disable-user-select-mobile";
+import Page from "../../page";
 
 const StyledRoot = styled(motion.div)`
     min-height: 100vh;
@@ -76,8 +76,7 @@ export default function SkillsPage() {
             }}
         >
             <PageLoader isLoadFinished={isLoadFinished}>
-                {/*<TopBar/>*/}
-                <DisableUserSelectMobile>
+                <Page>
                     <StyledBanner>
                         <ThreeSetup
                             color={"white"}
@@ -222,7 +221,7 @@ export default function SkillsPage() {
                         </StyledEyeContainer>
 
                     </StyledContent>
-                </DisableUserSelectMobile>
+                </Page>
             </PageLoader>
         </StyledRoot>
     );
