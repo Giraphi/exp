@@ -1,9 +1,9 @@
 import React, {useContext, useMemo, useState} from "react";
-import Lightbulb from "./lightbulb";
 import {Vector3} from "three/src/math/Vector3";
 import useDevice from "../hooks/use-device";
 import useWindowWidth from "../hooks/use-window-width";
 import {HistoryContext} from "../contexts/history-context";
+import Lightbulb from "./lightbulb";
 
 export interface PageMenuProps {
     onClick: () => void;
@@ -23,13 +23,13 @@ export default function PageMenu(props: PageMenuProps) {
     const initialPathname = useState(location.pathname)[0];
 
     const itemDescriptions: ItemDescription[] = useMemo(() => {
-        const position =  device !== "small"
+        const position = device !== "small"
             ? new Vector3(-windowWidth / 6, 180, 0)
             : new Vector3(-120, 180, 100);
 
         const delta = device !== "small"
-            ? new Vector3(0,40,0)
-            : new Vector3(0,50,0)
+            ? new Vector3(0, 40, 0)
+            : new Vector3(0, 50, 0)
         const positionCounter = position.clone();
 
         const items: ItemDescription[] = [
@@ -40,41 +40,36 @@ export default function PageMenu(props: PageMenuProps) {
             }
         ];
 
-        if (initialPathname !== "/skills") {
-            positionCounter.sub(delta);
-            items.push({
-                text: "Skills",
-                path: "/skills",
-                position: positionCounter.clone(),
-            });
-        }
+        positionCounter.sub(delta);
+        items.push({
+            text: "Work",
+            path: "/work",
+            position: positionCounter.clone(),
+        });
 
-        if (initialPathname !== "/work") {
-            positionCounter.sub(delta);
-            items.push({
-                text: "Work",
-                path: "/work",
-                position: positionCounter.clone(),
-            });
-        }
+        positionCounter.sub(delta);
+        items.push({
+            text: "Skills",
+            path: "/skills",
+            position: positionCounter.clone(),
+        });
 
-        if (initialPathname !== "/about") {
-            positionCounter.sub(delta);
-            items.push({
-                text: "About Me",
-                path: "/about",
-                position: positionCounter.clone(),
-            });
-        }
+        positionCounter.sub(delta);
+        items.push({
+            text: "About Me",
+            path: "/about",
+            position: positionCounter.clone(),
+        });
 
         return items
 
-    }, [device, initialPathname, windowWidth]);
+    }, [device, windowWidth]);
 
     return (
         <>
             {itemDescriptions.map(itemDescription =>
                 <Lightbulb
+                    isActive={initialPathname === itemDescription.path}
                     key={itemDescription.path}
                     position={itemDescription.position}
                     text={itemDescription.text}

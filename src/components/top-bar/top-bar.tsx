@@ -1,4 +1,4 @@
-import React, {useContext, useState} from "react";
+import React, {useState} from "react";
 import styled, {css} from "styled-components";
 import {
     blackToWhiteBackgroundKeyframes,
@@ -31,11 +31,6 @@ const StyledTop = styled.div<{ isHidden: boolean }>`
     display: flex;
     cursor: pointer;
     mix-blend-mode: difference;
-    //
-    // ${props => props.isHidden && css`
-    //     opacity: 0;
-    //     z-index: ${zIndexes.topBarTopHidden};
-    // `}
 `;
 
 const StyledBar = styled.div`
@@ -156,11 +151,11 @@ export default function TopBar(props: TopBarProps) {
                     <StyledLink to={"/"} $isActive={pathname === "/"}>
                         Back Home
                     </StyledLink>
-                    <StyledLink to={"skills"} $isActive={pathname === "/skills"}>
-                        Skills
-                    </StyledLink>
                     <StyledLink to={"work"} $isActive={pathname === "/work"}>
                         Work
+                    </StyledLink>
+                    <StyledLink to={"skills"} $isActive={pathname === "/skills"}>
+                        Skills
                     </StyledLink>
                     <StyledLink to={"about"} $isActive={pathname === "/about"}>
                         About Me

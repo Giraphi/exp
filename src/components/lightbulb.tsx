@@ -31,16 +31,6 @@ export interface LightParams {
     decay: number;
 }
 
-export interface Lightbulb {
-    position: Vector3;
-    text: string;
-    height: number;
-    onClick: () => void;
-    path: string;
-    horizontal?: boolean;
-    lightParams?: { inner?: Partial<LightParams>, outer?: Partial<LightParams> }
-    negative?: boolean;
-}
 
 const DefaultLightParams = {
     outer: {
@@ -55,7 +45,19 @@ const DefaultLightParams = {
     }
 }
 
-export default function Lightbulb(props: Lightbulb) {
+export interface LightbulbProps {
+    position: Vector3;
+    text: string;
+    height: number;
+    onClick: () => void;
+    path: string;
+    isActive?: boolean;
+    horizontal?: boolean;
+    lightParams?: { inner?: Partial<LightParams>, outer?: Partial<LightParams> }
+    negative?: boolean;
+}
+
+export default function Lightbulb(props: LightbulbProps) {
     const [colors, setColors] = useState(props.negative ? COLORS_NEGATIVE : COLORS);
     const lightRef = useRef<PointLight>(null);
     const lowLightRef = useRef<PointLight>(null);
@@ -67,6 +69,14 @@ export default function Lightbulb(props: Lightbulb) {
     useEffect(() => {
         return () => {document.body.style.cursor = ""};
     }, [])
+
+    useEffect(() => {
+        if (props.isActive) {
+            setColors(COLORS_HOVER);
+            return
+        }
+        props.negative ? setColors(COLORS_NEGATIVE) : setColors(COLORS);
+    }, [props.isActive, props.negative])
 
     const lightParams = useMemo(() => {
         return {
@@ -84,12 +94,19 @@ export default function Lightbulb(props: Lightbulb) {
     }, [props.position]);
 
     function onPointerOver() {
+        if (props.isActive) {
+            return;
+        }
         setColors(COLORS_HOVER);
         document.body.style.cursor = "pointer";
     }
 
     function onPointerOut() {
         document.body.style.cursor = "";
+        if (props.isActive) {
+            return;
+        }
+
         if (isClicked) {
             return;
         }
@@ -97,6 +114,10 @@ export default function Lightbulb(props: Lightbulb) {
     }
 
     function onClick() {
+        if (props.isActive) {
+            return;
+        }
+
         setColors(COLORS_HOVER);
         setIsClicked(isClicked => !isClicked);
         props.onClick();
