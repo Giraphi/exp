@@ -1,6 +1,7 @@
 import React from "react";
 import styled, {css} from "styled-components";
 import PageLoaderLoader from "./page-loader-loader";
+import {zIndexes} from "../../style/constants";
 
 const StyledOverlay = styled.div`
     width: 100%;
@@ -8,7 +9,7 @@ const StyledOverlay = styled.div`
     background-color: white;
     position: absolute;
     top: 0;
-    z-index: 99;
+    z-index: ${zIndexes.pageLoader};
     display: flex;
     align-items: center;
     justify-content: center;

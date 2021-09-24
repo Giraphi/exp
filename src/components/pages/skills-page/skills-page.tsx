@@ -5,7 +5,7 @@ import CameraControlButtons from "../../camera-control-buttons";
 import SkillsPageWorld from "./skills-page-world";
 import PageContentLayout from "../../layout/page-content-layout";
 import {motion, useMotionTemplate, useTransform, useViewportScroll} from "framer-motion";
-import {breakpointSmall} from "../../../style/constants";
+import {breakpointSmall, zIndexes} from "../../../style/constants";
 import GlitchText from "./glitch-text/glitch-text";
 import PageLoader from "../../page-loader/page-loader";
 import {useGLTF} from "@react-three/drei";
@@ -40,7 +40,7 @@ const StyledText = styled.div`
     color: black;
     margin-bottom: 75px;
     position: relative;
-    z-index: 10;
+    z-index: ${zIndexes.skillsPageText};
 
     @media (min-width: 768px) {
         margin-top: 10px;

@@ -10,3 +10,18 @@ export const colorSkills = blue;
 export const colorWork = "red";
 
 export const breakpointSmall = "768px";
+
+
+
+export const zIndexes = {
+    startPageHeadline: 1,
+    skillsPageText: 10,
+    pageLoader: 99,
+    clipPathAnimationItemTop: 1,
+    clipPathDummy: -1,
+    imageSliderOverlay: 30,
+
+    topBarTopHidden: -1,
+    topBarMenu: 35,
+    topBarTop: 40,
+}

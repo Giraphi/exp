@@ -2,7 +2,7 @@ import React, {useEffect, useState} from "react";
 
 import styled, {css} from "styled-components";
 import {ArrowPinkUp, ArrowPinkUpFilled} from "../../../images/svg-strings";
-import {breakpointSmall} from "../../../style/constants";
+import {breakpointSmall, zIndexes} from "../../../style/constants";
 import ClipPathAnimation from "./clip-path-animation/clip-path-animation";
 import ClipPathAnimationItem from "./clip-path-animation/clip-path-animation-item";
 import {ClipPathAnimationContext} from "./clip-path-animation/clip-path-animation-context";
@@ -24,7 +24,7 @@ const StyledOverlay = styled.div`
     height: 100%;
     display: flex;
     cursor: pointer;
-    z-index: 30;
+    z-index: ${zIndexes.imageSliderOverlay};
 `
 
 const StyledArrow = styled.div`

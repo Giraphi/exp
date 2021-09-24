@@ -4,7 +4,7 @@ import StartPageWorld from "./start-page-world";
 import CameraControlButtons from "../../camera-control-buttons";
 import styled from "styled-components";
 import {motion} from "framer-motion";
-import {breakpointSmall} from "../../../style/constants";
+import {breakpointSmall, zIndexes} from "../../../style/constants";
 
 const StyledRoot = styled(motion.div)`
     height: 100vh;
@@ -21,7 +21,7 @@ const StyledHeadlineContainer = styled.div`
     position: absolute;
     top: 0;
     color: white;
-    z-index: 1;
+    z-index: ${zIndexes.startPageHeadline};
     padding-left: 2vh;
     padding-top: 2vh;
 `

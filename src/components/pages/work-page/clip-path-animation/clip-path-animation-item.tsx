@@ -8,6 +8,7 @@ import {
     showKeyframesOdd
 } from "./clip-path-animation-keyframes";
 import {ClipPathAnimationContext} from "./clip-path-animation-context";
+import {zIndexes} from "../../../../style/constants";
 
 const easeFunction = css`cubic-bezier(.53, 0, .3, 1)`;
 
@@ -33,7 +34,7 @@ const StyledRoot = styled.div<{ isActive: boolean, isOnTop: boolean, oddAnimatio
     animation-duration: ${animationDurationMs}ms;
 
     ${props => props.isOnTop && css`
-        z-index: 1;
+        z-index: ${zIndexes.clipPathAnimationItemTop};
     `}
 
     ${props => !props.isActive && props.width && css`
@@ -63,7 +64,7 @@ const StyledRoot = styled.div<{ isActive: boolean, isOnTop: boolean, oddAnimatio
 
 const StyledDimensionsDummy = styled.div`
     position: absolute;
-    z-index: -1;
+    z-index: ${zIndexes.clipPathDummy};
     width: 100%;
     height: 100%;
     top: 0;

@@ -6,6 +6,7 @@ import {
     showMenuKeyframes,
     whiteToBlackBackgroundKeyframes
 } from "./top-bar-keyframes";
+import {zIndexes} from "../../style/constants";
 
 const flickerAnimationDurationMs = 2000;
 const ButtonSizePx = 60;
@@ -24,7 +25,7 @@ const StyledTop = styled.div<{ isHidden: boolean }>`
     position: fixed;
     top: 0;
     right: 0;
-    z-index: 20;
+    z-index: ${zIndexes.topBarTop};
     opacity: 1;
     transition: opacity 0.2s linear;
     display: flex;
@@ -32,7 +33,7 @@ const StyledTop = styled.div<{ isHidden: boolean }>`
 
     ${props => props.isHidden && css`
         opacity: 0;
-        z-index: -1;
+        z-index: ${zIndexes.topBarTopHidden};
     `}
 `;
 
@@ -55,7 +56,6 @@ const StyledButton = styled.div<{ isMenuOpen: boolean }>`
     flex-direction: column;
     justify-content: center;
     background-color: black;
-    z-index: 30;
 
     ${flickerAnimationMixin};
     animation-name: ${blackToWhiteBackgroundKeyframes};
@@ -82,7 +82,7 @@ const StyledMenu = styled.div<{ isMenuOpen: boolean }>`
     
     position: fixed;
     top: 0;
-    z-index: 15;
+    z-index: ${zIndexes.topBarMenu};
     
     visibility: hidden;
     background-color: black;
