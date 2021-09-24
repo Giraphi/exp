@@ -42,15 +42,15 @@ export default function PageMenu(props: PageMenuProps) {
 
         positionCounter.sub(delta);
         items.push({
-            text: "Work",
-            path: "/work",
+            text: "Skills",
+            path: "/skills",
             position: positionCounter.clone(),
         });
 
         positionCounter.sub(delta);
         items.push({
-            text: "Skills",
-            path: "/skills",
+            text: "Work",
+            path: "/work",
             position: positionCounter.clone(),
         });
 

@@ -185,7 +185,7 @@ export default function SkillsPage() {
                             />
                         </StyledEyeContainer>
 
-                        <StyledEyeContainer top={"30%"} left={"90%"}>
+                        <StyledEyeContainer top={"30%"} left={"80%"}>
                             <SmallEye
                                 z={-400}
                                 gltf={eyeGlTf}
@@ -213,7 +213,7 @@ export default function SkillsPage() {
                             />
                         </StyledEyeContainer>
 
-                        <StyledEyeContainer top={"90%"} left={"85%"}>
+                        <StyledEyeContainer top={"90%"} left={"75%"}>
                             <SmallEye
                                 gltf={eyeGlTf}
                                 z={-300}

@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import styled, {css} from "styled-components";
 import {
     blackToWhiteBackgroundKeyframes,
@@ -13,7 +13,7 @@ const ButtonSizePx = 60;
 const BarHeightPx = 0.08 * ButtonSizePx;
 const BarSpacePx = 0.07 * ButtonSizePx;
 
-const ButtonSizeSmPx = 45;
+const ButtonSizeSmPx = 50;
 const BarHeightSmPx = 0.08 * ButtonSizeSmPx;
 const BarSpaceSmPx = 0.07 * ButtonSizeSmPx;
 
@@ -161,11 +161,30 @@ export default function TopBar(props: TopBarProps) {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const pathname = useHistory().location.pathname;
 
+    function onClick() {
+        if (isMenuOpen) {
+            setIsMenuOpen(false);
+            document.body.style.overflow = "";
+            return;
+        }
+
+        setIsMenuOpen(true);
+        document.body.style.overflow = "hidden"
+    }
+
+    useEffect(() => {
+        return () => {document.body.style.overflow = ""}
+    }, [])
+
+    function onLinkClick() {
+        document.body.style.overflow = "";
+    }
+
     return (
         <>
             <StyledTop
                 isHidden={props.isScrolledToTop && !isMenuOpen}
-                onClick={() => setIsMenuOpen(x => !x)}
+                onClick={onClick}
             >
                 <StyledButton isMenuOpen={isMenuOpen}>
                     <StyledBar/>
@@ -175,14 +194,14 @@ export default function TopBar(props: TopBarProps) {
             </StyledTop>
             <StyledMenu isMenuOpen={isMenuOpen}>
                 <StyledInnerMenu>
-                    <StyledLink to={"/"} $isActive={pathname === "/"}>
+                    <StyledLink to={"/"} $isActive={pathname === "/"} onClick={onLinkClick}>
                         Back Home
-                    </StyledLink>
-                    <StyledLink to={"work"} $isActive={pathname === "/work"}>
-                        Work
                     </StyledLink>
                     <StyledLink to={"skills"} $isActive={pathname === "/skills"}>
                         Skills
+                    </StyledLink>
+                    <StyledLink to={"work"} $isActive={pathname === "/work"}>
+                        Work
                     </StyledLink>
                     <StyledLink to={"about"} $isActive={pathname === "/about"}>
                         About Me

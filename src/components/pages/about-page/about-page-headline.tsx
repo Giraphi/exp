@@ -18,7 +18,7 @@ export default function AboutPageHeadline() {
                     position={[0,30,300]}
                     rotation={[-0.2, -0.07, -0.03]}
                 >
-                    Résumé
+                    About Me
                 </Text>
             }
             {deviceId === "small" &&
@@ -30,7 +30,7 @@ export default function AboutPageHeadline() {
                     position={[0,50,300]}
                     rotation={[-0.3, -0.07, -0.03]}
                 >
-                    Résumé
+                    About Me
                 </Text>
             }
         </>

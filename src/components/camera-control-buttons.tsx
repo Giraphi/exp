@@ -277,10 +277,10 @@ export default function CameraControlButtons(props: CameraControlButtonsProps) {
 
 
             {!props.pageVariant &&
-            <StyledText>
-                Click the arrows to fly <br/>
-                {"Or use W, A, S, D on your keyboard"}
-            </StyledText>
+                <StyledText>
+                    Click the arrows to fly <br/>
+                    {"Or use W, A, S, D on your keyboard"}
+                </StyledText>
             }
         </StyledRoot>
     );

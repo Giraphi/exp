@@ -28,7 +28,7 @@ export default function Page(props: PageProps) {
 
             timeout.current = setTimeout(() => {
                 window.scrollY < 80 ? setIsTop(true) : setIsTop(false);
-            }, 20);
+            }, 10);
         }
 
         document.addEventListener("scroll", onScroll)
