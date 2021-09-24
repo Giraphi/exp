@@ -1,4 +1,4 @@
-import React, {Suspense, useState} from "react";
+import React, {Suspense, useContext, useState} from "react";
 import {colorSkills} from "../../../style/constants";
 import SkillsPageHeadline from "./skills-page-headline";
 import MovingEye from "./moving-eye";
@@ -6,6 +6,7 @@ import FlyingPageObjects from "../../flying-page-objects";
 import PageMenu from "../../page-menu";
 import useDevice from "../../../hooks/use-device";
 import {EyeGLTFResult} from "../../models/eye-model";
+import {PerformanceContext, Performances} from "../../../contexts/performance-context";
 
 export interface SkillsPageWorldProps {
     eyeGltf: EyeGLTFResult;
@@ -14,6 +15,7 @@ export interface SkillsPageWorldProps {
 export default function SkillsPageWorld(props: SkillsPageWorldProps) {
     const [isMenuClicked, setIsMenuClicked] = useState(false);
     const device = useDevice();
+    const performance = useContext(PerformanceContext).performance;
 
     return (
         <>
@@ -31,7 +33,7 @@ export default function SkillsPageWorld(props: SkillsPageWorldProps) {
                     distance={1200}
                     decay={1}
                     position={[420, 1000, 40]}
-                    castShadow={true}
+                    castShadow={performance >= Performances.high}
                 >
                 </pointLight>
 
@@ -41,27 +43,29 @@ export default function SkillsPageWorld(props: SkillsPageWorldProps) {
                     distance={500}
                     decay={1}
                     position={[0, 0, 0]}
-                    castShadow={true}
+                    castShadow={performance >= Performances.high}
                 >
                 </pointLight>
 
                 <group
                     position={device === "small" ? [0,60,-200] : [0,30, -200]}
                 >
-                    <FlyingPageObjects
-                        numObjects={150}
-                        worldSize={1000}
-                        lift={isMenuClicked}
-                    >
-                        <meshStandardMaterial
-                            attach="material"
-                            color="white"
-                        />
-                        <sphereGeometry
-                            attach="geometry"
-                            args={[5, 32, 32]}
-                        />
-                    </FlyingPageObjects>
+                    {performance >= Performances.high &&
+                        <FlyingPageObjects
+                            numObjects={150}
+                            worldSize={1000}
+                            lift={isMenuClicked}
+                        >
+                            <meshStandardMaterial
+                                attach="material"
+                                color="white"
+                            />
+                            <sphereGeometry
+                                attach="geometry"
+                                args={[5, 32, 32]}
+                            />
+                        </FlyingPageObjects>
+                    }
                 </group>
 
                 <Suspense fallback={null}>

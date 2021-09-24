@@ -7,6 +7,7 @@ import {Vector3} from "three/src/math/Vector3";
 import {HistoryContext} from "../contexts/history-context";
 import {Text} from "@react-three/drei";
 import auvantGothic from "../fonts/OPTIAuvantGothic-Bold.woff";
+import {PerformanceContext, Performances} from "../contexts/performance-context";
 
 const LOW_LIGHT_OFFSET = 30;
 
@@ -65,6 +66,7 @@ export default function Lightbulb(props: LightbulbProps) {
     const lightPositionY = props.height * 0.8;
     const [isClicked, setIsClicked] = useState(false);
     const history = useContext(HistoryContext).history;
+    const performance = useContext(PerformanceContext).performance
 
     useEffect(() => {
         return () => {document.body.style.cursor = ""};
@@ -135,7 +137,7 @@ export default function Lightbulb(props: LightbulbProps) {
                 distance={lightParams.outer.distance}
                 decay={lightParams.outer.decay}
                 position={lowLightPosition}
-                castShadow={true}
+                castShadow={performance >= Performances.medium}
                 rotation={props.horizontal ? [0, 0, Math.PI / 2] : undefined}
             >
                 <pointLight
@@ -145,7 +147,7 @@ export default function Lightbulb(props: LightbulbProps) {
                     distance={lightParams.inner.distance}
                     decay={lightParams.inner.decay}
                     position={[0, lightPositionY - LOW_LIGHT_OFFSET, 0]}
-                    castShadow={true}
+                    castShadow={performance >= Performances.medium}
                 >
                     <group
                         ref={groupRef}

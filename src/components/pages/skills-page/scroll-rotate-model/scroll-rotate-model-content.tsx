@@ -1,8 +1,9 @@
-import React, {useLayoutEffect, useMemo, useRef, useState} from "react";
+import React, {useContext, useLayoutEffect, useMemo, useRef, useState} from "react";
 import EyeModel, {EyeGLTFResult} from "../../../models/eye-model";
 import {PerspectiveCamera} from "three";
 import {useFrame, useThree} from "@react-three/fiber";
 import {MotionValue} from "framer-motion";
+import {PerformanceContext, Performances} from "../../../../contexts/performance-context";
 
 export interface ScrollRotateModelContentProps {
     z: number;
@@ -15,6 +16,7 @@ export default function ScrollRotateModelContent(props: ScrollRotateModelContent
     const set = useThree(state => state.set);
     const size = useThree(state => state.size);
     const [rotation, setRotation] = useState(0);
+    const performance = useContext(PerformanceContext).performance
 
     const random = useMemo(() => {
         function getRandom(min: number, max: number) {
@@ -52,7 +54,7 @@ export default function ScrollRotateModelContent(props: ScrollRotateModelContent
                 distance={500}
                 decay={1}
                 position={[100, 150, -100]}
-                castShadow={true}
+                castShadow={performance >= Performances.high}
             />
 
             <group
