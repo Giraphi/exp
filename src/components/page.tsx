@@ -1,7 +1,7 @@
 import React, {useLayoutEffect, useRef, useState} from "react";
 import styled, {css} from "styled-components";
 import useDevice from "../hooks/use-device";
-import TopBar from "./top-bar";
+import TopBar from "./top-bar/top-bar";
 
 const StyledRoot = styled.div<{isMobileTop: boolean}>`
     ${props => props.isMobileTop && css`
@@ -37,7 +37,7 @@ export default function Page(props: PageProps) {
 
     return (
         <StyledRoot isMobileTop={isTop && device === "small"}>
-            <TopBar isHidden={isTop}/>
+            <TopBar isScrolledToTop={isTop}/>
             {props.children}
         </StyledRoot>
     );
