@@ -5,7 +5,6 @@ import AboutPageHeadline from "./about-page-headline";
 import PageMenu from "../../page-menu";
 import {MeGLTFResult} from "../../models/me-model";
 import AboutPageRotatingMe from "./about-page-rotating-me";
-import {PerformanceContext, Performances} from "../../../contexts/performance-context";
 
 export interface AboutPageWorldProps {
     meGltf: MeGLTFResult;
@@ -13,7 +12,6 @@ export interface AboutPageWorldProps {
 
 export default function AboutPageWorld(props: AboutPageWorldProps) {
     const [isMenuClicked, setIsMenuClicked] = useState(false);
-    const performance = useContext(PerformanceContext).performance;
 
     return (
         <>
@@ -28,11 +26,10 @@ export default function AboutPageWorld(props: AboutPageWorldProps) {
                 distance={1000}
                 decay={1}
                 position={[420, 1000, 40]}
-                castShadow={performance >= Performances.high}
+                castShadow={true}
             >
             </pointLight>
 
-            {performance >= Performances.high &&
             <FlyingPageObjects
                 numObjects={30}
                 worldSize={1000}
@@ -46,7 +43,6 @@ export default function AboutPageWorld(props: AboutPageWorldProps) {
                     args={[20, 20, 20]}
                 />
             </FlyingPageObjects>
-            }
 
             <PageMenu
                 onClick={() => setIsMenuClicked(true)}

@@ -1,9 +1,8 @@
-import React, {useContext, useEffect, useLayoutEffect, useRef, useState} from "react";
+import React, {useEffect, useLayoutEffect, useRef, useState} from "react";
 import {BufferGeometry, InstancedMesh, Matrix4, MeshStandardMaterial} from "three";
 import useRandomGenerator from "../../../hooks/use-random";
 import {useFrame} from "@react-three/fiber";
 import {Vector3} from "three/src/math/Vector3";
-import {PerformanceContext, Performances} from "../../../contexts/performance-context";
 
 export interface CuboidsProps {
     numCuboids: number;
@@ -19,7 +18,6 @@ export default function StartPageCuboids(props: CuboidsProps) {
     const instancedMeshRef = useRef<InstancedMesh>(null);
     const gluedIndexes = useRef([...Array(props.numCuboids - 1)].map((item, index) => index));
     const [isListFinished, setIsListFinished] = useState(false);
-    const performance = useContext(PerformanceContext).performance;
 
     useEffect(() => {
         if (!props.lift) {
@@ -96,8 +94,8 @@ export default function StartPageCuboids(props: CuboidsProps) {
             <instancedMesh
                 args={[null as unknown as BufferGeometry, null as unknown as MeshStandardMaterial, props.numCuboids]}
                 ref={instancedMeshRef}
-                castShadow={performance >= Performances.high}
-                receiveShadow={performance >= Performances.high}
+                castShadow={true}
+                receiveShadow={true}
             >
                 <meshStandardMaterial
                     attach="material"

@@ -4,7 +4,6 @@ import {Group, PerspectiveCamera} from "three";
 import {useFrame, useThree} from "@react-three/fiber";
 import {CameraPositionContext} from "../../../../contexts/camera-position-context";
 import useWindowWidth from "../../../../hooks/use-window-width";
-import {PerformanceContext, Performances} from "../../../../contexts/performance-context";
 
 export interface CursorFollowModelContentProps {
     gltf: EyeGLTFResult;
@@ -20,7 +19,6 @@ export default function CursorFollowModelContent(props: CursorFollowModelContent
     const size = useThree(state => state.size);
     const initialCameraPosition = useContext(CameraPositionContext).initialPosition;
     const windowWidth = useWindowWidth();
-    const performance = useContext(PerformanceContext).performance;
 
     useLayoutEffect(() => {
         if (cameraRef.current) {
@@ -67,7 +65,7 @@ export default function CursorFollowModelContent(props: CursorFollowModelContent
                 distance={500}
                 decay={1}
                 position={[100, 150, -100]}
-                castShadow={performance >= Performances.high}
+                castShadow={true}
             />
 
             <group

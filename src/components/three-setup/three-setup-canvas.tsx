@@ -8,7 +8,6 @@ import {HistoryContext} from "../../contexts/history-context";
 import MousePositionContext from "../../contexts/mouse-position-context";
 import {CameraPositionContext, CameraPositionContextType} from "../../contexts/camera-position-context";
 import {Vector3} from "three/src/math/Vector3";
-import PerformanceContextProvider from "../../contexts/providers/performance-context-provider";
 
 const StyledCanvas = styled(Canvas)`
     canvas:focus {
@@ -39,13 +38,11 @@ export default function ThreeSetupCanvas(props: ThreeSetupCanvasProps) {
                 <MovementContext.Provider value={movementContext}>
                     <HistoryContext.Provider value={{history}}>
                         <CameraPositionContext.Provider value={cameraPositionValue}>
-                            <PerformanceContextProvider>
                                 <ThreeSetupCanvasContent
                                     onLoadFinished={props.onLoadFinished}
                                 >
                                     {props.children}
                                 </ThreeSetupCanvasContent>
-                            </PerformanceContextProvider>
                         </CameraPositionContext.Provider>
                     </HistoryContext.Provider>
                 </MovementContext.Provider>

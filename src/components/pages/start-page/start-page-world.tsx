@@ -2,7 +2,6 @@ import React, {useContext, useMemo, useState} from "react";
 import {Vector3} from "three/src/math/Vector3";
 import StartPageCuboids from "./start-page-cuboids";
 import Lightbulb from "../../lightbulb";
-import {PerformanceContext, Performances} from "../../../contexts/performance-context";
 
 export interface WorldProps {
     numCuboids: number;
@@ -11,7 +10,6 @@ export interface WorldProps {
 
 export default function StartPageWorld(props: WorldProps) {
     const [isLightbulbClicked, setIsLightbulbClicked] = useState(false);
-    const performance = useContext(PerformanceContext).performance;
 
     const lightbulbPositions = useMemo(() => {
         return [
@@ -49,7 +47,7 @@ export default function StartPageWorld(props: WorldProps) {
                 path={"about"}
             />
 
-            <mesh position={[0, 0, 0]} rotation={[-Math.PI / 2, 0, 0]} receiveShadow={performance >= Performances.high}>
+            <mesh position={[0, 0, 0]} rotation={[-Math.PI / 2, 0, 0]} receiveShadow={true}>
                 <planeBufferGeometry
                     attach="geometry"
                     args={[props.size, props.size]}
@@ -57,7 +55,7 @@ export default function StartPageWorld(props: WorldProps) {
                 <meshStandardMaterial
                     attach="material"
                     color="white"
-                    flatShading={performance >= Performances.high}
+                    flatShading={true}
                 />
             </mesh>
         </>
