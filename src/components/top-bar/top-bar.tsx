@@ -28,12 +28,12 @@ const StyledTop = styled.div<{ isHidden: boolean }>`
 
     grid-row: 1;
     grid-column: 2;
-    
+
     z-index: ${zIndexes.topBarTop};
     display: flex;
     cursor: pointer;
     mix-blend-mode: difference;
-    
+
     ${props => props.isHidden && css`
         display: none;
     `}
@@ -115,7 +115,7 @@ const StyledMenu = styled.div<{ isMenuOpen: boolean, animate: boolean }>`
         animation-fill-mode: forwards;
     `}
 
-    ${props =>  props.animate && props.isMenuOpen && css`
+    ${props => props.animate && props.isMenuOpen && css`
         visibility: visible;
         animation-timing-function: ease-in;
         animation-name: ${showMenuKeyframes};
@@ -128,7 +128,6 @@ const StyledLink = styled(Link)<{ $isActive: boolean }>`
     font-size: 30px;
     margin-bottom: 20px;
     ${flickerAnimationMixin};
-    animation-name: ${whiteToBlackColorKeyframes};
     text-decoration: none;
 
     @media (min-width: ${breakpointSmall}) {
@@ -141,9 +140,13 @@ const StyledLink = styled(Link)<{ $isActive: boolean }>`
     }
 
     ${props => props.$isActive && css`
-        color: red !important;
+        color: red;
         cursor: default;
         pointer-events: none;
+    `}
+
+    ${props => !props.$isActive && css`
+        animation-name: ${whiteToBlackColorKeyframes};
     `}
 `;
 
@@ -159,22 +162,22 @@ const StyledInnerMenu = styled.div`
     align-items: center;
 `
 
-const StyledRoot = styled.div<{isMenuFullyClosed: boolean, isMenuOpen: boolean}>`
+const StyledRoot = styled.div<{ isMenuFullyClosed: boolean, isMenuOpen: boolean }>`
     position: fixed;
     top: 0;
     right: 0;
-    
+
     z-index: ${zIndexes.topBar};
-    pointer-events:none;
-    
+    pointer-events: none;
+
     display: grid;
     grid-template-rows: auto auto;
     grid-template-columns: auto auto;
-    
+
     ${props => props.isMenuOpen && css`
         overflow-y: scroll;
     `}
-    
+
     ${props => props.isMenuFullyClosed && css`
         mix-blend-mode: difference;
     `}
@@ -198,13 +201,15 @@ export default function TopBar(props: TopBarProps) {
             return;
         }
 
-            setIsMenuFullyClosed(false);
+        setIsMenuFullyClosed(false);
         setIsMenuOpen(true);
         document.body.style.overflow = "hidden"
     }
 
     useEffect(() => {
-        return () => {document.body.style.overflow = ""}
+        return () => {
+            document.body.style.overflow = ""
+        }
     }, [])
 
     function onLinkClick() {

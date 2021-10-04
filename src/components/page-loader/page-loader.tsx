@@ -13,6 +13,7 @@ const StyledOverlay = styled.div`
     display: flex;
     align-items: center;
     justify-content: center;
+    overflow-y: scroll;
 `
 const StyledRoot = styled.div<{isLoading: boolean}>`
     ${props => props.isLoading && css`    
