@@ -30,9 +30,6 @@ export const showMenuKeyframes = keyframes`
         visibility: visible;
         clip-path: circle(5% at 100% 0);
     }
-    99% {
-        visibility: visible;
-    }
     100% {
         visibility: visible;
         clip-path: circle(150% at 100% 0);
@@ -43,9 +40,6 @@ export const showMenuKeyframes = keyframes`
 export const hideMenuKeyframes = keyframes`
     0% {
         clip-path: circle(150% at 100% 0);
-        visibility: visible;
-    }
-    99% {
         visibility: visible;
     }
     100% {

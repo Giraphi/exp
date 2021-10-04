@@ -92,7 +92,7 @@ const StyledButton = styled.div<{ isMenuOpen: boolean }>`
 
 `
 
-const StyledMenu = styled.div<{ isMenuOpen: boolean }>`
+const StyledMenu = styled.div<{ isMenuOpen: boolean, animate: boolean }>`
     width: 100vw;
     height: 100vh;
 
@@ -103,14 +103,15 @@ const StyledMenu = styled.div<{ isMenuOpen: boolean }>`
     visibility: hidden;
     background-color: black;
 
-    ${props => !props.isMenuOpen && css`
+    ${props => props.animate && !props.isMenuOpen && css`
         animation-timing-function: ease-in;
         animation-name: ${hideMenuKeyframes};
         animation-duration: 500ms;
         animation-fill-mode: forwards;
     `}
 
-    ${props => props.isMenuOpen && css`
+    ${props =>  props.animate && props.isMenuOpen && css`
+        visibility: visible;
         animation-timing-function: ease-in;
         animation-name: ${showMenuKeyframes};
         animation-duration: 400ms;
@@ -159,9 +160,11 @@ export interface TopBarProps {
 
 export default function TopBar(props: TopBarProps) {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
+    const [animateMenu, setAnimateMenu] = useState(false);
     const pathname = useHistory().location.pathname;
 
     function onClick() {
+        setAnimateMenu(true)
         if (isMenuOpen) {
             setIsMenuOpen(false);
             document.body.style.overflow = "";
@@ -192,7 +195,10 @@ export default function TopBar(props: TopBarProps) {
                 </StyledButton>
 
             </StyledTop>
-            <StyledMenu isMenuOpen={isMenuOpen}>
+            <StyledMenu
+                isMenuOpen={isMenuOpen}
+                animate={animateMenu}
+            >
                 <StyledInnerMenu>
                     <StyledLink to={"/"} $isActive={pathname === "/"} onClick={onLinkClick}>
                         Back Home

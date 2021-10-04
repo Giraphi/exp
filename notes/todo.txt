@@ -1,17 +1,13 @@
 auf jeder page:
 - deutliche links zu den anderen beiden?
 
-top menu:
-mit 2-3 divs die hamburger balken bauen wie auf arte.tv
-
 camera:
-- reset-camera button
+- reset-camera button?
 
-- auf schwachen devices (?): performance verbessern? z.B. Schatten weg?
+performance:
+- insgesamt verbessern, sodass es auf thinkpad läuft?
+- falls möchlich: schawache devices detecten?
 
 Layout:
 - layout aufräumen, so konsistent wie möglich
-- Kein links/rechts scrollen auf Phil-Handy
-
-About Page:
-- 3D scan von eigenem gesicht!
+- menu macht kein highlight auf mobile

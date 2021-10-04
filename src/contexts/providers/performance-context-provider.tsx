@@ -8,16 +8,12 @@ export interface PerformanceContextProviderProps {
 
 export default function PerformanceContextProvider(props: PerformanceContextProviderProps) {
     const [performance, setPerformance] = useState<number>(Performances.high);
-    // const [numSet, setNumSet] = useState(0);
     const [isSet, setIsSet] = useState(false);
 
     function setPerformanceByFps(fps: number) {
+        console.log(fps);
         if (fps < 25) {
             setPerformance(Performances.low)
-            return;
-        }
-        if (fps < 50) {
-            setPerformance(Performances.medium)
             return;
         }
 
@@ -32,7 +28,6 @@ export default function PerformanceContextProvider(props: PerformanceContextProv
         }
 
         const fps = delta ? 1 / delta : 0;
-        console.log(fps);
         frameCounter.current++;
         fpsCounter.current += fps;
 
