@@ -11,6 +11,7 @@ const StyledRoot = styled.div<{isMobileTop: boolean}>`
 
 export interface PageProps {
     children: React.ReactNode;
+    onMenuToggle: (isMenuOpen: boolean) => void;
 }
 
 export default function Page(props: PageProps) {
@@ -37,7 +38,10 @@ export default function Page(props: PageProps) {
 
     return (
         <StyledRoot isMobileTop={isTop && device === "small"}>
-            <TopBar isScrolledToTop={isTop}/>
+            <TopBar
+                isScrolledToTop={isTop}
+                onMenuToggle={props.onMenuToggle}
+            />
             {props.children}
         </StyledRoot>
     );

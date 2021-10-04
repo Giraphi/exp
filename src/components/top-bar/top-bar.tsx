@@ -1,12 +1,13 @@
-import React, {useEffect, useState} from "react";
+import React, {useContext, useEffect, useState} from "react";
 import styled, {css} from "styled-components";
 import {
     blackToWhiteBackgroundKeyframes,
     hideMenuKeyframes,
-    showMenuKeyframes, whiteToBlackColorKeyframes,
+    showMenuKeyframes,
 } from "./top-bar-keyframes";
 import {breakpointSmall, zIndexes} from "../../style/constants";
 import {Link, useHistory} from "react-router-dom";
+import MenuContext from "../../contexts/menu-context";
 
 const flickerAnimationDurationMs = 1000;
 const ButtonSizePx = 60;
@@ -23,17 +24,20 @@ const flickerAnimationMixin = css`
     animation-iteration-count: infinite;
 `
 
-const StyledTop = styled.div<{ isHidden: boolean }>`
+const StyledTop = styled.div<{ isHidden: boolean, isMenuOpen: boolean }>`
     position: fixed;
     top: 0;
     right: 0;
     z-index: ${zIndexes.topBarTop};
     display: flex;
     cursor: pointer;
-    mix-blend-mode: difference;
-    
+
     ${props => props.isHidden && css`
         display: none;
+    `}
+    
+    ${props => !props.isMenuOpen && css`
+        mix-blend-mode: difference;
     `}
 `;
 
@@ -68,8 +72,8 @@ const StyledButton = styled.div<{ isMenuOpen: boolean }>`
             margin-bottom: ${BarSpacePx}px;
         }
     }
-
-    ${props => props.isMenuOpen && css`
+        
+    ${props => props.isMenuOpen && css`             
         ${StyledBar}:first-child {
             transform: translateY(calc((${BarHeightSmPx}px + ${BarSpaceSmPx}px) / 2)) rotate(315deg);
         }
@@ -101,7 +105,14 @@ const StyledMenu = styled.div<{ isMenuOpen: boolean, animate: boolean }>`
     z-index: ${zIndexes.topBarMenu};
 
     visibility: hidden;
+    
+    a {
+        color: unset;
+    }
+    
+    color: white;
     background-color: black;
+    mix-blend-mode: multiply;
 
     ${props => props.animate && !props.isMenuOpen && css`
         animation-timing-function: ease-in;
@@ -110,7 +121,7 @@ const StyledMenu = styled.div<{ isMenuOpen: boolean, animate: boolean }>`
         animation-fill-mode: forwards;
     `}
 
-    ${props =>  props.animate && props.isMenuOpen && css`
+    ${props => props.animate && props.isMenuOpen && css`
         visibility: visible;
         animation-timing-function: ease-in;
         animation-name: ${showMenuKeyframes};
@@ -122,8 +133,6 @@ const StyledMenu = styled.div<{ isMenuOpen: boolean, animate: boolean }>`
 const StyledLink = styled(Link)<{ $isActive: boolean }>`
     font-size: 30px;
     margin-bottom: 20px;
-    ${flickerAnimationMixin};
-    animation-name: ${whiteToBlackColorKeyframes};
     text-decoration: none;
 
     @media (min-width: ${breakpointSmall}) {
@@ -142,12 +151,9 @@ const StyledLink = styled(Link)<{ $isActive: boolean }>`
     `}
 `;
 
-const StyledInnerMenu = styled.div`
+export const StyledInnerMenu = styled.div`
     width: 100%;
     height: 100%;
-    ${flickerAnimationMixin};
-    animation-name: ${blackToWhiteBackgroundKeyframes};
-
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -156,6 +162,7 @@ const StyledInnerMenu = styled.div`
 
 export interface TopBarProps {
     isScrolledToTop: boolean;
+    onMenuToggle: (isMenuOpen: boolean) => void;
 }
 
 export default function TopBar(props: TopBarProps) {
@@ -167,28 +174,22 @@ export default function TopBar(props: TopBarProps) {
         setAnimateMenu(true)
         if (isMenuOpen) {
             setIsMenuOpen(false);
-            document.body.style.overflow = "";
+            props.onMenuToggle(false);
             return;
         }
 
         setIsMenuOpen(true);
-        document.body.style.overflow = "hidden"
-    }
-
-    useEffect(() => {
-        return () => {document.body.style.overflow = ""}
-    }, [])
-
-    function onLinkClick() {
-        document.body.style.overflow = "";
+        props.onMenuToggle(true);
     }
 
     return (
         <>
             <StyledTop
                 isHidden={props.isScrolledToTop && !isMenuOpen}
+                isMenuOpen={isMenuOpen}
                 onClick={onClick}
             >
+
                 <StyledButton isMenuOpen={isMenuOpen}>
                     <StyledBar/>
                     <StyledBar/>
@@ -199,8 +200,8 @@ export default function TopBar(props: TopBarProps) {
                 isMenuOpen={isMenuOpen}
                 animate={animateMenu}
             >
-                <StyledInnerMenu>
-                    <StyledLink to={"/"} $isActive={pathname === "/"} onClick={onLinkClick}>
+                <StyledInnerMenu className={"styled-inner-menu"}>
+                    <StyledLink to={"/"} $isActive={pathname === "/"}>
                         Back Home
                     </StyledLink>
                     <StyledLink to={"skills"} $isActive={pathname === "/skills"}>
