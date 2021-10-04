@@ -24,9 +24,11 @@ const flickerAnimationMixin = css`
 `
 
 const StyledTop = styled.div<{ isHidden: boolean }>`
-    position: fixed;
-    top: 0;
-    right: 0;
+    pointer-events: auto;
+
+    grid-row: 1;
+    grid-column: 2;
+    
     z-index: ${zIndexes.topBarTop};
     display: flex;
     cursor: pointer;
@@ -93,11 +95,14 @@ const StyledButton = styled.div<{ isMenuOpen: boolean }>`
 `
 
 const StyledMenu = styled.div<{ isMenuOpen: boolean, animate: boolean }>`
+    pointer-events: auto;
+
+    grid-row: 1/3;
+    grid-column: 1/3;
+
     width: 100vw;
     height: 100vh;
 
-    position: fixed;
-    top: 0;
     z-index: ${zIndexes.topBarMenu};
 
     visibility: hidden;
@@ -154,12 +159,34 @@ const StyledInnerMenu = styled.div`
     align-items: center;
 `
 
+const StyledRoot = styled.div<{isMenuFullyClosed: boolean, isMenuOpen: boolean}>`
+    position: fixed;
+    top: 0;
+    right: 0;
+    
+    z-index: ${zIndexes.topBar};
+    pointer-events:none;
+    
+    display: grid;
+    grid-template-rows: auto auto;
+    grid-template-columns: auto auto;
+    
+    ${props => props.isMenuOpen && css`
+        overflow-y: scroll;
+    `}
+    
+    ${props => props.isMenuFullyClosed && css`
+        mix-blend-mode: difference;
+    `}
+`
+
 export interface TopBarProps {
     isScrolledToTop: boolean;
 }
 
 export default function TopBar(props: TopBarProps) {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
+    const [isMenuFullyClosed, setIsMenuFullyClosed] = useState(true);
     const [animateMenu, setAnimateMenu] = useState(false);
     const pathname = useHistory().location.pathname;
 
@@ -171,6 +198,7 @@ export default function TopBar(props: TopBarProps) {
             return;
         }
 
+            setIsMenuFullyClosed(false);
         setIsMenuOpen(true);
         document.body.style.overflow = "hidden"
     }
@@ -183,8 +211,18 @@ export default function TopBar(props: TopBarProps) {
         document.body.style.overflow = "";
     }
 
+    function onAnimationEnd() {
+        if (isMenuOpen) {
+            return;
+        }
+        setIsMenuFullyClosed(true);
+    }
+
     return (
-        <>
+        <StyledRoot
+            isMenuFullyClosed={isMenuFullyClosed}
+            isMenuOpen={isMenuOpen}
+        >
             <StyledTop
                 isHidden={props.isScrolledToTop && !isMenuOpen}
                 onClick={onClick}
@@ -198,6 +236,7 @@ export default function TopBar(props: TopBarProps) {
             <StyledMenu
                 isMenuOpen={isMenuOpen}
                 animate={animateMenu}
+                onAnimationEnd={onAnimationEnd}
             >
                 <StyledInnerMenu>
                     <StyledLink to={"/"} $isActive={pathname === "/"} onClick={onLinkClick}>
@@ -214,6 +253,6 @@ export default function TopBar(props: TopBarProps) {
                     </StyledLink>
                 </StyledInnerMenu>
             </StyledMenu>
-        </>
+        </StyledRoot>
     );
 }

@@ -22,6 +22,7 @@ export const zIndexes = {
     imageSliderOverlay: 30,
 
     topBarTopHidden: -1,
+    topBar: 33,
     topBarMenu: 35,
     topBarTop: 40,
 }
