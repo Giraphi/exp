@@ -1,4 +1,4 @@
-import React, {useMemo} from "react";
+import React, {useEffect, useMemo, useState} from "react";
 import {LightParams} from "./lightbulb";
 import {Vector3} from "three/src/math/Vector3";
 
@@ -13,6 +13,8 @@ export interface LightbulbLightsVerticalProps {
 }
 
 export default function LightbulbLightsVertical(props: LightbulbLightsVerticalProps) {
+    const [castShadow, setCastShadow]= useState(false);
+
     const lowLightPosition = useMemo(() => {
         const lightPosition = new Vector3();
         lightPosition.copy(props.position);
@@ -25,6 +27,10 @@ export default function LightbulbLightsVertical(props: LightbulbLightsVerticalPr
         return new Vector3(0, props.lightPositionY - LOW_LIGHT_OFFSET, 0);
     }, [props.lightPositionY]);
 
+    useEffect(() => {
+        setCastShadow(true);
+    }, [])
+
     return (
         <group
             position={lowLightPosition}
@@ -34,7 +40,6 @@ export default function LightbulbLightsVertical(props: LightbulbLightsVerticalPr
                 intensity={props.lightParams?.outer?.intensity}
                 distance={props.lightParams?.outer?.distance}
                 decay={props.lightParams?.outer?.decay}
-                castShadow={true}
             >
                 <pointLight
                     color={props.color}
@@ -42,7 +47,7 @@ export default function LightbulbLightsVertical(props: LightbulbLightsVerticalPr
                     distance={props.lightParams?.inner?.distance}
                     decay={props.lightParams?.inner?.decay}
                     position={highLightPosition}
-                    castShadow={true}
+                    castShadow={castShadow}
                 >
                     <group
                         position={[0, -props.lightPositionY - 10, 0]}

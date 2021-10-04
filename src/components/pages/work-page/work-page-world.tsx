@@ -27,7 +27,6 @@ export default function WorkPageWorld(props: WorkPageWorldProps) {
             >
             </pointLight>
 
-
             <FlyingPageObjects
                 numObjects={50}
                 worldSize={1000}

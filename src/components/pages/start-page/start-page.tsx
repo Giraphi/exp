@@ -1,10 +1,11 @@
-import React, {useEffect} from "react";
+import React, {useEffect, useState} from "react";
 import ThreeSetup from "../../three-setup/three-setup";
 import StartPageWorld from "./start-page-world";
 import CameraControlButtons from "../../camera-control-buttons";
 import styled from "styled-components";
 import {motion} from "framer-motion";
 import {breakpointSmall, zIndexes} from "../../../style/constants";
+import PageLoader from "../../page-loader/page-loader";
 
 const StyledRoot = styled(motion.div)`
     height: 100vh;
@@ -52,36 +53,41 @@ const StyledSubHeadline = styled.div`
 
 
 export default function StartPage() {
+    const [isLoadFinished, setIsLoadFinished] = useState(false);
+
     useEffect(() => {
         document.body.classList.add("is-start-page");
         return () => document.body.classList.remove("is-start-page");
     }, [])
 
     return (
-        <StyledRoot
-            initial={{opacity: 0}}
-            animate={{opacity: 1}}
-            exit={{opacity: 0}}
-            transition={{duration: 1.0}}
-        >
-            <StyledHeadlineContainer>
-                <StyledHeadline>
-                    RAPHAEL HÖPS
-                </StyledHeadline>
-                <StyledSubHeadline>
-                    Web Developer
-                </StyledSubHeadline>
-            </StyledHeadlineContainer>
-                <ThreeSetup
-                    color={"black"}
-                    controlButtons={<CameraControlButtons/>}
-                >
-                    <StartPageWorld
-                        numCuboids={170}
-                        size={1000}
-                    />
-                </ThreeSetup>
-        </StyledRoot>
+        <PageLoader isLoadFinished={isLoadFinished}>
+            <StyledRoot
+                initial={{opacity: 0}}
+                animate={{opacity: 1}}
+                exit={{opacity: 0}}
+                transition={{duration: 1.0}}
+            >
+                <StyledHeadlineContainer>
+                    <StyledHeadline>
+                        RAPHAEL HÖPS
+                    </StyledHeadline>
+                    <StyledSubHeadline>
+                        Web Developer
+                    </StyledSubHeadline>
+                </StyledHeadlineContainer>
+                    <ThreeSetup
+                        color={"black"}
+                        controlButtons={<CameraControlButtons/>}
+                        onLoadFinished={() => setIsLoadFinished(true)}
+                    >
+                        <StartPageWorld
+                            numCuboids={170}
+                            size={1000}
+                        />
+                    </ThreeSetup>
+            </StyledRoot>
+        </PageLoader>
     )
 
 }

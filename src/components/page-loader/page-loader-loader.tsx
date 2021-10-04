@@ -24,11 +24,13 @@ const StyledSpinner = styled.span`
     animation-name: ${rotateKeyframes};
     animation-iteration-count: infinite;
     letter-spacing: 0;
+    position: relative;
 `
 
 const StyledLetter = styled.span`
     position: relative;
     left: -2px;
+    top: 1px;
 `
 
 export default function PageLoaderLoader() {
