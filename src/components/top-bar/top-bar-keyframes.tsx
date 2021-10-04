@@ -1,6 +1,5 @@
 import {keyframes} from "styled-components";
 
-
 export const blackToWhiteBackgroundKeyframes = keyframes`
     0% {
         background-color: black;

@@ -83,8 +83,6 @@ const StyledLink = styled.a`
 export default function AboutPage() {
     const meGlTf = useGLTF('/exp/models/me.glb') as MeGLTFResult;
     const [isLoadFinished, setIsLoadFinished] = useState(false);
-    const [isMenuOpen, setIsMenuOpen] = useState(false);
-
 
     return (
         <StyledRoot
@@ -94,9 +92,7 @@ export default function AboutPage() {
             transition={{duration: 1.0}}
         >
             <PageLoader isLoadFinished={isLoadFinished}>
-                <Page
-                    onMenuToggle={setIsMenuOpen}
-                >
+                <Page>
                     <StyledBanner>
                         <ThreeSetup
                             color={"black"}

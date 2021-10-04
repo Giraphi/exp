@@ -1,7 +1,7 @@
 import React, {useMemo, useState} from "react";
 import ThreeSetup from "../../three-setup/three-setup";
 import CameraControlButtons from "../../camera-control-buttons";
-import styled, {css} from "styled-components";
+import styled from "styled-components";
 import {breakpointSmall, colorWork} from "../../../style/constants";
 import PageContentLayout from "../../layout/page-content-layout";
 import {motion, useMotionTemplate, useTransform, useViewportScroll} from "framer-motion";
@@ -25,7 +25,15 @@ import useDevice from "../../../hooks/use-device";
 import Page from "../../page";
 
 
-const StyledBanner = styled.div<{isMenuOpen: boolean}>`
+const StyledRoot = styled(motion.div)`
+    min-height: 100vh;
+    position: relative;
+    color: ${colorWork};
+    overflow: auto;
+    background-color: black;
+`
+
+const StyledBanner = styled.div`
     height: 75vh;
 
     @media (min-width: 768px) {
@@ -35,12 +43,6 @@ const StyledBanner = styled.div<{isMenuOpen: boolean}>`
     @media (min-width: ${breakpointSmall}) {
         margin-bottom: 7vh;
     }
-
-    transition: opacity 0.4s ease-in;
-    opacity: 1;
-    ${props => props.isMenuOpen && css`
-        opacity: 0.8;
-    `}
 `
 
 const StyledRowText = styled.div`
@@ -65,9 +67,6 @@ const StyledSliderRow = styled.div`
     font-size: 18px;
     margin-bottom: 50px;
     flex-wrap: wrap;
-    transition: opacity 0.4s ease-in;
-    opacity: 1;
-
 
     a {
         text-decoration: underline;
@@ -83,21 +82,6 @@ const StyledSliderRow = styled.div`
     }
 `
 
-const StyledRoot = styled(motion.div)<{isMenuOpen: boolean}>`
-    min-height: 100vh;
-    position: relative;
-    color: ${colorWork};
-    overflow: auto;
-    
-    transition: background-color 0.4s ease-in;
-    ${props => props.isMenuOpen && css`
-        background-color: white !important;
-        
-        ${StyledSliderRow} {
-            opacity: 0.8;
-        }
-    `}
-`
 
 export default function WorkPage() {
     const [isLoadFinished, setIsLoadFinished] = useState(false);
@@ -115,8 +99,6 @@ export default function WorkPage() {
     const backgroundColorMobile = useMotionTemplate`rgba(${rColorChannelMobile},${gColorChannelMobile},${bColorChannelMobile})`
 
     const device = useDevice();
-    const [isMenuOpen, setIsMenuOpen] = useState(false);
-
 
     const images = useMemo(() => {
         return {
@@ -140,15 +122,10 @@ export default function WorkPage() {
             style={{
                 backgroundColor: device === "small" ? backgroundColorMobile : backgroundColor
             }}
-            isMenuOpen={isMenuOpen}
         >
             <PageLoader isLoadFinished={isLoadFinished}>
-                <Page
-                    onMenuToggle={setIsMenuOpen}
-                >
-                    <StyledBanner
-                        isMenuOpen={isMenuOpen}
-                    >
+                <Page>
+                    <StyledBanner>
                         <ThreeSetup
                             color={"black"}
                             controlButtons={<CameraControlButtons pageVariant={true}/>}

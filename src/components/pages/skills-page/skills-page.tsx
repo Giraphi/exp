@@ -1,5 +1,5 @@
-import React, {useContext, useState} from "react";
-import styled, {css} from "styled-components";
+import React, {useState} from "react";
+import styled from "styled-components";
 import ThreeSetup from "../../three-setup/three-setup";
 import CameraControlButtons from "../../camera-control-buttons";
 import SkillsPageWorld from "./skills-page-world";
@@ -13,7 +13,6 @@ import {EyeGLTFResult} from "../../models/eye-model";
 import SmallEye from "./small-eye";
 import {LayoutTextItem, LayoutTextSection} from "../../layout/utilities";
 import Page from "../../page";
-import MenuContext from "../../../contexts/menu-context";
 
 const StyledRoot = styled(motion.div)`
     min-height: 100vh;
@@ -48,13 +47,8 @@ const StyledText = styled.div`
     }
 `;
 
-const StyledContent = styled.div<{isMenuOpen: boolean}>`
+const StyledContent = styled.div`
     position: relative;
-    opacity: 1;
-    transition: opacity 0.4s ease-in;
-    ${props => props.isMenuOpen && css`
-        opacity: 0.7;
-    `}
 `
 
 const StyledEyeContainer = styled.div<{ top: string, left: string }>`
@@ -72,9 +66,6 @@ export default function SkillsPage() {
     const bColorChannel = useTransform(scrollYProgress, [0, 2 / 8, 3 / 8, 4 / 8, 5 / 8, 6 / 8, 7 / 8, 1], [255, 255, 255, 255, 0, 0, 255, 255]);
     const backgroundColor = useMotionTemplate`rgba(${rColorChannel},${gColorChannel},${bColorChannel})`
 
-    const [isMenuOpen, setIsMenuOpen] = useState(false);
-
-
     return (
         <StyledRoot
             animate={{opacity: 1}}
@@ -85,9 +76,7 @@ export default function SkillsPage() {
             }}
         >
             <PageLoader isLoadFinished={isLoadFinished}>
-                <Page
-                    onMenuToggle={setIsMenuOpen}
-                >
+                <Page>
                     <StyledBanner>
                         <ThreeSetup
                             color={"white"}
@@ -100,9 +89,7 @@ export default function SkillsPage() {
                         </ThreeSetup>
                     </StyledBanner>
 
-                    <StyledContent
-                        isMenuOpen={isMenuOpen}
-                    >
+                    <StyledContent>
                         <PageContentLayout>
                             <StyledText>
                                 <LayoutTextSection>
