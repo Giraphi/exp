@@ -1,4 +1,4 @@
-import React, {useLayoutEffect, useRef, useState} from "react";
+import React, {useEffect, useLayoutEffect, useRef, useState} from "react";
 import styled, {css} from "styled-components";
 import useDevice from "../hooks/use-device";
 import TopBar from "./top-bar/top-bar";

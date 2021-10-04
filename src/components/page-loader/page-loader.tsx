@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useEffect} from "react";
 import styled, {css} from "styled-components";
 import PageLoaderLoader from "./page-loader-loader";
 import {zIndexes} from "../../style/constants";
@@ -29,6 +29,15 @@ export interface PageLoaderProps {
 }
 
 export default function PageLoader(props: PageLoaderProps) {
+
+    useEffect(() => {
+        if (!props.isLoadFinished) {
+            return;
+        }
+        window.scrollTo(0,0);
+    }, [props.isLoadFinished])
+
+
     return (
         <StyledRoot
             isLoading={!props.isLoadFinished}

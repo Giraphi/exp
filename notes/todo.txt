@@ -11,3 +11,6 @@ performance:
 Layout:
 - layout aufräumen, so konsistent wie möglich
 - menu macht kein highlight auf mobile
+
+
+weniger schwarze hintergründe, z.B. bei about me in pink?
