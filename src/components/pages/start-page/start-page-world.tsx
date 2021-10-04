@@ -1,7 +1,7 @@
 import React, {useContext, useMemo, useState} from "react";
 import {Vector3} from "three/src/math/Vector3";
 import StartPageCuboids from "./start-page-cuboids";
-import Lightbulb from "../../lightbulb";
+import Lightbulb from "../../lightbulb/lightbulb";
 
 export interface WorldProps {
     numCuboids: number;
