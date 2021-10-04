@@ -1,7 +1,6 @@
 import React, {useContext, useMemo, useState} from "react";
 import {Vector3} from "three/src/math/Vector3";
 import useDevice from "../hooks/use-device";
-import useWindowWidth from "../hooks/use-window-width";
 import {HistoryContext} from "../contexts/history-context";
 import Lightbulb from "./lightbulb/lightbulb";
 
@@ -18,7 +17,6 @@ interface ItemDescription {
 
 export default function PageMenu(props: PageMenuProps) {
     const device = useDevice();
-    const windowWidth = useWindowWidth();
     const location = useContext(HistoryContext).history.location;
     const initialPathname = useState(location.pathname)[0];
 

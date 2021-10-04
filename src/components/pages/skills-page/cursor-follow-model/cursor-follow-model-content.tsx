@@ -56,8 +56,9 @@ export default function CursorFollowModelContent(props: CursorFollowModelContent
 
     return (
         <>
-            <ambientLight color="white" intensity={0.2}/>
             <perspectiveCamera position={[0,0,200]} ref={cameraRef} zoom={2}/>
+
+            <ambientLight color="white" intensity={0.15}/>
 
             <pointLight
                 color={"white"}

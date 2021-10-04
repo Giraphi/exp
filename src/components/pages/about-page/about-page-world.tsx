@@ -1,4 +1,4 @@
-import React, {Suspense, useContext, useState} from "react";
+import React, {Suspense, useState} from "react";
 import {colorAbout} from "../../../style/constants";
 import FlyingPageObjects from "../../flying-page-objects";
 import AboutPageHeadline from "./about-page-headline";
@@ -15,7 +15,6 @@ export default function AboutPageWorld(props: AboutPageWorldProps) {
 
     return (
         <>
-            <ambientLight color="white" intensity={0.01}/>
             <ambientLight color="white" intensity={0.05}/>
 
             <AboutPageHeadline/>

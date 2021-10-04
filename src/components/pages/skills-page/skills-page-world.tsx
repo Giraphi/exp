@@ -1,4 +1,4 @@
-import React, {Suspense, useContext, useState} from "react";
+import React, {Suspense, useState} from "react";
 import {colorSkills} from "../../../style/constants";
 import SkillsPageHeadline from "./skills-page-headline";
 import MovingEye from "./moving-eye";
