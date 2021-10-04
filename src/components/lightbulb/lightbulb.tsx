@@ -9,8 +9,6 @@ import {Text} from "@react-three/drei";
 import auvantGothic from "../../fonts/OPTIAuvantGothic-Bold.woff";
 import LightbulbLights from "./lightbulb-lights";
 
-const LOW_LIGHT_OFFSET = 30;
-
 const COLORS = {
     mesh: "#ffffff",
     light: "#ffffff"
@@ -46,13 +44,14 @@ export interface LightbulbProps {
 
 export default function Lightbulb(props: LightbulbProps) {
     const [colors, setColors] = useState(props.negative ? COLORS_NEGATIVE : COLORS);
-    const groupRef = useRef<Group>(null);
     const lightPositionY = props.height * 0.8;
     const [isClicked, setIsClicked] = useState(false);
     const history = useContext(HistoryContext).history;
 
     useEffect(() => {
-        return () => {document.body.style.cursor = ""};
+        return () => {
+            document.body.style.cursor = ""
+        };
     }, [])
 
     useEffect(() => {
@@ -62,14 +61,6 @@ export default function Lightbulb(props: LightbulbProps) {
         }
         props.negative ? setColors(COLORS_NEGATIVE) : setColors(COLORS);
     }, [props.isActive, props.negative])
-
-    const lowLightPosition = useMemo(() => {
-        const lightPosition = new Vector3();
-        lightPosition.copy(props.position);
-        lightPosition.add(new Vector3(0, LOW_LIGHT_OFFSET, 0));
-
-        return lightPosition;
-    }, [props.position]);
 
     function onPointerOver() {
         if (props.isActive) {
@@ -104,60 +95,43 @@ export default function Lightbulb(props: LightbulbProps) {
         }, 1000);
     }
 
-    // const position = useMemo(() => {
-    //     console.log("test22");
-    //     return new Vector3(0, lightPositionY - LOW_LIGHT_OFFSET, 0);
-    // }, [lightPositionY]);
-
     return (
-        <group
-            position={lowLightPosition}
-            rotation={props.horizontal ? [0, 0, Math.PI / 2] : undefined}
+        <LightbulbLights
+            lightPositionY={lightPositionY}
+            lightParams={props.lightParams}
+            color={colors.light}
+            position={props.position}
+            horizontal={!!props.horizontal}
         >
-            <LightbulbLights
-                lightPositionY={lightPositionY}
-                lightParams={props.lightParams}
-                color={colors.light}
-                position={props.position}
-                horizontal={!!props.horizontal}
+            <mesh
+                scale={[20, props.height, 20]}
+                position={[0, props.height / 2, 0]}
+                onPointerOver={onPointerOver}
+                onClick={onClick}
+                onPointerOut={onPointerOut}
             >
-                    <group
-                        ref={groupRef}
-                        position={[0, -lightPositionY - 10, 0]}
-                    >
-                        <mesh
-                            scale={[20, props.height, 20]}
-                            position={[0, props.height / 2, 0]}
-                            onPointerOver={onPointerOver}
-                            onClick={onClick}
-                            onPointerOut={onPointerOut}
-                        >
-                            <meshStandardMaterial
-                                emissive={new Color(colors.mesh)}
-                                emissiveIntensity={1}
-                                color={"#000000"}
-                            />
+                <meshStandardMaterial
+                    emissive={new Color(colors.mesh)}
+                    emissiveIntensity={1}
+                    color={"#000000"}
+                />
 
-                            <boxBufferGeometry
-                                args={[1, 1, 1]}/>
-                        </mesh>
+                <boxBufferGeometry
+                    args={[1, 1, 1]}/>
+            </mesh>
 
-                        <Text
-                            fontSize={15}
-                            lineHeight={1}
-                            font={auvantGothic}
-                            color={props.negative ? "white" : "black"}
-                            position={[0,props.height - 5,12]}
-                            rotation={[0, 0, -Math.PI / 2]}
-                            anchorX={"left"}
-                            anchorY={"middle"}
-                        >
-                            {props.text}
-                        </Text>
-                    </group>
-
-            </LightbulbLights>
-
-        </group>
+            <Text
+                fontSize={15}
+                lineHeight={1}
+                font={auvantGothic}
+                color={props.negative ? "white" : "black"}
+                position={[0, props.height - 5, 12]}
+                rotation={[0, 0, -Math.PI / 2]}
+                anchorX={"left"}
+                anchorY={"middle"}
+            >
+                {props.text}
+            </Text>
+        </LightbulbLights>
     );
 }

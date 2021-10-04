@@ -24,8 +24,8 @@ export default function PageMenu(props: PageMenuProps) {
 
     const itemDescriptions: ItemDescription[] = useMemo(() => {
         const position = device !== "small"
-            ? new Vector3(-windowWidth / 6, 180, 0)
-            : new Vector3(-120, 180, 100);
+            ? new Vector3(-220, 230, 50)
+            : new Vector3(-60, 220, 100);
 
         const delta = device !== "small"
             ? new Vector3(0, 40, 0)
@@ -63,7 +63,7 @@ export default function PageMenu(props: PageMenuProps) {
 
         return items
 
-    }, [device, windowWidth]);
+    }, [device]);
 
     return (
         <>
