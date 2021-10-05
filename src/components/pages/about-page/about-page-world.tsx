@@ -15,7 +15,7 @@ export default function AboutPageWorld(props: AboutPageWorldProps) {
 
     return (
         <>
-            <ambientLight color="white" intensity={0.05}/>
+            <hemisphereLight intensity={0.05}/>
 
             <AboutPageHeadline/>
 

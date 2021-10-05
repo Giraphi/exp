@@ -16,7 +16,7 @@ export default function ThreeSetupCanvasContent(props: ThreeSetupCanvasContentPr
         gl.shadowMap.enabled = true;
         gl.shadowMap.type = PCFSoftShadowMap;
 
-        gl.setPixelRatio(window.devicePixelRatio)
+        gl.setPixelRatio(window.devicePixelRatio);
     }, [gl]);
 
 
