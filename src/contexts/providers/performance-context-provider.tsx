@@ -11,7 +11,6 @@ export default function PerformanceContextProvider(props: PerformanceContextProv
     const [isSet, setIsSet] = useState(false);
 
     function setPerformanceByFps(fps: number) {
-        console.log(fps);
         if (fps < 25) {
             setPerformance(Performances.low)
             return;
@@ -34,7 +33,6 @@ export default function PerformanceContextProvider(props: PerformanceContextProv
         const averageFps = fpsCounter.current / frameCounter.current;
 
         if (frameCounter.current > 10) {
-            console.log(averageFps);
             setPerformanceByFps(averageFps);
             setIsSet(true);
         }

@@ -35,22 +35,22 @@ export default function SkillsPageWorld(props: SkillsPageWorldProps) {
                 </pointLight>
 
                 <group
-                    position={device === "small" ? [0,60,-200] : [0,30, -200]}
+                    position={device === "small" ? [0, 60, -200] : [0, 30, -200]}
                 >
-                        <FlyingPageObjects
-                            numObjects={150}
-                            worldSize={1000}
-                            lift={isMenuClicked}
-                        >
-                            <meshStandardMaterial
-                                attach="material"
-                                color="white"
-                            />
-                            <sphereGeometry
-                                attach="geometry"
-                                args={[5, 32, 32]}
-                            />
-                        </FlyingPageObjects>
+                    <FlyingPageObjects
+                        numObjects={150}
+                        worldSize={1000}
+                        lift={isMenuClicked}
+                    >
+                        <meshStandardMaterial
+                            attach="material"
+                            color="white"
+                        />
+                        <sphereGeometry
+                            attach="geometry"
+                            args={[5, 32, 32]}
+                        />
+                    </FlyingPageObjects>
                 </group>
 
                 <Suspense fallback={null}>

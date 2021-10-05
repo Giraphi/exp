@@ -46,9 +46,6 @@ export default function TopBarLink(props: TopBarLinkProps) {
     const [isClicked, setIsClicked]= useState(false);
     const pathname = useHistory().location.pathname;
 
-    console.log(pathname)
-    console.log(props.to)
-
     return (
         <StyledRoot
             to={props.to}

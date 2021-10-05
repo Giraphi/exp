@@ -5,6 +5,8 @@ import useDevice from "../../../hooks/use-device";
 import {CameraPositionContext} from "../../../contexts/camera-position-context";
 import {useFrame, useThree} from "@react-three/fiber";
 import EyeModel, {EyeGLTFResult} from "../../models/eye-model";
+import {useTransform, useViewportScroll} from "framer-motion";
+import {Vector3} from "three/src/math/Vector3";
 
 export interface HelperCoordinates {
     fixedZ: number;
@@ -16,6 +18,8 @@ export interface MovingEyeProps {
     eyeGltf: EyeGLTFResult;
 }
 
+const xAxis = new Vector3(1,0,0)
+
 export default function MovingEye(props: MovingEyeProps) {
     const mousePositionRef = useContext(MousePositionContext).mousePositionRef;
     const invalidatePosition = useContext(MousePositionContext).invalidatePosition;
@@ -23,6 +27,9 @@ export default function MovingEye(props: MovingEyeProps) {
     const device = useDevice();
     const initialCameraPosition = useContext(CameraPositionContext).initialPosition;
     const canvasSize = useThree().size;
+
+    const {scrollY} = useViewportScroll();
+    const rotationPercentage = useTransform(scrollY, [0,200], [0,1]);
 
     const helperCoordinates: HelperCoordinates = useMemo(() => {
         return {
@@ -33,11 +40,17 @@ export default function MovingEye(props: MovingEyeProps) {
     }, [canvasSize.height]);
 
     useFrame(() => {
-        if (device === "small") {
+        if (!ref.current || !ref) {
             return;
         }
 
-        if (!ref.current || !ref || !mousePositionRef) {
+        if (device === "small") {
+            console.log(rotationPercentage.get());
+            ref.current.setRotationFromAxisAngle(xAxis, rotationPercentage.get() * Math.PI * -0.75)
+            return;
+        }
+
+        if (!mousePositionRef) {
             return;
         }
 
