@@ -9,7 +9,7 @@ const StyledRoot = styled.div`
 const StyledContent = styled.div`
     margin-left: 25px;
     margin-right: 25px;
-    max-width: 1200px;
+    max-width: 1100px;
 `
 
 export interface PageContentLayoutProps {
