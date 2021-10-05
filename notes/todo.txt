@@ -11,5 +11,5 @@ performance:
 Layout:
 - layout aufräumen, so konsistent wie möglich
 
-auge:
-dreht auf mobile mit scroll nach oben raus
+- datenschutz/impressum/credits
+- url

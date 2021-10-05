@@ -6,15 +6,12 @@ import {
 // based on https://github.com/mrdoob/three.js/blob/dev/examples/jsm/controls/FirstPersonControls.js
 
 const BirdControls = function (object, domElement ) {
-    // set by constructor (property 'arg')
     this.object = object;
     this.domElement = domElement;
 
-    // set by property
-    this.movementSpeed = 1.0;
-    this.lookSpeed = 0.005;
+    this._movementSpeed = 500;
+    this._lookSpeed = 0.13;
 
-    // internals
     this.panSpeed = 0;
 
     this.moveForward = false;
@@ -58,14 +55,14 @@ const BirdControls = function (object, domElement ) {
         var targetPosition = new Vector3();
 
         return function update( delta ) {
-            var actualMoveSpeed = delta * this.movementSpeed;
+            var actualMoveSpeed = delta * this._movementSpeed;
 
             if ( this.moveForward || ( this.autoForward && ! this.moveBackward ) ) {
                 this.object.translateZ( - ( actualMoveSpeed  ) );
             }
             if ( this.moveBackward ) this.object.translateZ( actualMoveSpeed );
 
-            var actualLookSpeed = delta * this.lookSpeed;
+            var actualLookSpeed = delta * this._lookSpeed;
 
             lon -= this.panSpeed * actualLookSpeed;
             lat = Math.max( - 85, Math.min( 85, lat ) );
