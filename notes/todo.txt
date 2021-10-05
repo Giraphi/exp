@@ -7,6 +7,7 @@ camera:
 performance:
 - insgesamt verbessern, sodass es auf thinkpad läuft?
 https://attackingpixels.com/tips-tricks-optimizing-three-js-performance/
+https://discoverthreejs.com/book/first-steps/ambient-lighting/
 - falls möchlich: schawache devices detecten?
 
 Layout:
