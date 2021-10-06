@@ -1,5 +1,6 @@
 import React, {ReactNode} from "react";
 import styled from "styled-components";
+import {breakpointSmall} from "../../style/constants";
 
 const StyledRoot = styled.div`
     display: flex;
@@ -9,7 +10,12 @@ const StyledRoot = styled.div`
 const StyledContent = styled.div`
     margin-left: 25px;
     margin-right: 25px;
-    max-width: 1100px;
+    max-width: 900px;
+    
+    @media(min-width: ${breakpointSmall}) {
+        margin-left: 80px;
+        margin-right: 80px;
+    }
 `
 
 export interface PageContentLayoutProps {
@@ -17,7 +23,7 @@ export interface PageContentLayoutProps {
     onClick?: (e: React.MouseEvent) => void;
 }
 
-export default function PageContentLayout(props: PageContentLayoutProps) {
+export default function LayoutContent(props: PageContentLayoutProps) {
     return (
         <StyledRoot>
             <StyledContent>

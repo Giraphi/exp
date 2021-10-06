@@ -1,17 +1,12 @@
 
-// const pink = "#fd00ff";
-// const yellow = "#fdff00";
 const green = "#00ff38";
 const blue = "#00f9ff";
-// const darkBlue = "#3c00ff";
 
 export const colorAbout = green;
 export const colorSkills = blue;
 export const colorWork = "red";
 
 export const breakpointSmall = "768px";
-
-
 
 export const zIndexes = {
     startPageHeadline: 1,
@@ -25,4 +20,40 @@ export const zIndexes = {
     topBar: 33,
     topBarMenu: 35,
     topBarTop: 40,
+}
+
+export const fontSizes = {
+    pageHeaderSm: "40px",
+    pageHeaderMd: "70px",
+
+    captionMd: "18px",
+    captionSm: "16px",
+
+    h1Sm: "35px",
+    h1Md: "55px",
+
+    bodySm: "20px",
+    bodyMd: "30px"
+}
+
+export const spacings = {
+    h1Sm: "14px",
+    h1Md: "16px",
+
+    xSmallSm: "6px",
+    xSmallMd: "15px",
+
+    smallSm: "20px",
+    smallMd: "30px",
+
+    mediumSm: "45px",
+    mediumMd: "60px",
+}
+
+export const lineHeights = {
+    h1Sm: "35px",
+    h1Md: "55px",
+
+    bodySm: "26px",
+    bodyMd: "38px",
 }

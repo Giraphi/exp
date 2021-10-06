@@ -1,5 +1,5 @@
 import {createGlobalStyle} from "styled-components";
-import {breakpointSmall} from "./constants";
+import {breakpointSmall, fontSizes, lineHeights, spacings} from "./constants";
 // import AuvantGothic from "../fonts/OPTIAuvantGothic-Bold.woff";
 
 const GlobalStyle = createGlobalStyle`
@@ -28,31 +28,25 @@ const GlobalStyle = createGlobalStyle`
     }
 
     body {
-        font-size: 20px;
+        font-size: ${fontSizes.bodySm};
+        line-height: ${lineHeights.bodySm};
 
         h1 {
-            font-size: 30px;
-            margin-bottom: 10px;
+            font-size: ${fontSizes.h1Sm};
+            margin-bottom: ${spacings.h1Sm};
+            line-height: ${lineHeights.h1Sm};
         }
     }
-
-    p {
-        margin-bottom: 50px;
-    }
-
-    @media (min-width: ${breakpointSmall}) {
-        p {
-            margin-bottom: 7vh;
-        }
-    }
-
+    
     @media (min-width: ${breakpointSmall}) {
         body {
-            font-size: 4vh;
+            font-size: ${fontSizes.bodyMd};
+            line-height: ${lineHeights.bodyMd};
 
             h1 {
-                font-size: 8vh;
-                margin-bottom: 2vh;
+                font-size: ${fontSizes.h1Md};
+                margin-bottom: ${spacings.h1Md};
+                line-height: ${lineHeights.h1Md};
             }
         }
     }

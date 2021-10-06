@@ -2,8 +2,8 @@ import React, {useMemo, useState} from "react";
 import ThreeSetup from "../../three-setup/three-setup";
 import CameraControlButtons from "../../camera-control-buttons";
 import styled from "styled-components";
-import {breakpointSmall, colorWork} from "../../../style/constants";
-import PageContentLayout from "../../layout/page-content-layout";
+import {breakpointSmall, colorWork, fontSizes} from "../../../style/constants";
+import LayoutContent from "../../utilities/layout-content";
 import {motion, useMotionTemplate, useTransform, useViewportScroll} from "framer-motion";
 import WorkPageWorld from "./work-page-world";
 import {useGLTF} from "@react-three/drei";
@@ -64,7 +64,7 @@ const StyledSliderRow = styled.div`
     align-items: center;
     color: white;
     font-family: "SourceCodePro", monospace;
-    font-size: 18px;
+    font-size: ${fontSizes.captionSm};
     margin-bottom: 50px;
     flex-wrap: wrap;
 
@@ -79,6 +79,7 @@ const StyledSliderRow = styled.div`
 
     @media (min-width: ${breakpointSmall}) {
         margin-bottom: 15vh;
+        font-size: ${fontSizes.captionMd};
     }
 `
 
@@ -137,7 +138,7 @@ export default function WorkPage() {
                         </ThreeSetup>
                     </StyledBanner>
 
-                    <PageContentLayout>
+                    <LayoutContent>
                         <StyledSliderRow>
                             <WorkPageImageSlider
                                 images={images.funct}
@@ -188,7 +189,7 @@ export default function WorkPage() {
                                 images={images.maxi}
                             />
                         </StyledSliderRow>
-                    </PageContentLayout>
+                    </LayoutContent>
                 </Page>
             </PageLoader>
         </StyledRoot>

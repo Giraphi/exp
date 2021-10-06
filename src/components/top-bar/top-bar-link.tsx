@@ -1,12 +1,12 @@
 import React, {useState} from "react";
 import styled, {css} from "styled-components";
 import {Link, useHistory} from "react-router-dom";
-import {breakpointSmall} from "../../style/constants";
+import {breakpointSmall, fontSizes} from "../../style/constants";
 import {whiteToBlackColorKeyframes} from "./top-bar-keyframes";
 
 
 const StyledRoot = styled(Link)<{ $isActive: boolean, $isClicked: boolean }>`
-    font-size: 30px;
+    font-size: ${fontSizes.h1Sm};
     margin-bottom: 20px;
     animation-timing-function: step-end;
     animation-duration: 1000ms;
@@ -14,7 +14,7 @@ const StyledRoot = styled(Link)<{ $isActive: boolean, $isClicked: boolean }>`
     text-decoration: none;
 
     @media (min-width: ${breakpointSmall}) {
-        font-size: 8vh;
+        font-size: ${fontSizes.h1Md};
         margin-bottom: 2vh;
     }
 

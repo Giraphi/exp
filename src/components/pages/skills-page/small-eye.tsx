@@ -23,10 +23,10 @@ export default function SmallEye(props: SmallEyeProps) {
             }
 
             {device !== "small" &&
-            <CursorFollowModel
-                z={props.z}
-                gltf={props.gltf}
-            />
+                <CursorFollowModel
+                    z={props.z}
+                    gltf={props.gltf}
+                />
             }
         </>
     );

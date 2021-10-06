@@ -3,7 +3,7 @@ import styled from "styled-components";
 import ThreeSetup from "../../three-setup/three-setup";
 import CameraControlButtons from "../../camera-control-buttons";
 import SkillsPageWorld from "./skills-page-world";
-import PageContentLayout from "../../layout/page-content-layout";
+import LayoutContent from "../../utilities/layout-content";
 import {motion, useMotionTemplate, useTransform, useViewportScroll} from "framer-motion";
 import {breakpointSmall, zIndexes} from "../../../style/constants";
 import GlitchText from "./glitch-text/glitch-text";
@@ -11,8 +11,11 @@ import PageLoader from "../../page-loader/page-loader";
 import {useGLTF} from "@react-three/drei";
 import {EyeGLTFResult} from "../../models/eye-model";
 import SmallEye from "./small-eye";
-import {LayoutTextItem, LayoutTextSection} from "../../layout/utilities";
+import {LayoutTextItem} from "../../utilities/layout-text-item";
 import Page from "../../page";
+import {LayoutTextSection} from "../../utilities/layout-text-section";
+import {Spacer} from "../../utilities/spacer";
+import SkillsPageEyes from "./skills-page-eyes";
 
 const StyledRoot = styled(motion.div)`
     min-height: 100vh;
@@ -35,7 +38,6 @@ const StyledBanner = styled.div`
 `
 
 const StyledText = styled.div`
-    text-align: center;
     font-family: "AuvantGothicBold", sans-serif;
     color: black;
     margin-bottom: 75px;
@@ -44,6 +46,7 @@ const StyledText = styled.div`
 
     @media (min-width: 768px) {
         margin-top: 10px;
+        text-align: center;
     }
 `;
 
@@ -51,11 +54,6 @@ const StyledContent = styled.div`
     position: relative;
 `
 
-const StyledEyeContainer = styled.div<{ top: string, left: string }>`
-    position: absolute;
-    top: ${props => props.top};
-    left: ${props => props.left};
-`
 
 export default function SkillsPage() {
     const [isLoadFinished, setIsLoadFinished] = useState(false);
@@ -90,13 +88,13 @@ export default function SkillsPage() {
                     </StyledBanner>
 
                     <StyledContent>
-                        <PageContentLayout>
+                        <LayoutContent>
                             <StyledText>
                                 <LayoutTextSection>
                                     <GlitchText
                                         variant={"flip"}
                                         text={`During my work as a frontend developer I’ve been using different technologies and frameworks, mostly based somewhere in the Javascript world.`}/>
-                                    <br/>
+                                    <br/><br/>
                                     <GlitchText
                                         variant={"flip"}
                                         text={`Most of all I’m drawn to technologies that support creative processes and open possibilities to unusual or unseen results.`}/>
@@ -165,58 +163,66 @@ export default function SkillsPage() {
                                             text={"Other Skills"}
                                         />
                                     </h1>
-                                    <LayoutTextItem>Solid understanding of contemporary UI and UX
-                                        concepts</LayoutTextItem>
-                                    <LayoutTextItem>Expertise in the fields of Maths, Artificial Intelligence, Machine Learning &
-                                        Deep Learning</LayoutTextItem>
-                                    <LayoutTextItem>Expertise in the fields of Natural Language Processing & Linguistics</LayoutTextItem>
-                                    <LayoutTextItem>Solid English + German</LayoutTextItem>
+                                    <LayoutTextItem>
+                                        Solid understanding of contemporary UI and UX
+                                        concepts.
+                                    </LayoutTextItem>
+                                    <LayoutTextItem>
+                                        Expertise in the fields of Maths, Artificial Intelligence, Machine Learning &
+                                        Deep Learning.
+                                    </LayoutTextItem>
+                                    <LayoutTextItem>
+                                        Expertise in the fields of Natural Language Processing & Linguistics.
+                                    </LayoutTextItem>
+                                    <LayoutTextItem>
+                                        Solid English + German.
+                                    </LayoutTextItem>
                                 </LayoutTextSection>
                             </StyledText>
-                        </PageContentLayout>
+                        </LayoutContent>
 
+                        <SkillsPageEyes eyeGltf={eyeGlTf}/>
+                        {/*<StyledEyeContainer top={"20%"} left={"5%"}>*/}
+                        {/*    <SmallEye*/}
+                        {/*        z={-300}*/}
+                        {/*        gltf={eyeGlTf}*/}
+                        {/*    />*/}
+                        {/*</StyledEyeContainer>*/}
 
-                        <StyledEyeContainer top={"20%"} left={"5%"}>
-                            <SmallEye
-                                z={-300}
-                                gltf={eyeGlTf}
-                            />
-                        </StyledEyeContainer>
+                        {/*<StyledEyeContainer top={"30%"} left={"80%"}>*/}
+                        {/*    <SmallEye*/}
+                        {/*        z={-400}*/}
+                        {/*        gltf={eyeGlTf}*/}
+                        {/*    />*/}
+                        {/*</StyledEyeContainer>*/}
 
-                        <StyledEyeContainer top={"30%"} left={"80%"}>
-                            <SmallEye
-                                z={-400}
-                                gltf={eyeGlTf}
-                            />
-                        </StyledEyeContainer>
+                        {/*<StyledEyeContainer top={"45%"} left={"29%"}>*/}
+                        {/*    <SmallEye*/}
+                        {/*        z={-250}*/}
+                        {/*        gltf={eyeGlTf}*/}
+                        {/*    />*/}
+                        {/*</StyledEyeContainer>*/}
 
-                        <StyledEyeContainer top={"45%"} left={"29%"}>
-                            <SmallEye
-                                z={-250}
-                                gltf={eyeGlTf}
-                            />
-                        </StyledEyeContainer>
+                        {/*<StyledEyeContainer top={"60%"} left={"70%"}>*/}
+                        {/*    <SmallEye*/}
+                        {/*        z={-500}*/}
+                        {/*        gltf={eyeGlTf}*/}
+                        {/*    />*/}
+                        {/*</StyledEyeContainer>*/}
 
-                        <StyledEyeContainer top={"60%"} left={"70%"}>
-                            <SmallEye
-                                z={-500}
-                                gltf={eyeGlTf}
-                            />
-                        </StyledEyeContainer>
+                        {/*<StyledEyeContainer top={"75%"} left={"8%"}>*/}
+                        {/*    <SmallEye*/}
+                        {/*        z={-270}*/}
+                        {/*        gltf={eyeGlTf}*/}
+                        {/*    />*/}
+                        {/*</StyledEyeContainer>*/}
 
-                        <StyledEyeContainer top={"75%"} left={"8%"}>
-                            <SmallEye
-                                z={-270}
-                                gltf={eyeGlTf}
-                            />
-                        </StyledEyeContainer>
-
-                        <StyledEyeContainer top={"90%"} left={"75%"}>
-                            <SmallEye
-                                gltf={eyeGlTf}
-                                z={-300}
-                            />
-                        </StyledEyeContainer>
+                        {/*<StyledEyeContainer top={"90%"} left={"75%"}>*/}
+                        {/*    <SmallEye*/}
+                        {/*        gltf={eyeGlTf}*/}
+                        {/*        z={-300}*/}
+                        {/*    />*/}
+                        {/*</StyledEyeContainer>*/}
 
                     </StyledContent>
                 </Page>

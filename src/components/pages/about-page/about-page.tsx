@@ -2,16 +2,18 @@ import React, {useState} from "react";
 import ThreeSetup from "../../three-setup/three-setup";
 import CameraControlButtons from "../../camera-control-buttons";
 import styled from "styled-components";
-import {breakpointSmall, colorAbout} from "../../../style/constants";
-import PageContentLayout from "../../layout/page-content-layout";
+import {breakpointSmall, colorAbout, spacings} from "../../../style/constants";
+import LayoutContent from "../../utilities/layout-content";
 import {motion} from "framer-motion";
 import AboutPageWorld from "./about-page-world";
 import GlitchText from "../skills-page/glitch-text/glitch-text";
-import {LayoutTextItem, LayoutTextSection} from "../../layout/utilities";
+import {LayoutTextItem} from "../../utilities/layout-text-item";
 import {useGLTF} from "@react-three/drei";
 import {MeGLTFResult} from "../../models/me-model";
 import PageLoader from "../../page-loader/page-loader";
 import Page from "../../page";
+import {LayoutTextSection} from "../../utilities/layout-text-section";
+import {Spacer} from "../../utilities/spacer";
 
 const StyledRoot = styled(motion.div)`
     min-height: 100vh;
@@ -51,22 +53,22 @@ const StyledTable = styled.table`
     }
 
     td {
-        padding-bottom: 10px;
+        padding-bottom: ${spacings.xSmallSm};
     }
 
     td:first-child {
         white-space: nowrap;
-        padding-right: 15px;
+        padding-right: calc(2 * ${spacings.xSmallSm});
         text-align: end;
     }
 
     @media (min-width: ${breakpointSmall}) {
         td:first-child {
-            padding-right: 35px;
+            padding-right: calc(2 * ${spacings.xSmallMd});
         }
 
         td {
-            padding-bottom: 1vh;
+            padding-bottom: ${spacings.xSmallMd};
         }
     }
 `
@@ -105,7 +107,7 @@ export default function AboutPage() {
                         </ThreeSetup>
                     </StyledBanner>
 
-                    <PageContentLayout>
+                    <LayoutContent>
                         <StyledText>
 
                             <LayoutTextSection>
@@ -113,7 +115,7 @@ export default function AboutPage() {
                                     text={"I'm a frontend " +
                                     "developer based in Munich with an affinity towards art and design. "}
                                     variant={"color"}/>
-                                    <br/>
+                                <Spacer size={"small"}/>
                                 <GlitchText
                                     text={"Having a strong background in Computer Science and Maths I try to entwine technical precision with an open creative playfulness to aim for results that go beyond the current standards."}
                                     variant={"color"}/>
@@ -215,7 +217,7 @@ export default function AboutPage() {
                                 </LayoutTextItem>
                             </LayoutTextSection>
                         </StyledText>
-                    </PageContentLayout>
+                    </LayoutContent>
                 </Page>
             </PageLoader>
         </StyledRoot>

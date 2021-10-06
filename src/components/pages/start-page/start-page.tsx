@@ -4,7 +4,7 @@ import StartPageWorld from "./start-page-world";
 import CameraControlButtons from "../../camera-control-buttons";
 import styled from "styled-components";
 import {motion} from "framer-motion";
-import {breakpointSmall, zIndexes} from "../../../style/constants";
+import {breakpointSmall, fontSizes, zIndexes} from "../../../style/constants";
 import PageLoader from "../../page-loader/page-loader";
 
 const StyledRoot = styled(motion.div)`
@@ -30,10 +30,10 @@ const StyledHeadlineContainer = styled.div`
 const StyledHeadline = styled.div`
     margin-bottom: 0;
     
-    font-size: 40px;
+    font-size: ${fontSizes.pageHeaderSm};
     
     @media(min-width: ${breakpointSmall}) {        
-        font-size: 70px;
+        font-size: ${fontSizes.pageHeaderMd};
     }
 `
 
