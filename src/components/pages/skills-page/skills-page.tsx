@@ -167,11 +167,9 @@ export default function SkillsPage() {
                                     </h1>
                                     <LayoutTextItem>Solid understanding of contemporary UI and UX
                                         concepts</LayoutTextItem>
-                                    <LayoutTextItem>Expertise in the fields of Artificial Intelligence, Machine Learning &
-                                        Deep
-                                        Learning</LayoutTextItem>
-                                    {/*<LayoutItem>Natural Language Processing & Linguistics</LayoutItem>*/}
-                                    {/*<LayoutItem>Maths & Logic</LayoutItem>*/}
+                                    <LayoutTextItem>Expertise in the fields of Maths, Artificial Intelligence, Machine Learning &
+                                        Deep Learning</LayoutTextItem>
+                                    <LayoutTextItem>Expertise in the fields of Natural Language Processing & Linguistics</LayoutTextItem>
                                     <LayoutTextItem>Solid English + German</LayoutTextItem>
                                 </LayoutTextSection>
                             </StyledText>

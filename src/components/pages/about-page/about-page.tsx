@@ -28,10 +28,10 @@ const StyledBanner = styled.div`
         height: 80vh;
     }
 
-    margin-bottom: -20vh;
+    margin-bottom: -15vh;
 
     @media (min-width: ${breakpointSmall}) {
-        margin-bottom: -7vh;
+        margin-bottom: -5vh;
     }
 `
 
