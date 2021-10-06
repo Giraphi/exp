@@ -185,16 +185,15 @@ export default function AboutPage() {
                             <h1><GlitchText text={"Contact"} variant={"color"}/></h1>
                             <LayoutTextSection>
                                 <LayoutTextItem>
-                                    <a href={"https://github.com/Giraphi"}>github</a>
-                                {/*https://github.com/Giraphi/exp*/}
+                                    <StyledLink target={"_blank"} rel="noopener noreferrer"
+                                                href={"https://github.com/Giraphi"}>github</StyledLink>
                                 </LayoutTextItem>
-
                                 <LayoutTextItem>
-                                    e-mail
+                                    <StyledLink target={"_blank"} rel="noopener noreferrer"
+                                                href={"https://www.linkedin.com/in/raphael-h%C3%B6ps-2740aa205/"}>LinkedIn</StyledLink>
                                 </LayoutTextItem>
-
                                 <LayoutTextItem>
-                                    LinkedIn
+                                    e-mail: hoeps.raphael[at]gmail.com
                                 </LayoutTextItem>
                             </LayoutTextSection>
                         </StyledText>

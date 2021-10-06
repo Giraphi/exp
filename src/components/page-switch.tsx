@@ -22,7 +22,7 @@ export default function PageSwitch() {
                 >
                     <Route
                         exact
-                        path={["/", `/home`]}
+                        path={["/"]}
                     >
                         <StartPage/>
                     </Route>

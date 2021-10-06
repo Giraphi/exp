@@ -33,7 +33,7 @@ export default function PageMenu(props: PageMenuProps) {
         const items: ItemDescription[] = [
             {
                 text: "Back Home",
-                path: "/home",
+                path: "/",
                 position: position,
             }
         ];

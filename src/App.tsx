@@ -12,7 +12,8 @@ const StyledRoot = styled.div`
 `
 
 function App() {
-
+    // BrowserRouter is problematic with gh-pages:
+    // https://stackoverflow.com/questions/58228017/react-router-v4-cant-load-page-on-github-pages
     return (
         <StyledRoot>
             <GlobalStyle/>
