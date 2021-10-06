@@ -1,17 +1,11 @@
-auf jeder page:
-- deutliche links zu den anderen beiden?
 
 camera:
 - reset-camera button?
 
-performance:
-- insgesamt verbessern, sodass es auf thinkpad läuft?
-https://attackingpixels.com/tips-tricks-optimizing-three-js-performance/
-https://discoverthreejs.com/book/first-steps/ambient-lighting/
-- falls möchlich: schawache devices detecten?
-
 Layout:
 - layout aufräumen, so konsistent wie möglich
 
-- datenschutz/impressum/credits
-- url
+----------------------------------------------------------------------
+
+- Footer: datenschutz/impressum/credits
+- auf jeder page: deutliche links zu den anderen

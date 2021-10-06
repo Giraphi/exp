@@ -145,8 +145,8 @@ export default function SkillsPage() {
                                             text={"Favorite Languages"}
                                         />
                                     </h1>
-                                    <LayoutTextItem>JS</LayoutTextItem>
-                                    <LayoutTextItem>Typescript</LayoutTextItem>
+                                    <LayoutTextItem>JavaScript</LayoutTextItem>
+                                    <LayoutTextItem>TypeScript</LayoutTextItem>
                                     <LayoutTextItem>Python</LayoutTextItem>
                                 </LayoutTextSection>
 
