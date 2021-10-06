@@ -167,7 +167,7 @@ export default function SkillsPage() {
                                     </h1>
                                     <LayoutTextItem>Solid understanding of contemporary UI and UX
                                         concepts</LayoutTextItem>
-                                    <LayoutTextItem>Basics in the fields of Artificial Intelligence, Machine Learning &
+                                    <LayoutTextItem>Expertise in the fields of Artificial Intelligence, Machine Learning &
                                         Deep
                                         Learning</LayoutTextItem>
                                     {/*<LayoutItem>Natural Language Processing & Linguistics</LayoutItem>*/}

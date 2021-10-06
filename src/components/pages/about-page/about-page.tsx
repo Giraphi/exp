@@ -107,6 +107,18 @@ export default function AboutPage() {
 
                     <PageContentLayout>
                         <StyledText>
+
+                            <LayoutTextSection>
+                                <GlitchText
+                                    text={"I'm a frontend " +
+                                    "developer based in Munich with an affinity towards art and design. "}
+                                    variant={"color"}/>
+                                    <br/>
+                                <GlitchText
+                                    text={"Having a strong background in Computer Science and Maths I try to entwine technical precision with an open creative playfulness to aim for results that go beyond the current standards."}
+                                    variant={"color"}/>
+                            </LayoutTextSection>
+
                             <h1><GlitchText text={"Education"} variant={"color"}/></h1>
                             <LayoutTextSection>
                                 <StyledTable>
@@ -121,6 +133,12 @@ export default function AboutPage() {
                                         <td><GlitchText text={"2015 - 2018"} variant={"color"}/></td>
                                         <td><GlitchText
                                             text={"Master Computational Linguistics with Computer Science Minor at LMU Munich"}
+                                            variant={"color"}/></td>
+                                    </tr>
+                                    <tr>
+                                        <td></td>
+                                        <td><GlitchText
+                                            text={"Master Thesis in the field of Artificial Intelligence"}
                                             variant={"color"}/></td>
                                     </tr>
                                     </tbody>
