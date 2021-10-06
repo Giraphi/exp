@@ -28,7 +28,7 @@ export default function SkillsPageHeadline() {
                     letterSpacing={0.1}
                     lineHeight={1}
                     font={inkedBones}
-                    position={[0,0,300]}
+                    position={[0,0,150]}
                     rotation={[-0.3, -0.07, -0.03]}
                 >
                     Skills

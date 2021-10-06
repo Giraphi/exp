@@ -28,7 +28,7 @@ const StyledRoot = styled(motion.div)`
 const StyledBanner = styled.div`
     height: 120vh;
 
-    margin-bottom: -40vh;
+    margin-bottom: -45vh;
 
     @media (min-width: ${breakpointSmall}) {
         margin-bottom: -45vh;
