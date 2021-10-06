@@ -1,8 +1,7 @@
-import React from "react";
 import styled, {css} from "styled-components";
 import {breakpointSmall, spacings} from "../../style/constants";
 
-export const Spacer = styled.div<{size: "xsmall" | "small"|"medium"|"large"}>`
+export const Spacer = styled.div<{size: "xsmall" | "small" | "medium" | "large"}>`
     ${props => props.size === "xsmall" && css`
         margin-bottom: ${spacings.xSmallSm};
         

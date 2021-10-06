@@ -4,7 +4,7 @@ import styled, {css} from "styled-components";
 
 import MovementContext from "../contexts/movement-context";
 import {ArrowBlackUp, ArrowBlackUpFilled, ArrowWhiteUp, ArrowWhiteUpFilled} from "../images/svg-strings";
-import {fontSizes} from "../style/constants";
+import {fontSizes, lineHeights} from "../style/constants";
 
 const ButtonSize = "50px";
 const ButtonSizeSmall = "40px";
@@ -111,6 +111,7 @@ const StyledGrid = styled.div<{ isMinimal?: boolean }>`
 const StyledText = styled.div`
     margin-top: 20px;
     font-size: ${fontSizes.captionSm};
+    line-height: ${lineHeights.captionSm};
     color: white;
     font-family: "SourceCodePro", monospace;
     display: none;

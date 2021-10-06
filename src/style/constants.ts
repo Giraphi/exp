@@ -41,12 +41,12 @@ export const spacings = {
     h1Md: "16px",
 
     xSmallSm: "6px",
-    xSmallMd: "15px",
+    xSmallMd: "12px",
 
     smallSm: "20px",
     smallMd: "30px",
 
-    mediumSm: "45px",
+    mediumSm: "40px",
     mediumMd: "60px",
 }
 
@@ -56,4 +56,10 @@ export const lineHeights = {
 
     bodySm: "26px",
     bodyMd: "38px",
+
+    pageHeaderSm: "40px",
+    pageHeaderMd: "80px",
+
+    captionMd: "25px",
+    captionSm: "22px",
 }

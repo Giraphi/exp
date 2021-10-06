@@ -10,11 +10,9 @@ import GlitchText from "./glitch-text/glitch-text";
 import PageLoader from "../../page-loader/page-loader";
 import {useGLTF} from "@react-three/drei";
 import {EyeGLTFResult} from "../../models/eye-model";
-import SmallEye from "./small-eye";
 import {LayoutTextItem} from "../../utilities/layout-text-item";
 import Page from "../../page";
 import {LayoutTextSection} from "../../utilities/layout-text-section";
-import {Spacer} from "../../utilities/spacer";
 import SkillsPageEyes from "./skills-page-eyes";
 
 const StyledRoot = styled(motion.div)`
@@ -38,14 +36,11 @@ const StyledBanner = styled.div`
 `
 
 const StyledText = styled.div`
-    font-family: "AuvantGothicBold", sans-serif;
     color: black;
-    margin-bottom: 75px;
     position: relative;
     z-index: ${zIndexes.skillsPageText};
 
     @media (min-width: 768px) {
-        margin-top: 10px;
         text-align: center;
     }
 `;
@@ -53,7 +48,6 @@ const StyledText = styled.div`
 const StyledContent = styled.div`
     position: relative;
 `
-
 
 export default function SkillsPage() {
     const [isLoadFinished, setIsLoadFinished] = useState(false);

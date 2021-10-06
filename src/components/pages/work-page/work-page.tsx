@@ -2,7 +2,7 @@ import React, {useMemo, useState} from "react";
 import ThreeSetup from "../../three-setup/three-setup";
 import CameraControlButtons from "../../camera-control-buttons";
 import styled from "styled-components";
-import {breakpointSmall, colorWork, fontSizes} from "../../../style/constants";
+import {breakpointSmall, colorWork, fontSizes, lineHeights, spacings} from "../../../style/constants";
 import LayoutContent from "../../utilities/layout-content";
 import {motion, useMotionTemplate, useTransform, useViewportScroll} from "framer-motion";
 import WorkPageWorld from "./work-page-world";
@@ -41,18 +41,18 @@ const StyledBanner = styled.div`
     }
 
     @media (min-width: ${breakpointSmall}) {
-        margin-bottom: 7vh;
+        margin-bottom: ${spacings.mediumMd};
     }
 `
 
 const StyledRowText = styled.div`
     flex-basis: 100%;
-    padding: 25px 0;
+    padding: ${spacings.smallSm} 0;
     order: 2;
 
     @media (min-width: ${breakpointSmall}) {
         flex-basis: 33%;
-        padding: 30px;
+        padding: ${spacings.smallMd};
         order: unset;
     }
 `;
@@ -65,7 +65,8 @@ const StyledSliderRow = styled.div`
     color: white;
     font-family: "SourceCodePro", monospace;
     font-size: ${fontSizes.captionSm};
-    margin-bottom: 50px;
+    line-height: ${lineHeights.captionSm};
+    margin-bottom: ${spacings.mediumSm};
     flex-wrap: wrap;
 
     a {
@@ -78,8 +79,9 @@ const StyledSliderRow = styled.div`
     }
 
     @media (min-width: ${breakpointSmall}) {
-        margin-bottom: 15vh;
+        margin-bottom: calc(${spacings.mediumMd} + ${spacings.smallMd});
         font-size: ${fontSizes.captionMd};
+        line-height: ${lineHeights.captionMd};
     }
 `
 

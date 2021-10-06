@@ -13,7 +13,7 @@ const StyledRoot = styled.div`
     flex-basis: 100%;
 
     @media (min-width: ${breakpointSmall}) {
-        flex-basis: 66%;
+        flex-basis: 67%;
     }
 `;
 
@@ -42,8 +42,8 @@ const ClickableAreaMixin = css`
         content: "";
         background-repeat: no-repeat;
         background-size: contain;
-        width: 50px;
-        height: 50px;
+        width: 40px;
+        height: 40px;
         display: flex;
     }
 
