@@ -2,7 +2,7 @@
   "name": "exp",
   "version": "0.1.0",
   "private": true,
-  "homepage": "http://giraphi.github.io/exp",
+  "homepage": "./",
   "dependencies": {
     "@react-three/drei": "^7.1.2",
     "@react-three/fiber": "^7.0.2",

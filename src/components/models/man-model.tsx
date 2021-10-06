@@ -10,7 +10,7 @@ export default function ManModel() {
         return new MeshStandardMaterial();
     }, []);
 
-    const model = useObjAsPrimitive("/exp/models/man.obj", material);
+    const model = useObjAsPrimitive("/models/man.obj", material);
 
     return (
         <>

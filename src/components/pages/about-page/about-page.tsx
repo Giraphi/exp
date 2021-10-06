@@ -81,7 +81,7 @@ const StyledLink = styled.a`
 `
 
 export default function AboutPage() {
-    const meGlTf = useGLTF('/exp/models/me.glb') as MeGLTFResult;
+    const meGlTf = useGLTF('/models/me.glb') as MeGLTFResult;
     const [isLoadFinished, setIsLoadFinished] = useState(false);
 
     return (
@@ -185,7 +185,8 @@ export default function AboutPage() {
                             <h1><GlitchText text={"Contact"} variant={"color"}/></h1>
                             <LayoutTextSection>
                                 <LayoutTextItem>
-                                    github
+                                    <a href={"https://github.com/Giraphi"}>github</a>
+                                {/*https://github.com/Giraphi/exp*/}
                                 </LayoutTextItem>
 
                                 <LayoutTextItem>

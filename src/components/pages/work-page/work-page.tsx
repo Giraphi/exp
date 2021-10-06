@@ -85,7 +85,7 @@ const StyledSliderRow = styled.div`
 
 export default function WorkPage() {
     const [isLoadFinished, setIsLoadFinished] = useState(false);
-    const handGlTf = useGLTF('/exp/models/hand/scene.gltf') as HandGLTFResult;
+    const handGlTf = useGLTF('/models/hand/scene.gltf') as HandGLTFResult;
 
     const {scrollYProgress} = useViewportScroll();
     const rColorChannel = useTransform(scrollYProgress, [0, 0.3, 0.6, 0.8, 1], [0, 30, 40, 35, 0]);

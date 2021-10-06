@@ -59,7 +59,7 @@ const StyledEyeContainer = styled.div<{ top: string, left: string }>`
 
 export default function SkillsPage() {
     const [isLoadFinished, setIsLoadFinished] = useState(false);
-    const eyeGlTf = useGLTF('/exp/models/eye/scene.gltf') as EyeGLTFResult;
+    const eyeGlTf = useGLTF('/models/eye/scene.gltf') as EyeGLTFResult;
     const {scrollYProgress} = useViewportScroll();
     const rColorChannel = useTransform(scrollYProgress, [0, 2 / 8, 3 / 8, 4 / 8, 5 / 8, 6 / 8, 7 / 8, 1], [255, 255, 0, 0, 0, 0, 255, 255]);
     const gColorChannel = useTransform(scrollYProgress, [0, 2 / 8, 3 / 8, 4 / 8, 5 / 8, 6 / 8, 7 / 8, 1], [255, 255, 255, 255, 255, 255, 0, 0]);
@@ -227,4 +227,4 @@ export default function SkillsPage() {
     );
 }
 
-useGLTF.preload("/exp/models/eye/scene.gltf");
+useGLTF.preload("/models/eye/scene.gltf");
