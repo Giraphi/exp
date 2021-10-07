@@ -107,7 +107,7 @@ export default function AboutPage() {
                                 variant={"color"}/>
                             <Spacer size={"small"}/>
                             <GlitchText
-                                text={"Having a strong background in Computer Science and Maths I try to entwine technical precision with an open creative playfulness to aim for results that go beyond the current standards."}
+                                text={"Having a strong background in Computer Science and Maths I try to entwine technical precision with creative playfulness to aim for results that go beyond the current standards."}
                                 variant={"color"}/>
                         </LayoutTextSection>
 

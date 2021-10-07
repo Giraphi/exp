@@ -7,5 +7,7 @@ Layout:
 
 ----------------------------------------------------------------------
 
+- Optimize for iphone X
+- unify banner canvases (headline + menu same position/size)
 - Footer: datenschutz/impressum/credits
 - auf jeder page: deutliche links zu den anderen
