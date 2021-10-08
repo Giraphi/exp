@@ -92,7 +92,7 @@ export default function SkillsPage() {
                             <StyledText>
                                 <LayoutTextSection>
                                     <GlitchText
-                                        probability={0.1}
+                                        probability={0.001}
                                         variant={"flip"}
                                         text={`During my work as a frontend developer I’ve been using different technologies and frameworks, mostly based somewhere in the Javascript world.`}
                                     />
