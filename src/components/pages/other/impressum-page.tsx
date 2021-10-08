@@ -17,6 +17,7 @@ export default function ImpressumPage() {
                 <h1>Owner</h1>
                 <div>Raphael Höps</div>
                 <div>E-mail: hoeps.raphael [at] gmail.com</div>
+                <Spacer size={"medium"} />
             </LayoutContent>
         </StyledRoot>
     );
