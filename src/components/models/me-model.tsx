@@ -18,7 +18,11 @@ export interface MeModelProps {
 export default function MeModel(props: MeModelProps) {
     return (
         <group scale={props.scale} rotation={props.rotation} position={props.position} dispose={null}>
-            <mesh geometry={props.meGltfResult.nodes.mesh_0.geometry} material={props.meGltfResult.nodes.mesh_0.material} />
+            <mesh
+                geometry={props.meGltfResult.nodes.mesh_0.geometry}
+                material={props.meGltfResult.nodes.mesh_0.material}
+                receiveShadow={true}
+            />
         </group>
     );
 }

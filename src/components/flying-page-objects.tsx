@@ -101,6 +101,8 @@ export default function FlyingPageObjects(props: SkillPageCuboidsProps) {
         <instancedMesh
             args={[null as unknown as BufferGeometry, null as unknown as MeshStandardMaterial, props.numObjects]}
             ref={instancedMeshRef}
+            castShadow={true}
+            receiveShadow={true}
         >
             {props.children}
         </instancedMesh>

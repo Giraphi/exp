@@ -75,7 +75,7 @@ export default function PageMenu(props: PageMenuProps) {
                         inner: {
                             decay: 1.5,
                             distance: 650,
-                            intensity: 0.3,
+                            intensity: 0.5,
                         },
                         outer: {
                             intensity: 0.1,

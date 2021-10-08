@@ -20,7 +20,14 @@ export default function AboutPageWorld(props: AboutPageWorldProps) {
             <AboutPageHeadline />
 
             <pointLight color={colorAbout} intensity={2} distance={1000} decay={1} position={[420, 1000, 40]} castShadow={true} />
+            <pointLight color={"white"} intensity={0.3} distance={800} decay={1} position={[0, -50, 200]} castShadow={true} />
 
+            <group position={[0, -50, 200]}>
+                <mesh>
+                    <meshStandardMaterial color={"white"} />
+                    <boxBufferGeometry args={[15, 15, 15]} />
+                </mesh>
+            </group>
             <group position={[0, 0, -200]}>
                 <FlyingPageObjects numObjects={30} worldSize={1000} lift={isMenuClicked}>
                     <meshStandardMaterial attach="material" color="gray" />
