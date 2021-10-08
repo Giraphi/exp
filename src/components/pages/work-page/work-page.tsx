@@ -23,6 +23,7 @@ import Funct2 from "./slider-images/funct2.png";
 import WorkPageImageSlider from "./work-page-image-slider";
 import useDevice from "../../../hooks/use-device";
 import Page from "../../page";
+import Footer from "../../footer";
 
 const StyledRoot = styled(motion.div)`
     min-height: 100vh;
@@ -180,6 +181,7 @@ export default function WorkPage() {
                             <WorkPageImageSlider images={images.maxi} />
                         </StyledSliderRow>
                     </LayoutContent>
+                    <Footer isInverted={true} />
                 </Page>
             </PageLoader>
         </StyledRoot>

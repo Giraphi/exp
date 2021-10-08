@@ -14,6 +14,7 @@ import PageLoader from "../../page-loader/page-loader";
 import Page from "../../page";
 import { LayoutTextSection } from "../../utilities/layout-text-section";
 import { Spacer } from "../../utilities/spacer";
+import Footer from "../../footer";
 
 const StyledRoot = styled(motion.div)`
     min-height: 100vh;
@@ -236,6 +237,7 @@ export default function AboutPage() {
                             <LayoutTextItem>e-mail: hoeps.raphael [at] gmail.com</LayoutTextItem>
                         </LayoutTextSection>
                     </LayoutContent>
+                    <Footer isInverted={true} />
                 </Page>
             </PageLoader>
         </StyledRoot>
