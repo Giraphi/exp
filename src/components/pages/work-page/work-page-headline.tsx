@@ -13,7 +13,6 @@ export default function WorkPageHeadline() {
                 <Text
                     color={colorWork}
                     fontSize={70}
-                    letterSpacing={0.1}
                     lineHeight={1}
                     font={inkedBones}
                     position={[0, 0, 300]}

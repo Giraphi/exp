@@ -35,7 +35,7 @@ export default function MovingEye(props: MovingEyeProps) {
         return {
             fixedZ: 300,
             eyePositionY: 50,
-            YOffset: -0.23 * canvasSize.height,
+            YOffset: -0.03 * canvasSize.height,
         };
     }, [canvasSize.height]);
 
@@ -45,7 +45,6 @@ export default function MovingEye(props: MovingEyeProps) {
         }
 
         if (device === "small") {
-            console.log(rotationPercentage.get());
             ref.current.setRotationFromAxisAngle(xAxis, rotationPercentage.get() * Math.PI * -0.75);
             return;
         }

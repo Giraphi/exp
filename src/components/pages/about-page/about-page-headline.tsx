@@ -13,7 +13,6 @@ export default function AboutPageHeadline() {
                     color={"#009905"}
                     font={inkedBones}
                     fontSize={70}
-                    letterSpacing={0.1}
                     lineHeight={1}
                     position={[0, 0, 300]}
                     rotation={[-0.2, -0.07, -0.03]}

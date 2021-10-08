@@ -9,15 +9,7 @@ export default function SkillsPageHeadline() {
     return (
         <>
             {deviceId !== "small" && (
-                <Text
-                    color={"black"}
-                    font={inkedBones}
-                    fontSize={70}
-                    letterSpacing={0.1}
-                    lineHeight={1}
-                    position={[0, 0, 300]}
-                    rotation={[-0.2, -0.07, -0.03]}
-                >
+                <Text color={"black"} font={inkedBones} fontSize={70} lineHeight={1} position={[0, 0, 300]} rotation={[-0.2, -0.07, -0.03]}>
                     Skills
                 </Text>
             )}
@@ -26,10 +18,9 @@ export default function SkillsPageHeadline() {
                 <Text
                     color={"black"}
                     font={inkedBones}
-                    fontSize={50}
-                    // letterSpacing={0.1}
+                    fontSize={65}
                     lineHeight={1}
-                    position={[0, 10, 300]}
+                    position={[0, -20, 300]}
                     rotation={[-0.3, -0.07, -0.03]}
                 >
                     Skills

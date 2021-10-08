@@ -1,5 +1,6 @@
 import React from "react";
 import styled, { css } from "styled-components";
+import { breakpointSmall, fontSizes, lineHeights } from "../../../../style/constants";
 
 const StyledRoot = styled.span<{ isRotated: boolean }>`
     display: inline-block;
@@ -9,6 +10,10 @@ const StyledRoot = styled.span<{ isRotated: boolean }>`
         css`
             transform: scaleY(-1);
             transform-origin: 50% 56%;
+
+            @media (min-width: ${breakpointSmall}) {
+                transform-origin: 50% 56%;
+            }
         `}
 `;
 

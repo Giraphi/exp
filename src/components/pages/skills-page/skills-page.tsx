@@ -27,7 +27,7 @@ const StyledRoot = styled(motion.div)`
 
 const StyledBanner = styled.div`
     height: 75vh;
-    margin-bottom: -15vh;
+    margin-bottom: -10vh;
 
     @media (min-width: ${breakpointSmall}) {
         height: 80vh;
@@ -92,12 +92,14 @@ export default function SkillsPage() {
                             <StyledText>
                                 <LayoutTextSection>
                                     <GlitchText
+                                        probability={0.1}
                                         variant={"flip"}
                                         text={`During my work as a frontend developer I’ve been using different technologies and frameworks, mostly based somewhere in the Javascript world.`}
                                     />
                                     <br />
                                     <br />
                                     <GlitchText
+                                        probability={0.001}
                                         variant={"flip"}
                                         text={`Most of all I’m drawn to technologies that support creative processes and open possibilities to unusual or unseen results.`}
                                     />
