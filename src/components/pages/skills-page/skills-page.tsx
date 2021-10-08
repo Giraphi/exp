@@ -14,6 +14,7 @@ import { LayoutTextItem } from "../../utilities/layout-text-item";
 import Page from "../../page";
 import { LayoutTextSection } from "../../utilities/layout-text-section";
 import SkillsPageEyes from "./skills-page-eyes";
+import Footer from "../../footer";
 
 const StyledRoot = styled(motion.div)`
     min-height: 100vh;
@@ -163,47 +164,7 @@ export default function SkillsPage() {
                         </LayoutContent>
 
                         <SkillsPageEyes eyeGltf={eyeGlTf} />
-                        {/*<StyledEyeContainer top={"20%"} left={"5%"}>*/}
-                        {/*    <SmallEye*/}
-                        {/*        z={-300}*/}
-                        {/*        gltf={eyeGlTf}*/}
-                        {/*    />*/}
-                        {/*</StyledEyeContainer>*/}
-
-                        {/*<StyledEyeContainer top={"30%"} left={"80%"}>*/}
-                        {/*    <SmallEye*/}
-                        {/*        z={-400}*/}
-                        {/*        gltf={eyeGlTf}*/}
-                        {/*    />*/}
-                        {/*</StyledEyeContainer>*/}
-
-                        {/*<StyledEyeContainer top={"45%"} left={"29%"}>*/}
-                        {/*    <SmallEye*/}
-                        {/*        z={-250}*/}
-                        {/*        gltf={eyeGlTf}*/}
-                        {/*    />*/}
-                        {/*</StyledEyeContainer>*/}
-
-                        {/*<StyledEyeContainer top={"60%"} left={"70%"}>*/}
-                        {/*    <SmallEye*/}
-                        {/*        z={-500}*/}
-                        {/*        gltf={eyeGlTf}*/}
-                        {/*    />*/}
-                        {/*</StyledEyeContainer>*/}
-
-                        {/*<StyledEyeContainer top={"75%"} left={"8%"}>*/}
-                        {/*    <SmallEye*/}
-                        {/*        z={-270}*/}
-                        {/*        gltf={eyeGlTf}*/}
-                        {/*    />*/}
-                        {/*</StyledEyeContainer>*/}
-
-                        {/*<StyledEyeContainer top={"90%"} left={"75%"}>*/}
-                        {/*    <SmallEye*/}
-                        {/*        gltf={eyeGlTf}*/}
-                        {/*        z={-300}*/}
-                        {/*    />*/}
-                        {/*</StyledEyeContainer>*/}
+                        <Footer />
                     </StyledContent>
                 </Page>
             </PageLoader>

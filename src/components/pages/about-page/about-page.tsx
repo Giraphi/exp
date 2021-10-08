@@ -233,7 +233,7 @@ export default function AboutPage() {
                                     LinkedIn
                                 </StyledLink>
                             </LayoutTextItem>
-                            <LayoutTextItem>e-mail: hoeps.raphael[at]gmail.com</LayoutTextItem>
+                            <LayoutTextItem>e-mail: hoeps.raphael [at] gmail.com</LayoutTextItem>
                         </LayoutTextSection>
                     </LayoutContent>
                 </Page>
