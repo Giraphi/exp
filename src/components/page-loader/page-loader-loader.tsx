@@ -1,5 +1,5 @@
 import React from "react";
-import styled, {keyframes} from "styled-components";
+import styled, { keyframes } from "styled-components";
 
 const rotateKeyframes = keyframes`
     from {
@@ -8,13 +8,12 @@ const rotateKeyframes = keyframes`
     to {
         transform: rotate(360deg);
     }
-`
-
+`;
 
 const StyledRoot = styled.div`
-    color: black;    
+    color: black;
     letter-spacing: 20px;
-`
+`;
 
 const StyledSpinner = styled.span`
     display: inline-block;
@@ -25,22 +24,20 @@ const StyledSpinner = styled.span`
     animation-iteration-count: infinite;
     letter-spacing: 0;
     position: relative;
-`
+`;
 
 const StyledLetter = styled.span`
     position: relative;
     left: -2px;
     top: 1px;
-`
+`;
 
 export default function PageLoaderLoader() {
     return (
         <StyledRoot>
             LOADIN
             <StyledSpinner>
-                <StyledLetter>
-                    G
-                </StyledLetter>
+                <StyledLetter>G</StyledLetter>
             </StyledSpinner>
         </StyledRoot>
     );

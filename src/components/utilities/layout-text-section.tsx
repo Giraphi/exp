@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import {breakpointSmall, spacings} from "../../style/constants";
+import { breakpointSmall, spacings } from "../../style/constants";
 
 export const LayoutTextSection = styled.div`
     margin-bottom: ${spacings.mediumSm};
@@ -7,4 +7,4 @@ export const LayoutTextSection = styled.div`
     @media (min-width: ${breakpointSmall}) {
         margin-bottom: ${spacings.mediumMd};
     }
-`
+`;

@@ -1,11 +1,7 @@
-import React, {useEffect, useState} from "react";
-import styled, {css} from "styled-components";
-import {
-    blackToWhiteBackgroundKeyframes,
-    hideMenuKeyframes,
-    showMenuKeyframes,
-} from "./top-bar-keyframes";
-import {breakpointSmall, zIndexes} from "../../style/constants";
+import React, { useEffect, useState } from "react";
+import styled, { css } from "styled-components";
+import { blackToWhiteBackgroundKeyframes, hideMenuKeyframes, showMenuKeyframes } from "./top-bar-keyframes";
+import { breakpointSmall, zIndexes } from "../../style/constants";
 import TopBarLink from "./top-bar-link";
 
 export const flickerAnimationDurationMs = 1000;
@@ -21,7 +17,7 @@ export const flickerAnimationMixin = css`
     animation-timing-function: step-end;
     animation-duration: ${flickerAnimationDurationMs}ms;
     animation-iteration-count: infinite;
-`
+`;
 
 const StyledTop = styled.div<{ isHidden: boolean }>`
     pointer-events: auto;
@@ -34,9 +30,11 @@ const StyledTop = styled.div<{ isHidden: boolean }>`
     cursor: pointer;
     mix-blend-mode: difference;
 
-    ${props => props.isHidden && css`
-        display: none;
-    `}
+    ${(props) =>
+        props.isHidden &&
+        css`
+            display: none;
+        `}
 `;
 
 const StyledBar = styled.div`
@@ -71,30 +69,30 @@ const StyledButton = styled.div<{ isMenuOpen: boolean }>`
         }
     }
 
-    ${props => props.isMenuOpen && css`
-        ${StyledBar}:first-child {
-            transform: translateY(calc((${BarHeightSmPx}px + ${BarSpaceSmPx}px) / 2)) rotate(315deg);
-        }
-
-        ${StyledBar}:nth-child(2) {
-            transform: translateY(calc(-1 * (${BarHeightSmPx}px + ${BarSpaceSmPx}px) / 2)) rotate(-315deg);
-        }
-
-        @media (min-width: ${breakpointSmall}) {
+    ${(props) =>
+        props.isMenuOpen &&
+        css`
             ${StyledBar}:first-child {
-                transform: translateY(calc((${BarHeightPx}px + ${BarSpacePx}px) / 2)) rotate(315deg);
+                transform: translateY(calc((${BarHeightSmPx}px + ${BarSpaceSmPx}px) / 2)) rotate(315deg);
             }
 
             ${StyledBar}:nth-child(2) {
-                transform: translateY(calc(-1 * (${BarHeightPx}px + ${BarSpacePx}px) / 2)) rotate(-315deg);
+                transform: translateY(calc(-1 * (${BarHeightSmPx}px + ${BarSpaceSmPx}px) / 2)) rotate(-315deg);
             }
-        }
-    `}
 
+            @media (min-width: ${breakpointSmall}) {
+                ${StyledBar}:first-child {
+                    transform: translateY(calc((${BarHeightPx}px + ${BarSpacePx}px) / 2)) rotate(315deg);
+                }
 
-`
+                ${StyledBar}:nth-child(2) {
+                    transform: translateY(calc(-1 * (${BarHeightPx}px + ${BarSpacePx}px) / 2)) rotate(-315deg);
+                }
+            }
+        `}
+`;
 
-const StyledMenu = styled.div<{ isMenuOpen: boolean, animate: boolean }>`
+const StyledMenu = styled.div<{ isMenuOpen: boolean; animate: boolean }>`
     pointer-events: auto;
 
     grid-row: 1/3;
@@ -108,21 +106,27 @@ const StyledMenu = styled.div<{ isMenuOpen: boolean, animate: boolean }>`
     visibility: hidden;
     background-color: black;
 
-    ${props => props.animate && !props.isMenuOpen && css`
-        animation-timing-function: ease-in;
-        animation-name: ${hideMenuKeyframes};
-        animation-duration: 500ms;
-        animation-fill-mode: forwards;
-    `}
+    ${(props) =>
+        props.animate &&
+        !props.isMenuOpen &&
+        css`
+            animation-timing-function: ease-in;
+            animation-name: ${hideMenuKeyframes};
+            animation-duration: 500ms;
+            animation-fill-mode: forwards;
+        `}
 
-    ${props => props.animate && props.isMenuOpen && css`
-        visibility: visible;
-        animation-timing-function: ease-in;
-        animation-name: ${showMenuKeyframes};
-        animation-duration: 400ms;
-        animation-fill-mode: forwards;
-    `}
-`
+    ${(props) =>
+        props.animate &&
+        props.isMenuOpen &&
+        css`
+            visibility: visible;
+            animation-timing-function: ease-in;
+            animation-name: ${showMenuKeyframes};
+            animation-duration: 400ms;
+            animation-fill-mode: forwards;
+        `}
+`;
 //
 // const TopBarLink = styled(Link)<{ $isActive: boolean }>`
 //     font-size: 30px;
@@ -160,9 +164,12 @@ const StyledInnerMenu = styled.div`
     flex-direction: column;
     justify-content: center;
     align-items: center;
-`
+`;
 
-const StyledRoot = styled.div<{ isMenuFullyClosed: boolean, isMenuOpen: boolean }>`
+const StyledRoot = styled.div<{
+    isMenuFullyClosed: boolean;
+    isMenuOpen: boolean;
+}>`
     position: fixed;
     top: 0;
     right: 0;
@@ -174,14 +181,18 @@ const StyledRoot = styled.div<{ isMenuFullyClosed: boolean, isMenuOpen: boolean 
     grid-template-rows: auto auto;
     grid-template-columns: auto auto;
 
-    ${props => props.isMenuOpen && css`
-        overflow-y: scroll;
-    `}
+    ${(props) =>
+        props.isMenuOpen &&
+        css`
+            overflow-y: scroll;
+        `}
 
-    ${props => props.isMenuFullyClosed && css`
-        mix-blend-mode: difference;
-    `}
-`
+    ${(props) =>
+        props.isMenuFullyClosed &&
+        css`
+            mix-blend-mode: difference;
+        `}
+`;
 
 export interface TopBarProps {
     isScrolledToTop: boolean;
@@ -194,7 +205,7 @@ export default function TopBar(props: TopBarProps) {
     // const pathname = useHistory().location.pathname;
 
     function onClick() {
-        setAnimateMenu(true)
+        setAnimateMenu(true);
         if (isMenuOpen) {
             setIsMenuOpen(false);
             document.body.style.overflow = "";
@@ -203,14 +214,14 @@ export default function TopBar(props: TopBarProps) {
 
         setIsMenuFullyClosed(false);
         setIsMenuOpen(true);
-        document.body.style.overflow = "hidden"
+        document.body.style.overflow = "hidden";
     }
 
     useEffect(() => {
         return () => {
-            document.body.style.overflow = ""
-        }
-    }, [])
+            document.body.style.overflow = "";
+        };
+    }, []);
 
     function onAnimationEnd() {
         if (isMenuOpen) {
@@ -220,38 +231,19 @@ export default function TopBar(props: TopBarProps) {
     }
 
     return (
-        <StyledRoot
-            isMenuFullyClosed={isMenuFullyClosed}
-            isMenuOpen={isMenuOpen}
-        >
-            <StyledTop
-                isHidden={props.isScrolledToTop && !isMenuOpen}
-                onClick={onClick}
-            >
+        <StyledRoot isMenuFullyClosed={isMenuFullyClosed} isMenuOpen={isMenuOpen}>
+            <StyledTop isHidden={props.isScrolledToTop && !isMenuOpen} onClick={onClick}>
                 <StyledButton isMenuOpen={isMenuOpen}>
-                    <StyledBar/>
-                    <StyledBar/>
+                    <StyledBar />
+                    <StyledBar />
                 </StyledButton>
-
             </StyledTop>
-            <StyledMenu
-                isMenuOpen={isMenuOpen}
-                animate={animateMenu}
-                onAnimationEnd={onAnimationEnd}
-            >
+            <StyledMenu isMenuOpen={isMenuOpen} animate={animateMenu} onAnimationEnd={onAnimationEnd}>
                 <StyledInnerMenu>
-                    <TopBarLink to={"/"}>
-                        Back Home
-                    </TopBarLink>
-                    <TopBarLink to={"skills"}>
-                        Skills
-                    </TopBarLink>
-                    <TopBarLink to={"work"}>
-                        Work
-                    </TopBarLink>
-                    <TopBarLink to={"about"}>
-                        About Me
-                    </TopBarLink>
+                    <TopBarLink to={"/"}>Back Home</TopBarLink>
+                    <TopBarLink to={"skills"}>Skills</TopBarLink>
+                    <TopBarLink to={"work"}>Work</TopBarLink>
+                    <TopBarLink to={"about"}>About Me</TopBarLink>
                 </StyledInnerMenu>
             </StyledMenu>
         </StyledRoot>

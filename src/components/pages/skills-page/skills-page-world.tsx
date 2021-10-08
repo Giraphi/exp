@@ -1,11 +1,10 @@
-import React, {Suspense, useState} from "react";
-import {colorSkills} from "../../../style/constants";
+import React, { Suspense, useState } from "react";
+import { colorSkills } from "../../../style/constants";
 import SkillsPageHeadline from "./skills-page-headline";
 import MovingEye from "./moving-eye";
 import FlyingPageObjects from "../../flying-page-objects";
 import PageMenu from "../../page-menu";
-import useDevice from "../../../hooks/use-device";
-import {EyeGLTFResult} from "../../models/eye-model";
+import { EyeGLTFResult } from "../../models/eye-model";
 
 export interface SkillsPageWorldProps {
     eyeGltf: EyeGLTFResult;
@@ -13,62 +12,27 @@ export interface SkillsPageWorldProps {
 
 export default function SkillsPageWorld(props: SkillsPageWorldProps) {
     const [isMenuClicked, setIsMenuClicked] = useState(false);
-    const device = useDevice();
 
     return (
         <>
-            <group
-                position={device === "small" ? [0, -50, -250] : [0, 10, -400]}
-            >
-                <SkillsPageHeadline/>
+            <SkillsPageHeadline />
 
-                <ambientLight color="white" intensity={0.2}/>
+            <ambientLight color="white" intensity={0.2} />
 
-                <pointLight
-                    color={colorSkills}
-                    intensity={2}
-                    distance={1200}
-                    decay={1}
-                    position={[420, 1000, 40]}
-                    castShadow={true}
-                >
-                </pointLight>
+            <pointLight color={colorSkills} intensity={2} distance={1200} decay={1} position={[420, 1000, 40]} castShadow={true} />
 
-                <group
-                    position={device === "small" ? [0, 60, -200] : [0, 30, -200]}
-                >
-                    <FlyingPageObjects
-                        numObjects={150}
-                        worldSize={1000}
-                        lift={isMenuClicked}
-                    >
-                        <meshStandardMaterial
-                            attach="material"
-                            color="white"
-                        />
-                        <sphereGeometry
-                            attach="geometry"
-                            args={[5, 32, 32]}
-                        />
-                    </FlyingPageObjects>
-                </group>
+            <group position={[0, 0, -200]}>
+                <FlyingPageObjects numObjects={140} worldSize={1000} lift={isMenuClicked}>
+                    <meshStandardMaterial color="white" />
+                    <sphereBufferGeometry args={[5, 32, 32]} />
+                </FlyingPageObjects>
 
                 <Suspense fallback={null}>
-                    <MovingEye
-                        eyeGltf={props.eyeGltf}
-                    />
+                    <MovingEye eyeGltf={props.eyeGltf} />
                 </Suspense>
             </group>
 
-            <group
-                position={device === "small" ? [0, 30, -250] : [0, 10, -400]}
-            >
-                <PageMenu
-                    negative={true}
-                    onClick={() => setIsMenuClicked(true)}
-                />
-            </group>
+            <PageMenu negative={true} onClick={() => setIsMenuClicked(true)} />
         </>
     );
 }
-

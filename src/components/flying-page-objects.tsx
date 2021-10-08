@@ -1,8 +1,8 @@
-import React, {useEffect, useLayoutEffect, useRef, useState} from "react";
+import React, { useEffect, useLayoutEffect, useRef, useState } from "react";
 import useRandomGenerator from "../hooks/use-random";
-import {BufferGeometry, InstancedMesh, Matrix4, MeshStandardMaterial} from "three";
-import {useFrame} from "@react-three/fiber";
-import {Vector3} from "three/src/math/Vector3";
+import { BufferGeometry, InstancedMesh, Matrix4, MeshStandardMaterial } from "three";
+import { useFrame } from "@react-three/fiber";
+import { Vector3 } from "three/src/math/Vector3";
 
 export interface SkillPageCuboidsProps {
     numObjects: number;
@@ -27,9 +27,8 @@ export default function FlyingPageObjects(props: SkillPageCuboidsProps) {
 
         setInterval(() => {
             gluedIndexes.current.shift();
-        }, DELAY_MS)
-
-    }, [props.lift])
+        }, DELAY_MS);
+    }, [props.lift]);
 
     useLayoutEffect(() => {
         if (!instancedMeshRef.current) {
@@ -38,7 +37,6 @@ export default function FlyingPageObjects(props: SkillPageCuboidsProps) {
 
         const transform = new Matrix4();
         for (let i = 0; i < props.numObjects; i++) {
-
             const x = random() * props.worldSize - props.worldSize / 2;
             const y = random() * 500 - 250;
             const z = random() * props.worldSize - props.worldSize / 2;
@@ -48,13 +46,13 @@ export default function FlyingPageObjects(props: SkillPageCuboidsProps) {
             }
 
             transform.setPosition(x, y, z);
-            instancedMeshRef.current.setMatrixAt(i, transform)
+            instancedMeshRef.current.setMatrixAt(i, transform);
         }
     }, [props.numObjects, props.worldSize, random]);
 
     const rotationSpeed = useRef(0);
 
-    useFrame((state, delta)  => {
+    useFrame((state, delta) => {
         if (!props.lift || !instancedMeshRef.current || isListFinished) {
             return;
         }
@@ -72,9 +70,9 @@ export default function FlyingPageObjects(props: SkillPageCuboidsProps) {
             const matrix = new Matrix4();
             instancedMeshRef.current.getMatrixAt(i, matrix);
             const position = new Vector3().setFromMatrixPosition(matrix);
-            position.add(new Vector3(0,deltaX,0));
+            position.add(new Vector3(0, deltaX, 0));
 
-            if ((typeof minY === "undefined") || position.y < minY) {
+            if (typeof minY === "undefined" || position.y < minY) {
                 minY = position.y;
             }
 
@@ -87,7 +85,7 @@ export default function FlyingPageObjects(props: SkillPageCuboidsProps) {
         }
 
         instancedMeshRef.current.rotateY(rotationSpeed.current);
-        rotationSpeed.current -= delta/10;
+        rotationSpeed.current -= delta / 10;
         instancedMeshRef.current.instanceMatrix.needsUpdate = true;
     });
 

@@ -1,5 +1,5 @@
 import React from "react";
-import * as H from 'history';
+import * as H from "history";
 
 export interface HistoryContextType {
     history: H.History;

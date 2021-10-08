@@ -1,4 +1,4 @@
-import React, {useCallback, useEffect, useRef} from "react";
+import React, { useCallback, useEffect, useRef } from "react";
 import MousePositionContext from "../mouse-position-context";
 import useDevice from "../../hooks/use-device";
 
@@ -7,7 +7,7 @@ export interface MousePositionContextProviderProps {
 }
 
 export default function MousePositionContextProvider(props: MousePositionContextProviderProps) {
-    const mousePositionRef = useRef<{x: number, y: number} | undefined>(undefined);
+    const mousePositionRef = useRef<{ x: number; y: number } | undefined>(undefined);
     const lastDocumentScrollY = useRef(0);
     const device = useDevice();
 
@@ -16,13 +16,13 @@ export default function MousePositionContextProvider(props: MousePositionContext
             if (device === "small") {
                 return;
             }
-            mousePositionRef.current = {x: e.pageX, y: e.pageY};
+            mousePositionRef.current = { x: e.pageX, y: e.pageY };
         }
 
         function onTouchStart(e: TouchEvent) {
             mousePositionRef.current = {
                 x: e.targetTouches[0].pageX,
-                y: e.targetTouches[0].pageY
+                y: e.targetTouches[0].pageY,
             };
         }
 
@@ -30,7 +30,7 @@ export default function MousePositionContextProvider(props: MousePositionContext
             if (device === "small") {
                 return;
             }
-            const deltaY = window.scrollY - lastDocumentScrollY.current
+            const deltaY = window.scrollY - lastDocumentScrollY.current;
             if (deltaY === 0) {
                 return;
             }
@@ -42,7 +42,7 @@ export default function MousePositionContextProvider(props: MousePositionContext
             mousePositionRef.current = {
                 x: mousePositionRef.current.x,
                 y: mousePositionRef.current.y + deltaY,
-            }
+            };
             lastDocumentScrollY.current = window.scrollY;
         }
 
@@ -54,16 +54,12 @@ export default function MousePositionContextProvider(props: MousePositionContext
             window.removeEventListener("mousemove", onMouseMove);
             window.removeEventListener("scroll", onScroll);
             window.removeEventListener("touchstart", onTouchStart);
-        }
+        };
     }, [device]);
 
     const invalidatePosition = useCallback(() => {
         mousePositionRef.current = undefined;
     }, []);
 
-    return (
-        <MousePositionContext.Provider value={{mousePositionRef, invalidatePosition}}>
-            {props.children}
-        </MousePositionContext.Provider>
-    );
+    return <MousePositionContext.Provider value={{ mousePositionRef, invalidatePosition }}>{props.children}</MousePositionContext.Provider>;
 }

@@ -1,15 +1,14 @@
-import React, {useEffect, useMemo, useState} from "react";
-import {OBJLoader} from "three/examples/jsm/loaders/OBJLoader";
+import React, { useEffect, useMemo, useState } from "react";
+import { OBJLoader } from "three/examples/jsm/loaders/OBJLoader";
 
-import {Group, Material, Mesh} from "three";
-
+import { Group, Material, Mesh } from "three";
 
 export default function useObjAsPrimitive(url: string, mat: Material) {
     const [obj, setObj] = useState<Group>();
 
     useEffect(() => {
         new OBJLoader().load(url, setObj);
-    }, [url])
+    }, [url]);
 
     return useMemo(() => {
         if (obj) {
@@ -18,10 +17,7 @@ export default function useObjAsPrimitive(url: string, mat: Material) {
                     child.material = mat;
                 }
             });
-            return (
-                <primitive
-                    object={obj} />
-            );
+            return <primitive object={obj} />;
         }
         return <></>;
     }, [mat, obj]);

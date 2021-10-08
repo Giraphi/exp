@@ -1,13 +1,15 @@
-import React, {useLayoutEffect, useRef, useState} from "react";
-import styled, {css} from "styled-components";
+import React, { useLayoutEffect, useRef, useState } from "react";
+import styled, { css } from "styled-components";
 import useDevice from "../hooks/use-device";
 import TopBar from "./top-bar/top-bar";
 
-const StyledRoot = styled.div<{isMobileTop: boolean}>`
-    ${props => props.isMobileTop && css`
-        user-select: none;
-    `}
-`
+const StyledRoot = styled.div<{ isMobileTop: boolean }>`
+    ${(props) =>
+        props.isMobileTop &&
+        css`
+            user-select: none;
+        `}
+`;
 
 export interface PageProps {
     children: React.ReactNode;
@@ -23,7 +25,7 @@ export default function Page(props: PageProps) {
 
         function onScroll() {
             if (timeout.current) {
-                clearTimeout(timeout.current)
+                clearTimeout(timeout.current);
             }
 
             timeout.current = setTimeout(() => {
@@ -31,13 +33,13 @@ export default function Page(props: PageProps) {
             }, 10);
         }
 
-        document.addEventListener("scroll", onScroll)
+        document.addEventListener("scroll", onScroll);
         return () => document.removeEventListener("scroll", onScroll);
     }, [device]);
 
     return (
         <StyledRoot isMobileTop={isTop && device === "small"}>
-            <TopBar isScrolledToTop={isTop}/>
+            <TopBar isScrolledToTop={isTop} />
             {props.children}
         </StyledRoot>
     );

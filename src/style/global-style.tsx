@@ -1,5 +1,5 @@
-import {createGlobalStyle} from "styled-components";
-import {breakpointSmall, fontSizes, lineHeights, spacings} from "./constants";
+import { createGlobalStyle } from "styled-components";
+import { breakpointSmall, fontSizes, lineHeights, spacings } from "./constants";
 // import AuvantGothic from "../fonts/OPTIAuvantGothic-Bold.woff";
 
 const GlobalStyle = createGlobalStyle`
@@ -52,4 +52,4 @@ const GlobalStyle = createGlobalStyle`
     }
 `;
 
-export default GlobalStyle
+export default GlobalStyle;

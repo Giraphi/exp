@@ -13,5 +13,3 @@ export interface PerformanceContextType {
 export const PerformanceContext = React.createContext<PerformanceContextType>({
     performance: Performances.high,
 });
-
-

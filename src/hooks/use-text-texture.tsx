@@ -1,7 +1,7 @@
-import {useMemo} from "react";
-import {CanvasTexture, LinearFilter} from "three";
+import { useMemo } from "react";
+import { CanvasTexture, LinearFilter } from "three";
 import useIsFontLoaded from "./use-is-font-loaded";
-import {Vector3} from "three/src/math/Vector3";
+import { Vector3 } from "three/src/math/Vector3";
 
 export interface TextConfig {
     color: string;
@@ -14,13 +14,13 @@ export interface TextConfig {
 export default function useTextTexture(text: string, textConfig: TextConfig) {
     const isFontLoaded = useIsFontLoaded();
 
-    const {texture, scale} = useMemo(() => {
+    const { texture, scale } = useMemo(() => {
         if (!isFontLoaded) {
             return {};
         }
 
         // const borderSize = 100;
-        const ctx = document.createElement('canvas').getContext('2d');
+        const ctx = document.createElement("canvas").getContext("2d");
 
         if (!ctx) {
             throw new Error(`Could not create ctx`);
@@ -46,7 +46,7 @@ export default function useTextTexture(text: string, textConfig: TextConfig) {
 
         // need to set font again after resizing canvas
         ctx.font = font;
-        ctx.textBaseline = 'top';
+        ctx.textBaseline = "top";
         ctx.fillStyle = textConfig.color;
         ctx.fillText(text, textConfig.borderSize, textConfig.borderSize);
 
@@ -56,14 +56,10 @@ export default function useTextTexture(text: string, textConfig: TextConfig) {
         // this makes the text sharper.
         texture.minFilter = LinearFilter;
 
-        const scale = new Vector3(
-            ctx.canvas.width * textConfig.scale,
-            ctx.canvas.height * textConfig.scale,
-            0
-        );
+        const scale = new Vector3(ctx.canvas.width * textConfig.scale, ctx.canvas.height * textConfig.scale, 0);
 
-        return {texture, scale}
+        return { texture, scale };
     }, [isFontLoaded, textConfig.size, textConfig.font, textConfig.borderSize, textConfig.color, textConfig.scale, text]);
 
-    return {texture, scale};
+    return { texture, scale };
 }

@@ -1,9 +1,9 @@
-import React, {useRef, useState} from "react";
-import {PerformanceContext, Performances} from "../performance-context";
-import {useFrame} from "@react-three/fiber";
+import React, { useRef, useState } from "react";
+import { PerformanceContext, Performances } from "../performance-context";
+import { useFrame } from "@react-three/fiber";
 
 export interface PerformanceContextProviderProps {
-    children: React.ReactNode
+    children: React.ReactNode;
 }
 
 export default function PerformanceContextProvider(props: PerformanceContextProviderProps) {
@@ -12,11 +12,11 @@ export default function PerformanceContextProvider(props: PerformanceContextProv
 
     function setPerformanceByFps(fps: number) {
         if (fps < 25) {
-            setPerformance(Performances.low)
+            setPerformance(Performances.low);
             return;
         }
 
-        setPerformance(Performances.high)
+        setPerformance(Performances.high);
     }
 
     const frameCounter = useRef(0);
@@ -38,9 +38,5 @@ export default function PerformanceContextProvider(props: PerformanceContextProv
         }
     });
 
-    return (
-        <PerformanceContext.Provider value={{performance}}>
-            {props.children}
-        </PerformanceContext.Provider>
-    );
+    return <PerformanceContext.Provider value={{ performance }}>{props.children}</PerformanceContext.Provider>;
 }

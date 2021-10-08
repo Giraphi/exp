@@ -1,12 +1,14 @@
 import React from "react";
-import styled, {css} from "styled-components";
+import styled, { css } from "styled-components";
 
 const StyledRoot = styled.span<{ isColored: boolean }>`
     display: inline-block;
 
-    ${props => props.isColored && css`
-        color: deeppink;
-    `}
+    ${(props) =>
+        props.isColored &&
+        css`
+            color: deeppink;
+        `}
 `;
 
 export interface GlitchTextLetterColorProps {
@@ -15,9 +17,5 @@ export interface GlitchTextLetterColorProps {
 }
 
 export default function GlitchTextLetterColor(props: GlitchTextLetterColorProps) {
-    return (
-        <StyledRoot isColored={props.isGlitch}>
-            {props.letter}
-        </StyledRoot>
-    );
+    return <StyledRoot isColored={props.isGlitch}>{props.letter}</StyledRoot>;
 }

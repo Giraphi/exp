@@ -1,27 +1,25 @@
-import React, {useContext, useEffect, useState} from "react";
-import {
-    Color,
-} from "three";
-import {Vector3} from "three/src/math/Vector3";
-import {HistoryContext} from "../../contexts/history-context";
-import {Text} from "@react-three/drei";
+import React, { useContext, useEffect, useState } from "react";
+import { Color } from "three";
+import { Vector3 } from "three/src/math/Vector3";
+import { HistoryContext } from "../../contexts/history-context";
+import { Text } from "@react-three/drei";
 import auvantGothic from "../../fonts/OPTIAuvantGothic-Bold.woff";
 import LightbulbLights from "./lightbulb-lights";
 
 const COLORS = {
     mesh: "#ffffff",
-    light: "#ffffff"
-}
+    light: "#ffffff",
+};
 
 const COLORS_NEGATIVE = {
     mesh: "#000000",
-    light: "#ffffff"
-}
+    light: "#ffffff",
+};
 
 const COLORS_HOVER = {
     mesh: "#FF0500",
     light: "#FF0000",
-}
+};
 
 export interface LightParams {
     intensity: number;
@@ -37,7 +35,10 @@ export interface LightbulbProps {
     path: string;
     isActive?: boolean;
     horizontal?: boolean;
-    lightParams?: { inner?: Partial<LightParams>, outer?: Partial<LightParams> }
+    lightParams?: {
+        inner?: Partial<LightParams>;
+        outer?: Partial<LightParams>;
+    };
     negative?: boolean;
 }
 
@@ -49,17 +50,17 @@ export default function Lightbulb(props: LightbulbProps) {
 
     useEffect(() => {
         return () => {
-            document.body.style.cursor = ""
+            document.body.style.cursor = "";
         };
-    }, [])
+    }, []);
 
     useEffect(() => {
         if (props.isActive) {
             setColors(COLORS_HOVER);
-            return
+            return;
         }
         props.negative ? setColors(COLORS_NEGATIVE) : setColors(COLORS);
-    }, [props.isActive, props.negative])
+    }, [props.isActive, props.negative]);
 
     function onPointerOver() {
         if (props.isActive) {
@@ -87,7 +88,7 @@ export default function Lightbulb(props: LightbulbProps) {
         }
 
         setColors(COLORS_HOVER);
-        setIsClicked(isClicked => !isClicked);
+        setIsClicked((isClicked) => !isClicked);
         props.onClick();
         setTimeout(() => {
             history.push(props.path);
@@ -109,14 +110,9 @@ export default function Lightbulb(props: LightbulbProps) {
                 onClick={onClick}
                 onPointerOut={onPointerOut}
             >
-                <meshStandardMaterial
-                    emissive={new Color(colors.mesh)}
-                    emissiveIntensity={1}
-                    color={"#000000"}
-                />
+                <meshStandardMaterial emissive={new Color(colors.mesh)} emissiveIntensity={1} color={"#000000"} />
 
-                <boxBufferGeometry
-                    args={[1, 1, 1]}/>
+                <boxBufferGeometry args={[1, 1, 1]} />
             </mesh>
 
             <Text

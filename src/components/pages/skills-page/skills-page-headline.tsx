@@ -1,5 +1,5 @@
 import React from "react";
-import {Text} from "@react-three/drei";
+import { Text } from "@react-three/drei";
 import useDevice from "../../../hooks/use-device";
 import inkedBones from "../../../fonts/inked-bones.woff";
 
@@ -8,32 +8,33 @@ export default function SkillsPageHeadline() {
 
     return (
         <>
-            {deviceId !== "small" &&
+            {deviceId !== "small" && (
                 <Text
                     color={"black"}
-                    fontSize={90}
-                    lineHeight={1}
-                    letterSpacing={0.1}
                     font={inkedBones}
-                    position={[0,-40,300]}
+                    fontSize={70}
+                    letterSpacing={0.1}
+                    lineHeight={1}
+                    position={[0, 0, 300]}
                     rotation={[-0.2, -0.07, -0.03]}
                 >
                     Skills
                 </Text>
-            }
-            {deviceId === "small" &&
+            )}
+
+            {deviceId === "small" && (
                 <Text
                     color={"black"}
-                    fontSize={80}
-                    letterSpacing={0.1}
-                    lineHeight={1}
                     font={inkedBones}
-                    position={[0,0,150]}
+                    fontSize={50}
+                    // letterSpacing={0.1}
+                    lineHeight={1}
+                    position={[0, 10, 300]}
                     rotation={[-0.3, -0.07, -0.03]}
                 >
                     Skills
                 </Text>
-            }
+            )}
         </>
     );
 }

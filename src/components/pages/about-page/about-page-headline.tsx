@@ -1,6 +1,6 @@
 import React from "react";
 import useDevice from "../../../hooks/use-device";
-import {Text} from "@react-three/drei";
+import { Text } from "@react-three/drei";
 import inkedBones from "../../../fonts/inked-bones.woff";
 
 export default function AboutPageHeadline() {
@@ -8,31 +8,32 @@ export default function AboutPageHeadline() {
 
     return (
         <>
-            {deviceId !== "small" &&
+            {deviceId !== "small" && (
                 <Text
                     color={"#009905"}
-                    fontSize={90}
+                    font={inkedBones}
+                    fontSize={70}
                     letterSpacing={0.1}
                     lineHeight={1}
-                    font={inkedBones}
-                    position={[0,0,300]}
+                    position={[0, 0, 300]}
                     rotation={[-0.2, -0.07, -0.03]}
                 >
                     About Me
                 </Text>
-            }
-            {deviceId === "small" &&
+            )}
+
+            {deviceId === "small" && (
                 <Text
                     color={"#009905"}
+                    font={inkedBones}
                     fontSize={50}
                     lineHeight={1}
-                    font={inkedBones}
-                    position={[0,10,300]}
+                    position={[0, 10, 300]}
                     rotation={[-0.3, -0.07, -0.03]}
                 >
                     About Me
                 </Text>
-            }
+            )}
         </>
     );
 }

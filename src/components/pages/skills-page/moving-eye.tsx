@@ -1,12 +1,12 @@
-import React, {useContext, useEffect, useMemo, useRef} from "react";
+import React, { useContext, useEffect, useMemo, useRef } from "react";
 import MousePositionContext from "../../../contexts/mouse-position-context";
-import {Group} from "three";
+import { Group } from "three";
 import useDevice from "../../../hooks/use-device";
-import {CameraPositionContext} from "../../../contexts/camera-position-context";
-import {useFrame, useThree} from "@react-three/fiber";
-import EyeModel, {EyeGLTFResult} from "../../models/eye-model";
-import {useTransform, useViewportScroll} from "framer-motion";
-import {Vector3} from "three/src/math/Vector3";
+import { CameraPositionContext } from "../../../contexts/camera-position-context";
+import { useFrame, useThree } from "@react-three/fiber";
+import EyeModel, { EyeGLTFResult } from "../../models/eye-model";
+import { useTransform, useViewportScroll } from "framer-motion";
+import { Vector3 } from "three/src/math/Vector3";
 
 export interface HelperCoordinates {
     fixedZ: number;
@@ -18,7 +18,7 @@ export interface MovingEyeProps {
     eyeGltf: EyeGLTFResult;
 }
 
-const xAxis = new Vector3(1,0,0)
+const xAxis = new Vector3(1, 0, 0);
 
 export default function MovingEye(props: MovingEyeProps) {
     const mousePositionRef = useContext(MousePositionContext).mousePositionRef;
@@ -28,15 +28,15 @@ export default function MovingEye(props: MovingEyeProps) {
     const initialCameraPosition = useContext(CameraPositionContext).initialPosition;
     const canvasSize = useThree().size;
 
-    const {scrollY} = useViewportScroll();
-    const rotationPercentage = useTransform(scrollY, [0,200], [0,1]);
+    const { scrollY } = useViewportScroll();
+    const rotationPercentage = useTransform(scrollY, [0, 200], [0, 1]);
 
     const helperCoordinates: HelperCoordinates = useMemo(() => {
         return {
-            fixedZ: -300,
-            eyePositionY: 100,
+            fixedZ: 300,
+            eyePositionY: 50,
             YOffset: -0.23 * canvasSize.height,
-        }
+        };
     }, [canvasSize.height]);
 
     useFrame(() => {
@@ -46,7 +46,7 @@ export default function MovingEye(props: MovingEyeProps) {
 
         if (device === "small") {
             console.log(rotationPercentage.get());
-            ref.current.setRotationFromAxisAngle(xAxis, rotationPercentage.get() * Math.PI * -0.75)
+            ref.current.setRotationFromAxisAngle(xAxis, rotationPercentage.get() * Math.PI * -0.75);
             return;
         }
 
@@ -62,7 +62,7 @@ export default function MovingEye(props: MovingEyeProps) {
         ref.current.lookAt(
             mousePositionRef.current.x - canvasSize.width / 2,
             -mousePositionRef.current.y + canvasSize.height / 2 + helperCoordinates.eyePositionY + helperCoordinates.YOffset,
-            helperCoordinates.fixedZ,
+            helperCoordinates.fixedZ
         );
     });
 
@@ -72,14 +72,11 @@ export default function MovingEye(props: MovingEyeProps) {
         }
 
         invalidatePosition();
-    }, [device, invalidatePosition])
+    }, [device, invalidatePosition]);
 
     return (
-        <group
-            ref={ref}
-            position={[0, helperCoordinates.eyePositionY, -200]}
-        >
-            <EyeModel eyeGltfResult={props.eyeGltf}/>
+        <group ref={ref} position={[0, helperCoordinates.eyePositionY, 0]}>
+            <EyeModel eyeGltfResult={props.eyeGltf} />
         </group>
     );
 }

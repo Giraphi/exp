@@ -1,7 +1,7 @@
-import React, {useEffect} from "react";
-import styled, {css} from "styled-components";
+import React, { useEffect } from "react";
+import styled, { css } from "styled-components";
 import PageLoaderLoader from "./page-loader-loader";
-import {zIndexes} from "../../style/constants";
+import { zIndexes } from "../../style/constants";
 
 const StyledOverlay = styled.div`
     width: 100%;
@@ -14,14 +14,16 @@ const StyledOverlay = styled.div`
     align-items: center;
     justify-content: center;
     overflow-y: scroll;
-`
-const StyledRoot = styled.div<{isLoading: boolean}>`
-    ${props => props.isLoading && css`    
-        position: relative;
-        height: 100vh;
-        overflow: hidden;
-    `}
-`
+`;
+const StyledRoot = styled.div<{ isLoading: boolean }>`
+    ${(props) =>
+        props.isLoading &&
+        css`
+            position: relative;
+            height: 100vh;
+            overflow: hidden;
+        `}
+`;
 
 export interface PageLoaderProps {
     children: React.ReactNode;
@@ -29,26 +31,22 @@ export interface PageLoaderProps {
 }
 
 export default function PageLoader(props: PageLoaderProps) {
-
     useEffect(() => {
         if (!props.isLoadFinished) {
             return;
         }
-        window.scrollTo(0,0);
-    }, [props.isLoadFinished])
-
+        window.scrollTo(0, 0);
+    }, [props.isLoadFinished]);
 
     return (
-        <StyledRoot
-            isLoading={!props.isLoadFinished}
-        >
-            {!props.isLoadFinished &&
+        <StyledRoot isLoading={!props.isLoadFinished}>
+            {!props.isLoadFinished && (
                 <StyledOverlay>
-                    <PageLoaderLoader/>
+                    <PageLoaderLoader />
                 </StyledOverlay>
-            }
+            )}
 
-                {props.children}
+            {props.children}
         </StyledRoot>
     );
 }

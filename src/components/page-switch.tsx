@@ -1,6 +1,6 @@
-import React, {Suspense} from "react";
-import {AnimatePresence} from "framer-motion";
-import {Route, Switch, useLocation} from "react-router-dom";
+import React, { Suspense } from "react";
+import { AnimatePresence } from "framer-motion";
+import { Route, Switch, useLocation } from "react-router-dom";
 import StartPage from "./pages/start-page/start-page";
 import SkillsPage from "./pages/skills-page/skills-page";
 import AboutPage from "./pages/about-page/about-page";
@@ -12,45 +12,27 @@ export default function PageSwitch() {
 
     return (
         <MousePositionContextProvider>
-            <AnimatePresence
-                exitBeforeEnter
-                initial={false}
-            >
-                <Switch
-                    location={location}
-                    key={location.pathname}
-                >
-                    <Route
-                        exact
-                        path={["/"]}
-                    >
-                        <StartPage/>
+            <AnimatePresence exitBeforeEnter initial={false}>
+                <Switch location={location} key={location.pathname}>
+                    <Route exact path={["/"]}>
+                        <StartPage />
                     </Route>
 
-                    <Route
-                        exact
-                        path={["/skills"]}
-                    >
+                    <Route exact path={["/skills"]}>
                         <Suspense fallback={null}>
-                            <SkillsPage/>
+                            <SkillsPage />
                         </Suspense>
                     </Route>
 
-                    <Route
-                        exact
-                        path={["/about"]}
-                    >
+                    <Route exact path={["/about"]}>
                         <Suspense fallback={null}>
-                            <AboutPage/>
+                            <AboutPage />
                         </Suspense>
                     </Route>
 
-                    <Route
-                        exact
-                        path={["/work"]}
-                    >
+                    <Route exact path={["/work"]}>
                         <Suspense fallback={null}>
-                            <WorkPage/>
+                            <WorkPage />
                         </Suspense>
                     </Route>
                 </Switch>

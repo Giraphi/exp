@@ -6,20 +6,20 @@ source: https://sketchfab.com/3d-models/free-model-of-the-month-anatomical-eye-b
 title: Free model of the month - Anatomical Eye ball
 */
 
-import * as THREE from 'three'
-import React from 'react'
-import {GLTF} from 'three/examples/jsm/loaders/GLTFLoader'
+import * as THREE from "three";
+import React from "react";
+import { GLTF } from "three/examples/jsm/loaders/GLTFLoader";
 
 export type EyeGLTFResult = GLTF & {
     nodes: {
-        Sphere_Glass_0: THREE.Mesh
-        Sphere001_Eye_0: THREE.Mesh
-    }
+        Sphere_Glass_0: THREE.Mesh;
+        Sphere001_Eye_0: THREE.Mesh;
+    };
     materials: {
-        Glass: THREE.MeshStandardMaterial
-        material: THREE.MeshStandardMaterial
-    }
-}
+        Glass: THREE.MeshStandardMaterial;
+        material: THREE.MeshStandardMaterial;
+    };
+};
 
 export interface EyeModelProps {
     eyeGltfResult: EyeGLTFResult;
@@ -30,15 +30,12 @@ export default function EyeModel(props: EyeModelProps) {
         <group rotation={[-Math.PI / 2, 0, 0]} dispose={null}>
             <group rotation={[Math.PI / 2, 0, 0]}>
                 <group rotation={[Math.PI, 0, -Math.PI / 2]} scale={100}>
-                    <mesh geometry={props.eyeGltfResult.nodes.Sphere_Glass_0.geometry}
-                          material={props.eyeGltfResult.materials.Glass}/>
+                    <mesh geometry={props.eyeGltfResult.nodes.Sphere_Glass_0.geometry} material={props.eyeGltfResult.materials.Glass} />
                 </group>
                 <group rotation={[Math.PI, 0, -Math.PI / 2]} scale={[98.16, 98.16, 98.16]}>
-                    <mesh geometry={props.eyeGltfResult.nodes.Sphere001_Eye_0.geometry}
-                          material={props.eyeGltfResult.materials.material}/>
+                    <mesh geometry={props.eyeGltfResult.nodes.Sphere001_Eye_0.geometry} material={props.eyeGltfResult.materials.material} />
                 </group>
             </group>
         </group>
-    )
+    );
 }
-

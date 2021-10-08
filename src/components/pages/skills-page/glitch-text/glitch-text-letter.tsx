@@ -1,4 +1,4 @@
-import React, {useEffect, useRef, useState} from "react";
+import React, { useEffect, useRef, useState } from "react";
 import GlitchTextLetterFlip from "./glitch-text-letter-flip";
 import GlitchTextLetterColor from "./glitch-text-letter-color";
 
@@ -6,7 +6,7 @@ export type GlitchTextLetterVariant = "flip" | "color";
 
 export interface GlitchLetterProps {
     letter: string;
-    variant: GlitchTextLetterVariant
+    variant: GlitchTextLetterVariant;
 }
 
 export default function GlitchTextLetter(props: GlitchLetterProps) {
@@ -21,7 +21,7 @@ export default function GlitchTextLetter(props: GlitchLetterProps) {
                     clearTimeout(timeout.current);
                 }
                 timeout.current = setTimeout(() => {
-                    setIsGlitch(false)
+                    setIsGlitch(false);
                 }, 1300);
             }
         }, 100);
@@ -32,17 +32,13 @@ export default function GlitchTextLetter(props: GlitchLetterProps) {
                 setIsGlitch(false);
                 clearTimeout(timeout.current);
             }
-        }
+        };
     }, []);
 
     return (
         <>
-            {props.variant === "flip" &&
-                <GlitchTextLetterFlip isGlitch={isGlitch} letter={props.letter}/>
-            }
-            {props.variant === "color" &&
-                <GlitchTextLetterColor isGlitch={isGlitch} letter={props.letter}/>
-            }
+            {props.variant === "flip" && <GlitchTextLetterFlip isGlitch={isGlitch} letter={props.letter} />}
+            {props.variant === "color" && <GlitchTextLetterColor isGlitch={isGlitch} letter={props.letter} />}
         </>
     );
 }

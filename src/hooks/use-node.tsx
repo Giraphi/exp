@@ -1,9 +1,9 @@
-import {useCallback, useState} from "react";
+import { useCallback, useState } from "react";
 
 export default function useNode<D>() {
     const [refNode, setRefNode] = useState<D>();
 
-    const ref = useCallback(node => {
+    const ref = useCallback((node) => {
         if (node === null) {
             return;
         }
@@ -11,5 +11,5 @@ export default function useNode<D>() {
         setRefNode(node);
     }, []);
 
-    return {ref, refNode}
+    return { ref, refNode };
 }

@@ -1,5 +1,5 @@
-import React, {useMemo, useState} from "react";
-import {Vector3} from "three/src/math/Vector3";
+import React, { useMemo, useState } from "react";
+import { Vector3 } from "three/src/math/Vector3";
 import StartPageCuboids from "./start-page-cuboids";
 import Lightbulb from "../../lightbulb/lightbulb";
 
@@ -12,18 +12,14 @@ export default function StartPageWorld(props: WorldProps) {
     const [isLightbulbClicked, setIsLightbulbClicked] = useState(false);
 
     const lightbulbPositions = useMemo(() => {
-        return [
-            new Vector3(0, 0, 100),
-            new Vector3(115, 0, -105),
-            new Vector3(-100, 0, 35)
-        ]
+        return [new Vector3(0, 0, 100), new Vector3(115, 0, -105), new Vector3(-100, 0, 35)];
     }, []);
 
     return (
         <>
-            <ambientLight color="white" intensity={0.001}/>
+            <ambientLight color="white" intensity={0.001} />
 
-            <StartPageCuboids numCuboids={props.numCuboids} worldSize={props.size} lift={isLightbulbClicked}/>
+            <StartPageCuboids numCuboids={props.numCuboids} worldSize={props.size} lift={isLightbulbClicked} />
 
             <Lightbulb
                 onClick={() => setIsLightbulbClicked(true)}
@@ -48,15 +44,8 @@ export default function StartPageWorld(props: WorldProps) {
             />
 
             <mesh position={[0, 0, 0]} rotation={[-Math.PI / 2, 0, 0]} receiveShadow={true}>
-                <planeBufferGeometry
-                    attach="geometry"
-                    args={[props.size, props.size]}
-                />
-                <meshStandardMaterial
-                    attach="material"
-                    color="white"
-                    flatShading={true}
-                />
+                <planeBufferGeometry attach="geometry" args={[props.size, props.size]} />
+                <meshStandardMaterial attach="material" color="white" flatShading={true} />
             </mesh>
         </>
     );

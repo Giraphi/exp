@@ -1,4 +1,3 @@
-
 const green = "#00ff38";
 const blue = "#00f9ff";
 
@@ -20,7 +19,7 @@ export const zIndexes = {
     topBar: 33,
     topBarMenu: 35,
     topBarTop: 40,
-}
+};
 
 export const fontSizes = {
     pageHeaderSm: "40px",
@@ -33,8 +32,8 @@ export const fontSizes = {
     h1Md: "55px",
 
     bodySm: "20px",
-    bodyMd: "30px"
-}
+    bodyMd: "30px",
+};
 
 export const spacings = {
     h1Sm: "14px",
@@ -48,7 +47,7 @@ export const spacings = {
 
     mediumSm: "40px",
     mediumMd: "60px",
-}
+};
 
 export const lineHeights = {
     h1Sm: "35px",
@@ -62,4 +61,4 @@ export const lineHeights = {
 
     captionMd: "25px",
     captionSm: "22px",
-}
+};

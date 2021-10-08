@@ -1,7 +1,7 @@
-import {useLayoutEffect, useState} from "react";
-import {Group} from "three";
-import {MTLLoader} from "three/examples/jsm/loaders/MTLLoader";
-import {OBJLoader} from "three/examples/jsm/loaders/OBJLoader";
+import { useLayoutEffect, useState } from "react";
+import { Group } from "three";
+import { MTLLoader } from "three/examples/jsm/loaders/MTLLoader";
+import { OBJLoader } from "three/examples/jsm/loaders/OBJLoader";
 
 export default function useObjWTexture(objPath: string, texturePath: string) {
     const [object, setObject] = useState<Group>(new Group());

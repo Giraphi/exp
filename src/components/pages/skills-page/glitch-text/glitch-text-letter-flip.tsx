@@ -1,13 +1,15 @@
 import React from "react";
-import styled, {css} from "styled-components";
+import styled, { css } from "styled-components";
 
 const StyledRoot = styled.span<{ isRotated: boolean }>`
     display: inline-block;
 
-    ${props => props.isRotated && css`
-        transform: scaleY(-1);
-        transform-origin: 50% 56%;
-    `}
+    ${(props) =>
+        props.isRotated &&
+        css`
+            transform: scaleY(-1);
+            transform-origin: 50% 56%;
+        `}
 `;
 
 export interface GlitchTextLetterFlipProps {
@@ -16,9 +18,5 @@ export interface GlitchTextLetterFlipProps {
 }
 
 export default function GlitchTextLetterFlip(props: GlitchTextLetterFlipProps) {
-    return (
-        <StyledRoot isRotated={props.isGlitch}>
-            {props.letter}
-        </StyledRoot>
-    );
+    return <StyledRoot isRotated={props.isGlitch}>{props.letter}</StyledRoot>;
 }

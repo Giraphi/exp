@@ -1,13 +1,13 @@
-import React, {ReactNode} from "react";
+import React, { ReactNode } from "react";
 import MovementContextProvider from "../../contexts/providers/movement-context-provider";
 import ThreeSetupCanvas from "./three-setup-canvas";
 import styled from "styled-components";
 
-const StyledRoot = styled.div<{backgroundColor: string}>`
-    //background-color: ${props => props.backgroundColor};
+const StyledRoot = styled.div<{ backgroundColor: string }>`
+    //background-color: ${(props) => props.backgroundColor};
     height: 100%;
     position: relative;
-`
+`;
 
 // // Workaround to make the font available as a texture in lightbulb.tsx
 // const StyledFontWorkaround = styled.div`
@@ -31,21 +31,12 @@ export interface ThreeSetupProps {
 
 export default function ThreeSetup(props: ThreeSetupProps) {
     return (
-        <StyledRoot
-            backgroundColor={props.color}
-        >
+        <StyledRoot backgroundColor={props.color}>
             <MovementContextProvider>
-
-                <ThreeSetupCanvas
-                    onLoadFinished={props.onLoadFinished}
-                >
-                    {props.children}
-                </ThreeSetupCanvas>
+                <ThreeSetupCanvas onLoadFinished={props.onLoadFinished}>{props.children}</ThreeSetupCanvas>
 
                 {props.controlButtons}
             </MovementContextProvider>
-
         </StyledRoot>
     );
-
 }

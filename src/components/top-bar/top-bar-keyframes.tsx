@@ -1,4 +1,4 @@
-import {keyframes} from "styled-components";
+import { keyframes } from "styled-components";
 
 export const blackToWhiteBackgroundKeyframes = keyframes`
     0% {
@@ -10,7 +10,7 @@ export const blackToWhiteBackgroundKeyframes = keyframes`
     100% {
         background-color: black;
     }
-`
+`;
 
 export const whiteToBlackColorKeyframes = keyframes`
     0% {
@@ -22,8 +22,7 @@ export const whiteToBlackColorKeyframes = keyframes`
     100% {
         color: white;
     }
-`
-
+`;
 
 export const showMenuKeyframes = keyframes`
     0% {
@@ -34,8 +33,7 @@ export const showMenuKeyframes = keyframes`
         visibility: visible;
         clip-path: circle(150% at 100% 0);
     }
-`
-
+`;
 
 export const hideMenuKeyframes = keyframes`
     0% {
@@ -46,4 +44,4 @@ export const hideMenuKeyframes = keyframes`
         visibility: hidden;
         clip-path: circle(0% at 100% 0);
     }
-`
+`;

@@ -1,6 +1,6 @@
-- When executing a git operation like 'git push', the password is loaded from the mac keychain.
-- Make sure the mac keychain uses the git authentication token as password.
-- Click on the glasses in the mac top bar and search for 'Schlüsselbungverwaltung'
-- Links auf 'Anmeldung', dann 'github.com' finden. Doppelklick drauf und schauen ob es der richtige Eintrag (siehe username) ist. Fenster schließen und rechtsklick "github.com" löschen.
-- Beim nächsten push sollte wieder nach passwort gefragt werden. Dort dann den token eingeben.
-- Sollte automatisch in die keychain gespeichert werden.
+-   When executing a git operation like 'git push', the password is loaded from the mac keychain.
+-   Make sure the mac keychain uses the git authentication token as password.
+-   Click on the glasses in the mac top bar and search for 'Schlüsselbungverwaltung'
+-   Links auf 'Anmeldung', dann 'github.com' finden. Doppelklick drauf und schauen ob es der richtige Eintrag (siehe username) ist. Fenster schließen und rechtsklick "github.com" löschen.
+-   Beim nächsten push sollte wieder nach passwort gefragt werden. Dort dann den token eingeben.
+-   Sollte automatisch in die keychain gespeichert werden.

@@ -1,7 +1,7 @@
-import React, {useContext, useMemo, useState} from "react";
-import {Vector3} from "three/src/math/Vector3";
+import React, { useContext, useMemo, useState } from "react";
+import { Vector3 } from "three/src/math/Vector3";
 import useDevice from "../hooks/use-device";
-import {HistoryContext} from "../contexts/history-context";
+import { HistoryContext } from "../contexts/history-context";
 import Lightbulb from "./lightbulb/lightbulb";
 
 export interface PageMenuProps {
@@ -10,9 +10,9 @@ export interface PageMenuProps {
 }
 
 interface ItemDescription {
-    text: string,
-    path: string,
-    position: Vector3,
+    text: string;
+    path: string;
+    position: Vector3;
 }
 
 export default function PageMenu(props: PageMenuProps) {
@@ -21,13 +21,9 @@ export default function PageMenu(props: PageMenuProps) {
     const initialPathname = useState(location.pathname)[0];
 
     const itemDescriptions: ItemDescription[] = useMemo(() => {
-        const position = device !== "small"
-            ? new Vector3(-220, 230, 50)
-            : new Vector3(-60, 220, 100);
+        const position = device !== "small" ? new Vector3(-220, 230, 50) : new Vector3(-60, 220, 100);
 
-        const delta = device !== "small"
-            ? new Vector3(0, 40, 0)
-            : new Vector3(0, 50, 0)
+        const delta = device !== "small" ? new Vector3(0, 40, 0) : new Vector3(0, 50, 0);
         const positionCounter = position.clone();
 
         const items: ItemDescription[] = [
@@ -35,7 +31,7 @@ export default function PageMenu(props: PageMenuProps) {
                 text: "Back Home",
                 path: "/",
                 position: position,
-            }
+            },
         ];
 
         positionCounter.sub(delta);
@@ -59,13 +55,12 @@ export default function PageMenu(props: PageMenuProps) {
             position: positionCounter.clone(),
         });
 
-        return items
-
+        return items;
     }, [device]);
 
     return (
         <>
-            {itemDescriptions.map(itemDescription =>
+            {itemDescriptions.map((itemDescription) => (
                 <Lightbulb
                     isActive={initialPathname === itemDescription.path}
                     key={itemDescription.path}
@@ -80,14 +75,14 @@ export default function PageMenu(props: PageMenuProps) {
                         inner: {
                             decay: 1.5,
                             distance: 650,
-                            intensity: 0.3
+                            intensity: 0.3,
                         },
                         outer: {
-                            intensity: 0.1
-                        }
+                            intensity: 0.1,
+                        },
                     }}
                 />
-            )}
+            ))}
         </>
     );
 }

@@ -1,10 +1,10 @@
-import React, {useContext, useEffect} from "react";
+import React, { useContext, useEffect } from "react";
 import MovementContextActions from "../contexts/movement-context-actions";
-import styled, {css} from "styled-components";
+import styled, { css } from "styled-components";
 
 import MovementContext from "../contexts/movement-context";
-import {ArrowBlackUp, ArrowBlackUpFilled, ArrowWhiteUp, ArrowWhiteUpFilled} from "../images/svg-strings";
-import {fontSizes, lineHeights} from "../style/constants";
+import { ArrowBlackUp, ArrowBlackUpFilled, ArrowWhiteUp, ArrowWhiteUpFilled } from "../images/svg-strings";
+import { fontSizes, lineHeights } from "../style/constants";
 
 const ButtonSize = "50px";
 const ButtonSizeSmall = "40px";
@@ -15,51 +15,53 @@ const ButtonMixin = (isActive: boolean, inverse?: boolean) => css`
     background-repeat: no-repeat;
     cursor: pointer;
 
-    ${!inverse && css`
+    ${!inverse &&
+    css`
         background-image: url("${ArrowWhiteUp}");
-        ${isActive && css`
+        ${isActive &&
+        css`
             background-image: url("${ArrowWhiteUpFilled}");
         `}
-    `
-    }
+    `}
 
-    ${inverse && css`
+    ${inverse &&
+    css`
         background-image: url("${ArrowBlackUp}");
-        ${isActive && css`
+        ${isActive &&
+        css`
             background-image: url("${ArrowBlackUpFilled}");
         `}
-    `
-    }
-`
+    `}
+`;
 
-const StyledButtonUp = styled.div<{ isActive: boolean, inverse?: boolean }>`
+const StyledButtonUp = styled.div<{ isActive: boolean; inverse?: boolean }>`
     grid-row: 1;
     grid-column: 2;
-    ${props => ButtonMixin(props.isActive, props.inverse)};
-`
+    ${(props) => ButtonMixin(props.isActive, props.inverse)};
+`;
 
-const StyledButtonLeft = styled.div<{ isActive: boolean, inverse?: boolean }>`
+const StyledButtonLeft = styled.div<{ isActive: boolean; inverse?: boolean }>`
     grid-row: 2;
     grid-column: 1;
     transform: rotate(-90deg);
-    ${props => ButtonMixin(props.isActive, props.inverse)};
-`
+    ${(props) => ButtonMixin(props.isActive, props.inverse)};
+`;
 
-const StyledButtonRight = styled.div<{ isActive: boolean, inverse?: boolean }>`
+const StyledButtonRight = styled.div<{ isActive: boolean; inverse?: boolean }>`
     grid-row: 2;
     grid-column: 3;
     transform: rotate(90deg);
-    ${props => ButtonMixin(props.isActive, props.inverse)};
-`
+    ${(props) => ButtonMixin(props.isActive, props.inverse)};
+`;
 
-const StyledButtonDown = styled.div<{ isActive: boolean, inverse?: boolean }>`
+const StyledButtonDown = styled.div<{ isActive: boolean; inverse?: boolean }>`
     grid-row: 3;
     grid-column: 2;
     transform: rotate(180deg);
-    ${props => ButtonMixin(props.isActive, props.inverse)};
-`
+    ${(props) => ButtonMixin(props.isActive, props.inverse)};
+`;
 
-const StyledRoot = styled.div<{ isMinimal?: boolean, inverse?: boolean }>`
+const StyledRoot = styled.div<{ isMinimal?: boolean; inverse?: boolean }>`
     width: 100%;
     display: flex;
     justify-content: center;
@@ -72,23 +74,27 @@ const StyledRoot = styled.div<{ isMinimal?: boolean, inverse?: boolean }>`
     padding-right: calc(${ButtonSize} / 2);
     align-items: flex-end;
 
-    ${props => !props.isMinimal && css`
-        @media (min-width: 768px) {
-            align-items: center;
-            bottom: 8%;
-            right: unset;
-            padding-right: 0;
-            padding-bottom: 0;
-        }
-    `}
+    ${(props) =>
+        !props.isMinimal &&
+        css`
+            @media (min-width: 768px) {
+                align-items: center;
+                bottom: 8%;
+                right: unset;
+                padding-right: 0;
+                padding-bottom: 0;
+            }
+        `}
 
-    ${props => props.isMinimal && css`
-        bottom: unset;
-        top: 0;
-        align-items: flex-end;
-        padding-top: calc(${ButtonSize} / 2);
-    `}
-`
+    ${(props) =>
+        props.isMinimal &&
+        css`
+            bottom: unset;
+            top: 0;
+            align-items: flex-end;
+            padding-top: calc(${ButtonSize} / 2);
+        `}
+`;
 
 const StyledGrid = styled.div<{ isMinimal?: boolean }>`
     display: grid;
@@ -102,11 +108,13 @@ const StyledGrid = styled.div<{ isMinimal?: boolean }>`
         grid-template-rows: repeat(3, ${ButtonSize});
     }
 
-    ${props => props.isMinimal && css`
-        grid-template-columns: repeat(3, ${ButtonSizeSmall});
-        grid-template-rows: repeat(3, ${ButtonSizeSmall});
-    `}
-`
+    ${(props) =>
+        props.isMinimal &&
+        css`
+            grid-template-columns: repeat(3, ${ButtonSizeSmall});
+            grid-template-rows: repeat(3, ${ButtonSizeSmall});
+        `}
+`;
 
 const StyledText = styled.div`
     margin-top: 20px;
@@ -120,7 +128,7 @@ const StyledText = styled.div`
     @media (min-width: 768px) {
         display: block;
     }
-`
+`;
 
 export interface CameraControlButtonsProps {
     pageVariant?: boolean;
@@ -134,23 +142,23 @@ export default function CameraControlButtons(props: CameraControlButtonsProps) {
     useEffect(() => {
         function onKeyDown(event: KeyboardEvent) {
             switch (event.code) {
-                case 'ArrowUp':
-                case 'KeyW':
+                case "ArrowUp":
+                case "KeyW":
                     movementContextActions.setIsMovingForward(true);
                     break;
 
-                case 'ArrowLeft':
-                case 'KeyA':
+                case "ArrowLeft":
+                case "KeyA":
                     movementContextActions.setIsTurningLeft(true);
                     break;
 
-                case 'ArrowDown':
-                case 'KeyS':
+                case "ArrowDown":
+                case "KeyS":
                     movementContextActions.setIsMovingBackward(true);
                     break;
 
-                case 'ArrowRight':
-                case 'KeyD':
+                case "ArrowRight":
+                case "KeyD":
                     movementContextActions.setIsTurningRight(true);
                     break;
                 default:
@@ -160,23 +168,23 @@ export default function CameraControlButtons(props: CameraControlButtonsProps) {
 
         function onKeyUp(event: KeyboardEvent) {
             switch (event.code) {
-                case 'ArrowUp':
-                case 'KeyW':
+                case "ArrowUp":
+                case "KeyW":
                     movementContextActions.setIsMovingForward(false);
                     break;
 
-                case 'ArrowLeft':
-                case 'KeyA':
+                case "ArrowLeft":
+                case "KeyA":
                     movementContextActions.setIsTurningLeft(false);
                     break;
 
-                case 'ArrowDown':
-                case 'KeyS':
+                case "ArrowDown":
+                case "KeyS":
                     movementContextActions.setIsMovingBackward(false);
                     break;
 
-                case 'ArrowRight':
-                case 'KeyD':
+                case "ArrowRight":
+                case "KeyD":
                     movementContextActions.setIsTurningRight(false);
                     break;
                 default:
@@ -184,14 +192,14 @@ export default function CameraControlButtons(props: CameraControlButtonsProps) {
             }
         }
 
-        window.addEventListener('keydown', onKeyDown);
-        window.addEventListener('keyup', onKeyUp);
+        window.addEventListener("keydown", onKeyDown);
+        window.addEventListener("keyup", onKeyUp);
 
         return () => {
-            window.removeEventListener('keydown', onKeyDown);
-            window.addEventListener('keyup', onKeyUp);
-        }
-    }, [movementContextActions])
+            window.removeEventListener("keydown", onKeyDown);
+            window.addEventListener("keyup", onKeyUp);
+        };
+    }, [movementContextActions]);
 
     function onPress(direction: "forward" | "backward" | "left" | "right") {
         document.body.style.userSelect = "none";
@@ -210,7 +218,7 @@ export default function CameraControlButtons(props: CameraControlButtonsProps) {
                     movementContextActions.setIsTurningRight(true);
                     break;
             }
-        })
+        });
     }
 
     function onRelease(direction: "forward" | "backward" | "left" | "right") {
@@ -230,16 +238,12 @@ export default function CameraControlButtons(props: CameraControlButtonsProps) {
                     movementContextActions.setIsTurningRight(false);
                     break;
             }
-        })
+        });
     }
 
     return (
-        <StyledRoot
-            isMinimal={props.pageVariant}
-        >
-            <StyledGrid
-                isMinimal={props.pageVariant}
-            >
+        <StyledRoot isMinimal={props.pageVariant}>
+            <StyledGrid isMinimal={props.pageVariant}>
                 <StyledButtonUp
                     isActive={movementContext.isMovingForward}
                     inverse={props.inverse}
@@ -277,13 +281,12 @@ export default function CameraControlButtons(props: CameraControlButtonsProps) {
                 />
             </StyledGrid>
 
-
-            {!props.pageVariant &&
+            {!props.pageVariant && (
                 <StyledText>
-                    Click the arrows to fly <br/>
+                    Click the arrows to fly <br />
                     {"Or use W, A, S, D on your keyboard"}
                 </StyledText>
-            }
+            )}
         </StyledRoot>
     );
 }

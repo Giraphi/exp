@@ -1,8 +1,8 @@
-import React, {MutableRefObject, useContext, useEffect, useRef} from 'react'
-import {extend, useFrame, useThree} from "@react-three/fiber";
-import {BirdControls} from "../../birdControls/birdControls";
-import {Object3D} from "three/src/core/Object3D";
-import {BirdControlsType} from "../../birdControls/birdControlsType";
+import React, { MutableRefObject, useContext, useEffect, useRef } from "react";
+import { extend, useFrame, useThree } from "@react-three/fiber";
+import { BirdControls } from "../../birdControls/birdControls";
+import { Object3D } from "three/src/core/Object3D";
+import { BirdControlsType } from "../../birdControls/birdControlsType";
 import MovementContext from "../../contexts/movement-context";
 
 extend({ BirdControls });
@@ -29,7 +29,7 @@ function ThreeSetupControls(props: ControlsProps) {
             return;
         }
 
-        controlsRef.current.setMoveForward(movementContext.isMovingForward)
+        controlsRef.current.setMoveForward(movementContext.isMovingForward);
     }, [movementContext.isMovingForward]);
 
     useEffect(() => {
@@ -37,7 +37,7 @@ function ThreeSetupControls(props: ControlsProps) {
             return;
         }
 
-        controlsRef.current.setMoveBackward(movementContext.isMovingBackward)
+        controlsRef.current.setMoveBackward(movementContext.isMovingBackward);
     }, [movementContext.isMovingBackward]);
 
     useEffect(() => {
@@ -45,7 +45,7 @@ function ThreeSetupControls(props: ControlsProps) {
             return;
         }
 
-        movementContext.isTurningRight ? controlsRef.current.setPanSpeed(500) : controlsRef.current.setPanSpeed(0)
+        movementContext.isTurningRight ? controlsRef.current.setPanSpeed(500) : controlsRef.current.setPanSpeed(0);
     }, [movementContext.isTurningRight]);
 
     useEffect(() => {
@@ -53,21 +53,14 @@ function ThreeSetupControls(props: ControlsProps) {
             return;
         }
 
-        movementContext.isTurningLeft ? controlsRef.current.setPanSpeed(-500) : controlsRef.current.setPanSpeed(0)
+        movementContext.isTurningLeft ? controlsRef.current.setPanSpeed(-500) : controlsRef.current.setPanSpeed(0);
     }, [movementContext.isTurningLeft]);
 
     if (!props.object || !props.object.current) {
-        return <></>
+        return <></>;
     }
 
-    return (
-        <birdControls
-            args={[props.object.current, gl.domElement]}
-            ref={controlsRef}
-            movementSpeed={500}
-            lookSpeed={0.1}
-        />
-    )
+    return <birdControls args={[props.object.current, gl.domElement]} ref={controlsRef} movementSpeed={500} lookSpeed={0.1} />;
 }
 
-export default ThreeSetupControls
+export default ThreeSetupControls;

@@ -1,9 +1,12 @@
 import React from "react";
-import {Vector3} from "three/src/math/Vector3";
-import {LightParams} from "./lightbulb";
+import { Vector3 } from "three/src/math/Vector3";
+import { LightParams } from "./lightbulb";
 
 export interface LightbulbLightsHorizontalProps {
-    lightParams?: { inner?: Partial<LightParams>, outer?: Partial<LightParams> }
+    lightParams?: {
+        inner?: Partial<LightParams>;
+        outer?: Partial<LightParams>;
+    };
     color: string;
     position: Vector3;
     children: React.ReactNode;
@@ -11,10 +14,7 @@ export interface LightbulbLightsHorizontalProps {
 
 export default function LightbulbLightsHorizontal(props: LightbulbLightsHorizontalProps) {
     return (
-        <group
-            position={props.position}
-            rotation={[0, 0, Math.PI / 2]}
-        >
+        <group position={props.position} rotation={[0, 0, Math.PI / 2]}>
             <pointLight
                 color={props.color}
                 intensity={props.lightParams?.inner?.intensity}
