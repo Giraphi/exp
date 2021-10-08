@@ -53,7 +53,7 @@ export const lineHeights = {
     h1Sm: "35px",
     h1Md: "55px",
 
-    bodySm: "26px",
+    bodySm: "25px",
     bodyMd: "38px",
 
     pageHeaderSm: "40px",

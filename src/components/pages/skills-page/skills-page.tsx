@@ -92,14 +92,14 @@ export default function SkillsPage() {
                             <StyledText>
                                 <LayoutTextSection>
                                     <GlitchText
-                                        probability={0.001}
+                                        probability={0.0015}
                                         variant={"flip"}
                                         text={`During my work as a frontend developer I’ve been using different technologies and frameworks, mostly based somewhere in the Javascript world.`}
                                     />
                                     <br />
                                     <br />
                                     <GlitchText
-                                        probability={0.001}
+                                        probability={0.0015}
                                         variant={"flip"}
                                         text={`Most of all I’m drawn to technologies that support creative processes and open possibilities to unusual or unseen results.`}
                                     />
@@ -107,7 +107,7 @@ export default function SkillsPage() {
 
                                 <LayoutTextSection>
                                     <h1>
-                                        <GlitchText variant={"flip"} text={"Favorite Frameworks"} />
+                                        <GlitchText variant={"flip"} text={"Favorite Frameworks"} probability={0.004} />
                                     </h1>
                                     <LayoutTextItem>React</LayoutTextItem>
                                     <LayoutTextItem>Three.js</LayoutTextItem>
@@ -117,7 +117,7 @@ export default function SkillsPage() {
 
                                 <LayoutTextSection>
                                     <h1>
-                                        <GlitchText variant={"flip"} text={"Familiar Frameworks"} />
+                                        <GlitchText variant={"flip"} text={"Familiar Frameworks"} probability={0.004} />
                                     </h1>
                                     <LayoutTextItem>Angular</LayoutTextItem>
                                     <LayoutTextItem>Framer Api</LayoutTextItem>
@@ -131,7 +131,7 @@ export default function SkillsPage() {
 
                                 <LayoutTextSection>
                                     <h1>
-                                        <GlitchText variant={"flip"} text={"Obviously, the basics"} />
+                                        <GlitchText variant={"flip"} text={"Obviously, the basics"} probability={0.004} />
                                     </h1>
                                     <LayoutTextItem>Plain JS</LayoutTextItem>
                                     <LayoutTextItem>Html/CSS/SCSS</LayoutTextItem>
@@ -141,7 +141,7 @@ export default function SkillsPage() {
 
                                 <LayoutTextSection>
                                     <h1>
-                                        <GlitchText variant={"flip"} text={"Favorite Languages"} />
+                                        <GlitchText variant={"flip"} text={"Favorite Languages"} probability={0.004} />
                                     </h1>
                                     <LayoutTextItem>JavaScript</LayoutTextItem>
                                     <LayoutTextItem>TypeScript</LayoutTextItem>
@@ -150,7 +150,7 @@ export default function SkillsPage() {
 
                                 <LayoutTextSection>
                                     <h1>
-                                        <GlitchText variant={"flip"} text={"Other Skills"} />
+                                        <GlitchText variant={"flip"} text={"Other Skills"} probability={0.004} />
                                     </h1>
                                     <LayoutTextItem>Solid understanding of contemporary UI and UX concepts.</LayoutTextItem>
                                     <LayoutTextItem>
