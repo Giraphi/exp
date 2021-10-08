@@ -3,6 +3,7 @@ import { Vector3 } from "three/src/math/Vector3";
 import useDevice from "../hooks/use-device";
 import { HistoryContext } from "../contexts/history-context";
 import Lightbulb from "./lightbulb/lightbulb";
+import { colorWork } from "../style/constants";
 
 export interface PageMenuProps {
     onClick: () => void;
@@ -58,8 +59,14 @@ export default function PageMenu(props: PageMenuProps) {
         return items;
     }, [device]);
 
+    const lightPosition = useMemo(() => {
+        return device !== "small" ? new Vector3(-200, 180, 50) : new Vector3(-50, 170, 100);
+    }, [device]);
+
     return (
         <>
+            <pointLight color={"white"} intensity={0.5} distance={2000} decay={1} position={lightPosition} />
+
             {itemDescriptions.map((itemDescription) => (
                 <Lightbulb
                     isActive={initialPathname === itemDescription.path}

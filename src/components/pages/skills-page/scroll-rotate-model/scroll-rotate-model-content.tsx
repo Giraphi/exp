@@ -46,7 +46,7 @@ export default function ScrollRotateModelContent(props: ScrollRotateModelContent
             <ambientLight color="white" intensity={0.2} />
             <perspectiveCamera position={[0, 0, 200]} ref={cameraRef} zoom={2} />
 
-            <pointLight color={"white"} intensity={2} distance={500} decay={1} position={[100, 150, -100]} castShadow={true} />
+            <pointLight color={"white"} intensity={2} distance={500} decay={1} position={[100, 150, -100]} />
 
             <group position={[0, 0, props.z]} rotation={[0, rotation, 0]}>
                 <EyeModel eyeGltfResult={props.gltf} />

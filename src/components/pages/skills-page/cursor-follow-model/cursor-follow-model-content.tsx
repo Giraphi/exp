@@ -56,7 +56,7 @@ export default function CursorFollowModelContent(props: CursorFollowModelContent
 
             <ambientLight color="white" intensity={0.15} />
 
-            <pointLight color={"white"} intensity={2} distance={500} decay={1} position={[100, 150, -100]} castShadow={true} />
+            <pointLight color={"white"} intensity={2} distance={500} decay={1} position={[100, 150, -100]} />
 
             <group ref={ref} position={[0, 0, props.z]}>
                 <EyeModel eyeGltfResult={props.gltf} />

@@ -17,7 +17,14 @@ export default function WorkPageWorld(props: WorkPageWorldProps) {
             <ambientLight color="white" intensity={0.01} />
             <WorkPageHeadline />
 
-            <pointLight color={colorWork} intensity={2} distance={1000} decay={1} position={[420, 1000, 40]} castShadow={true}></pointLight>
+            <pointLight
+                color={colorWork}
+                intensity={2}
+                distance={1000}
+                decay={1}
+                position={[420, 1000, 40]}
+                castShadow={false}
+            ></pointLight>
 
             <group position={[0, 0, -200]}>
                 <FlyingPageObjects numObjects={50} worldSize={1000} lift={isMenuClicked}>

@@ -19,7 +19,7 @@ export default function SkillsPageWorld(props: SkillsPageWorldProps) {
 
             <ambientLight color="white" intensity={0.2} />
 
-            <pointLight color={colorSkills} intensity={2} distance={1200} decay={1} position={[420, 1000, 40]} castShadow={true} />
+            <pointLight color={colorSkills} intensity={2} distance={1200} decay={1} position={[420, 1000, 40]} />
 
             <group position={[0, 0, -200]}>
                 <FlyingPageObjects numObjects={140} worldSize={1000} lift={isMenuClicked}>

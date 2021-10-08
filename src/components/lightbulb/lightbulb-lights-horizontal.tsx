@@ -20,9 +20,9 @@ export default function LightbulbLightsHorizontal(props: LightbulbLightsHorizont
                 intensity={props.lightParams?.inner?.intensity}
                 distance={props.lightParams?.inner?.distance}
                 decay={props.lightParams?.inner?.decay}
-            >
-                {props.children}
-            </pointLight>
+                visible={props.color === "#FF0000"}
+            />
+            {props.children}
         </group>
     );
 }
