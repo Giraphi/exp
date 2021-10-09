@@ -29,7 +29,7 @@ export default function MovingEye(props: MovingEyeProps) {
     const canvasSize = useThree().size;
 
     const { scrollY } = useViewportScroll();
-    const rotationPercentage = useTransform(scrollY, [0, 200], [0, 1]);
+    const rotationPercentage = useTransform(scrollY, [0, 200], [0.05, 1]);
 
     const helperCoordinates: HelperCoordinates = useMemo(() => {
         return {
@@ -45,6 +45,8 @@ export default function MovingEye(props: MovingEyeProps) {
         }
 
         if (device === "small") {
+            // ref.current.lookAt(initialCameraPosition);
+
             ref.current.setRotationFromAxisAngle(xAxis, rotationPercentage.get() * Math.PI * -0.75);
             return;
         }

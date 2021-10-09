@@ -3,7 +3,6 @@ import { Vector3 } from "three/src/math/Vector3";
 import useDevice from "../hooks/use-device";
 import { HistoryContext } from "../contexts/history-context";
 import Lightbulb from "./lightbulb/lightbulb";
-import { colorWork } from "../style/constants";
 
 export interface PageMenuProps {
     onClick: () => void;
