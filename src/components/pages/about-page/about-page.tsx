@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import ThreeSetup from "../../three-setup/three-setup";
 import CameraControlButtons from "../../camera-control-buttons";
 import styled from "styled-components";
-import { breakpointSmall, colorAbout, fontSizes, lineHeights, spacings } from "../../../style/constants";
+import { breakpointSmall, colorAbout, spacings } from "../../../style/constants";
 import LayoutContent from "../../utilities/layout-content";
 import { motion } from "framer-motion";
 import AboutPageWorld from "./about-page-world";
@@ -71,10 +71,10 @@ const StyledLink = styled.a`
     }
 `;
 
-const StyledContainer = styled.span`
-    font-size: ${fontSizes.h1Sm};
-    line-height: ${lineHeights.h1Sm};
-`;
+// const StyledContainer = styled.span`
+//     font-size: ${fontSizes.h1Sm};
+//     line-height: ${lineHeights.h1Sm};
+// `;
 
 export default function AboutPage() {
     const meGlTf = useGLTF("/models/me.glb") as MeGLTFResult;
@@ -96,12 +96,11 @@ export default function AboutPage() {
 
                     <LayoutContent>
                         <LayoutTextSection>
-                            <StyledContainer>
-                                <GlitchText
-                                    text={"I'm a frontend " + "developer based in Munich with an affinity towards art and design. "}
-                                    variant={"color"}
-                                />
-                            </StyledContainer>
+                            <GlitchText
+                                text={"I'm a frontend " + "developer based in Munich with an affinity towards art and design. "}
+                                variant={"color"}
+                            />
+
                             <Spacer size={"small"} />
                             <GlitchText
                                 text={
