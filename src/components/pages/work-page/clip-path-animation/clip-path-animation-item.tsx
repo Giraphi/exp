@@ -13,7 +13,7 @@ import { zIndexes } from "../../../../style/constants";
 
 const easeFunction = css`cubic-bezier(.53, 0, .3, 1)`;
 
-export const animationDurationMs = 800;
+export const animationDurationMs = 1100;
 
 const StyledChildren = styled.div`
     width: 100%;

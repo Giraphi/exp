@@ -1,6 +1,6 @@
 import { keyframes } from "styled-components";
 
-export const backgroundAnimationFreezePercentage = 0.2;
+export const backgroundAnimationFreezePercentage = 0.3;
 const percentagePause = `${50 - (backgroundAnimationFreezePercentage * 100) / 2}%`;
 const percentageContinue = `${50 + (backgroundAnimationFreezePercentage * 100) / 2}%`;
 const scaleFactor = 0.7;
