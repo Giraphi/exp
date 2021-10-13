@@ -97,7 +97,7 @@ export default function AboutPage() {
                     <LayoutContent>
                         <LayoutTextSection>
                             <GlitchText
-                                text={"I'm a frontend " + "developer based in Munich with a penchant creativity and arts. "}
+                                text={"I'm a frontend " + "developer based in Munich with a penchant for creativity and arts. "}
                                 variant={"color"}
                             />
 
