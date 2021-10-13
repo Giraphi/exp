@@ -104,9 +104,10 @@ export default function ClipPathAnimationItem(props: ClipPathAnimationItemProps)
     }, []);
 
     useEffect(() => {
-        setTimeout(() => {
+        const timeout = setTimeout(() => {
             setIsOnTop(props.isActive);
         }, animationDurationMs / 2);
+        return () => clearTimeout(timeout);
     }, [props.isActive]);
 
     return (
