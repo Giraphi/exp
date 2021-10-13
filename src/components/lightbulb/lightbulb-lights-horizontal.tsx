@@ -17,11 +17,11 @@ export default function LightbulbLightsHorizontal(props: LightbulbLightsHorizont
         <group position={props.position} rotation={[0, 0, Math.PI / 2]}>
             <pointLight
                 color={props.color}
-                intensity={props.lightParams?.inner?.intensity}
+                intensity={props.color === "#FF0000" ? props.lightParams?.inner?.intensity : 0}
                 distance={props.lightParams?.inner?.distance}
                 decay={props.lightParams?.inner?.decay}
-                visible={props.color === "#FF0000"}
             />
+
             {props.children}
         </group>
     );
