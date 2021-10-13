@@ -1,5 +1,5 @@
 import React from "react";
-import SmallEye from "./small-eye";
+import SmallEye from "./small-eye/small-eye";
 import styled from "styled-components";
 import { EyeGLTFResult } from "../../models/eye-model";
 import useDevice from "../../../hooks/use-device";

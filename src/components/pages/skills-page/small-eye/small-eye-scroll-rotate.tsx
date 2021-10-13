@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { Canvas } from "@react-three/fiber";
 import { EyeGLTFResult } from "../../../models/eye-model";
 import { useViewportScroll } from "framer-motion";
-import ScrollRotateModelContent from "./scroll-rotate-model-content";
+import SmallEyeScrollRotateContent from "./small-eye-scroll-rotate-content";
 
 const StyledRoot = styled.div`
     width: 50px;
@@ -21,13 +21,13 @@ export interface ScrollRotateModelProps {
     z: number;
 }
 
-export default function ScrollRotateModel(props: ScrollRotateModelProps) {
+export default function SmallEyeScrollRotate(props: ScrollRotateModelProps) {
     const { scrollYProgress } = useViewportScroll();
 
     return (
         <StyledRoot>
             <StyledCanvas>
-                <ScrollRotateModelContent scrollYProgress={scrollYProgress} gltf={props.gltf} z={props.z} />
+                <SmallEyeScrollRotateContent scrollYProgress={scrollYProgress} gltf={props.gltf} z={props.z} />
             </StyledCanvas>
         </StyledRoot>
     );

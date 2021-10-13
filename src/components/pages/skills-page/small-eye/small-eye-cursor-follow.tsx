@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useRef, useState } from "react";
 import { Canvas } from "@react-three/fiber";
 import styled from "styled-components";
 import { EyeGLTFResult } from "../../../models/eye-model";
-import CursorFollowModelContent from "./cursor-follow-model-content";
+import SmallEyeCursorFollowContent from "./small-eye-cursor-follow-content";
 import MousePositionContext from "../../../../contexts/mouse-position-context";
 
 const StyledRoot = styled.div`
@@ -21,7 +21,7 @@ export interface CursorFollowModelProps {
     z: number;
 }
 
-export default function CursorFollowModel(props: CursorFollowModelProps) {
+export default function SmallEyeCursorFollow(props: CursorFollowModelProps) {
     const ref = useRef<HTMLDivElement>(null);
     const [centerCoordinates, setCenterCoordinates] = useState<{ x: number; y: number }>();
     const mousePositionRef = useContext(MousePositionContext).mousePositionRef;
@@ -49,7 +49,7 @@ export default function CursorFollowModel(props: CursorFollowModelProps) {
     return (
         <StyledRoot ref={ref}>
             <StyledCanvas>
-                <CursorFollowModelContent
+                <SmallEyeCursorFollowContent
                     z={props.z}
                     gltf={props.gltf}
                     centerCoordinates={centerCoordinates}

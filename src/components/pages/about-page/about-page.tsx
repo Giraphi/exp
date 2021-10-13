@@ -6,7 +6,7 @@ import { breakpointSmall, colorAbout, spacings } from "../../../style/constants"
 import LayoutContent from "../../utilities/layout-content";
 import { motion } from "framer-motion";
 import AboutPageWorld from "./about-page-world";
-import GlitchText from "../skills-page/glitch-text/glitch-text";
+import GlitchText from "../../glitch-text/glitch-text";
 import { LayoutTextItem } from "../../utilities/layout-text-item";
 import { useGLTF } from "@react-three/drei";
 import { MeGLTFResult } from "../../models/me-model";

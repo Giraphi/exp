@@ -1,6 +1,6 @@
 import React from "react";
 import styled, { css } from "styled-components";
-import { breakpointSmall } from "../../../../style/constants";
+import { breakpointSmall } from "../../style/constants";
 
 const StyledRoot = styled.span<{ isRotated: boolean }>`
     display: inline-block;

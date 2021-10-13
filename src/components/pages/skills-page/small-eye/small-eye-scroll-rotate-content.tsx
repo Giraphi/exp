@@ -10,7 +10,7 @@ export interface ScrollRotateModelContentProps {
     scrollYProgress: MotionValue<number>;
 }
 
-export default function ScrollRotateModelContent(props: ScrollRotateModelContentProps) {
+export default function SmallEyeScrollRotateContent(props: ScrollRotateModelContentProps) {
     const cameraRef = useRef<PerspectiveCamera>(null);
     const set = useThree((state) => state.set);
     const size = useThree((state) => state.size);

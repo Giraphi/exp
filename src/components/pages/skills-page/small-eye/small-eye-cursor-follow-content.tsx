@@ -12,7 +12,7 @@ export interface CursorFollowModelContentProps {
     mousePositionRef?: RefObject<{ x: number; y: number } | undefined>;
 }
 
-export default function CursorFollowModelContent(props: CursorFollowModelContentProps) {
+export default function SmallEyeCursorFollowContent(props: CursorFollowModelContentProps) {
     const ref = useRef<Group>(null);
     const cameraRef = useRef<PerspectiveCamera>(null);
     const set = useThree((state) => state.set);

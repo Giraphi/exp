@@ -6,7 +6,7 @@ import SkillsPageWorld from "./skills-page-world";
 import LayoutContent from "../../utilities/layout-content";
 import { motion, useMotionTemplate, useTransform, useViewportScroll } from "framer-motion";
 import { breakpointSmall, zIndexes } from "../../../style/constants";
-import GlitchText from "./glitch-text/glitch-text";
+import GlitchText from "../../glitch-text/glitch-text";
 import PageLoader from "../../page-loader/page-loader";
 import { useGLTF } from "@react-three/drei";
 import { EyeGLTFResult } from "../../models/eye-model";
