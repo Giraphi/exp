@@ -3,7 +3,7 @@ import { keyframes } from "styled-components";
 export const backgroundAnimationFreezePercentage = 0.2;
 const percentagePause = `${50 - (backgroundAnimationFreezePercentage * 100) / 2}%`;
 const percentageContinue = `${50 + (backgroundAnimationFreezePercentage * 100) / 2}%`;
-const scaleFactor = 1.3;
+const scaleFactor = 0.7;
 
 export const imageKeyframesShow = keyframes`
     0% {
@@ -12,10 +12,10 @@ export const imageKeyframesShow = keyframes`
     ${percentagePause} {
         transform: scale(${scaleFactor});
     }
-    
+
     ${percentageContinue} {
         transform: scale(${scaleFactor});
-    }    
+    }
     100% {
         transform: scale(1);
     }
