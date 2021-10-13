@@ -80,12 +80,15 @@ export const StyledImage = styled.div`
 
 export interface WorkPageImageSliderProps {
     images: string[];
+    sliderAuto: boolean;
+    onClick: () => void;
 }
 
 export default function WorkPageImageSlider(props: WorkPageImageSliderProps) {
     const [activeSlide, setActiveSlide] = useState(0);
-    const [isClicked, setIsClicked] = useState(false);
+    // const [isClicked, setIsClicked] = useState(false);
     const [numClicksOdd, setNumClicksOdd] = useState(false);
+    const [isFirstCycle, setIsFirstCycle] = useState(true);
 
     function modulo(n: number, m: number) {
         // will deal correctly with negative numbers, unlike the "%" operator
@@ -94,27 +97,32 @@ export default function WorkPageImageSlider(props: WorkPageImageSliderProps) {
 
     function onLeftClick() {
         setActiveSlide((activeSlide) => modulo(activeSlide - 1, props.images.length));
-        setIsClicked(true);
+        // setIsClicked(true);
+        props.onClick();
+        setIsFirstCycle(false);
         setNumClicksOdd((x) => !x);
     }
 
     function onRightClick() {
         setActiveSlide((activeSlide) => modulo(activeSlide + 1, props.images.length));
-        setIsClicked(true);
+        // setIsClicked(true);
+        props.onClick();
+        setIsFirstCycle(false);
         setNumClicksOdd((x) => !x);
     }
 
     useEffect(() => {
-        if (isClicked) {
+        if (!props.sliderAuto) {
             return;
         }
 
         const interval = setInterval(() => {
+            setIsFirstCycle(false);
             setActiveSlide((activeSlide) => (activeSlide + 1) % props.images.length);
         }, 5000);
 
         return () => clearInterval(interval);
-    }, [isClicked, props.images.length]);
+    }, [props.sliderAuto, props.images.length]);
 
     // Setting backgroundImage as inline style serves as a workaround for a "flickering background image" bug
     // https://github.com/styled-components/styled-components/issues/3315
@@ -129,7 +137,7 @@ export default function WorkPageImageSlider(props: WorkPageImageSliderProps) {
             >
                 <ClipPathAnimation>
                     {props.images.map((image, index) => (
-                        <ClipPathAnimationItem key={index} isActive={activeSlide === index}>
+                        <ClipPathAnimationItem key={index} isActive={activeSlide === index} isFirstCycle={isFirstCycle}>
                             <StyledImage style={{ backgroundImage: `url(${image})` }} />
                         </ClipPathAnimationItem>
                     ))}
