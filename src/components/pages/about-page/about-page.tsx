@@ -97,14 +97,14 @@ export default function AboutPage() {
                     <LayoutContent>
                         <LayoutTextSection>
                             <GlitchText
-                                text={"I'm a frontend " + "developer based in Munich with an affinity towards art and design. "}
+                                text={"I'm a frontend " + "developer based in Munich with a penchant creativity and arts. "}
                                 variant={"color"}
                             />
 
                             <Spacer size={"small"} />
                             <GlitchText
                                 text={
-                                    "Having a strong background in Computer Science and Maths I try to entwine technical precision with creative playfulness to aim for results that go beyond the current standards."
+                                    "Having a strong background in Computer Science and Maths I try to combine technical precision with creative playfulness to aim for results that go beyond the current standards."
                                 }
                                 variant={"color"}
                             />
