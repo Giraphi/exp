@@ -13,7 +13,7 @@ export default function WorkPageHandModel(props: WorkPageHandModelProps) {
     useCursorFollowBannerModel(
         ref,
         {
-            fixedZ: 2000,
+            fixedZ: 1500,
             modelPositionY: 20,
             YOffset: -0.03,
         },
