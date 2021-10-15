@@ -69,7 +69,7 @@ export default function StartPage() {
                     <StyledSubHeadline>Web Developer</StyledSubHeadline>
                 </StyledHeadlineContainer>
                 <ThreeSetup color={"black"} controlButtons={<CameraControlButtons />} onLoadFinished={() => setIsLoadFinished(true)}>
-                    <StartPageWorld numCuboids={170} size={1000} />
+                    <StartPageWorld numCuboids={170} />
                 </ThreeSetup>
             </StyledRoot>
         </PageLoader>

@@ -2,10 +2,10 @@ import React, { useMemo, useState } from "react";
 import { Vector3 } from "three/src/math/Vector3";
 import StartPageCuboids from "./start-page-cuboids";
 import Lightbulb from "../../lightbulb/lightbulb";
+import StartPageSecretText from "./start-page-secret-text";
 
 export interface WorldProps {
     numCuboids: number;
-    size: number;
 }
 
 export default function StartPageWorld(props: WorldProps) {
@@ -19,7 +19,7 @@ export default function StartPageWorld(props: WorldProps) {
         <>
             <ambientLight color="white" intensity={0.001} />
 
-            <StartPageCuboids numCuboids={props.numCuboids} worldSize={props.size} lift={isLightbulbClicked} />
+            <StartPageCuboids numCuboids={props.numCuboids} worldSize={1000} lift={isLightbulbClicked} />
 
             <Lightbulb
                 onClick={() => setIsLightbulbClicked(true)}
@@ -44,9 +44,10 @@ export default function StartPageWorld(props: WorldProps) {
             />
 
             <mesh position={[0, 0, 0]} rotation={[-Math.PI / 2, 0, 0]} receiveShadow={true}>
-                <planeBufferGeometry attach="geometry" args={[props.size, props.size]} />
+                <planeBufferGeometry attach="geometry" args={[1000, 1000]} />
                 <meshStandardMaterial attach="material" color="white" flatShading={true} />
             </mesh>
+            <StartPageSecretText />
         </>
     );
 }
