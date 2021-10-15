@@ -13,7 +13,7 @@ export const MovementContextActions = React.createContext<MovementContextActions
     setIsMovingBackward: () => undefined,
     setIsTurningLeft: () => undefined,
     setIsTurningRight: () => undefined,
-    setIsReset: (isReset: boolean) => undefined,
+    setIsReset: () => undefined,
 });
 
 export default MovementContextActions;

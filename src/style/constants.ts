@@ -11,7 +11,8 @@ export const zIndexes = {
     startPageHeadline: 1,
     skillsPageText: 10,
     pageLoader: 99,
-    clipPathAnimationItemTop: 1,
+    clipPathAnimationItemTop: 2,
+    clipPathAnimationItemBelowTop: 1,
     clipPathDummy: -1,
     imageSliderOverlay: 30,
 

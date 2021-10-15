@@ -26,6 +26,7 @@ const StyledChildren = styled.div`
 const StyledRoot = styled.div<{
     isActive: boolean;
     isOnTop: boolean;
+    isBelowTop: boolean;
     oddAnimation: boolean;
     width?: number;
 }>`
@@ -39,10 +40,17 @@ const StyledRoot = styled.div<{
     animation-timing-function: ${easeFunction};
     animation-duration: ${animationDurationMs}ms;
 
+    z-index: 0;
     ${(props) =>
         props.isOnTop &&
         css`
             z-index: ${zIndexes.clipPathAnimationItemTop};
+        `}
+
+    ${(props) =>
+        props.isBelowTop &&
+        css`
+            z-index: ${zIndexes.clipPathAnimationItemBelowTop};
         `}
 
     ${(props) =>
@@ -97,19 +105,31 @@ export interface ClipPathAnimationItemProps {
 export default function ClipPathAnimationItem(props: ClipPathAnimationItemProps) {
     const dimensionsRef = useRef<HTMLDivElement>(null);
     const [isOnTop, setIsOnTop] = useState(props.isActive);
+    const [isBelowTop, setIsBelowTop] = useState(false);
     const useOddAnimation = useContext(ClipPathAnimationContext).numClicksOdd;
 
     useEffect(() => {
+        // happens if props.isActive changes, i.e. item is involved in the animation
+        setIsBelowTop(!props.isActive);
+
         const timeout = setTimeout(() => {
             setIsOnTop(props.isActive);
         }, animationDurationMs / 2);
 
-        return () => clearTimeout(timeout);
+        const timeout2 = setTimeout(() => {
+            setIsBelowTop(false);
+        }, animationDurationMs);
+
+        return () => {
+            clearTimeout(timeout);
+            clearTimeout(timeout2);
+        };
     }, [props.isActive]);
 
     return (
         <StyledRoot
             isActive={props.isActive}
+            isBelowTop={isBelowTop}
             width={!props.isFirstCycle && dimensionsRef.current ? Math.round(dimensionsRef.current.clientWidth) : undefined}
             isOnTop={isOnTop}
             oddAnimation={useOddAnimation}

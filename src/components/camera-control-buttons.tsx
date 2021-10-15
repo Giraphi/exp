@@ -4,7 +4,7 @@ import styled, { css } from "styled-components";
 
 import MovementContext from "../contexts/movement-context";
 import { ArrowBlackUp, ArrowBlackUpFilled, ArrowWhiteUp, ArrowWhiteUpFilled } from "../images/svg-strings";
-import { breakpointSmall, fontSizes, lineHeights, spacings } from "../style/constants";
+import { breakpointSmall, fontSizes, lineHeights } from "../style/constants";
 
 const ButtonSize = "50px";
 const ButtonSizeSmall = "40px";
