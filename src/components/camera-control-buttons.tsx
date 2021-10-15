@@ -76,7 +76,7 @@ const StyledRoot = styled.div<{ isMinimal?: boolean; inverse?: boolean }>`
 
     @media (max-width: ${breakpointSmall}) {
         flex-direction: row;
-        justify-content: space-between;
+        justify-content: flex-end;
         align-items: center;
         padding-left: calc(${ButtonSize} / 2);
     }
@@ -86,7 +86,7 @@ const StyledRoot = styled.div<{ isMinimal?: boolean; inverse?: boolean }>`
         css`
             @media (min-width: 768px) {
                 align-items: center;
-                bottom: ${spacings.smallMd};
+                bottom: 20px;
                 right: unset;
                 padding-right: 0;
                 padding-bottom: 0;
@@ -125,7 +125,7 @@ const StyledGrid = styled.div<{ isMinimal?: boolean }>`
 
 const StyledText = styled.div`
     margin-top: 10px;
-    margin-bottom: 30px;
+    margin-bottom: 10px;
     font-size: ${fontSizes.captionSm};
     line-height: ${lineHeights.captionSm};
     color: white;
@@ -164,6 +164,7 @@ const StyledResetButton = styled.div<{ isHidden: boolean }>`
 
 const StyledButtonMobile = styled.div`
     display: block;
+    margin-right: auto;
 
     @media (min-width: ${breakpointSmall}) {
         display: none;
