@@ -124,7 +124,7 @@ export default function WorkPage() {
                     <StyledBanner>
                         <ThreeSetup
                             color={"black"}
-                            controlButtons={<CameraControlButtons pageVariant={true} />}
+                            controlButtons={<CameraControlButtons isMinimal={true} />}
                             onLoadFinished={() => setIsLoadFinished(true)}
                         >
                             <WorkPageWorld handGltf={handGlTf} />

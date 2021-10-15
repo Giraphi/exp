@@ -4,7 +4,7 @@ import styled, { css } from "styled-components";
 
 import MovementContext from "../contexts/movement-context";
 import { ArrowBlackUp, ArrowBlackUpFilled, ArrowWhiteUp, ArrowWhiteUpFilled } from "../images/svg-strings";
-import { fontSizes, lineHeights } from "../style/constants";
+import { breakpointSmall, fontSizes, lineHeights, spacings } from "../style/constants";
 
 const ButtonSize = "50px";
 const ButtonSizeSmall = "40px";
@@ -74,12 +74,19 @@ const StyledRoot = styled.div<{ isMinimal?: boolean; inverse?: boolean }>`
     padding-right: calc(${ButtonSize} / 2);
     align-items: flex-end;
 
+    @media (max-width: ${breakpointSmall}) {
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        padding-left: calc(${ButtonSize} / 2);
+    }
+
     ${(props) =>
         !props.isMinimal &&
         css`
             @media (min-width: 768px) {
                 align-items: center;
-                bottom: 8%;
+                bottom: ${spacings.smallMd};
                 right: unset;
                 padding-right: 0;
                 padding-bottom: 0;
@@ -117,7 +124,8 @@ const StyledGrid = styled.div<{ isMinimal?: boolean }>`
 `;
 
 const StyledText = styled.div`
-    margin-top: 20px;
+    margin-top: 10px;
+    margin-bottom: 30px;
     font-size: ${fontSizes.captionSm};
     line-height: ${lineHeights.captionSm};
     color: white;
@@ -130,8 +138,48 @@ const StyledText = styled.div`
     }
 `;
 
+const StyledResetButton = styled.div<{ isHidden: boolean }>`
+    pointer-events: auto;
+    cursor: pointer;
+    color: white;
+    font-family: "SourceCodePro", monospace;
+    font-size: ${fontSizes.captionSm};
+    border: 1px solid white;
+    padding-left: 8px;
+    padding-right: 8px;
+    user-select: none;
+    :hover {
+        background-color: white;
+        color: black;
+    }
+
+    opacity: 1;
+    transition: opacity 0.6s ease-in;
+    ${(props) =>
+        props.isHidden &&
+        css`
+            opacity: 0;
+        `}
+`;
+
+const StyledButtonMobile = styled.div`
+    display: block;
+
+    @media (min-width: ${breakpointSmall}) {
+        display: none;
+    }
+`;
+
+const StyledButtonDesktop = styled.div`
+    display: none;
+
+    @media (min-width: ${breakpointSmall}) {
+        display: block;
+    }
+`;
+
 export interface CameraControlButtonsProps {
-    pageVariant?: boolean;
+    isMinimal?: boolean;
     inverse?: boolean;
 }
 
@@ -242,8 +290,16 @@ export default function CameraControlButtons(props: CameraControlButtonsProps) {
     }
 
     return (
-        <StyledRoot isMinimal={props.pageVariant}>
-            <StyledGrid isMinimal={props.pageVariant}>
+        <StyledRoot isMinimal={props.isMinimal}>
+            {!props.isMinimal && (
+                <StyledButtonMobile>
+                    <StyledResetButton isHidden={movementContext.isReset} onClick={() => movementContextActions.setIsReset(true)}>
+                        Reset Camera
+                    </StyledResetButton>
+                </StyledButtonMobile>
+            )}
+
+            <StyledGrid isMinimal={props.isMinimal}>
                 <StyledButtonUp
                     isActive={movementContext.isMovingForward}
                     inverse={props.inverse}
@@ -281,11 +337,21 @@ export default function CameraControlButtons(props: CameraControlButtonsProps) {
                 />
             </StyledGrid>
 
-            {!props.pageVariant && (
-                <StyledText>
-                    Click the arrows to fly. <br />
-                    {"Or use W, A, S, D on your keyboard."}
-                </StyledText>
+            {!props.isMinimal && (
+                <>
+                    <StyledText>
+                        Click the arrows to fly. <br />
+                        {"Or use W, A, S, D on your keyboard."}
+                    </StyledText>
+
+                    <StyledButtonDesktop>
+                        {!props.isMinimal && (
+                            <StyledResetButton isHidden={movementContext.isReset} onClick={() => movementContextActions.setIsReset(true)}>
+                                Reset Camera
+                            </StyledResetButton>
+                        )}
+                    </StyledButtonDesktop>
+                </>
             )}
         </StyledRoot>
     );

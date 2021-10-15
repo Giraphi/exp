@@ -5,7 +5,6 @@ import { ReactThreeFiber } from "@react-three/fiber";
 import { MapControls, OrbitControls } from "three/examples/jsm/controls/OrbitControls";
 import { FirstPersonControls } from "three/examples/jsm/controls/FirstPersonControls";
 import { FlyControls } from "three/examples/jsm/controls/FlyControls";
-import { BirdControlsType } from "./birdControls/birdControlsType";
 
 declare global {
     namespace JSX {
@@ -14,7 +13,6 @@ declare global {
             firstPersonControls: ReactThreeFiber.Object3DNode<FirstPersonControls, typeof FirstPersonControls>;
             flyControls: ReactThreeFiber.Object3DNode<FlyControls, typeof FlyControls>;
             orbitControls: ReactThreeFiber.Object3DNode<OrbitControls, typeof OrbitControls>;
-            birdControls: ReactThreeFiber.Object3DNode<BirdControlsType, typeof BirdControlsType>;
         }
     }
 }

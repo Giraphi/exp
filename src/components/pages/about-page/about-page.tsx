@@ -87,7 +87,7 @@ export default function AboutPage() {
                     <StyledBanner>
                         <ThreeSetup
                             color={"black"}
-                            controlButtons={<CameraControlButtons pageVariant={true} />}
+                            controlButtons={<CameraControlButtons isMinimal={true} />}
                             onLoadFinished={() => setIsLoadFinished(true)}
                         >
                             <AboutPageWorld meGltf={meGlTf} />

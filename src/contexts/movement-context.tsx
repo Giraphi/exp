@@ -5,6 +5,7 @@ export interface MovementContextType {
     isMovingBackward: boolean;
     isTurningRight: boolean;
     isTurningLeft: boolean;
+    isReset: boolean;
 }
 
 export const MovementContext = React.createContext<MovementContextType>({
@@ -12,6 +13,7 @@ export const MovementContext = React.createContext<MovementContextType>({
     isMovingBackward: false,
     isTurningRight: false,
     isTurningLeft: false,
+    isReset: true,
 });
 
 export default MovementContext;

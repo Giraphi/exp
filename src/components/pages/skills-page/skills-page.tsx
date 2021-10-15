@@ -81,7 +81,7 @@ export default function SkillsPage() {
                     <StyledBanner>
                         <ThreeSetup
                             color={"white"}
-                            controlButtons={<CameraControlButtons pageVariant={true} inverse={true} />}
+                            controlButtons={<CameraControlButtons isMinimal={true} inverse={true} />}
                             onLoadFinished={() => setIsLoadFinished(true)}
                         >
                             <SkillsPageWorld eyeGltf={eyeGlTf} />
