@@ -173,6 +173,7 @@ const StyledButtonMobile = styled.div`
 
 const StyledButtonDesktop = styled.div`
     display: none;
+    margin-bottom: 10px;
 
     @media (min-width: ${breakpointSmall}) {
         display: block;
