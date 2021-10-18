@@ -17,7 +17,7 @@ export default function SkillsPageWorld(props: SkillsPageWorldProps) {
         <>
             <SkillsPageHeadline />
 
-            <ambientLight color="white" intensity={0.2} />
+            <ambientLight color="white" intensity={0.15} />
 
             <pointLight color={colorSkills} intensity={2} distance={1200} decay={1} position={[420, 1000, 40]} />
 

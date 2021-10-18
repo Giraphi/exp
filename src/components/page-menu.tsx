@@ -59,12 +59,12 @@ export default function PageMenu(props: PageMenuProps) {
     }, [device]);
 
     const lightPosition = useMemo(() => {
-        return device !== "small" ? new Vector3(-200, 180, 50) : new Vector3(-50, 170, 100);
+        return device !== "small" ? new Vector3(-500, 500, 90) : new Vector3(-50, 170, 100);
     }, [device]);
 
     return (
         <>
-            <pointLight color={"white"} intensity={0.5} distance={2000} decay={1} position={lightPosition} />
+            <pointLight color={"white"} intensity={1.2} distance={2000} decay={1} position={lightPosition} />
 
             {itemDescriptions.map((itemDescription) => (
                 <Lightbulb
