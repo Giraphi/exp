@@ -111,9 +111,8 @@ export default function SkillsPage() {
                                         <GlitchText variant={"flip"} text={"Favorite Frameworks"} probability={0.004} />
                                     </h1>
                                     <LayoutTextItem>React</LayoutTextItem>
-                                    <LayoutTextItem>Three.js</LayoutTextItem>
-                                    <LayoutTextItem>R3F</LayoutTextItem>
-                                    <LayoutTextItem>Styled Components</LayoutTextItem>
+                                    <LayoutTextItem>Framer Api</LayoutTextItem>
+                                    <LayoutTextItem>Three.js / R3F</LayoutTextItem>
                                 </LayoutTextSection>
 
                                 <LayoutTextSection>
@@ -121,22 +120,29 @@ export default function SkillsPage() {
                                         <GlitchText variant={"flip"} text={"Familiar Frameworks"} probability={0.004} />
                                     </h1>
                                     <LayoutTextItem>Angular</LayoutTextItem>
-                                    <LayoutTextItem>Framer Api</LayoutTextItem>
                                     <LayoutTextItem>Next.js</LayoutTextItem>
                                     <LayoutTextItem>Immer.js</LayoutTextItem>
                                     <LayoutTextItem>Electron</LayoutTextItem>
                                     <LayoutTextItem>Draft.js</LayoutTextItem>
-                                    <LayoutTextItem>Material UI</LayoutTextItem>
                                     <LayoutTextItem>Jest</LayoutTextItem>
                                 </LayoutTextSection>
 
                                 <LayoutTextSection>
                                     <h1>
-                                        <GlitchText variant={"flip"} text={"Obviously, the basics"} probability={0.004} />
+                                        <GlitchText variant={"flip"} text={"Styling Systems"} probability={0.004} />
                                     </h1>
-                                    <LayoutTextItem>Plain JS</LayoutTextItem>
-                                    <LayoutTextItem>Html/CSS/SCSS</LayoutTextItem>
-                                    <LayoutTextItem>command-line/git</LayoutTextItem>
+                                    <LayoutTextItem>CSS / SCSS</LayoutTextItem>
+                                    <LayoutTextItem>CSS-in-JS approaches</LayoutTextItem>
+                                    <LayoutTextItem>styled-components</LayoutTextItem>
+                                    <LayoutTextItem>Material UI</LayoutTextItem>
+                                </LayoutTextSection>
+
+                                <LayoutTextSection>
+                                    <h1>
+                                        <GlitchText variant={"flip"} text={"Fundamentals"} probability={0.004} />
+                                    </h1>
+                                    <LayoutTextItem>Plain JS / Html / CSS</LayoutTextItem>
+                                    <LayoutTextItem>command-line / git / npm / yarn etc.</LayoutTextItem>
                                     {/*<LayoutItem>jQuery <span role={"img"} aria-label={"skull"}>&#128128;</span></LayoutItem>*/}
                                 </LayoutTextSection>
 
