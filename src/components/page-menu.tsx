@@ -59,7 +59,7 @@ export default function PageMenu(props: PageMenuProps) {
     }, [device]);
 
     const lightPosition = useMemo(() => {
-        return device !== "small" ? new Vector3(-500, 500, 90) : new Vector3(-50, 170, 100);
+        return new Vector3(-500, 500, 90);
     }, [device]);
 
     return (
