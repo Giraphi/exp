@@ -60,7 +60,7 @@ export default function PageMenu(props: PageMenuProps) {
 
     const lightPosition = useMemo(() => {
         return new Vector3(-500, 500, 90);
-    }, [device]);
+    }, []);
 
     return (
         <>
