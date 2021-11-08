@@ -8,6 +8,7 @@ import MousePositionContextProvider from "../contexts/providers/mouse-position-c
 import WorkPage from "./pages/work-page/work-page";
 import CreditsPage from "./pages/other/credits-page";
 import ImpressumPage from "./pages/other/impressum-page";
+import PageLoader from "./page-loader/page-loader";
 
 export default function PageSwitch() {
     const location = useLocation();
@@ -21,19 +22,19 @@ export default function PageSwitch() {
                     </Route>
 
                     <Route exact path={["/skills"]}>
-                        <Suspense fallback={null}>
+                        <Suspense fallback={<PageLoader isLoadFinished={false}/>}>
                             <SkillsPage />
                         </Suspense>
                     </Route>
 
                     <Route exact path={["/about"]}>
-                        <Suspense fallback={null}>
+                        <Suspense fallback={<PageLoader isLoadFinished={false}/>}>
                             <AboutPage />
                         </Suspense>
                     </Route>
 
                     <Route exact path={["/work"]}>
-                        <Suspense fallback={null}>
+                        <Suspense fallback={<PageLoader isLoadFinished={false}/>}>
                             <WorkPage />
                         </Suspense>
                     </Route>

@@ -1,13 +1,13 @@
-import React, { useMemo, useState } from "react";
+import React, {useMemo, useState} from "react";
 import ThreeSetup from "../../three-setup/three-setup";
 import CameraControlButtons from "../../camera-control-buttons";
 import styled from "styled-components";
-import { breakpointSmall, colorWork, fontSizes, lineHeights, spacings } from "../../../style/constants";
+import {breakpointSmall, colorWork, fontSizes, lineHeights, spacings} from "../../../style/constants";
 import LayoutContent from "../../utilities/layout-content";
-import { motion, useMotionTemplate, useTransform, useViewportScroll } from "framer-motion";
+import {motion, useMotionTemplate, useTransform, useViewportScroll} from "framer-motion";
 import WorkPageWorld from "./work-page-world";
-import { useGLTF } from "@react-three/drei";
-import { HandGLTFResult } from "../../models/hand-model";
+import {useGLTF} from "@react-three/drei";
+import {HandGLTFResult} from "../../models/hand-model";
 import PageLoader from "../../page-loader/page-loader";
 
 import Bosch1 from "./slider-images/Bosch1.png";
@@ -83,9 +83,9 @@ const StyledSliderRow = styled.div`
 
 export default function WorkPage() {
     const [isLoadFinished, setIsLoadFinished] = useState(false);
-    const handGlTf = useGLTF("/models/hand/scene.gltf") as HandGLTFResult;
+    const handGlTf = useGLTF("/models/hand.glb") as HandGLTFResult;
 
-    const { scrollYProgress } = useViewportScroll();
+    const {scrollYProgress} = useViewportScroll();
     const rColorChannel = useTransform(scrollYProgress, [0, 0.3, 0.6, 0.8, 1], [0, 30, 40, 35, 0]);
     const gColorChannel = useTransform(scrollYProgress, [0, 0.3, 0.6, 0.8, 1], [0, 30, 40, 35, 0]);
     const bColorChannel = useTransform(scrollYProgress, [0, 0.3, 0.6, 0.8, 1], [0, 30, 40, 35, 0]);
@@ -110,30 +110,30 @@ export default function WorkPage() {
     }, []);
 
     return (
-        <StyledRoot
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 1.0 }}
-            style={{
-                backgroundColor: device === "small" ? backgroundColorMobile : backgroundColor,
-            }}
-        >
-            <PageLoader isLoadFinished={isLoadFinished}>
+        <PageLoader isLoadFinished={isLoadFinished}>
+            <StyledRoot
+                initial={{opacity: 0}}
+                animate={{opacity: 1}}
+                exit={{opacity: 0}}
+                transition={{duration: 1.0}}
+                style={{
+                    backgroundColor: device === "small" ? backgroundColorMobile : backgroundColor,
+                }}
+            >
                 <Page>
                     <StyledBanner>
                         <ThreeSetup
                             color={"black"}
-                            controlButtons={<CameraControlButtons isMinimal={true} />}
+                            controlButtons={<CameraControlButtons isMinimal={true}/>}
                             onLoadFinished={() => setIsLoadFinished(true)}
                         >
-                            <WorkPageWorld handGltf={handGlTf} />
+                            <WorkPageWorld handGltf={handGlTf}/>
                         </ThreeSetup>
                     </StyledBanner>
 
                     <LayoutContent>
                         <StyledSliderRow>
-                            <WorkPageImageSlider images={images.funct} onClick={() => setSlidersAuto(false)} sliderAuto={slidersAuto} />
+                            <WorkPageImageSlider images={images.funct} onClick={() => setSlidersAuto(false)} sliderAuto={slidersAuto}/>
 
                             <StyledRowText>
                                 <div>
@@ -147,26 +147,26 @@ export default function WorkPage() {
                         </StyledSliderRow>
 
                         <StyledSliderRow>
-                            <WorkPageImageSlider images={images.future} onClick={() => setSlidersAuto(false)} sliderAuto={slidersAuto} />
+                            <WorkPageImageSlider images={images.future} onClick={() => setSlidersAuto(false)} sliderAuto={slidersAuto}/>
 
                             <StyledRowText>
                                 <div>Collaboration on the movie project</div>
                                 <a target={"_blank"} rel="noopener noreferrer" href={"http://www.thefutureisnotunwritten.com/"}>
                                     The future is not unwritten
                                 </a>
-                                .<br />
+                                .<br/>
                                 Development of a Deep Learning System to generate uncanny image + video material.
                             </StyledRowText>
                         </StyledSliderRow>
 
                         <StyledSliderRow>
-                            <WorkPageImageSlider images={images.bosch} onClick={() => setSlidersAuto(false)} sliderAuto={slidersAuto} />
+                            <WorkPageImageSlider images={images.bosch} onClick={() => setSlidersAuto(false)} sliderAuto={slidersAuto}/>
 
                             <StyledRowText>
                                 <a target={"_blank"} rel="noopener noreferrer" href={"http://bosch-experimente.com"}>
                                     Bosch Band Website
                                 </a>
-                                <br />
+                                <br/>
                                 <div>Website for the band project Bosch.</div>
                             </StyledRowText>
                         </StyledSliderRow>
@@ -176,16 +176,16 @@ export default function WorkPage() {
                                 <a target={"_blank"} rel="noopener noreferrer" href={"https://maxipongratz.com/"}>
                                     Maxipongratz Solo
                                 </a>
-                                <br />
+                                <br/>
                                 <div>Website + Headless CMS implementation for Musician Maxi Pongratz</div>
                             </StyledRowText>
 
-                            <WorkPageImageSlider images={images.maxi} onClick={() => setSlidersAuto(false)} sliderAuto={slidersAuto} />
+                            <WorkPageImageSlider images={images.maxi} onClick={() => setSlidersAuto(false)} sliderAuto={slidersAuto}/>
                         </StyledSliderRow>
                     </LayoutContent>
-                    <Footer isInverted={true} />
+                    <Footer isInverted={true}/>
                 </Page>
-            </PageLoader>
-        </StyledRoot>
+            </StyledRoot>
+        </PageLoader>
     );
 }

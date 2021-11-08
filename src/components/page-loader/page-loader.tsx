@@ -26,7 +26,7 @@ const StyledRoot = styled.div<{ isLoading: boolean }>`
 `;
 
 export interface PageLoaderProps {
-    children: React.ReactNode;
+    children?: React.ReactNode;
     isLoadFinished: boolean;
 }
 
