@@ -111,6 +111,27 @@ export default function AboutPage() {
                         </LayoutTextSection>
 
                         <h1>
+                            <GlitchText text={"Personal"} variant={"color"}/>
+                        </h1>
+                        <LayoutTextSection>
+                            <GlitchText
+                                text={
+                                    "Born 1990 in Bad Windsheim."
+                                }
+                                variant={"color"}
+                            />
+
+                            <Spacer size={"xsmall"}/>
+
+                            <GlitchText
+                                text={
+                                    "School years in Höchstadt a.d. Aisch (close to Nuremberg)."
+                                }
+                                variant={"color"}
+                            />
+                        </LayoutTextSection>
+
+                        <h1>
                             <GlitchText text={"Education"} variant={"color"}/>
                         </h1>
                         <LayoutTextSection>
@@ -121,7 +142,7 @@ export default function AboutPage() {
                                         <GlitchText text={"2011 - 2014"} variant={"color"}/>
                                     </td>
                                     <td>
-                                        <GlitchText text={"Bachelor Computer Science at TU Dresden"} variant={"color"}/>
+                                        <GlitchText text={"Bachelor Computer Science at TU Dresden."} variant={"color"}/>
                                     </td>
                                 </tr>
                                 <tr>
@@ -130,7 +151,7 @@ export default function AboutPage() {
                                     </td>
                                     <td>
                                         <GlitchText
-                                            text={"Master Computational Linguistics with Computer Science Minor at LMU Munich"}
+                                            text={"Master Computational Linguistics with Computer Science Minor at LMU Munich."}
                                             variant={"color"}
                                         />
                                     </td>
@@ -138,7 +159,7 @@ export default function AboutPage() {
                                 <tr>
                                     <td></td>
                                     <td>
-                                        <GlitchText text={"Master Thesis in the field of Artificial Intelligence"} variant={"color"}/>
+                                        <GlitchText text={"Master Thesis in the field of Artificial Intelligence."} variant={"color"}/>
                                     </td>
                                 </tr>
                                 </tbody>
@@ -177,6 +198,7 @@ export default function AboutPage() {
                                         <StyledLink target={"_blank"} rel="noopener noreferrer" href={"http://www.funct.com"}>
                                             funct
                                         </StyledLink>
+
                                     </td>
                                 </tr>
                                 <tr>
@@ -233,7 +255,9 @@ export default function AboutPage() {
                                     LinkedIn
                                 </StyledLink>
                             </LayoutTextItem>
-                            <LayoutTextItem>e-mail: hoeps.raphael [at] gmail.com</LayoutTextItem>
+                            <LayoutTextItem>
+                                e-mail: hoeps.raphael [at] gmail.com
+                            </LayoutTextItem>
                         </LayoutTextSection>
                     </LayoutContent>
                     <Footer isInverted={true}/>

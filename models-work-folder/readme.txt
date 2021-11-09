@@ -8,11 +8,12 @@ Tips for model file sizes:
 
         convert -resize 20% Hands_Low_defaultMat1_normal.png Hands_Low_defaultMat1_normal.png
 
-- After that, convert the gltf-folder to a glb file:
+- After that, convert the gltf-folder to a glb file.
 
         gltf-pipeline -i scene.gltf -o hand.glb -d
 
   The -d flag applied additional compression to it. See https://github.com/CesiumGS/gltf-pipeline
 
-
+- To display current file sizes, use
+        ls -hl
 

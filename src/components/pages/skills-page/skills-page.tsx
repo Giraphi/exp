@@ -109,7 +109,7 @@ export default function SkillsPage() {
                                         <GlitchText variant={"flip"} text={"Favorite Frameworks"} probability={0.004}/>
                                     </h1>
                                     <LayoutTextItem>React</LayoutTextItem>
-                                    <LayoutTextItem>Framer Api</LayoutTextItem>
+                                    <LayoutTextItem>Framer Motion</LayoutTextItem>
                                     <LayoutTextItem>Three.js / R3F</LayoutTextItem>
                                 </LayoutTextSection>
 
