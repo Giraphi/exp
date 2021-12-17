@@ -34,7 +34,6 @@ export default function MovementContextProvider(props: MovementContextProviderPr
     }, []);
 
     const onReset = useCallback((isReset) => {
-        console.log("click reset");
         setIsReset(isReset);
     }, []);
 

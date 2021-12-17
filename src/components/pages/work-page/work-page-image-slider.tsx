@@ -81,7 +81,7 @@ export const StyledImage = styled.div`
 export interface WorkPageImageSliderProps {
     images: string[];
     sliderAuto: boolean;
-    onClick: () => void;
+    onClick?: () => void;
 }
 
 export default function WorkPageImageSlider(props: WorkPageImageSliderProps) {
@@ -97,16 +97,20 @@ export default function WorkPageImageSlider(props: WorkPageImageSliderProps) {
 
     function onLeftClick() {
         setActiveSlide((activeSlide) => modulo(activeSlide - 1, props.images.length));
-        // setIsClicked(true);
-        props.onClick();
+
+        if (props.onClick) {
+            props.onClick();
+        }
         setIsFirstCycle(false);
         setNumClicksOdd((x) => !x);
     }
 
     function onRightClick() {
         setActiveSlide((activeSlide) => modulo(activeSlide + 1, props.images.length));
-        // setIsClicked(true);
-        props.onClick();
+
+        if (props.onClick) {
+            props.onClick();
+        }
         setIsFirstCycle(false);
         setNumClicksOdd((x) => !x);
     }

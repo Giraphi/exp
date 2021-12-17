@@ -96,7 +96,7 @@ export default function WorkPage() {
     const bColorChannelMobile = useTransform(scrollYProgress, [0, 0.1, 0.6, 0.9, 1], [0, 30, 50, 35, 0]);
     const backgroundColorMobile = useMotionTemplate`rgba(${rColorChannelMobile},${gColorChannelMobile},${bColorChannelMobile})`;
 
-    const [slidersAuto, setSlidersAuto] = useState(true);
+    // const [slidersAuto, setSlidersAuto] = useState(true);
 
     const device = useDevice();
 
@@ -133,7 +133,7 @@ export default function WorkPage() {
 
                     <LayoutContent>
                         <StyledSliderRow>
-                            <WorkPageImageSlider images={images.funct} onClick={() => setSlidersAuto(false)} sliderAuto={slidersAuto}/>
+                            <WorkPageImageSlider images={images.funct} sliderAuto={false}/>
 
                             <StyledRowText>
                                 <div>
@@ -147,7 +147,7 @@ export default function WorkPage() {
                         </StyledSliderRow>
 
                         <StyledSliderRow>
-                            <WorkPageImageSlider images={images.future} onClick={() => setSlidersAuto(false)} sliderAuto={slidersAuto}/>
+                            <WorkPageImageSlider images={images.future} sliderAuto={false}/>
 
                             <StyledRowText>
                                 <div>Collaboration on the movie project</div>
@@ -160,7 +160,7 @@ export default function WorkPage() {
                         </StyledSliderRow>
 
                         <StyledSliderRow>
-                            <WorkPageImageSlider images={images.bosch} onClick={() => setSlidersAuto(false)} sliderAuto={slidersAuto}/>
+                            <WorkPageImageSlider images={images.bosch} sliderAuto={false}/>
 
                             <StyledRowText>
                                 <a target={"_blank"} rel="noopener noreferrer" href={"http://bosch-experimente.com"}>
@@ -180,7 +180,7 @@ export default function WorkPage() {
                                 <div>Website + Headless CMS implementation for Musician Maxi Pongratz</div>
                             </StyledRowText>
 
-                            <WorkPageImageSlider images={images.maxi} onClick={() => setSlidersAuto(false)} sliderAuto={slidersAuto}/>
+                            <WorkPageImageSlider images={images.maxi} sliderAuto={false}/>
                         </StyledSliderRow>
                     </LayoutContent>
                     <Footer isInverted={true}/>
