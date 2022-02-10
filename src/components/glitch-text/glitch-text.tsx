@@ -11,6 +11,7 @@ export interface GlitchTextProps {
     text: string;
     variant: GlitchTextLetterVariant;
     probability?: number;
+    duration?: number;
 }
 
 export default function GlitchText(props: GlitchTextProps) {
@@ -22,7 +23,13 @@ export default function GlitchText(props: GlitchTextProps) {
                 <React.Fragment key={wordIndex}>
                     <StyledWord>
                         {word.split("").map((letter, letterIndex) => (
-                            <GlitchTextLetter key={letterIndex} letter={letter} variant={props.variant} probability={props.probability} />
+                            <GlitchTextLetter
+                                key={letterIndex}
+                                letter={letter}
+                                variant={props.variant}
+                                probability={props.probability}
+                                duration={props.duration}
+                            />
                         ))}
                     </StyledWord>{" "}
                 </React.Fragment>

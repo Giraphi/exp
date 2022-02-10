@@ -6,8 +6,15 @@ export interface MousePositionContextProviderProps {
     children: React.ReactNode;
 }
 
+export interface MousePosition {
+    x: number,
+    y: number;
+    clientX: number;
+    clientY: number;
+}
+
 export default function MousePositionContextProvider(props: MousePositionContextProviderProps) {
-    const mousePositionRef = useRef<{ x: number; y: number } | undefined>(undefined);
+    const mousePositionRef = useRef<MousePosition | undefined>(undefined);
     const lastDocumentScrollY = useRef(0);
     const device = useDevice();
 
@@ -16,13 +23,20 @@ export default function MousePositionContextProvider(props: MousePositionContext
             if (device === "small") {
                 return;
             }
-            mousePositionRef.current = { x: e.pageX, y: e.pageY };
+            mousePositionRef.current = {
+                x: e.pageX,
+                y: e.pageY,
+                clientX: e.clientX,
+                clientY: e.clientY
+            };
         }
 
         function onTouchStart(e: TouchEvent) {
             mousePositionRef.current = {
                 x: e.targetTouches[0].pageX,
                 y: e.targetTouches[0].pageY,
+                clientX: e.targetTouches[0].clientX,
+                clientY: e.targetTouches[0].clientY,
             };
         }
 
@@ -42,6 +56,8 @@ export default function MousePositionContextProvider(props: MousePositionContext
             mousePositionRef.current = {
                 x: mousePositionRef.current.x,
                 y: mousePositionRef.current.y + deltaY,
+                clientX: mousePositionRef.current.clientX,
+                clientY: mousePositionRef.current.clientY
             };
             lastDocumentScrollY.current = window.scrollY;
         }

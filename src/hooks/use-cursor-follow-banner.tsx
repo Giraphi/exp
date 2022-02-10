@@ -1,5 +1,5 @@
 import { useFrame, useThree } from "@react-three/fiber";
-import { Group } from "three";
+import {Group, Mesh} from "three";
 import { RefObject, useContext, useEffect } from "react";
 import useDevice from "./use-device";
 import { Vector3 } from "three/src/math/Vector3";
@@ -21,7 +21,7 @@ export interface ScrollRotateConfig {
     targetAngle: number;
 }
 
-export default function useCursorFollowBanner(ref: RefObject<Group> | null, config: CursorFollowConfig, configMobile: ScrollRotateConfig) {
+export default function useCursorFollowBanner(ref: RefObject<Group | Mesh> | null, config: CursorFollowConfig, configMobile: ScrollRotateConfig) {
     const device = useDevice();
     const canvasSize = useThree().size;
     const initialCameraPosition = useContext(CameraPositionContext).initialPosition;

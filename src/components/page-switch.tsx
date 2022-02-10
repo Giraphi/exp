@@ -9,6 +9,7 @@ import WorkPage from "./pages/work-page/work-page";
 import CreditsPage from "./pages/other/credits-page";
 import ImpressumPage from "./pages/other/impressum-page";
 import PageLoader from "./page-loader/page-loader";
+import TestPage from "./pages/test-page/test-page";
 
 export default function PageSwitch() {
     const location = useLocation();
@@ -45,6 +46,10 @@ export default function PageSwitch() {
 
                     <Route exact path={["/impressum"]}>
                         <ImpressumPage />
+                    </Route>
+
+                    <Route exact path={["/test-page"]}>
+                        <TestPage />
                     </Route>
                 </Switch>
             </AnimatePresence>

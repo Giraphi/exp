@@ -1,8 +1,9 @@
 import React, { RefObject } from "react";
+import {MousePosition} from "./providers/mouse-position-context-provider";
 
 export interface MousePositionContextType {
     invalidatePosition: () => void;
-    mousePositionRef?: RefObject<{ x: number; y: number } | undefined>;
+    mousePositionRef?: RefObject<MousePosition | undefined>;
 }
 
 export const MousePositionContext = React.createContext<MousePositionContextType>({

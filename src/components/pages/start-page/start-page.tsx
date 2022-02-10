@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from "react";
-import ThreeSetup from "../../three-setup/three-setup";
+// import ThreeSetup from "../../three-setup/three-setup";
 import StartPageWorld from "./start-page-world";
 import CameraControlButtons from "../../camera-control-buttons";
 import styled from "styled-components";
 import { motion } from "framer-motion";
 import { breakpointSmall, fontSizes, lineHeights, zIndexes } from "../../../style/constants";
 import PageLoader from "../../page-loader/page-loader";
+import ThreeSetup from "../../three-setup/three-setup";
 
 const StyledRoot = styled(motion.div)`
     height: 100vh;

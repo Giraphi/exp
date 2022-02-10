@@ -8,19 +8,19 @@ export interface GlitchLetterProps {
     letter: string;
     variant: GlitchTextLetterVariant;
     probability?: number;
+    duration?: number
 }
 
 export default function GlitchTextLetter(props: GlitchLetterProps) {
     const [isGlitch, setIsGlitch] = useState(false);
     const timeout = useRef<NodeJS.Timeout>();
 
-    useEffect(() => {
-        // if (Math.random() < 0.5) {
-        //     setIsGlitch(true);
-        // }
-        // return;
+    const probability = props.probability || 0.002;
+    const duration = props.duration || 1300;
 
-        const probability = props.probability || 0.002;
+
+    useEffect(() => {
+
         const interval = setInterval(() => {
             if (1 - Math.random() < probability) {
                 setIsGlitch(true);
@@ -29,7 +29,7 @@ export default function GlitchTextLetter(props: GlitchLetterProps) {
                 }
                 timeout.current = setTimeout(() => {
                     setIsGlitch(false);
-                }, 1300);
+                }, duration);
             }
         }, 100);
 
@@ -40,7 +40,7 @@ export default function GlitchTextLetter(props: GlitchLetterProps) {
                 clearTimeout(timeout.current);
             }
         };
-    }, [props.probability]);
+    }, [duration, probability]);
 
     return (
         <>
