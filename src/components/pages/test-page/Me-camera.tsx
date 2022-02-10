@@ -11,6 +11,7 @@ import {useViewportScroll} from "framer-motion";
 import {AnimationAction} from "three";
 import MousePositionContext from "../../../contexts/mouse-position-context";
 import useDevice from "../../../hooks/use-device";
+import FlyingPageObjects from "../../flying-page-objects";
 
 type GLTFResult = GLTF & {
     nodes: {
@@ -25,6 +26,7 @@ export default function Model({...props}: JSX.IntrinsicElements['group']) {
     const groupRef = useRef<THREE.Group>(null)
     const meshRef = useRef<THREE.Mesh>(null)
     const cameraRef = useRef<THREE.Camera>(null)
+    const cursorCameraRef = useRef<THREE.Camera>(null)
     const {nodes, materials, animations} = useGLTF('/models/me-camera.glb') as GLTFResult
     const {actions} = useAnimations(animations, groupRef)
     const {scrollYProgress} = useViewportScroll();
@@ -34,18 +36,26 @@ export default function Model({...props}: JSX.IntrinsicElements['group']) {
     const mousePositionRef = useContext(MousePositionContext).mousePositionRef;
 
     useFrame(() => {
-        if ( device === "small" || !meshRef || !meshRef.current || !cameraRef || !cameraRef.current || !mousePositionRef || !mousePositionRef.current) {
+        if ( device === "small" || !meshRef || !meshRef.current || !cameraRef || !cameraRef.current || !mousePositionRef || !mousePositionRef.current || !cursorCameraRef || !cursorCameraRef.current) {
             return;
         }
 
-        meshRef.current.rotation.set(
-            0.0002 * (mousePositionRef.current.clientY - canvasSize.height / 2),
-            0.0002 * (mousePositionRef.current.clientX - canvasSize.width / 2),
+        cursorCameraRef.current.rotation.set(
+            0.00005 * (mousePositionRef.current.clientY - canvasSize.height / 2),
             0,
+            0.00005 * (mousePositionRef.current.clientX - canvasSize.width / 2),
         );
+
+        // meshRef.current.rotation.set(
+        //     0.0002 * (mousePositionRef.current.clientY - canvasSize.height / 2),
+        //     0.0002 * (mousePositionRef.current.clientX - canvasSize.width / 2),
+        //     0,
+        // );
     });
 
-    useEffect(() => void ((actions["CameraAction.006"] as AnimationAction).play().paused = true), [actions])
+    useEffect(() => {
+        (actions["CameraAction.006"] as AnimationAction).play().paused = true;
+    }, [actions]);
 
     useFrame(() => {
         const scroll = scrollYProgress.get();
@@ -58,8 +68,11 @@ export default function Model({...props}: JSX.IntrinsicElements['group']) {
     return (
         <group ref={groupRef} {...props} dispose={null}>
             <group name="Camera" position={[-0.06, 1.36, 7.82]} rotation={[1.38, 0, 0]} ref={cameraRef}>
+                <group ref={cursorCameraRef}>
+
                 <PerspectiveCamera
                     makeDefault far={100} near={0.1} fov={38.27} rotation={[-Math.PI / 2, 0, 0]}/>
+                </group>
             </group>
             <group
                 ref={meshRef}
@@ -71,6 +84,7 @@ export default function Model({...props}: JSX.IntrinsicElements['group']) {
                     scale={8.62}
                 />
             </group>
+
         </group>
     )
 }
