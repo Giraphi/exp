@@ -1,5 +1,5 @@
 import React, { useEffect, useLayoutEffect, useRef, useState } from "react";
-import useRandomGenerator from "../hooks/use-random";
+import useRandomGenerator from "../../hooks/use-random";
 import { BufferGeometry, InstancedMesh, Matrix4, MeshStandardMaterial } from "three";
 import { useFrame } from "@react-three/fiber";
 import { Vector3 } from "three/src/math/Vector3";
@@ -14,7 +14,7 @@ export interface SkillPageCuboidsProps {
 const LIFT_SPEED = 400;
 const DELAY_MS = 20;
 
-export default function FlyingPageObjects(props: SkillPageCuboidsProps) {
+export default function ThreeSetupFlyingObjects(props: SkillPageCuboidsProps) {
     const random = useRandomGenerator(3);
     const instancedMeshRef = useRef<InstancedMesh>(null);
     const gluedIndexes = useRef([...Array(props.numObjects - 1)].map((item, index) => index));

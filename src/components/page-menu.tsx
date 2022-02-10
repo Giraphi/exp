@@ -7,6 +7,7 @@ import Lightbulb from "./lightbulb/lightbulb";
 export interface PageMenuProps {
     onClick: () => void;
     negative?: boolean;
+    position?: Vector3;
 }
 
 interface ItemDescription {
@@ -21,9 +22,12 @@ export default function PageMenu(props: PageMenuProps) {
     const initialPathname = useState(location.pathname)[0];
 
     const itemDescriptions: ItemDescription[] = useMemo(() => {
-        const position = device !== "small" ? new Vector3(-220, 230, 50) : new Vector3(-60, 220, 100);
+        const position = props.position || (device !== "small" ? new Vector3(-220, 230, 50) : new Vector3(-60, 220, 100))
+        // const position = device !== "small" ? new Vector3(-220, 230, 50) : new Vector3(-60, 220, 100);
 
         const delta = device !== "small" ? new Vector3(0, 40, 0) : new Vector3(0, 50, 0);
+        // const position = new Vector3(0, 0, 0)
+
         const positionCounter = position.clone();
 
         const items: ItemDescription[] = [
@@ -56,7 +60,7 @@ export default function PageMenu(props: PageMenuProps) {
         });
 
         return items;
-    }, [device]);
+    }, [device, props.position]);
 
     const lightPosition = useMemo(() => {
         return new Vector3(-500, 500, 90);

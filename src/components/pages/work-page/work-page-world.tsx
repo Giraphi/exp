@@ -1,10 +1,10 @@
 import React, { Suspense, useState } from "react";
 import { colorWork } from "../../../style/constants";
-import FlyingPageObjects from "../../flying-page-objects";
 import PageMenu from "../../page-menu";
 import WorkPageHeadline from "./work-page-headline";
 import { HandGLTFResult } from "../../models/hand-model";
 import WorkPageHandModel from "./work-page-hand-model";
+import ThreeSetupFlyingObjects from "../../three-setup/three-setup-flying-objects";
 
 export interface WorkPageWorldProps {
     handGltf: HandGLTFResult;
@@ -28,10 +28,10 @@ export default function WorkPageWorld(props: WorkPageWorldProps) {
             ></pointLight>
 
             <group position={[0, 0, -200]}>
-                <FlyingPageObjects numObjects={50} worldSize={1000} lift={isMenuClicked}>
+                <ThreeSetupFlyingObjects numObjects={50} worldSize={1000} lift={isMenuClicked}>
                     <meshStandardMaterial attach="material" color="white" />
                     <sphereGeometry attach="geometry" args={[5, 32, 32]} />
-                </FlyingPageObjects>
+                </ThreeSetupFlyingObjects>
                 <Suspense fallback={null}>
                     <group scale={[400, 400, 400]} position={[0, 20, 0]}>
                         <WorkPageHandModel handGltf={props.handGltf} />

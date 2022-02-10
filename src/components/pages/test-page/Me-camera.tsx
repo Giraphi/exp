@@ -11,7 +11,6 @@ import {useViewportScroll} from "framer-motion";
 import {AnimationAction} from "three";
 import MousePositionContext from "../../../contexts/mouse-position-context";
 import useDevice from "../../../hooks/use-device";
-import FlyingPageObjects from "../../flying-page-objects";
 
 type GLTFResult = GLTF & {
     nodes: {
@@ -40,17 +39,8 @@ export default function Model({...props}: JSX.IntrinsicElements['group']) {
             return;
         }
 
-        cursorCameraRef.current.rotation.set(
-            0.00005 * (mousePositionRef.current.clientY - canvasSize.height / 2),
-            0,
-            0.00005 * (mousePositionRef.current.clientX - canvasSize.width / 2),
-        );
-
-        // meshRef.current.rotation.set(
-        //     0.0002 * (mousePositionRef.current.clientY - canvasSize.height / 2),
-        //     0.0002 * (mousePositionRef.current.clientX - canvasSize.width / 2),
-        //     0,
-        // );
+        cursorCameraRef.current.rotation.x = -0.00005 * (mousePositionRef.current.clientY - canvasSize.height / 2)
+        cursorCameraRef.current.rotation.z = 0.00005 * (mousePositionRef.current.clientX - canvasSize.width / 2)
     });
 
     useEffect(() => {
@@ -69,9 +59,8 @@ export default function Model({...props}: JSX.IntrinsicElements['group']) {
         <group ref={groupRef} {...props} dispose={null}>
             <group name="Camera" position={[-0.06, 1.36, 7.82]} rotation={[1.38, 0, 0]} ref={cameraRef}>
                 <group ref={cursorCameraRef}>
-
-                <PerspectiveCamera
-                    makeDefault far={100} near={0.1} fov={38.27} rotation={[-Math.PI / 2, 0, 0]}/>
+                    <PerspectiveCamera
+                        makeDefault far={100} near={0.1} fov={38.27} rotation={[-Math.PI / 2, 0, 0]}/>
                 </group>
             </group>
             <group
