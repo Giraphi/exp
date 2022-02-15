@@ -23,7 +23,7 @@ export const zIndexes = {
 };
 
 export const fontSizes = {
-    headerSm: "50px",
+    headerSm: "60px",
     headerMd: "120px",
 
     pageHeaderSm: "40px",
@@ -54,7 +54,7 @@ export const spacings = {
 };
 
 export const lineHeights = {
-    headerSm: "50px",
+    headerSm: "60px",
     headerMd: "100px",
 
     h1Sm: "35px",

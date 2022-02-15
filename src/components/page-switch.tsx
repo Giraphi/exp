@@ -3,13 +3,12 @@ import { AnimatePresence } from "framer-motion";
 import { Route, Switch, useLocation } from "react-router-dom";
 import StartPage from "./pages/start-page/start-page";
 import SkillsPage from "./pages/skills-page/skills-page";
-import AboutPage from "./pages/about-page/about-page";
 import MousePositionContextProvider from "../contexts/providers/mouse-position-context-provider";
 import WorkPage from "./pages/work-page/work-page";
 import CreditsPage from "./pages/other/credits-page";
 import ImpressumPage from "./pages/other/impressum-page";
 import PageLoader from "./page-loader/page-loader";
-import TestPage from "./pages/test-page/test-page";
+import AboutPage from "./pages/about-page/about-page";
 
 export default function PageSwitch() {
     const location = useLocation();
@@ -49,7 +48,7 @@ export default function PageSwitch() {
                     </Route>
 
                     <Route exact path={["/test-page"]}>
-                        <TestPage />
+                        <AboutPage />
                     </Route>
                 </Switch>
             </AnimatePresence>

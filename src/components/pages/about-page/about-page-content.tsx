@@ -51,13 +51,14 @@ const StyledLink = styled.a`
 
 const StyledHeadline = styled.div`
     font-family: InkedBones;
-    margin-bottom: 75px;
     text-align: center;
 
     font-size: ${fontSizes.headerSm};
     line-height: ${lineHeights.headerSm};
+    margin-bottom: 30px;
 
     @media (min-width: ${breakpointSmall}) {
+        margin-bottom: 75px;
         font-size: ${fontSizes.headerMd};
         line-height: ${lineHeights.headerMd};
     }

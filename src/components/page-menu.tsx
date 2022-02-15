@@ -31,7 +31,7 @@ export default function PageMenu(props: PageMenuProps) {
 
         const items: ItemDescription[] = [
             {
-                text: "Back Home",
+                text: device !== "small" ? "Back Home" : "Home",
                 path: "/",
                 position: position,
             },
@@ -53,7 +53,7 @@ export default function PageMenu(props: PageMenuProps) {
 
         positionCounter.sub(delta);
         items.push({
-            text: "About Me",
+            text: device !== "small" ? "About Me" : "About",
             path: "/about",
             position: positionCounter.clone(),
         });
@@ -80,7 +80,7 @@ export default function PageMenu(props: PageMenuProps) {
                     key={itemDescription.path}
                     position={itemDescription.position}
                     text={itemDescription.text}
-                    height={95}
+                    height={device !== "small" ? 95 : 60}
                     path={itemDescription.path}
                     horizontal={true}
                     onClick={props.onClick}
