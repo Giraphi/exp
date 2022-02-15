@@ -32,27 +32,40 @@ export default function Model({...props}: JSX.IntrinsicElements['group']) {
     const canvasSize = useThree().size;
     const device = useDevice();
 
+
     const mousePositionRef = useContext(MousePositionContext).mousePositionRef;
-
-    useFrame(() => {
-        if ( device === "small" || !meshRef || !meshRef.current || !cameraRef || !cameraRef.current || !mousePositionRef || !mousePositionRef.current || !cursorCameraRef || !cursorCameraRef.current) {
-            return;
-        }
-
-        cursorCameraRef.current.rotation.x = -0.00005 * (mousePositionRef.current.clientY - canvasSize.height / 2)
-        cursorCameraRef.current.rotation.z = 0.00005 * (mousePositionRef.current.clientX - canvasSize.width / 2)
-    });
 
     useEffect(() => {
         (actions["CameraAction.006"] as AnimationAction).play().paused = true;
     }, [actions]);
 
-    useFrame(() => {
+    useFrame((state) => {
+        console.log(scrollYProgress.get());
+        // Camera Scroll Movement
         const scroll = scrollYProgress.get();
         const action = actions["CameraAction.006"] as AnimationAction;
 
         action.time =
             THREE.MathUtils.lerp(action.time, action.getClip().duration * scroll, 0.05)
+
+        if (!meshRef || !meshRef.current) {
+            return;
+        }
+
+        // Mesh Bouncing
+        const et = state.clock.elapsedTime
+        meshRef.current.position.y = Math.sin((et + 2000) / 2) / 10
+        meshRef.current.rotation.x = Math.sin((et + 2000) / 3) / 15
+        meshRef.current.rotation.y = Math.cos((et + 2000) / 2) / 15
+        meshRef.current.rotation.z = Math.sin((et + 2000) / 3) / 15
+
+        // Camera Cursor Movement
+        if (device === "small" || !cameraRef || !cameraRef.current || !mousePositionRef || !mousePositionRef.current || !cursorCameraRef || !cursorCameraRef.current) {
+            return;
+        }
+
+        cursorCameraRef.current.rotation.x = -0.00005 * (mousePositionRef.current.clientY - canvasSize.height / 2)
+        cursorCameraRef.current.rotation.z = 0.00005 * (mousePositionRef.current.clientX - canvasSize.width / 2)
     })
 
     return (
@@ -67,6 +80,7 @@ export default function Model({...props}: JSX.IntrinsicElements['group']) {
                 ref={meshRef}
             >
                 <mesh
+                    castShadow={true}
                     geometry={nodes.Mesh_0.geometry}
                     material={materials.Material_0}
                     rotation={[-0.1, 0.08, 0.07]}

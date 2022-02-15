@@ -10,9 +10,15 @@ import RotatingObjects from "../../rotating-objects";
 import PageMenu from "../../page-menu";
 import {Vector3} from "three/src/math/Vector3";
 import useDevice from "../../../hooks/use-device";
+import {Plane, Text} from "@react-three/drei";
+import inkedBones from "../../../fonts/inked-bones.woff";
+import {colorAbout} from "../../../style/constants";
+import {Color} from "three";
 
 const StyledRoot = styled.div`
     position: relative;
+    color: ${colorAbout};
+    text-shadow: 1px 1px black;
 `
 
 const StyledCanvas = styled.div`
@@ -21,11 +27,11 @@ const StyledCanvas = styled.div`
     position: fixed;
     top: 0;
     z-index: -1;
+    background-color: black;
 `
 
 const StyledContent = styled.div`
-    padding-top: 70vh;
-    pointer-events: none;
+    margin-top: 65vh;
 `;
 
 export default function TestPage() {
@@ -41,29 +47,39 @@ export default function TestPage() {
     return (
         <StyledRoot>
             <StyledCanvas>
-                <Canvas>
+                <Canvas gl={{powerPreference: "high-performance"}}>
+                    {/*<fog attach="fog" color={new Color("red")} near={1} far={10} />*/}
                     <MousePositionContext.Provider value={mousePositionContext}>
                         <HistoryContext.Provider value={{history}}>
 
-                            <ambientLight intensity={1}/>
 
                             <Suspense fallback={null}>
                                 <MeCamera/>
                             </Suspense>
 
-                            <RotatingObjects
-                                numObjects={200} minDistance={1} maxDistance={20} height={10}>
+                            {/*<gridHelper args={[1000, 400, "deeppink", "deeppink"]} position={[0, -5, 0]}/>*/}
+                            {/*#200825*/}
+                            <Plane rotation={[-Math.PI/2, 0, 0]} position={[0,-5.1,0]} args={[1000,1000]} receiveShadow={true}>
+                                {/*<meshStandardMaterial color={"#0A0813"} />*/}
+                                <meshStandardMaterial color={"white"} />
+                            </Plane>
 
-                                <meshStandardMaterial attach="material" color="red"/>
-                                <boxBufferGeometry args={[0.1, 0.1, 0.1]}/>
-                            </RotatingObjects>
+                            <pointLight intensity={0.2} color={"white"}
+                                        position={device === "small" ? [-0.43, 2.0, 0.11] : [-1.85, 1.6, 1]}
+                                        castShadow={true}
+                            />
+                            <pointLight distance={1000} decay={0.1} castShadow={true} intensity={0.6} color={"white"} position={device === "small" ? [-0.43, 2.0, 0.11] : [3, 2, 3]}/>
+                            <pointLight castShadow={true} intensity={0.1} color={"white"} position={device === "small" ? [-0.43, 2.0, 0.11] : [-1, 0, -1]}/>
 
-                            <gridHelper args={[1000, 400, `black`, `black`]} position={[0, -5, 0]}/>
-
-                            <group scale={0.1}>
+                            <group
+                                scale={0.01}
+                                position={device === "small" ? [-0.43, 2.0, 0.11] : [-1.85, 1.6, 0]}
+                            >
                                 <PageMenu
+                                    disableWhiteLight={true}
                                     position={menuPosition}
                                     onClick={() => setIsMenuClicked(true)}
+                                    hoverColor={"#009905"}
                                 />
                             </group>
 

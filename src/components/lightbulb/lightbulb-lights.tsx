@@ -14,7 +14,6 @@ export interface LightbulbLightsProps {
     };
     color: string;
     position: Vector3;
-
     children: React.ReactNode;
 }
 

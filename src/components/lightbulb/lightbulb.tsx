@@ -1,10 +1,15 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, {useContext, useEffect, useMemo, useState} from "react";
 import { Color } from "three";
 import { Vector3 } from "three/src/math/Vector3";
 import { HistoryContext } from "../../contexts/history-context";
 import { Text } from "@react-three/drei";
 import auvantGothic from "../../fonts/OPTIAuvantGothic-Bold.woff";
 import LightbulbLights from "./lightbulb-lights";
+
+// const COLORS = {
+//     mesh: "#ffffff",
+//     light: "#ffffff",
+// };
 
 const COLORS = {
     mesh: "#ffffff",
@@ -16,10 +21,6 @@ const COLORS_NEGATIVE = {
     light: "#ffffff",
 };
 
-const COLORS_HOVER = {
-    mesh: "#FF0500",
-    light: "#FF0000",
-};
 
 export interface LightParams {
     intensity: number;
@@ -40,6 +41,7 @@ export interface LightbulbProps {
         outer?: Partial<LightParams>;
     };
     negative?: boolean;
+    hoverColor?: string;
 }
 
 export default function Lightbulb(props: LightbulbProps) {
@@ -47,31 +49,53 @@ export default function Lightbulb(props: LightbulbProps) {
     const lightPositionY = props.height * 0.8;
     const [isClicked, setIsClicked] = useState(false);
     const history = useContext(HistoryContext).history;
+    const [hovered, setHovered] = useState(false);
+
+    const hoverColors = useMemo(() => {
+        if (props.hoverColor) {
+            return {
+                mesh: props.hoverColor,
+                light: props.hoverColor,
+            }
+        }
+
+        // return {
+        //     mesh: "#FF0000",
+        //     light: "#FF0000",
+        // }
+        return {
+            mesh: "#FF0000",
+            light: "#FF0000",
+        }
+    }, [props.hoverColor])
 
     useEffect(() => {
-        return () => {
-            document.body.style.cursor = "";
-        };
-    }, []);
+        if (hovered) {
+            document.body.style.cursor = "pointer"
+            return () => void (document.body.style.cursor = "auto")
+        }
+    }, [hovered])
 
     useEffect(() => {
         if (props.isActive) {
-            setColors(COLORS_HOVER);
+            setColors(hoverColors);
             return;
         }
         props.negative ? setColors(COLORS_NEGATIVE) : setColors(COLORS);
-    }, [props.isActive, props.negative]);
+    }, [hoverColors, props.isActive, props.negative]);
 
     function onPointerOver() {
         if (props.isActive) {
             return;
         }
-        setColors(COLORS_HOVER);
-        document.body.style.cursor = "pointer";
+        setColors(hoverColors);
+        setHovered(true);
+        // document.body.style.cursor = "pointer";
     }
 
     function onPointerOut() {
-        document.body.style.cursor = "";
+        // document.body.style.cursor = "auto";
+        setHovered(false);
         if (props.isActive) {
             return;
         }
@@ -87,7 +111,7 @@ export default function Lightbulb(props: LightbulbProps) {
             return;
         }
 
-        setColors(COLORS_HOVER);
+        setColors(hoverColors);
         setIsClicked((isClicked) => !isClicked);
         props.onClick();
         setTimeout(() => {

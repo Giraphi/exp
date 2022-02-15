@@ -8,6 +8,8 @@ export interface PageMenuProps {
     onClick: () => void;
     negative?: boolean;
     position?: Vector3;
+    disableWhiteLight?: boolean;
+    hoverColor?: string;
 }
 
 interface ItemDescription {
@@ -23,10 +25,7 @@ export default function PageMenu(props: PageMenuProps) {
 
     const itemDescriptions: ItemDescription[] = useMemo(() => {
         const position = props.position || (device !== "small" ? new Vector3(-220, 230, 50) : new Vector3(-60, 220, 100))
-        // const position = device !== "small" ? new Vector3(-220, 230, 50) : new Vector3(-60, 220, 100);
-
         const delta = device !== "small" ? new Vector3(0, 40, 0) : new Vector3(0, 50, 0);
-        // const position = new Vector3(0, 0, 0)
 
         const positionCounter = position.clone();
 
@@ -63,12 +62,17 @@ export default function PageMenu(props: PageMenuProps) {
     }, [device, props.position]);
 
     const lightPosition = useMemo(() => {
+        if (props.position) {
+            return props.position
+        }
         return new Vector3(-500, 500, 90);
-    }, []);
+    }, [props.position]);
 
     return (
         <>
-            <pointLight color={"white"} intensity={1.2} distance={2000} decay={1} position={lightPosition} />
+            {!props.disableWhiteLight &&
+                <pointLight color={"white"} intensity={1.2} distance={2000} decay={1} position={lightPosition} />
+            }
 
             {itemDescriptions.map((itemDescription) => (
                 <Lightbulb
@@ -91,6 +95,7 @@ export default function PageMenu(props: PageMenuProps) {
                             intensity: 0.1,
                         },
                     }}
+                    hoverColor={props.hoverColor}
                 />
             ))}
         </>
