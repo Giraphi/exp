@@ -9,7 +9,7 @@ export const breakpointSmall = "768px";
 
 export const zIndexes = {
     startPageHeadline: 1,
-    skillsPageText: 10,
+    pageText: 10,
     pageLoader: 99,
     clipPathAnimationItemTop: 2,
     clipPathAnimationItemBelowTop: 1,

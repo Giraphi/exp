@@ -58,11 +58,6 @@ export default function Lightbulb(props: LightbulbProps) {
                 light: props.hoverColor,
             }
         }
-
-        // return {
-        //     mesh: "#FF0000",
-        //     light: "#FF0000",
-        // }
         return {
             mesh: "#FF0000",
             light: "#FF0000",

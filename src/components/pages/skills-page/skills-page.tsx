@@ -39,7 +39,7 @@ const StyledBanner = styled.div`
 const StyledText = styled.div`
     color: black;
     position: relative;
-    z-index: ${zIndexes.skillsPageText};
+    z-index: ${zIndexes.pageText};
 
     @media (min-width: 768px) {
         text-align: center;
