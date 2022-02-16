@@ -16,7 +16,9 @@ export default function AboutPageCanvas() {
     return (
         <>
             <Suspense fallback={null}>
-                <MeCamera/>
+                <MeCamera
+                    isMenuClicked={isMenuClicked}
+                />
             </Suspense>
 
             <gridHelper args={[1000, 400, "deeppink", "deeppink"]} position={[0, -5, 0]}/>

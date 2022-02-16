@@ -6,7 +6,7 @@
 
 <h2>Insights</h2>
 
-Beispiel zu `attach`:
+<h3>Attach</h3>
 
 -   Sagen wir, ich verwende ein `<meshBasicMaterial>`
 -   Laut <a href="https://threejs.org/docs/?q=meshbasi#api/en/materials/MeshBasicMaterial">three.js doc</a> hat MeshBasicMaterial ein "property" `map` (verlangt eine `Texture`)
@@ -26,3 +26,17 @@ Beispiel zu `attach`:
     <boxGeometry />
 </mesh>
 ```
+
+<h3>dispose</h3>
+
+In plain three.js muss man jede resource, die man zur scene geaddet hat <a href="https://threejs.org/docs/#manual/en/introduction/How-to-dispose-of-objects">manuell wieder entfernen</a>, wenn man sie nicht mehr braucht. Dazu ruft man `dispose()` auf.
+
+In r3f wird `dispose()` für uns <a href="https://docs.pmnd.rs/react-three-fiber/api/objects#disposal">automatisch gecalled</a>, wenn das entsprechende component unmounted wird!
+Für den Fall, dass man eine resource trotzdem behalten will, egal was mit dem react tree passiert, kann man
+
+```
+dispose={null}
+```
+
+setzen. Das heißt dann einfach, dass beim unmounten kein `dispose()` gecalled wird und die ressource weiter verfügbar bleibt und wir selbst zu gegebener zeit `dispose()` callen können.
+

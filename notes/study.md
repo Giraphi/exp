@@ -21,6 +21,8 @@ useFrame((state) => {
   })
   ```
 
+<a href="https://threejs.org/docs/#api/en/math/MathUtils.lerp">lerp(a,b,t)</a>: Linear Interpolation zwischen den Werten a und b zu einem Zeitpunkt t zwischen 0 und 1.
+
 - `actions["CameraAction.005"].time`: value between 0 and 1 indicating the overall action progress
 - `actions["CameraAction.005"].getClip().duration` overall action duration
 - `actions["CameraAction.005"].getClip().duration * scroll.current` target time within the animation according to our scroll progress

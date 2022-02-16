@@ -21,46 +21,52 @@ type GLTFResult = GLTF & {
     },
 }
 
-export default function Model({...props}: JSX.IntrinsicElements['group']) {
+export interface MeCameraProps {
+    isMenuClicked: boolean;
+}
+
+export default function Model(props: MeCameraProps) {
     const groupRef = useRef<THREE.Group>(null)
-    const meshRef = useRef<THREE.Mesh>(null)
+    const bounceMeshRef = useRef<THREE.Group>(null)
+    const rotateMeshRef = useRef<THREE.Group>(null)
     const cameraRef = useRef<THREE.Camera>(null)
     const cursorCameraRef = useRef<THREE.Camera>(null)
+
     const {nodes, materials, animations} = useGLTF('/models/me-camera.glb') as GLTFResult
     const {actions} = useAnimations(animations, groupRef)
     const {scrollYProgress} = useViewportScroll();
     const canvasSize = useThree().size;
     const device = useDevice();
-
-
     const mousePositionRef = useContext(MousePositionContext).mousePositionRef;
 
     useEffect(() => {
         (actions["CameraAction.006"] as AnimationAction).play().paused = true;
     }, [actions]);
 
-    useFrame((state) => {
-        console.log(scrollYProgress.get());
-        // Camera Scroll Movement
+    // Camera Scroll Movement
+    useFrame(() => {
         const scroll = scrollYProgress.get();
         const action = actions["CameraAction.006"] as AnimationAction;
 
         action.time =
             THREE.MathUtils.lerp(action.time, action.getClip().duration * scroll, 0.05)
+    })
 
-        if (!meshRef || !meshRef.current) {
+    // Mesh Bouncing
+    useFrame((state) => {
+        if (!bounceMeshRef.current) {
             return;
         }
-
-        // Mesh Bouncing
         const et = state.clock.elapsedTime
-        meshRef.current.position.y = Math.sin((et + 2000) / 2) / 10
-        meshRef.current.rotation.x = Math.sin((et + 2000) / 3) / 15
-        meshRef.current.rotation.y = Math.cos((et + 2000) / 2) / 15
-        meshRef.current.rotation.z = Math.sin((et + 2000) / 3) / 15
+        bounceMeshRef.current.position.y = Math.sin((et + 2000) / 2) / 10
+        bounceMeshRef.current.rotation.x = Math.sin((et + 2000) / 3) / 15
+        bounceMeshRef.current.rotation.y = Math.cos((et + 2000) / 2) / 15
+        bounceMeshRef.current.rotation.z = Math.sin((et + 2000) / 3) / 15
+    })
 
-        // Camera Cursor Movement
-        if (device === "small" || !cameraRef || !cameraRef.current || !mousePositionRef || !mousePositionRef.current || !cursorCameraRef || !cursorCameraRef.current) {
+    // Camera Cursor Movement
+    useFrame(() => {
+        if (device === "small" || !mousePositionRef || !mousePositionRef.current || !cursorCameraRef.current) {
             return;
         }
 
@@ -68,24 +74,42 @@ export default function Model({...props}: JSX.IntrinsicElements['group']) {
         cursorCameraRef.current.rotation.z = 0.00005 * (mousePositionRef.current.clientX - canvasSize.width / 2)
     })
 
+    useFrame(() => {
+        if (!props.isMenuClicked || !rotateMeshRef.current) {
+            return;
+        }
+
+        if (rotateMeshRef.current.position.y == 0) {
+            rotateMeshRef.current.position.y = 0.1
+        }
+
+        rotateMeshRef.current.rotation.y = (rotateMeshRef.current.rotation.y + 0.02) * 1.07;
+        rotateMeshRef.current.position.y *= 1.07;
+    })
+
     return (
-        <group ref={groupRef} {...props} dispose={null}>
+        <group ref={groupRef} dispose={null}>
             <group name="Camera" position={[-0.06, 1.36, 7.82]} rotation={[1.38, 0, 0]} ref={cameraRef}>
                 <group ref={cursorCameraRef}>
                     <PerspectiveCamera
                         makeDefault far={100} near={0.1} fov={38.27} rotation={[-Math.PI / 2, 0, 0]}/>
                 </group>
             </group>
+
             <group
-                ref={meshRef}
+                ref={rotateMeshRef}
             >
-                <mesh
-                    castShadow={true}
-                    geometry={nodes.Mesh_0.geometry}
-                    material={materials.Material_0}
-                    rotation={[-0.1, 0.08, 0.07]}
-                    scale={8.62}
-                />
+                <group
+                    ref={bounceMeshRef}
+                >
+                    <mesh
+                        castShadow={true}
+                        geometry={nodes.Mesh_0.geometry}
+                        material={materials.Material_0}
+                        rotation={[-0.1, 0.08, 0.07]}
+                        scale={8.62}
+                    />
+                </group>
             </group>
 
         </group>

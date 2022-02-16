@@ -21,8 +21,7 @@ const StyledContent = styled.div<{ isInverted?: boolean }>`
     line-height: ${lineHeights.captionSm};
 
     padding-top: ${spacings.smallMd};
-    border-top: 1px solid;
-    border-color: ${(props) => (props.isInverted ? "white" : "black")};
+
 
     a {
         text-decoration: none;
