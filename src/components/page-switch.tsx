@@ -46,10 +46,6 @@ export default function PageSwitch() {
                     <Route exact path={["/impressum"]}>
                         <ImpressumPage />
                     </Route>
-
-                    <Route exact path={["/test-page"]}>
-                        <AboutPage />
-                    </Route>
                 </Switch>
             </AnimatePresence>
         </MousePositionContextProvider>

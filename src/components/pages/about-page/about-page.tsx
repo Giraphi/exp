@@ -22,7 +22,7 @@ const StyledCanvas = styled.div`
     width: 100%;
     position: fixed;
     top: 0;
-    background: linear-gradient(black, deeppink 50%);
+    background: linear-gradient(black, deeppink 120%);
 
     &:hover {
         background-color: lime;
@@ -48,7 +48,7 @@ export default function AboutPage() {
         <Page>
             <StyledMain>
                 <StyledCanvas>
-                    <Canvas gl={{powerPreference: "high-performance"}}>
+                    <Canvas>
                         <MousePositionContext.Provider value={mousePositionContext}>
                             <HistoryContext.Provider value={{history}}>
                                <AboutPageCanvas/>
