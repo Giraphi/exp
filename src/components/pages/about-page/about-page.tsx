@@ -44,7 +44,6 @@ export default function AboutPage() {
     const history = useHistory();
     const mousePositionContext = useContext(MousePositionContext);
 
-
     return (
         <Page>
             <StyledMain>
@@ -62,9 +61,9 @@ export default function AboutPage() {
 
                 <StyledContent>
                     <AboutPageContent/>
+                    <Footer isInverted={true}/>
                 </StyledContent>
             </StyledMain>
-            <Footer isInverted={true}/>
         </Page>
     );
 }

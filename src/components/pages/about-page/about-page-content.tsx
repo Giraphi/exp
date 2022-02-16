@@ -10,6 +10,7 @@ import {GlitchTextLetterVariant} from "../../glitch-text/glitch-text-letter";
 
 const StyledRoot = styled.div`
     font-family: "SourceCodePro", monospace;
+    margin-bottom: 100px;
 `
 
 const StyledTable = styled.table`
