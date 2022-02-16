@@ -42,6 +42,11 @@ export default function GlitchTextLetter(props: GlitchLetterProps) {
         };
     }, [duration, probability]);
 
+    if (props.letter === " ") {
+        console.log("hello");
+        return <span>&nbsp;</span>
+    }
+
     return (
         <>
             {props.variant === "flip" && <GlitchTextLetterFlip isGlitch={isGlitch} letter={props.letter} />}

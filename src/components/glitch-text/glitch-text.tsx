@@ -15,7 +15,7 @@ export interface GlitchTextProps {
 }
 
 export default function GlitchText(props: GlitchTextProps) {
-    const words = props.text.split(" ");
+    const words = props.text.split(new RegExp("(?<!-) "));
 
     return (
         <span>

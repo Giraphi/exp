@@ -21,23 +21,25 @@ const StyledTable = styled.table`
     }
 
     td {
-        padding-bottom: ${spacings.xSmallSm};
+        padding-bottom: ${spacings.smallSm};
     }
 
     td:first-child {
-        white-space: nowrap;
         padding-right: calc(2 * ${spacings.xSmallSm});
-        text-align: end;
     }
 
     @media (min-width: ${breakpointSmall}) {
         td:first-child {
             padding-right: calc(2 * ${spacings.xSmallMd});
+            white-space: nowrap;
+            text-align: end;
         }
 
         td {
             padding-bottom: ${spacings.xSmallMd};
         }
+
+
     }
 `;
 
