@@ -11,6 +11,7 @@ import {useViewportScroll} from "framer-motion";
 import {AnimationAction} from "three";
 import MousePositionContext from "../../../contexts/mouse-position-context";
 import useDevice from "../../../hooks/use-device";
+import useCursorCamera from "../../../hooks/use-cursor-camera";
 
 type GLTFResult = GLTF & {
     nodes: {
@@ -35,9 +36,8 @@ export default function Model(props: MeCameraProps) {
     const {nodes, materials, animations} = useGLTF('/models/me-camera.glb') as GLTFResult
     const {actions} = useAnimations(animations, groupRef)
     const {scrollYProgress} = useViewportScroll();
-    const canvasSize = useThree().size;
-    const device = useDevice();
-    const mousePositionRef = useContext(MousePositionContext).mousePositionRef;
+
+    useCursorCamera(cursorCameraRef, true, true);
 
     useEffect(() => {
         (actions["CameraAction.006"] as AnimationAction).play().paused = true;
@@ -64,15 +64,15 @@ export default function Model(props: MeCameraProps) {
         bounceMeshRef.current.rotation.z = Math.sin((et + 2000) / 3) / 15
     })
 
-    // Camera Cursor Movement
-    useFrame(() => {
-        if (device === "small" || !mousePositionRef || !mousePositionRef.current || !cursorCameraRef.current) {
-            return;
-        }
-
-        cursorCameraRef.current.rotation.x = -0.00005 * (mousePositionRef.current.clientY - canvasSize.height / 2)
-        cursorCameraRef.current.rotation.z = 0.00005 * (mousePositionRef.current.clientX - canvasSize.width / 2)
-    })
+    // // Camera Cursor Movement
+    // useFrame(() => {
+    //     if (device === "small" || !mousePositionRef || !mousePositionRef.current || !cursorCameraRef.current) {
+    //         return;
+    //     }
+    //
+    //     cursorCameraRef.current.rotation.x = -0.00005 * (mousePositionRef.current.clientY - canvasSize.height / 2)
+    //     cursorCameraRef.current.rotation.z = 0.00005 * (mousePositionRef.current.clientX - canvasSize.width / 2)
+    // })
 
     useFrame(() => {
         if (!props.isMenuClicked || !rotateMeshRef.current) {

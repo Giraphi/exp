@@ -69,7 +69,11 @@ export default function StartPage() {
                     <StyledHeadline>RAPHAEL HÖPS</StyledHeadline>
                     <StyledSubHeadline>Web Developer</StyledSubHeadline>
                 </StyledHeadlineContainer>
-                <ThreeSetup color={"black"} controlButtons={<CameraControlButtons />} onLoadFinished={() => setIsLoadFinished(true)}>
+                <ThreeSetup
+                    color={"black"}
+                    controlButtons={<CameraControlButtons />} onLoadFinished={() => setIsLoadFinished(true)}
+                    cursorControlCamera={true}
+                >
                     <StartPageWorld numCuboids={170} />
                 </ThreeSetup>
             </StyledRoot>

@@ -173,9 +173,11 @@ export default function SkillsPage() {
                         </LayoutContent>
 
                         <SkillsPageEyes eyeGltf={eyeGlTf}/>
+                        {/*<SkillsPageDots/>*/}
                         <Footer/>
                     </StyledContent>
                 </Page>
+
             </StyledRoot>
         </PageLoader>
     );

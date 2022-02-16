@@ -4,14 +4,35 @@ import {Plane} from "@react-three/drei";
 import PageMenu from "../../page-menu";
 import {Vector3} from "three/src/math/Vector3";
 import useDevice from "../../../hooks/use-device";
+import {useFrame} from "@react-three/fiber";
 
-export default function AboutPageCanvas() {
+export interface AboutPageCanvasProps {
+    onLoadFinished: () => void;
+}
+
+export default function AboutPageCanvas(props: AboutPageCanvasProps) {
     const [isMenuClicked, setIsMenuClicked] = useState(false);
     const device = useDevice();
+    const [isLoadFinished, setIsLoadFinished] = useState(true);
 
     const menuPosition = useMemo(() => {
         return device !== "small" ? new Vector3(0, 0, 0) : new Vector3(0, 0, 0)
     }, [device])
+
+    useFrame((state, delta) => {
+        if (!isLoadFinished) {
+            return;
+        }
+
+        const fps = delta ? 1 / delta : 0;
+
+        if (fps <= 20) {
+            return;
+        }
+
+        setIsLoadFinished(true);
+        props.onLoadFinished();
+    });
 
     return (
         <>

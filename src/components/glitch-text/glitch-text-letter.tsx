@@ -43,7 +43,6 @@ export default function GlitchTextLetter(props: GlitchLetterProps) {
     }, [duration, probability]);
 
     if (props.letter === " ") {
-        console.log("hello");
         return <span>&nbsp;</span>
     }
 

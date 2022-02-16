@@ -27,13 +27,18 @@ export interface ThreeSetupProps {
     controlButtons: ReactNode;
     color: string;
     onLoadFinished?: () => void;
+    cursorControlCamera?: boolean;
 }
 
 export default function ThreeSetup(props: ThreeSetupProps) {
     return (
         <StyledRoot backgroundColor={props.color}>
             <MovementContextProvider>
-                <ThreeSetupCanvas onLoadFinished={props.onLoadFinished}>{props.children}</ThreeSetupCanvas>
+                <ThreeSetupCanvas
+                    cursorControlCamera={!!props.cursorControlCamera}
+                    onLoadFinished={props.onLoadFinished}>
+                    {props.children}
+                </ThreeSetupCanvas>
 
                 {props.controlButtons}
             </MovementContextProvider>

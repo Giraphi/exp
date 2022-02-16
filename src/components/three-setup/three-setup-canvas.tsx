@@ -18,6 +18,7 @@ const StyledCanvas = styled(Canvas)`
 export interface ThreeSetupCanvasProps {
     children: ReactNode;
     onLoadFinished?: () => void;
+    cursorControlCamera: boolean;
 }
 
 export default function ThreeSetupCanvas(props: ThreeSetupCanvasProps) {
@@ -38,7 +39,11 @@ export default function ThreeSetupCanvas(props: ThreeSetupCanvasProps) {
                 <MovementContext.Provider value={movementContext}>
                     <HistoryContext.Provider value={{ history }}>
                         <CameraPositionContext.Provider value={cameraPositionValue}>
-                            <ThreeSetupCanvasContent onLoadFinished={props.onLoadFinished}>{props.children}</ThreeSetupCanvasContent>
+                            <ThreeSetupCanvasContent
+                                cursorControlCamera={props.cursorControlCamera}
+                                onLoadFinished={props.onLoadFinished}>
+                                {props.children}
+                            </ThreeSetupCanvasContent>
                         </CameraPositionContext.Provider>
                     </HistoryContext.Provider>
                 </MovementContext.Provider>

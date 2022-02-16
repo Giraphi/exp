@@ -6,6 +6,7 @@ import { useFrame, useThree } from "@react-three/fiber";
 export interface ThreeSetupCanvasContentProps {
     children: ReactNode;
     onLoadFinished?: () => void;
+    cursorControlCamera: boolean;
 }
 
 export default function ThreeSetupCanvasContent(props: ThreeSetupCanvasContentProps) {
@@ -36,7 +37,9 @@ export default function ThreeSetupCanvasContent(props: ThreeSetupCanvasContentPr
 
     return (
         <>
-            <ThreeSetupBirdCamera />
+            <ThreeSetupBirdCamera
+                cursorControl={props.cursorControlCamera}
+            />
             {props.children}
         </>
     );

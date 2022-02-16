@@ -1,4 +1,4 @@
-import React, {useContext} from "react";
+import React, {useContext, useState} from "react";
 import {Canvas} from "@react-three/fiber";
 import styled from "styled-components";
 import AboutPageContent from "./about-page-content";
@@ -9,12 +9,13 @@ import {colorAbout, zIndexes} from "../../../style/constants";
 import Page from "../../page";
 import Footer from "../../footer";
 import AboutPageCanvas from "./about-page-canvas";
+import PageLoader from "../../page-loader/page-loader";
+import {motion} from "framer-motion";
 
 const StyledMain = styled.div`
     position: relative;
     color: ${colorAbout};
     text-shadow: 2px 2px black;
-
 `
 
 const StyledCanvas = styled.div`
@@ -32,7 +33,7 @@ const StyledCanvas = styled.div`
 const StyledSpace = styled.div`
     width: 100%;
     height: 64vh;
-    pointer-events:none;
+    pointer-events: none;
 `;
 
 const StyledContent = styled.div`
@@ -43,27 +44,34 @@ const StyledContent = styled.div`
 export default function AboutPage() {
     const history = useHistory();
     const mousePositionContext = useContext(MousePositionContext);
+    const [isLoadFinished, setIsLoadFinished] = useState(false);
 
     return (
-        <Page>
-            <StyledMain>
-                <StyledCanvas>
-                    <Canvas>
-                        <MousePositionContext.Provider value={mousePositionContext}>
-                            <HistoryContext.Provider value={{history}}>
-                               <AboutPageCanvas/>
-                            </HistoryContext.Provider>
-                        </MousePositionContext.Provider>
-                    </Canvas>
-                </StyledCanvas>
+        <PageLoader isLoadFinished={isLoadFinished}>
+            <motion.div initial={{opacity: 0}} animate={{opacity: 1}} exit={{opacity: 0}} transition={{duration: 1.0}}>
+                <Page>
+                    <StyledMain>
+                        <StyledCanvas>
+                            <Canvas>
+                                <MousePositionContext.Provider value={mousePositionContext}>
+                                    <HistoryContext.Provider value={{history}}>
+                                        <AboutPageCanvas
+                                            onLoadFinished={() => setIsLoadFinished(true)}
+                                        />
+                                    </HistoryContext.Provider>
+                                </MousePositionContext.Provider>
+                            </Canvas>
+                        </StyledCanvas>
 
-                <StyledSpace/>
+                        <StyledSpace/>
 
-                <StyledContent>
-                    <AboutPageContent/>
-                    <Footer isInverted={true}/>
-                </StyledContent>
-            </StyledMain>
-        </Page>
+                        <StyledContent>
+                            <AboutPageContent/>
+                            <Footer isInverted={true}/>
+                        </StyledContent>
+                    </StyledMain>
+                </Page>
+            </motion.div>
+        </PageLoader>
     );
 }

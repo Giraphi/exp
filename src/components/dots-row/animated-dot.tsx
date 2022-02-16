@@ -1,6 +1,6 @@
 import React, {useContext, useEffect, useRef} from "react";
 import styled from "styled-components";
-import {motion, useSpring} from "framer-motion";
+import {motion, MotionValue, useSpring} from "framer-motion";
 import MousePositionContext from "../../contexts/mouse-position-context";
 import {MousePosition} from "../../contexts/providers/mouse-position-context-provider";
 import {getDistanceVector, getVectorLength, round} from "../../utility-functions";
@@ -21,8 +21,12 @@ const springConfig = {
     restSpeed: 2,
 }
 
-export default function AnimatedDot() {
-    const mousePosition = useContext(MousePositionContext).mousePositionMotionValue;
+export interface AnimatedDotProps{
+    mousePosition?: MotionValue<MousePosition | undefined>;
+}
+
+export default function AnimatedDot(props: AnimatedDotProps) {
+
     const originalPositionRef = useRef<HTMLDivElement>(null);
     const translateX = useSpring(0, springConfig);
     const translateY = useSpring(0, springConfig);
@@ -46,14 +50,14 @@ export default function AnimatedDot() {
             translateY.set(0);
         }
 
-        if (!mousePosition) {
+        if (!props.mousePosition) {
             reset();
             return;
         }
 
         // Update the motion values translateX and translateY every time props.mousePosition
         // changes, but NOT trigger a react rerender cycle.
-        const unsubscribe = mousePosition.onChange((latestMousePosition: MousePosition | undefined) => {
+        const unsubscribe = props.mousePosition.onChange((latestMousePosition: MousePosition | undefined) => {
             if (!originalPositionRef.current) {
                 return;
             }
@@ -85,7 +89,7 @@ export default function AnimatedDot() {
         });
 
         return () => unsubscribe();
-    }, [mousePosition, translateX, translateY]);
+    }, [props.mousePosition, translateX, translateY]);
 
     return (
         <div
