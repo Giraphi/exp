@@ -27,7 +27,7 @@ export interface EyeModelProps {
 
 export default function EyeModel(props: EyeModelProps) {
     return (
-        <group rotation={[-Math.PI / 2 - 0.1, 0, 0]} dispose={null}>
+        <group rotation={[-Math.PI / 2 - 0.1, 0, 0]}>
             <group rotation={[Math.PI / 2, 0, 0]}>
                 <group rotation={[Math.PI, 0, -Math.PI / 2]} scale={100}>
                     <mesh geometry={props.eyeGltfResult.nodes.Sphere_Glass_0.geometry} material={props.eyeGltfResult.materials.Glass} />

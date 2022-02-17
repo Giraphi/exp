@@ -34,7 +34,7 @@ export default function ThreeSetupCanvas(props: ThreeSetupCanvasProps) {
 
     // Apparently, Context gets lost if <Canvas> is lost, so we re-provide the value within canvas.
     return (
-        <StyledCanvas gl={{ powerPreference: "high-performance" }}>
+        <StyledCanvas>
             <MousePositionContext.Provider value={mousePositionContext}>
                 <MovementContext.Provider value={movementContext}>
                     <HistoryContext.Provider value={{ history }}>

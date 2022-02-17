@@ -18,7 +18,7 @@ export interface HandModelProps {
 
 export default function HandModel(props: HandModelProps) {
     return (
-        <group dispose={null}>
+        <group>
             <group rotation={[-Math.PI / 2, 0, 0]}>
                 <group rotation={[Math.PI / 2, 0, 0]}>
                     <mesh
