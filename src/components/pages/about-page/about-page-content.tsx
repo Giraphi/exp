@@ -26,20 +26,18 @@ const StyledTable = styled.table`
 
     td:first-child {
         padding-right: calc(2 * ${spacings.xSmallSm});
+            white-space: nowrap;
     }
 
     @media (min-width: ${breakpointSmall}) {
         td:first-child {
             padding-right: calc(2 * ${spacings.xSmallMd});
-            white-space: nowrap;
             text-align: end;
         }
 
         td {
             padding-bottom: ${spacings.xSmallMd};
         }
-
-
     }
 `;
 
