@@ -4,7 +4,7 @@ import ThreeSetup from "../../three-setup/three-setup";
 import CameraControlButtons from "../../camera-control-buttons";
 import SkillsPageWorld from "./skills-page-world";
 import LayoutContent from "../../utilities/layout-content";
-import {motion, useMotionTemplate, useTransform, useViewportScroll} from "framer-motion";
+import {motion, useTransform, useViewportScroll} from "framer-motion";
 import {breakpointSmall, zIndexes} from "../../../style/constants";
 import GlitchText from "../../glitch-text/glitch-text";
 import PageLoader from "../../page-loader/page-loader";
@@ -54,22 +54,17 @@ export default function SkillsPage() {
     const [isLoadFinished, setIsLoadFinished] = useState(false);
     const eyeGlTf = useGLTF("/models/eye/scene.gltf") as EyeGLTFResult;
     const {scrollYProgress} = useViewportScroll();
-    const rColorChannel = useTransform(
+
+    const backgroundColor = useTransform(
         scrollYProgress,
         [0, 2 / 8, 3 / 8, 4 / 8, 5 / 8, 6 / 8, 7 / 8, 1],
-        [255, 255, 255, 255,   0,   0,   0,   0]
+        [
+            "#ffffff", "#ffffff",
+            "#ff00ff", "#ff00ff",
+            "#00ffff", "#00ffff",
+            "#00ff00", "#00ff00"
+        ]
     );
-    const gColorChannel = useTransform(
-        scrollYProgress,
-        [0, 2 / 8, 3 / 8, 4 / 8, 5 / 8, 6 / 8, 7 / 8, 1],
-        [255, 255, 0,   0,255, 255,    255, 255]
-    );
-    const bColorChannel = useTransform(
-        scrollYProgress,
-        [0, 2 / 8, 3 / 8, 4 / 8, 5 / 8, 6 / 8, 7 / 8, 1],
-        [255, 255,  255, 255,255, 255,  0,   0]
-    );
-    const backgroundColor = useMotionTemplate`rgba(${rColorChannel},${gColorChannel},${bColorChannel})`;
 
     return (
         <PageLoader isLoadFinished={isLoadFinished}>
@@ -150,7 +145,7 @@ export default function SkillsPage() {
                                 </LayoutTextSection>
 
                                 <LayoutTextSection>
-                                    <h1 >
+                                    <h1>
                                         <GlitchText variant={"flip"} text={"Favorite Languages"} probability={0.004}/>
                                     </h1>
                                     <LayoutTextItem>JavaScript</LayoutTextItem>
