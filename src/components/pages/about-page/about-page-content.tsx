@@ -4,7 +4,7 @@ import GlitchText from "../../glitch-text/glitch-text";
 import {Spacer} from "../../utilities/spacer";
 import {LayoutTextItem} from "../../utilities/layout-text-item";
 import LayoutContent from "../../utilities/layout-content";
-import styled from "styled-components";
+import styled, {css} from "styled-components";
 import {breakpointSmall, colorAbout, fontSizes, lineHeights, spacings} from "../../../style/constants";
 import {GlitchTextLetterVariant} from "../../glitch-text/glitch-text-letter";
 
@@ -26,7 +26,7 @@ const StyledTable = styled.table`
 
     td:first-child {
         padding-right: calc(2 * ${spacings.xSmallSm});
-            white-space: nowrap;
+        white-space: nowrap;
     }
 
     @media (min-width: ${breakpointSmall}) {
@@ -64,6 +64,25 @@ const StyledHeadline = styled.div`
         line-height: ${lineHeights.headerMd};
     }
 `;
+
+const StyledRow = styled.div<{ disableSpace?: boolean }>`
+    display: flex;
+
+    ${props => !props.disableSpace && css`
+        margin-bottom: ${spacings.smallMd};
+    `}
+    flex-direction: column;
+
+    > *:first-child {
+        min-width: 230px;
+        white-space: nowrap;
+        margin-bottom: ${spacings.xSmallSm}
+    }
+
+    @media (min-width: ${breakpointSmall}) {
+        flex-direction: row;
+    }
+`
 
 export default function AboutPageContent() {
     const glitchTextProps = {
@@ -118,101 +137,82 @@ export default function AboutPageContent() {
                     <GlitchText text={"Education"} {...glitchTextProps}/>
                 </h1>
                 <LayoutTextSection>
-                    <StyledTable>
-                        <tbody>
-                        <tr>
-                            <td>
-                                <GlitchText text={"2011 - 2014"} {...glitchTextProps}/>
-                            </td>
-                            <td>
-                                <GlitchText text={"Bachelor Computer Science at TU Dresden."} {...glitchTextProps}/>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <GlitchText text={"2015 - 2018"} {...glitchTextProps}/>
-                            </td>
-                            <td>
-                                <GlitchText
-                                    text={"Master Computational Linguistics with Computer Science Minor at LMU Munich."}
-                                    {...glitchTextProps}
-                                />
-                            </td>
-                        </tr>
-                        <tr>
-                            <td></td>
-                            <td>
-                                <GlitchText
-                                    text={"Master Thesis in the field of Artificial Intelligence."}
-                                    {...glitchTextProps}
-                                />
-                            </td>
-                        </tr>
-                        </tbody>
-                    </StyledTable>
+
+                    <StyledRow>
+                        <GlitchText text={"2011 - 2014"} {...glitchTextProps}/>
+                        <GlitchText text={"Bachelor Computer Science at TU Dresden."} {...glitchTextProps}/>
+                    </StyledRow>
+
+                    <StyledRow disableSpace={true}>
+                        <GlitchText text={"2015 - 2018"} {...glitchTextProps}/>
+                        <GlitchText
+                            text={"Master Computational Linguistics with Computer Science Minor at LMU Munich."}
+                            {...glitchTextProps}
+                        />
+                    </StyledRow>
+
+                    <StyledRow>
+                        <div/>
+                        <GlitchText
+                            text={"Master Thesis in the field of Artificial Intelligence."}
+                            {...glitchTextProps}
+                        />
+                    </StyledRow>
+
                 </LayoutTextSection>
 
                 <h1>Employments</h1>
                 <LayoutTextSection>
-                    <StyledTable>
-                        <tbody>
-                        <tr>
-                            <td>
-                                <GlitchText
-                                    text={"2012 - 2018"}
-                                    {...glitchTextProps}
-                                />
-                            </td>
-                            <td>
-                                <GlitchText
-                                    text={"Different Jobs as academic tutor at TU Dresden and LMU Munich."}
-                                    {...glitchTextProps}
-                                />
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <GlitchText
-                                    text={"2016 - 2017"}
-                                    {...glitchTextProps}
-                                />
-                            </td>
-                            <td>
-                                <GlitchText
-                                    text={"Working student at Siemens in Munich."}
-                                    {...glitchTextProps}
-                                />
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <GlitchText
-                                    text={"2017"}
-                                    {...glitchTextProps}
-                                />
-                            </td>
-                            <td>
-                                <GlitchText text={"Working student at the web agency"} {...glitchTextProps}/>
-                                <StyledLink target={"_blank"} rel="noopener noreferrer" href={"http://www.funct.com"}>
-                                    funct
-                                </StyledLink>
+                    <StyledRow>
+                        <GlitchText
+                            text={"2012 - 2018"}
+                            {...glitchTextProps}
+                        />
 
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <GlitchText text={"Since 2018"} {...glitchTextProps}/>
-                            </td>
-                            <td>
-                                <GlitchText text={"Full time web developer at"} {...glitchTextProps}/>
-                                <StyledLink target={"_blank"} rel="noopener noreferrer" href={"http://www.funct.com"}>
-                                    funct
-                                </StyledLink>
-                                <GlitchText text={" in Munich."} {...glitchTextProps}/>
-                            </td>
-                        </tr>
-                        </tbody>
-                    </StyledTable>
+                        <GlitchText
+                            text={"Different Jobs as academic tutor at TU Dresden and LMU Munich."}
+                            {...glitchTextProps}
+                        />
+                    </StyledRow>
+                    <StyledRow>
+                        <GlitchText
+                            text={"2016 - 2017"}
+                            {...glitchTextProps}
+                        />
+
+                        <GlitchText
+                            text={"Working student at Siemens in Munich."}
+                            {...glitchTextProps}
+                        />
+                    </StyledRow>
+
+                    <StyledRow>
+                        <GlitchText
+                            text={"2017"}
+                            {...glitchTextProps}
+                        />
+
+                        <div>
+
+                            <GlitchText text={"Working student at the web agency"} {...glitchTextProps}/>
+                            <StyledLink target={"_blank"} rel="noopener noreferrer" href={"http://www.funct.com"}>
+                                funct
+                            </StyledLink>
+                        </div>
+
+                    </StyledRow>
+
+                    <StyledRow>
+                        <GlitchText text={"Since 2018"} {...glitchTextProps}/>
+                        <div>
+
+                            <GlitchText text={"Full time web developer at"} {...glitchTextProps}/>
+                            <StyledLink target={"_blank"} rel="noopener noreferrer" href={"http://www.funct.com"}>
+                                funct
+                            </StyledLink>
+                            <GlitchText text={" in Munich."} {...glitchTextProps}/>
+                        </div>
+                    </StyledRow>
                 </LayoutTextSection>
 
                 <h1>
@@ -259,5 +259,6 @@ export default function AboutPageContent() {
                 </LayoutTextSection>
             </LayoutContent>
         </StyledRoot>
-    );
+    )
+        ;
 }
