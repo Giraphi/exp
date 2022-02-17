@@ -13,34 +13,6 @@ const StyledRoot = styled.div`
     margin-bottom: 100px;
 `
 
-const StyledTable = styled.table`
-    td,
-    table td * {
-        vertical-align: top;
-        padding: 0;
-    }
-
-    td {
-        padding-bottom: ${spacings.smallSm};
-    }
-
-    td:first-child {
-        padding-right: calc(2 * ${spacings.xSmallSm});
-        white-space: nowrap;
-    }
-
-    @media (min-width: ${breakpointSmall}) {
-        td:first-child {
-            padding-right: calc(2 * ${spacings.xSmallMd});
-            text-align: end;
-        }
-
-        td {
-            padding-bottom: ${spacings.xSmallMd};
-        }
-    }
-`;
-
 const StyledLink = styled.a`
     color: ${colorAbout};
     text-decoration: underline;
@@ -51,7 +23,7 @@ const StyledLink = styled.a`
 `;
 
 const StyledHeadline = styled.div`
-    font-family: InkedBones;
+    font-family: InkedBones,sans-serif;
     text-align: center;
 
     font-size: ${fontSizes.headerSm};

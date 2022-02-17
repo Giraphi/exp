@@ -1,9 +1,10 @@
-import React, { useContext, useEffect, useLayoutEffect, useRef } from "react";
-import { useFrame, useThree } from "@react-three/fiber";
-import { Group, PerspectiveCamera } from "three";
-import { CameraPositionContext } from "../../contexts/camera-position-context";
+import React, {useContext, useEffect, useLayoutEffect, useRef} from "react";
+import {useFrame, useThree} from "@react-three/fiber";
+import {Group, PerspectiveCamera} from "three";
+import {CameraPositionContext} from "../../contexts/camera-position-context";
 import MovementContext from "../../contexts/movement-context";
 import useCursorCamera from "../../hooks/use-cursor-camera";
+
 const moveSpeed = 500;
 const lookSpeed = 1;
 
@@ -33,7 +34,7 @@ export default function ThreeSetupBirdCamera(props: ThreeSetupBirdCameraProps) {
         if (!cameraRef.current) {
             return;
         }
-        set({ camera: cameraRef.current });
+        set({camera: cameraRef.current});
     }, [set, size.height, size.width]);
 
     useEffect(() => {
@@ -65,9 +66,9 @@ export default function ThreeSetupBirdCamera(props: ThreeSetupBirdCameraProps) {
     return (
         <>
             <group ref={birdRef} position={initialCameraPosition}>
-                <group rotation={[-0.3, 0, 0]}>
-                    <group ref={cursorCameraRef}>
-                        <perspectiveCamera ref={cameraRef} />
+                <group ref={cursorCameraRef}>
+                    <group rotation={[-0.3, 0, 0]}>
+                        <perspectiveCamera ref={cameraRef}/>
                     </group>
                 </group>
             </group>

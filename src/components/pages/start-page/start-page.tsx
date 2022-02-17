@@ -72,7 +72,6 @@ export default function StartPage() {
                 <ThreeSetup
                     color={"black"}
                     controlButtons={<CameraControlButtons />} onLoadFinished={() => setIsLoadFinished(true)}
-                    cursorControlCamera={true}
                 >
                     <StartPageWorld numCuboids={170} />
                 </ThreeSetup>
