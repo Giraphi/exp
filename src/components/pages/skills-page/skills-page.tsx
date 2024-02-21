@@ -175,4 +175,4 @@ export default function SkillsPage() {
     );
 }
 
-useGLTF.preload("exp/models/eye/scene.gltf");
+useGLTF.preload("models/eye/scene.gltf");
