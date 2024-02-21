@@ -37,7 +37,7 @@
         "test": "react-app-rewired test",
         "eject": "react-scripts eject",
         "predeploy": "npm run build",
-        "deploy": "gh-pages -d build",
+        "deploy": "gh-pages -d build --remote git@github.com-as-giraphi:Giraphi/exp.git",
         "analyze": "source-map-explorer 'build/static/js/*.js'"
     },
     "browserslist": {
