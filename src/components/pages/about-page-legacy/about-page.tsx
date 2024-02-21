@@ -77,7 +77,7 @@ const StyledLink = styled.a`
 // `;
 
 export default function AboutPage() {
-    const meGlTf = useGLTF("exp/models/me.glb") as MeGLTFResult;
+    const meGlTf = useGLTF("models/me.glb") as MeGLTFResult;
     const [isLoadFinished, setIsLoadFinished] = useState(false);
 
     return (

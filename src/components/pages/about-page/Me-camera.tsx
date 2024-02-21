@@ -31,7 +31,7 @@ export default function Model(props: MeCameraProps) {
     const cameraRef = useRef<THREE.Camera>(null);
     const cursorCameraRef = useRef<THREE.Camera>(null);
 
-    const { nodes, materials, animations } = useGLTF("exp/models/me-camera.glb") as GLTFResult;
+    const { nodes, materials, animations } = useGLTF("models/me-camera.glb") as GLTFResult;
     const { actions } = useAnimations(animations, groupRef);
     const { scrollYProgress } = useViewportScroll();
 
@@ -107,4 +107,4 @@ export default function Model(props: MeCameraProps) {
     );
 }
 
-useGLTF.preload("exp/models/me-camera.glb");
+useGLTF.preload("models/me-camera.glb");

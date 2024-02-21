@@ -17,7 +17,7 @@ function App() {
     return (
         <StyledRoot>
             <GlobalStyle />
-            <HashRouter basename="exp">
+            <HashRouter>
                 <PageSwitch />
             </HashRouter>
         </StyledRoot>

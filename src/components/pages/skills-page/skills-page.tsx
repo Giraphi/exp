@@ -52,7 +52,7 @@ const StyledContent = styled.div`
 
 export default function SkillsPage() {
     const [isLoadFinished, setIsLoadFinished] = useState(false);
-    const eyeGlTf = useGLTF("exp/models/eye/scene.gltf") as EyeGLTFResult;
+    const eyeGlTf = useGLTF("models/eye/scene.gltf") as EyeGLTFResult;
     const { scrollYProgress } = useViewportScroll();
 
     const backgroundColor = useTransform(
